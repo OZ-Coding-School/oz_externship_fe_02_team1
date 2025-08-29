@@ -80,6 +80,9 @@ jobs:
                   ;;
                  "ElviaChoi")
                   MENTIONS="$MENTIONS <@991003278701629461>"
+                  ;;                  
+                 "shin-minhyuk")
+                  MENTIONS="$MENTIONS <@1121074841102069814>"
                   ;;
                 *)
                   MENTIONS="$MENTIONS @$login"
@@ -96,6 +99,7 @@ jobs:
                 "nbc7799") MENTIONS="<@784397531848638474>" ;;
                 "gunysunny") MENTIONS="<@402123370839408660>" ;;
                  "ElviaChoi") MENTIONS="<@991003278701629461>" ;;
+                 "shin-minhyuk") MENTIONS="<@1121074841102069814>" ;;
                 *) MENTIONS="@$CURRENT_REVIEWER" ;;
               esac
             fi
@@ -189,6 +193,9 @@ jobs:
             "ElviaChoi")
               AUTHOR_MENTION="<@991003278701629461>"
               ;;
+            "shin-minhyuk")
+              AUTHOR_MENTION="<@1121074841102069814>"
+              ;;
             *)
               AUTHOR_MENTION="@${{ github.event.pull_request.user.login }}"
               ;;
@@ -244,6 +251,9 @@ jobs:
               ;;
             "ElviaChoi")
               AUTHOR_MENTION="<@991003278701629461>"
+              ;;
+            "shin-minhyuk")
+              AUTHOR_MENTION="<@1121074841102069814>"
               ;;
             *)
               AUTHOR_MENTION="@${{ github.event.pull_request.user.login }}"
