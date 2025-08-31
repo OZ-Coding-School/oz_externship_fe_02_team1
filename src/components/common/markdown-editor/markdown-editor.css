@@ -1,23 +1,16 @@
 @import 'tailwindcss';
 
+/* Editor Container */
 .markdown-editor {
-  @apply relative w-full overflow-hidden rounded-lg border border-gray-300;
+  @apply relative w-full overflow-visible rounded-lg border border-gray-300 bg-white;
 }
 
+/* Toolbar & Tabs */
 .markdown-editor .w-md-editor-toolbar {
-  @apply rounded-t-none border-b border-gray-200 bg-gray-50 px-4 py-2;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-left: 9.5rem;
-  height: 48px;
-  position: relative;
+  @apply relative z-10 flex h-12 items-center justify-end overflow-visible rounded-t-lg border-b border-gray-200 bg-gray-50 px-4 py-2 pl-40;
 }
-
 .markdown-editor__tabs {
-  @apply absolute left-4 z-10 flex items-center gap-2;
-  top: 0;
-  height: 48px;
+  @apply absolute top-0 left-4 z-20 flex h-12 items-center gap-2;
 }
 .markdown-editor__tab {
   @apply h-8 rounded px-3 text-sm font-medium text-gray-600 hover:text-gray-900;
@@ -26,20 +19,44 @@
   @apply bg-white text-gray-900 shadow-sm;
 }
 
+/* --- Heading Dropdown Overrides --- */
+/* 라이브러리 드롭다운 래퍼(div)는 투명화하여 위치만 잡도록 설정 */
+.markdown-editor .w-md-editor-toolbar .w-md-editor-toolbar-child,
+.markdown-editor .w-md-editor-toolbar .w-md-editor-toolbar-child > div {
+  @apply m-0 border-0 bg-transparent p-0 shadow-none;
+}
+.markdown-editor .w-md-editor-toolbar .w-md-editor-toolbar-child {
+  @apply absolute top-full right-0 z-50 mt-2 w-auto translate-x-[7px] transform overflow-visible;
+}
+/* 실제 보이는 메뉴(ul) 스타일 */
+.markdown-editor .w-md-editor-toolbar .w-md-editor-toolbar-child ul {
+  @apply inline-flex w-auto min-w-max flex-col items-stretch rounded-md border border-gray-200 bg-white py-1 whitespace-nowrap shadow-lg;
+}
+.markdown-editor .w-md-editor-toolbar .w-md-editor-toolbar-child li > button {
+  @apply w-full px-3 py-1.5 text-center text-sm leading-5 font-medium text-gray-800 hover:bg-gray-50;
+}
+/* 라이브러리의 선택 효과(aria-selected) 오버라이드 */
+.markdown-editor
+  .w-md-editor-toolbar
+  .w-md-editor-toolbar-child
+  li[aria-selected='true'] {
+  @apply bg-white text-gray-900;
+}
+
+/* Toolbar Buttons */
+.markdown-editor .w-md-editor-toolbar li {
+  @apply relative; /* 드롭다운 기준점 */
+}
 .markdown-editor .w-md-editor-toolbar li button {
-  @apply flex h-7 w-7 items-center justify-center;
+  @apply flex h-8 w-8 items-center justify-center;
 }
 .markdown-editor .w-md-editor-toolbar li button svg {
   @apply h-5 w-5;
-  flex-shrink: 0;
 }
-
 .markdown-editor .w-md-editor-toolbar li button .md-heading-icon,
 .markdown-editor .w-md-editor-toolbar li button span.inline-flex {
-  @apply inline-flex h-5 w-5 items-center justify-center leading-none font-bold;
-  font-size: 20px;
+  @apply inline-flex h-5 w-5 items-center justify-center text-base leading-none font-medium;
 }
-
 .markdown-editor .w-md-editor-toolbar li button:hover {
   @apply text-gray-500;
 }
@@ -47,29 +64,23 @@
   @apply rounded ring-2 ring-gray-300 outline-none;
 }
 
-/* ───────── 본문/프리뷰/힌트 ───────── */
-
-.markdown-editor .w-md-editor {
-  @apply font-sans text-sm shadow-sm;
-}
+/* Editor Body & Hint */
 .markdown-editor .w-md-editor-content {
-  @apply bg-white p-4 text-gray-800;
-  min-height: 192px;
+  @apply min-h-48 rounded-b-lg bg-white p-4 text-gray-800;
 }
 .markdown-editor textarea.w-md-editor-text-input {
   @apply leading-6;
 }
-
+.markdown-editor__hint {
+  @apply flex items-center gap-2 border-t border-gray-200 bg-gray-50 px-4 py-2 text-xs text-gray-600;
+}
 .markdown-preview {
   @apply rounded-lg border border-gray-200 bg-white p-4 text-gray-800;
 }
 
-.markdown-editor__hint {
-  @apply flex items-center gap-2 border-t border-gray-200 bg-gray-50 px-4 py-2 text-xs text-gray-600;
-}
-
+/* Scrollbar */
 .markdown-editor .w-md-editor-content::-webkit-scrollbar {
-  width: 10px;
+  @apply w-2.5;
 }
 .markdown-editor .w-md-editor-content::-webkit-scrollbar-thumb {
   @apply rounded bg-gray-200;

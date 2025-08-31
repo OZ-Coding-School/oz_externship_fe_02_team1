@@ -1,6 +1,13 @@
-import { useState } from 'react'
+import { useMemo, useState, type ReactElement } from 'react'
 import MDEditor, { commands } from '@uiw/react-md-editor'
-
+import {
+  Heading,
+  Bold,
+  Italic,
+  Code,
+  Link as LinkIcon,
+  List,
+} from 'lucide-react'
 import { createHeadingCommand } from './utils'
 import {
   DEFAULT_EDITOR_HEIGHT,
@@ -19,34 +26,51 @@ export default function MarkdownEditor({
 }: MarkdownEditorProps) {
   const [previewMode, setPreviewMode] = useState<PreviewMode>('edit')
 
-  const headingCommands = HEADING_LEVELS.map((level) =>
-    createHeadingCommand(
-      level,
-      <span className="inline-flex h-6 w-6 items-center justify-center text-[25px] leading-none font-semibold">
-        H{level}
-      </span>
-    )
+  const headingCommands = useMemo(
+    () =>
+      HEADING_LEVELS.map((level) =>
+        createHeadingCommand(
+          level,
+          <span className="md-heading-icon">H{level}</span>
+        )
+      ),
+    []
   )
 
-  const headingGroup = commands.group(headingCommands, {
-    name: 'heading',
-    groupName: 'heading',
-    buttonProps: { 'aria-label': 'Insert heading' },
-    icon: (
-      <span className="flex h-6 w-6 items-center justify-center text-[25px] leading-none font-semibold">
-        H
-      </span>
-    ),
-  })
+  const headingGroup = useMemo(
+    () =>
+      commands.group(headingCommands, {
+        name: 'heading',
+        groupName: 'heading',
+        buttonProps: { 'aria-label': 'Insert heading' },
+        icon: <Heading className="h-5 w-5" />,
+      }),
+    [headingCommands]
+  )
 
-  const basicToolbarCommands = [
-    commands.bold,
-    commands.italic,
-    commands.code,
-    commands.link,
-    headingGroup,
-    commands.unorderedListCommand,
-  ]
+  const basicToolbarCommands = useMemo(
+    () => [
+      commands.bold,
+      commands.italic,
+      commands.code,
+      commands.link,
+      headingGroup,
+      commands.unorderedListCommand,
+    ],
+    [headingGroup]
+  )
+
+  const iconMap: Record<string, ReactElement> = useMemo(
+    () => ({
+      bold: <Bold className="h-5 w-5" />,
+      italic: <Italic className="h-5 w-5" />,
+      code: <Code className="h-5 w-5" />,
+      link: <LinkIcon className="h-5 w-5" />,
+      unorderedList: <List className="h-5 w-5" />,
+      unorderedListCommand: <List className="h-5 w-5" />,
+    }),
+    []
+  )
 
   return (
     <div
@@ -63,7 +87,9 @@ export default function MarkdownEditor({
           type="button"
           role="tab"
           aria-selected={previewMode === 'edit'}
-          className={`markdown-editor__tab ${previewMode === 'edit' ? 'is-active' : ''}`}
+          className={`markdown-editor__tab ${
+            previewMode === 'edit' ? 'is-active' : ''
+          }`}
           onClick={() => setPreviewMode('edit')}
         >
           작성
@@ -72,13 +98,14 @@ export default function MarkdownEditor({
           type="button"
           role="tab"
           aria-selected={previewMode === 'preview'}
-          className={`markdown-editor__tab ${previewMode === 'preview' ? 'is-active' : ''}`}
+          className={`markdown-editor__tab ${
+            previewMode === 'preview' ? 'is-active' : ''
+          }`}
           onClick={() => setPreviewMode('preview')}
         >
           미리보기
         </button>
       </div>
-
       <MDEditor
         value={markdownValue}
         onChange={(newMarkdownValue) =>
@@ -90,8 +117,14 @@ export default function MarkdownEditor({
         commands={basicToolbarCommands}
         extraCommands={[]}
         visibleDragbar={false}
+        commandsFilter={(cmd) => {
+          if (typeof cmd.keyCommand === 'string' && cmd.keyCommand in iconMap) {
+            const icon = iconMap[cmd.keyCommand as keyof typeof iconMap]
+            return { ...cmd, icon }
+          }
+          return cmd
+        }}
       />
-
       <div className="markdown-editor__hint" aria-hidden>
         <span>마크다운 문법을 사용할 수 있습니다.</span>
         <span className="font-mono">**굵게**</span>
