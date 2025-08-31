@@ -3,6 +3,7 @@
 .markdown-editor {
   @apply relative w-full overflow-hidden rounded-lg border border-gray-300;
 }
+
 .markdown-editor .w-md-editor-toolbar {
   @apply rounded-t-none border-b border-gray-200 bg-gray-50 px-4 py-2;
   display: flex;
@@ -53,7 +54,7 @@
 }
 .markdown-editor .w-md-editor-content {
   @apply bg-white p-4 text-gray-800;
-  min-height: 192px; /* h-48 */
+  min-height: 192px;
 }
 .markdown-editor textarea.w-md-editor-text-input {
   @apply leading-6;

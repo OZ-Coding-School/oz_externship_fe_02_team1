@@ -1,6 +1,15 @@
+import type { ReactElement } from 'react'
+import type {
+  ICommand,
+  ExecuteState,
+  TextAreaTextApi,
+} from '@uiw/react-md-editor/commands'
+
 export type MarkdownValue = string
 
 export type PreviewMode = 'edit' | 'preview'
+
+export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6
 
 export interface MarkdownEditorProps {
   markdownValue: MarkdownValue
@@ -15,10 +24,5 @@ export interface MarkdownPreviewProps {
   className?: string
 }
 
-export interface MarkdownTextState {
-  selectedText: string
-}
-
-export interface MarkdownTextApi {
-  replaceSelection: (text: string) => void
-}
+// Re-export 라이브러리 타입
+export type { ICommand, ExecuteState, TextAreaTextApi, ReactElement }

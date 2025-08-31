@@ -1,61 +1,59 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import MDEditor, { commands } from '@uiw/react-md-editor'
 
-import type { MarkdownEditorProps } from './types'
+import { createHeadingCommand } from './utils'
+import {
+  DEFAULT_EDITOR_HEIGHT,
+  EDITOR_ARIA_LABEL,
+  HEADING_LEVELS,
+} from './constants'
+import type { MarkdownEditorProps, PreviewMode } from './types'
 import './markdown-editor.css'
-
-const DEFAULT_HEIGHT = 288
-
-const createHeadingCommand = (level: number) => ({
-  name: `h${level}`,
-  keyCommand: `h${level}`,
-  buttonProps: { 'aria-label': `Insert H${level}` },
-  icon: <span className="text-xs font-bold">H{level}</span>,
-  execute: (state: any, api: any) => {
-    const prefix = '#'.repeat(level) + ' '
-    const selected = state.selectedText || ''
-    api.replaceSelection(prefix + selected)
-  },
-})
 
 export default function MarkdownEditor({
   markdownValue,
   onMarkdownChange,
-  ariaLabel = '마크다운 에디터',
-  height = DEFAULT_HEIGHT,
+  ariaLabel = EDITOR_ARIA_LABEL,
+  height = DEFAULT_EDITOR_HEIGHT,
   className = '',
 }: MarkdownEditorProps) {
-  const [previewMode, setPreviewMode] = useState<'edit' | 'preview'>('edit')
-  const colorModeAttr = useMemo(
-    () => ({ 'data-color-mode': 'light' as const }),
-    []
+  const [previewMode, setPreviewMode] = useState<PreviewMode>('edit')
+
+  const headingCommands = HEADING_LEVELS.map((level) =>
+    createHeadingCommand(
+      level,
+      <span className="inline-flex h-6 w-6 items-center justify-center text-[25px] leading-none font-semibold">
+        H{level}
+      </span>
+    )
   )
 
-  const headingGroup = commands.group(
-    [1, 2, 3, 4, 5, 6].map(createHeadingCommand),
-    {
-      name: 'heading',
-      groupName: 'heading',
-      icon: (
-        <span className="flex h-6 w-6 items-center justify-center text-[25px] leading-none font-semibold">
-          H
-        </span>
-      ),
-      buttonProps: { 'aria-label': 'Insert heading' },
-    }
-  )
+  const headingGroup = commands.group(headingCommands, {
+    name: 'heading',
+    groupName: 'heading',
+    buttonProps: { 'aria-label': 'Insert heading' },
+    icon: (
+      <span className="flex h-6 w-6 items-center justify-center text-[25px] leading-none font-semibold">
+        H
+      </span>
+    ),
+  })
 
-  const minimalToolbarCommands = [
+  const basicToolbarCommands = [
     commands.bold,
     commands.italic,
     commands.code,
     commands.link,
     headingGroup,
-    (commands as any).unorderedListCommand ?? (commands as any).unorderedList,
+    commands.unorderedListCommand,
   ]
 
   return (
-    <div className={`markdown-editor relative ${className}`} {...colorModeAttr}>
+    <div
+      className={`markdown-editor relative ${className}`}
+      data-color-mode="light"
+    >
+      {/* 작성/미리보기 탭 */}
       <div
         className="markdown-editor__tabs"
         role="tablist"
@@ -83,11 +81,13 @@ export default function MarkdownEditor({
 
       <MDEditor
         value={markdownValue}
-        onChange={(incoming) => onMarkdownChange(incoming ?? '')}
+        onChange={(newMarkdownValue) =>
+          onMarkdownChange(newMarkdownValue ?? '')
+        }
         preview={previewMode}
         height={height}
         textareaProps={{ 'aria-label': ariaLabel }}
-        commands={minimalToolbarCommands}
+        commands={basicToolbarCommands}
         extraCommands={[]}
         visibleDragbar={false}
       />
