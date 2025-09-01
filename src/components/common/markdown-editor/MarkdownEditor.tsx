@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import MDEditor, { commands } from '@uiw/react-md-editor'
+import remarkBreaks from 'remark-breaks'
 
 import { createHeadingCommand } from './utils'
 import { EDITOR_ARIA_LABEL, HEADING_LEVELS } from './constants'
@@ -74,12 +75,15 @@ export default function MarkdownEditor({
         preview={previewMode}
         textareaProps={{
           'aria-label': ariaLabel,
-          placeholder: placeholder,
+          placeholder,
         }}
         commands={toolbarCommands}
         extraCommands={[]}
         visibleDragbar={false}
         highlightEnable={false}
+        previewOptions={{
+          remarkPlugins: [remarkBreaks],
+        }}
       />
 
       <div className="markdown-editor__hint" aria-hidden>
