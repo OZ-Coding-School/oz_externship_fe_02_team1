@@ -16,6 +16,9 @@ export const createHeadingCommand = (
   icon,
   execute: (state: ExecuteState, api: TextAreaTextApi) => {
     const prefix = '#'.repeat(level) + ' '
-    api.replaceSelection(prefix + (state.selectedText || ''))
+    const modifiedText = state.selectedText
+      ? `${prefix}${state.selectedText}\n`
+      : prefix
+    api.replaceSelection(modifiedText)
   },
 })
