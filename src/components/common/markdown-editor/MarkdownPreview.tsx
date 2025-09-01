@@ -8,7 +8,7 @@ export default function MarkdownPreview({
 }: MarkdownPreviewProps) {
   return (
     <div className={`markdown-preview ${className}`} data-color-mode="light">
-      <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} />
+      <MDEditor.Markdown source={value} />
     </div>
   )
 }
