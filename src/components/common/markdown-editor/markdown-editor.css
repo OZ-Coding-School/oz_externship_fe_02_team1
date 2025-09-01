@@ -5,6 +5,15 @@
   @apply relative flex h-[284px] w-full flex-col overflow-hidden rounded-lg border border-gray-300 bg-white;
 }
 
+/* Size Variants */
+.markdown-editor.compact {
+  @apply h-48;
+}
+
+.markdown-editor.large {
+  @apply h-96;
+}
+
 /* Heading Icons */
 .heading-level-icon,
 .heading-icon {
