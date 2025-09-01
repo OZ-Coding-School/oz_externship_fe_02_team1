@@ -1,3 +1,6 @@
 export { default as MarkdownEditor } from './MarkdownEditor'
 export { default as MarkdownPreview } from './MarkdownPreview'
+export { default as MarkdownEditorHint } from './MarkdownEditorHint'
 export * from './types'
+export * from './constants'
+export * from './utils'

@@ -10,6 +10,9 @@
 .markdown-editor.large {
   @apply h-96;
 }
+.markdown-editor[aria-disabled='true'] {
+  @apply cursor-not-allowed bg-gray-50 opacity-60;
+}
 
 /* ── Heading Icons ── */
 .heading-level-icon,
@@ -28,10 +31,13 @@
   @apply absolute top-0 left-4 z-20 flex h-12 items-center gap-2;
 }
 .markdown-editor__tab {
-  @apply hover:text-primary-600 h-8 rounded px-3 text-sm font-medium text-gray-600;
+  @apply h-8 rounded px-3 py-1 text-sm leading-tight font-medium text-gray-600 transition-colors hover:text-gray-900;
 }
 .markdown-editor__tab[aria-selected='true'] {
-  @apply text-primary-700 bg-white shadow-sm;
+  @apply bg-white font-semibold text-gray-900 shadow-sm;
+}
+.markdown-editor__tab:disabled {
+  @apply cursor-not-allowed opacity-50 hover:text-gray-600;
 }
 
 /* ── Heading Dropdown ── */
@@ -46,7 +52,7 @@
   @apply inline-flex w-auto min-w-max flex-col items-stretch rounded-md border border-gray-200 bg-white py-1 whitespace-nowrap shadow-lg;
 }
 .markdown-editor .w-md-editor-toolbar .w-md-editor-toolbar-child li > button {
-  @apply w-full px-3 py-1.5 text-center text-sm leading-5 font-medium text-gray-800 hover:bg-gray-50;
+  @apply w-full px-3 py-1.5 text-center text-sm leading-5 font-medium text-gray-800 transition-colors hover:bg-gray-50;
 }
 .markdown-editor
   .w-md-editor-toolbar
@@ -60,7 +66,7 @@
   @apply relative;
 }
 .markdown-editor .w-md-editor-toolbar li button {
-  @apply flex h-8 w-8 items-center justify-center rounded hover:bg-gray-100;
+  @apply flex h-8 w-8 items-center justify-center rounded transition-colors hover:bg-gray-100;
 }
 .markdown-editor .w-md-editor-toolbar li button svg {
   @apply h-4 w-4;
@@ -73,7 +79,7 @@
   @apply bg-gray-100 text-gray-700;
 }
 .markdown-editor .w-md-editor-toolbar li button:focus-visible {
-  @apply ring-primary-500 rounded ring-2 ring-offset-1 outline-none;
+  @apply rounded ring-2 ring-gray-500 ring-offset-1 outline-none;
 }
 .markdown-editor .w-md-editor-toolbar ul {
   @apply flex items-center gap-1;
@@ -89,7 +95,7 @@
 
 /* ── Editor Body ── */
 .markdown-editor .w-md-editor-content {
-  @apply flex-1 overflow-hidden bg-white pt-4 pr-0 pb-4 pl-4 text-gray-800;
+  @apply flex-1 overflow-hidden bg-white text-gray-800;
 }
 
 .markdown-editor .w-md-editor-text {
@@ -101,12 +107,23 @@
   font-family: 'Pretendard', sans-serif;
 }
 
+.markdown-editor textarea.w-md-editor-text-input:disabled {
+  @apply cursor-not-allowed bg-gray-50 text-gray-500;
+}
+
+.markdown-editor .w-md-editor-preview {
+  @apply px-4 pt-5 pb-4;
+}
+
 /* ── Hint Bar ── */
 .markdown-editor__hint {
-  @apply flex items-center gap-2 overflow-hidden rounded-b-md border-t border-gray-200 bg-gray-50 px-4 py-2 text-xs whitespace-nowrap text-gray-600;
+  @apply flex items-center gap-2 overflow-hidden rounded-b-md border-t border-gray-200 bg-gray-50 px-4 py-2 text-xs text-gray-600;
+}
+.markdown-editor__hint-syntax {
+  @apply flex items-center gap-2 whitespace-nowrap;
 }
 .markdown-editor__hint-code {
-  @apply font-medium text-gray-700;
+  @apply font-normal text-gray-600;
 }
 
 /* ── Preview ── */

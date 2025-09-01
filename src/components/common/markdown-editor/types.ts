@@ -17,6 +17,7 @@ export interface MarkdownEditorProps {
   ariaLabel?: string
   className?: string
   placeholder?: string
+  disabled?: boolean
 }
 
 export interface MarkdownPreviewProps {
