@@ -28,10 +28,10 @@
   @apply absolute top-0 left-4 z-20 flex h-12 items-center gap-2;
 }
 .markdown-editor__tab {
-  @apply h-8 rounded px-3 text-sm font-medium text-gray-600 hover:text-gray-900;
+  @apply hover:text-primary-600 h-8 rounded px-3 text-sm font-medium text-gray-600;
 }
 .markdown-editor__tab[aria-selected='true'] {
-  @apply bg-white text-gray-900 shadow-sm;
+  @apply text-primary-700 bg-white shadow-sm;
 }
 
 /* ── Heading Dropdown ── */
@@ -73,7 +73,7 @@
   @apply bg-gray-100 text-gray-700;
 }
 .markdown-editor .w-md-editor-toolbar li button:focus-visible {
-  @apply rounded ring-2 ring-blue-500 ring-offset-1 outline-none;
+  @apply ring-primary-500 rounded ring-2 ring-offset-1 outline-none;
 }
 .markdown-editor .w-md-editor-toolbar ul {
   @apply flex items-center gap-1;
@@ -97,21 +97,24 @@
 }
 
 .markdown-editor textarea.w-md-editor-text-input {
-  @apply h-full w-full px-4 py-4 leading-6 break-words whitespace-pre-wrap;
+  @apply h-full w-full px-4 py-4 leading-6 font-normal break-words whitespace-pre-wrap;
+  font-family: 'Pretendard', sans-serif;
 }
 
 /* ── Hint Bar ── */
 .markdown-editor__hint {
   @apply flex items-center gap-2 overflow-hidden rounded-b-md border-t border-gray-200 bg-gray-50 px-4 py-2 text-xs whitespace-nowrap text-gray-600;
 }
-.markdown-editor__hint-code,
-.hint-code {
-  @apply font-mono;
+.markdown-editor__hint-code {
+  @apply font-medium text-gray-700;
 }
 
 /* ── Preview ── */
 .markdown-preview {
   @apply rounded-lg border border-gray-200 bg-white p-4 text-gray-800;
+}
+.markdown-preview .w-md-editor-markdown {
+  white-space: pre-wrap;
 }
 .markdown-preview ul,
 .markdown-editor .w-md-editor-preview ul {
