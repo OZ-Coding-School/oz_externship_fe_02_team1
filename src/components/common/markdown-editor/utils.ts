@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { type ReactElement } from 'react'
 import { commands } from '@uiw/react-md-editor'
-import type { ReactElement } from 'react'
 import type {
   ICommand,
   ExecuteState,
