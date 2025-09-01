@@ -2,7 +2,7 @@
 
 /* Editor Container */
 .markdown-editor {
-  @apply relative w-full overflow-visible rounded-lg border border-gray-300 bg-white;
+  @apply relative flex h-[284px] w-full flex-col overflow-hidden rounded-lg border border-gray-300 bg-white;
 }
 
 /* Heading Icons */
@@ -76,9 +76,15 @@
   @apply flex;
 }
 
+.markdown-editor .w-md-editor {
+  @apply flex flex-1 flex-col;
+  min-height: 0;
+}
+
 /* Editor Body */
 .markdown-editor .w-md-editor-content {
-  @apply min-h-48 bg-white p-4 text-gray-800;
+  @apply flex-1 bg-white p-4 text-gray-800;
+  overflow-y: auto;
 }
 
 /* Hint Bar */

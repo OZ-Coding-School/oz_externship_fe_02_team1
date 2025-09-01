@@ -15,7 +15,6 @@ export interface MarkdownEditorProps {
   value: MarkdownValue
   onChange: (newValue: MarkdownValue) => void
   ariaLabel?: string
-  height?: number
   className?: string
   placeholder?: string
 }

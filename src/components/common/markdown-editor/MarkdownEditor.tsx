@@ -2,11 +2,7 @@ import { useState, useMemo } from 'react'
 import MDEditor, { commands } from '@uiw/react-md-editor'
 
 import { createHeadingCommand } from './utils'
-import {
-  DEFAULT_EDITOR_HEIGHT,
-  EDITOR_ARIA_LABEL,
-  HEADING_LEVELS,
-} from './constants'
+import { EDITOR_ARIA_LABEL, HEADING_LEVELS } from './constants'
 import type { MarkdownEditorProps, PreviewMode } from './types'
 import './markdown-editor.css'
 
@@ -19,7 +15,7 @@ export default function MarkdownEditor({
   value,
   onChange,
   ariaLabel = EDITOR_ARIA_LABEL,
-  height = DEFAULT_EDITOR_HEIGHT,
+
   className = '',
   placeholder = '스터디 그룹에 대한 설명을 작성하세요. 마크다운 문법을 사용할 수 있습니다.',
 }: MarkdownEditorProps) {
@@ -76,7 +72,6 @@ export default function MarkdownEditor({
         value={value}
         onChange={(newValue) => onChange(newValue ?? '')}
         preview={previewMode}
-        height={height}
         textareaProps={{
           'aria-label': ariaLabel,
           placeholder: placeholder,
