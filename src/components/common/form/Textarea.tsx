@@ -1,6 +1,6 @@
 import { useState, useId } from 'react'
 
-import { TextareaStyle } from '@/components/common/form/form.styles'
+import { textareaStyle } from '@/components/common/form/form.styles'
 import type { TextareaProps } from '@/components/common/form/form.type'
 
 const Textarea = ({
@@ -41,7 +41,7 @@ const Textarea = ({
         value={val}
         onChange={handleChange}
         maxLength={maxLength}
-        className={TextareaStyle(className)}
+        className={textareaStyle(className)}
         {...rest}
       />
 

@@ -1,7 +1,7 @@
 import { cn } from '@/utils/cn'
 
 /** Input 전용 스타일 */
-export const InputStyle = ({
+export const inputStyle = ({
   hasError,
   leftIcon,
   className,
@@ -22,7 +22,7 @@ export const InputStyle = ({
   )
 
 /** DateInput 전용 스타일 */
-export const DateInputStyle = ({
+export const dateInputStyle = ({
   invalid,
   className,
 }: {
@@ -39,7 +39,7 @@ export const DateInputStyle = ({
   )
 
 /** Textarea 전용 스타일 */
-export const TextareaStyle = (className?: string) =>
+export const textareaStyle = (className?: string) =>
   cn(
     'w-full rounded-[8px] border text-[14px] transition-colors outline-none',
     'resize-none px-[13px] py-[9px] placeholder:text-gray-400',
@@ -47,7 +47,7 @@ export const TextareaStyle = (className?: string) =>
   )
 
 /** TimeInput 전용 스타일 */
-export const TimeInputButtonStyle = (className?: string) =>
+export const timeInputButtonStyle = (className?: string) =>
   cn(
     'w-full rounded-[8px] border bg-white text-left text-[14px] transition-colors outline-none',
     'focus:border-primary-500 border-gray-300 focus:border-2',

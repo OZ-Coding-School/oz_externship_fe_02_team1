@@ -1,6 +1,6 @@
 import { useState, useId } from 'react'
 
-import { TimeInputButtonStyle } from '@/components/common/form/form.styles'
+import { timeInputButtonStyle } from '@/components/common/form/form.styles'
 import type { TimeInputProps } from '@/components/common/form/form.type'
 
 const TimeInput = ({
@@ -40,7 +40,7 @@ const TimeInput = ({
         type="button"
         id={inputId}
         onClick={() => setOpen(!open)}
-        className={TimeInputButtonStyle()}
+        className={timeInputButtonStyle()}
       >
         {selected ?? '시간을 선택하세요'}
       </button>

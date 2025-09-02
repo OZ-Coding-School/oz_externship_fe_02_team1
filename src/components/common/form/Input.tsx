@@ -1,6 +1,6 @@
 import { useId } from 'react'
 
-import { InputStyle } from '@/components/common/form/form.styles'
+import { inputStyle } from '@/components/common/form/form.styles'
 import type { InputProps } from '@/components/common/form/form.type'
 
 const Input = ({
@@ -44,7 +44,7 @@ const Input = ({
           placeholder={placeholder}
           aria-invalid={hasError || undefined}
           disabled={disabled}
-          className={InputStyle({
+          className={inputStyle({
             hasError,
             leftIcon: !!leftIcon,
             className,

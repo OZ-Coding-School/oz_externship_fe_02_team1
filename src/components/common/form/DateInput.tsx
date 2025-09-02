@@ -1,7 +1,7 @@
 import { useId } from 'react'
 import { CalendarDaysIcon } from '@heroicons/react/24/outline'
 
-import { DateInputStyle } from '@/components/common/form/form.styles'
+import { dateInputStyle } from '@/components/common/form/form.styles'
 import type { DateInputProps } from '@/components/common/form/form.type'
 
 const DateInput = ({
@@ -39,7 +39,7 @@ const DateInput = ({
           aria-describedby={
             describedByIds.length ? describedByIds.join(' ') : undefined
           }
-          className={DateInputStyle({ invalid, className })}
+          className={dateInputStyle({ invalid, className })}
         />
 
         <button
