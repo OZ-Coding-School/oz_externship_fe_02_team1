@@ -1,0 +1,14 @@
+import { cn } from '@/utils'
+import type { ComponentPropsWithoutRef, ReactNode } from 'react'
+
+interface H5Props extends ComponentPropsWithoutRef<'h5'> {
+  children: ReactNode
+}
+
+export default function H5({ children, className = '', ...rest }: H5Props) {
+  return (
+    <h5 className={cn('text-lg font-semibold', className)} {...rest}>
+      {children}
+    </h5>
+  )
+}
