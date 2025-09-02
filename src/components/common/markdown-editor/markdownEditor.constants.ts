@@ -1,4 +1,4 @@
-import type { PreviewMode } from './markdownEditor.types'
+import type { PreviewMode } from '@/components/common/markdown-editor/markdownEditor.types'
 
 export const EDITOR_ARIA_LABEL = '마크다운 에디터'
 

@@ -1,7 +1,7 @@
 import MDEditor from '@uiw/react-md-editor'
 import remarkBreaks from 'remark-breaks'
-import type { MarkdownPreviewProps } from './markdownEditor.types'
-import './markdown-editor.css'
+import type { MarkdownPreviewProps } from '@/components/common/markdown-editor/markdownEditor.types'
+import '@/components/common/markdown-editor/markdown-editor.css'
 
 export default function MarkdownPreview({
   value,
