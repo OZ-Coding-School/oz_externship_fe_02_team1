@@ -1,5 +1,5 @@
-import { badgeColor, badgeSize } from './Badge.styles'
-import type { BadgeProps } from './Badge.types'
+import { badgeColor, badgeSize } from '@/components/common/badge/Badge.styles'
+import type { BadgeProps } from '@/components/common/badge/Badge.types'
 
 import clsx from 'clsx'
 

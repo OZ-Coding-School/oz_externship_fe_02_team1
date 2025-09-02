@@ -1,4 +1,7 @@
-import type { BadgeColor, BadgeSize } from './Badge.types'
+import type {
+  BadgeColor,
+  BadgeSize,
+} from '@/components/common/badge/Badge.types'
 
 export const badgeColor: BadgeColor = {
   default: 'bg-gray-100 text-gray-800',
