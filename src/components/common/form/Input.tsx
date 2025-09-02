@@ -1,7 +1,7 @@
 import { useId } from 'react'
 
 import { InputStyle } from '@/components/common/form/form.styles'
-import type { InputProps } from './form.type'
+import type { InputProps } from '@/components/common/form/form.type'
 
 const Input = ({
   id,
