@@ -1,0 +1,168 @@
+@import 'tailwindcss';
+
+/* ── Editor Container ── */
+.markdown-editor {
+  @apply relative flex h-[284px] w-full flex-col overflow-hidden rounded-lg border border-gray-300 bg-white;
+}
+.markdown-editor.compact {
+  @apply h-48;
+}
+.markdown-editor.large {
+  @apply h-96;
+}
+.markdown-editor[aria-disabled='true'] {
+  @apply cursor-not-allowed bg-gray-50 opacity-60;
+}
+
+/* ── Heading Icons ── */
+.heading-level-icon,
+.heading-icon {
+  @apply inline-flex h-6 w-6 items-center justify-center text-lg leading-none font-normal text-gray-600;
+}
+.heading-base-icon {
+  @apply flex h-6 w-6 items-center justify-center text-xl leading-none font-normal text-gray-600;
+}
+
+/* 미리보기 모드에서 아이콘도 함께 비활성화 */
+.markdown-editor .w-md-editor-toolbar li button:disabled .heading-level-icon,
+.markdown-editor .w-md-editor-toolbar li button:disabled .heading-icon,
+.markdown-editor .w-md-editor-toolbar li button:disabled .heading-base-icon {
+  @apply text-gray-300;
+}
+
+/* ── Toolbar & Tabs ── */
+.markdown-editor .w-md-editor-toolbar {
+  @apply relative z-10 flex h-12 items-center justify-end overflow-visible rounded-t-lg border-b border-gray-200 bg-gray-50 px-4 py-2 pl-40;
+}
+.markdown-editor__tabs {
+  @apply absolute top-0 left-4 z-20 flex h-12 items-center gap-2;
+}
+.markdown-editor__tab {
+  @apply h-8 rounded px-3 py-1 text-sm leading-tight font-medium text-gray-600 transition-colors hover:text-gray-900;
+}
+.markdown-editor__tab[aria-selected='true'] {
+  @apply bg-white font-semibold text-gray-900 shadow-sm drop-shadow-sm;
+}
+.markdown-editor__tab:disabled {
+  @apply cursor-not-allowed opacity-50 hover:text-gray-600;
+}
+
+/* ── Heading Dropdown ── */
+.markdown-editor .w-md-editor-toolbar .w-md-editor-toolbar-child,
+.markdown-editor .w-md-editor-toolbar .w-md-editor-toolbar-child > div {
+  @apply m-0 border-0 bg-transparent p-0 shadow-none;
+}
+.markdown-editor .w-md-editor-toolbar .w-md-editor-toolbar-child {
+  @apply absolute top-full right-0 z-50 mt-2 w-auto translate-x-2 transform overflow-visible;
+}
+.markdown-editor .w-md-editor-toolbar .w-md-editor-toolbar-child ul {
+  @apply inline-flex w-auto min-w-max flex-col items-stretch rounded-md border border-gray-200 bg-white py-1 whitespace-nowrap shadow-lg;
+}
+.markdown-editor .w-md-editor-toolbar .w-md-editor-toolbar-child li > button {
+  @apply w-full px-3 py-1.5 text-center text-sm leading-5 font-medium text-gray-800 transition-colors hover:bg-gray-50;
+}
+.markdown-editor
+  .w-md-editor-toolbar
+  .w-md-editor-toolbar-child
+  li[aria-selected='true'] {
+  @apply bg-white text-gray-900;
+}
+
+/* ── Toolbar Buttons ── */
+.markdown-editor .w-md-editor-toolbar li {
+  @apply relative;
+}
+.markdown-editor .w-md-editor-toolbar li button {
+  @apply flex h-8 w-8 items-center justify-center rounded transition-colors hover:bg-gray-100;
+}
+.markdown-editor .w-md-editor-toolbar li button svg {
+  @apply h-4 w-4;
+}
+.markdown-editor .w-md-editor-toolbar li button .heading-level-text,
+.markdown-editor .w-md-editor-toolbar li button span.inline-flex {
+  @apply inline-flex h-4 w-4 items-center justify-center text-xs leading-none font-normal;
+}
+.markdown-editor .w-md-editor-toolbar li button:hover {
+  @apply bg-gray-100 text-gray-700;
+}
+.markdown-editor .w-md-editor-toolbar li button:focus-visible {
+  @apply rounded ring-2 ring-gray-500 ring-offset-1 outline-none;
+}
+.markdown-editor .w-md-editor-toolbar ul {
+  @apply flex items-center gap-1;
+}
+.markdown-editor .w-md-editor-toolbar ul li {
+  @apply flex;
+}
+
+/* ── Editor Wrapper ── */
+.markdown-editor .w-md-editor {
+  @apply flex min-h-0 flex-1 flex-col;
+}
+
+/* ── Editor Body ── */
+.markdown-editor .w-md-editor-content {
+  @apply flex-1 overflow-hidden bg-white text-gray-800;
+}
+
+.markdown-editor .w-md-editor-text {
+  @apply h-full;
+}
+
+.markdown-editor textarea.w-md-editor-text-input {
+  @apply h-full w-full px-4 py-4 leading-6 font-normal break-words whitespace-pre-wrap;
+  font-family: 'Pretendard', sans-serif;
+}
+
+.markdown-editor textarea.w-md-editor-text-input::placeholder {
+  @apply text-base font-medium text-gray-400;
+}
+
+.markdown-editor textarea.w-md-editor-text-input:disabled {
+  @apply cursor-not-allowed bg-gray-50 text-gray-500;
+}
+
+.markdown-editor .w-md-editor-preview {
+  @apply px-4 pt-5 pb-4;
+}
+
+/* ── Hint Bar ── */
+.markdown-editor__hint {
+  @apply flex items-center gap-2 overflow-hidden rounded-b-md border-t border-gray-200 bg-gray-50 px-4 py-2 text-xs;
+}
+.markdown-editor__hint > span:first-child {
+  @apply font-normal text-gray-600;
+}
+.markdown-editor__hint-syntax {
+  @apply flex items-center gap-2 whitespace-nowrap;
+}
+.markdown-editor__hint-code {
+  @apply font-mono font-normal text-gray-600;
+}
+
+/* ── Preview ── */
+.markdown-preview {
+  @apply rounded-lg border border-gray-200 bg-white p-4 text-gray-800;
+}
+.markdown-preview .w-md-editor-markdown {
+  @apply whitespace-pre-wrap;
+}
+.markdown-preview ul,
+.markdown-editor .w-md-editor-preview ul {
+  @apply list-disc pl-5;
+}
+.markdown-preview ol,
+.markdown-editor .w-md-editor-preview ol {
+  @apply list-decimal pl-5;
+}
+
+/* ── Scrollbar ── */
+.markdown-editor .w-md-editor-content::-webkit-scrollbar {
+  @apply w-2.5;
+}
+.markdown-editor .w-md-editor-content::-webkit-scrollbar-thumb {
+  @apply rounded bg-gray-200;
+}
+.markdown-editor .w-md-editor-content::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-300;
+}
