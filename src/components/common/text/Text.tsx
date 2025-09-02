@@ -16,7 +16,7 @@ interface TextProps extends ComponentPropsWithoutRef<'span'> {
 export default function Text({
   variant = 'base',
   children,
-  className = '',
+  className,
   ...rest
 }: TextProps) {
   return (
