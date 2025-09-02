@@ -1,12 +1,13 @@
-import React, { type ReactElement } from 'react'
 import { commands } from '@uiw/react-md-editor'
+import React, { type ReactElement } from 'react'
+
+import { HEADING_LEVELS } from '@/components/common/markdown-editor/markdownEditor.constants'
 import type {
   ICommand,
   ExecuteState,
   TextAreaTextApi,
   HeadingLevel,
 } from '@/components/common/markdown-editor/markdownEditor.types'
-import { HEADING_LEVELS } from '@/components/common/markdown-editor/markdownEditor.constants'
 
 export const createHeadingCommand = (
   level: HeadingLevel,
