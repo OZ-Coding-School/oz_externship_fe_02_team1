@@ -2,14 +2,14 @@ import { useState, useMemo, useCallback } from 'react'
 import MDEditor from '@uiw/react-md-editor'
 import remarkBreaks from 'remark-breaks'
 
-import { createMarkdownToolbarCommands } from './utils'
+import { createMarkdownToolbarCommands } from './markdownEditor.utils'
 import {
   EDITOR_ARIA_LABEL,
   DEFAULT_PLACEHOLDER_TEXT,
   EDITOR_TABS,
-} from './constants'
+} from './markdownEditor.constants'
 import MarkdownEditorHint from './MarkdownEditorHint'
-import type { MarkdownEditorProps, PreviewMode } from './types'
+import type { MarkdownEditorProps, PreviewMode } from './markdownEditor.types'
 import './markdown-editor.css'
 
 export default function MarkdownEditor({

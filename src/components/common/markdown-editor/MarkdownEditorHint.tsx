@@ -1,4 +1,4 @@
-import { MARKDOWN_SYNTAX_HINTS } from './constants'
+import { MARKDOWN_SYNTAX_HINTS } from './markdownEditor.constants'
 
 export default function MarkdownEditorHint() {
   return (

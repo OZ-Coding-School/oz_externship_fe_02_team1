@@ -5,8 +5,8 @@ import type {
   ExecuteState,
   TextAreaTextApi,
   HeadingLevel,
-} from './types'
-import { HEADING_LEVELS } from './constants'
+} from './markdownEditor.types'
+import { HEADING_LEVELS } from './markdownEditor.constants'
 
 export const createHeadingCommand = (
   level: HeadingLevel,
