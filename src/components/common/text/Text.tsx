@@ -1,7 +1,7 @@
 import { cn } from '@/utils'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 
-const TextClasses = {
+const textClasses = {
   large: 'text-lg',
   base: 'text-base',
   small: 'text-sm',
@@ -20,7 +20,7 @@ export default function Text({
   ...rest
 }: TextProps) {
   return (
-    <span className={cn(TextClasses[variant], className)} {...rest}>
+    <span className={cn(textClasses[variant], className)} {...rest}>
       {children}
     </span>
   )
