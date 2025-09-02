@@ -1,19 +1,18 @@
 import { useState, forwardRef, useId } from 'react'
+import clsx from 'clsx'
 
 interface TimeInputProps {
   label?: string
-  errorText?: string
   fullWidth?: boolean
   defaultValue?: string
   onChange?: (value: string) => void
   times?: string[] // 표시할 시간 리스트
 }
 
-export const TimeInput = forwardRef<HTMLDivElement, TimeInputProps>(
+const TimeInput = forwardRef<HTMLDivElement, TimeInputProps>(
   (
     {
       label,
-      errorText,
       fullWidth = true,
       defaultValue,
       onChange,
@@ -25,7 +24,6 @@ export const TimeInput = forwardRef<HTMLDivElement, TimeInputProps>(
   ) => {
     const autoId = useId()
     const inputId = autoId
-    const hasError = Boolean(errorText)
 
     const [open, setOpen] = useState(false)
     const [selected, setSelected] = useState<string | null>(
@@ -54,14 +52,11 @@ export const TimeInput = forwardRef<HTMLDivElement, TimeInputProps>(
           type="button"
           id={inputId}
           onClick={() => setOpen(!open)}
-          aria-invalid={hasError || undefined}
-          className={[
+          className={clsx(
             'w-full rounded-[8px] border bg-white text-left text-[14px] transition-colors outline-none',
-            hasError
-              ? 'border-danger-100'
-              : 'focus:border-primary-500 border-gray-300 focus:border-2',
-            'px-[17px] py-[13px]',
-          ].join(' ')}
+            'focus:border-primary-500 border-gray-300 focus:border-2',
+            'px-[17px] py-[13px]'
+          )}
         >
           {selected ?? '시간을 선택하세요'}
         </button>
@@ -86,3 +81,4 @@ export const TimeInput = forwardRef<HTMLDivElement, TimeInputProps>(
 )
 
 TimeInput.displayName = 'TimeInput'
+export default TimeInput

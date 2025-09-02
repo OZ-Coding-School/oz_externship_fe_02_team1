@@ -1,4 +1,5 @@
 import { forwardRef, useId } from 'react'
+import clsx from 'clsx'
 
 interface InputProps
   extends Omit<React.ComponentPropsWithoutRef<'input'>, 'size'> {
@@ -9,7 +10,7 @@ interface InputProps
   rightIcon?: React.ReactNode
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       id,
@@ -71,14 +72,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             placeholder={placeholder}
             aria-invalid={hasError || undefined}
             disabled={disabled}
-            className={[
+            className={clsx(
               base,
               padding,
               border,
               focus,
               disabledCls,
-              className ?? '',
-            ].join(' ')}
+              className
+            )}
             {...rest}
           />
 
@@ -92,7 +93,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {hasError && (
           <p
             id={`${inputId}-err`}
-            className="text-danger-500 mt-1 text-[12px] leading-5"
+            className="text-danger-600 mt-1 text-[12px] leading-5"
           >
             {errorText ?? '올바른 형식으로 입력해주세요'}
           </p>
@@ -103,3 +104,4 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 )
 
 Input.displayName = 'Input'
+export default Input
