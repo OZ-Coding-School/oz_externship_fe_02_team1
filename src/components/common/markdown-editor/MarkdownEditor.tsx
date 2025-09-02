@@ -14,12 +14,13 @@ import type {
   PreviewMode,
 } from '@/components/common/markdown-editor/markdownEditor.types'
 import '@/components/common/markdown-editor/markdown-editor.css'
+import { cn } from '@/utils/cn'
 
 export default function MarkdownEditor({
   value,
   onChange,
   ariaLabel = EDITOR_ARIA_LABEL,
-  className = '',
+  className,
   placeholder = DEFAULT_PLACEHOLDER_TEXT,
   disabled = false,
 }: MarkdownEditorProps) {
@@ -44,7 +45,7 @@ export default function MarkdownEditor({
 
   return (
     <div
-      className={`markdown-editor ${className}`}
+      className={cn('markdown-editor', className)}
       data-color-mode="light"
       aria-disabled={disabled}
     >
