@@ -1,10 +1,11 @@
-import js from '@eslint/js' // JavaScript 기본 규칙 세트
-import tseslint from 'typescript-eslint' // TypeScript 전용 규칙 세트
-import react from 'eslint-plugin-react' // React 컴포넌트 관련 규칙
-import reactHooks from 'eslint-plugin-react-hooks' // React Hooks 관련 규칙
-import reactRefresh from 'eslint-plugin-react-refresh' // Vite HMR 최적화 규칙
-import prettier from 'eslint-config-prettier' // Prettier와 충돌하는 ESLint 규칙 비활성화
-import globals from 'globals' // 글로벌 변수 정의 (window, document 등)
+import js from '@eslint/js'; // JavaScript 기본 규칙 세트
+import tseslint from 'typescript-eslint'; // TypeScript 전용 규칙 세트
+import react from 'eslint-plugin-react'; // React 컴포넌트 관련 규칙
+import reactHooks from 'eslint-plugin-react-hooks'; // React Hooks 관련 규칙
+import reactRefresh from 'eslint-plugin-react-refresh'; // Vite HMR 최적화 규칙
+import prettier from 'eslint-config-prettier'; // Prettier와 충돌하는 ESLint 규칙 비활성화
+import globals from 'globals'; // 글로벌 변수 정의 (window, document 등)
+import eslintPluginImport from 'eslint-plugin-import';
 
 export default tseslint.config(
   // 1. 무시할 파일/폴더 설정
@@ -34,6 +35,7 @@ export default tseslint.config(
       react, // React 컴포넌트 관련
       'react-hooks': reactHooks, // React Hooks 관련
       'react-refresh': reactRefresh, // Vite HMR 관련
+      import: eslintPluginImport,
     },
 
     // 언어 및 파싱 설정
@@ -58,6 +60,10 @@ export default tseslint.config(
     settings: {
       react: {
         version: 'detect', // 설치된 React 버전 자동 감지
+      },
+      'import/resolver': {
+        typescript: true,
+        node: true,
       },
     },
 
@@ -101,7 +107,7 @@ export default tseslint.config(
       // ===== 기본적인 코드 품질 =====
       'no-console': 'warn', // console.log 사용시 경고 (개발 중에는 필요할 수 있음)
       'no-debugger': 'warn', // debugger 문 사용시 경고 (에러 아님)
-      'no-duplicate-imports': 'warn', // 중복 import 경고
+      'no-duplicate-imports': 'warn',
 
       // ===== Vite HMR 최적화 =====
       'react-refresh/only-export-components': [
@@ -111,9 +117,49 @@ export default tseslint.config(
         },
       ],
       // 설명: Vite의 Hot Module Replacement 최적화를 위한 규칙
+
+      // ===== Import 관련 규칙 =====
+      'import/no-unresolved': 'error',
+      'import/named': 'error',
+      'import/default': 'error',
+      'import/export': 'error',
+      'import/no-named-as-default': 'warn',
+      'import/no-duplicates': 'warn',
+      'import/order': [
+        'warn',
+        {
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            'parent',
+            'sibling',
+            'index',
+            'object',
+            'type',
+          ],
+          pathGroups: [
+            {
+              pattern: 'react*',
+              group: 'external',
+              position: 'before',
+            },
+            {
+              pattern: '@/**',
+              group: 'internal',
+              position: 'after',
+            },
+          ],
+          'newlines-between': 'always',
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+        },
+      ],
     },
   },
 
   // 5. Prettier와 충돌하는 ESLint 규칙들 비활성화
-  prettier // 포맷팅은 Prettier가 담당, ESLint는 코드 품질만 담당
-)
+  prettier, // 포맷팅은 Prettier가 담당, ESLint는 코드 품질만 담당
+);
