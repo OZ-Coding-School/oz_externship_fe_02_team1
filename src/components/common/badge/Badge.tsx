@@ -11,7 +11,7 @@ export default function Badge({
   ...rest
 }: BadgeProps) {
   return (
-    <span
+    <div
       className={clsx(
         'rounded-full',
         badgeColor[color],
@@ -21,6 +21,6 @@ export default function Badge({
       {...rest}
     >
       {children}
-    </span>
+    </div>
   )
 }
