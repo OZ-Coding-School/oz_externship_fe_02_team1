@@ -1,13 +1,14 @@
 import { useRef } from 'react'
+
 import { ImageUploadIcon } from '@/assets'
-import { Button } from '@/components/common/button'
-import { Text } from '@/components/common/text'
-import { cn } from '@/utils'
 import {
   handleFileChange,
   handleImageDelete,
   handleImageReplace,
 } from '@/components'
+import { Button } from '@/components/common/button'
+import { Text } from '@/components/common/text'
+import { cn } from '@/utils'
 
 interface ImageUploadProps {
   value?: string | null
