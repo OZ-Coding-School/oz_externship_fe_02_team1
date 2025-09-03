@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react'
-import { Button, Text } from '@/components'
+
 import { ImageUploadIcon } from '@/assets'
 import {
+  Button,
+  Text,
   handleFileChange,
   handleImageDelete,
   handleImageChange,

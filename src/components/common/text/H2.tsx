@@ -1,5 +1,6 @@
-import { cn } from '@/utils'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
+
+import { cn } from '@/utils'
 
 interface H2Props extends ComponentPropsWithoutRef<'h2'> {
   children: ReactNode
