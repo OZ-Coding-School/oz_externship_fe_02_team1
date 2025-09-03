@@ -18,7 +18,7 @@ export default function ImageUpload() {
     <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-6.5">
       {image && imageName ? (
         <>
-          <img src={image} alt={imageName} />
+          <img className="max-h-120" src={image} alt={imageName} />
           <div className="mt-4 flex gap-4">
             <Button
               variant="secondary"
