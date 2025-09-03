@@ -1,0 +1,5 @@
+export { default as BaseModal } from '@/components/common/modal/BaseModal'
+export { default as ModalHeader } from '@/components/common/modal/ModalHeader'
+export { default as ModalBody } from '@/components/common/modal/ModalBody'
+export { default as ModalFooter } from '@/components/common/modal/ModalFooter'
+export * from '@/components/common/modal/modalSizes'
