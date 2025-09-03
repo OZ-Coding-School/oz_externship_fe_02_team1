@@ -1,15 +1,20 @@
 import { useRef } from 'react'
-
 import { ImageUploadIcon } from '@/assets'
+import { Button } from '@/components/common/button'
+import { Text } from '@/components/common/text'
+import { cn } from '@/utils'
 import {
-  Button,
-  Text,
   handleFileChange,
   handleImageDelete,
   handleImageChange,
-  type ImageUploadProps,
 } from '@/components'
-import { cn } from '@/utils'
+
+interface ImageUploadProps {
+  value?: string | null
+  name?: string | null
+  onChange?: (file: File | null) => void
+  className?: string
+}
 
 export default function ImageUpload({
   value = null,
@@ -18,6 +23,8 @@ export default function ImageUpload({
   className,
 }: ImageUploadProps) {
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const formRef = useRef<HTMLFormElement>(null)
+  const isResetting = useRef(false)
 
   return (
     <div
@@ -33,13 +40,15 @@ export default function ImageUpload({
             <Button
               variant="secondary"
               size="small"
-              onClick={() => handleImageDelete({ onChange, fileInputRef })}
+              onClick={() => handleImageDelete({ onChange, formRef })}
             >
               이미지 삭제
             </Button>
             <Button
               size="small"
-              onClick={() => handleImageChange(fileInputRef)}
+              onClick={() =>
+                handleImageChange({ isResetting, formRef, fileInputRef })
+              }
             >
               이미지 변경
             </Button>
@@ -59,18 +68,18 @@ export default function ImageUpload({
           </Text>
         </label>
       )}
-      <input
-        id="file-upload"
-        type="file"
-        onChange={(event) =>
-          handleFileChange({ event, onChange, fileInputRef })
-        }
-        onClick={(e) => {
-          ;(e.target as HTMLInputElement).value = ''
-        }}
-        className="hidden"
-        ref={fileInputRef}
-      />
+      <form ref={formRef}>
+        <input
+          id="file-upload"
+          type="file"
+          accept="image/png, image/jpeg"
+          onChange={(event) =>
+            handleFileChange({ event, isResetting, onChange, formRef })
+          }
+          className="hidden"
+          ref={fileInputRef}
+        />
+      </form>
     </div>
   )
 }
