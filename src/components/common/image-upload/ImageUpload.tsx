@@ -1,21 +1,17 @@
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
 
 import { ImageUploadIcon } from '@/assets'
+import { Button } from '@/components/common/button'
+import { Text } from '@/components/common/text'
+import { cn } from '@/utils'
+
 import {
   handleFileChange,
   handleImageDelete,
   handleImageReplace,
 } from '@/components'
-import { Button } from '@/components/common/button'
-import { Text } from '@/components/common/text'
-import { cn } from '@/utils'
 
-interface ImageUploadProps {
-  value?: string | null
-  name?: string | null
-  onChange?: (file: File | null) => void
-  className?: string
-}
+import type { ImageUploadProps } from '@/components'
 
 export default function ImageUpload({
   value = null,
@@ -23,9 +19,15 @@ export default function ImageUpload({
   onChange,
   className,
 }: ImageUploadProps) {
+  const [preview, setPreview] = useState<string | null>(null)
+  const [previewName, setPreviewName] = useState<string | null>(null)
+  const [fileInputKey, setFileInputKey] = useState<number>(Date.now())
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const formRef = useRef<HTMLFormElement>(null)
-  const isResetting = useRef(false)
+
+  useEffect(() => {
+    setPreview(value)
+    setPreviewName(name)
+  }, [value, name])
 
   return (
     <div
@@ -34,22 +36,27 @@ export default function ImageUpload({
         className
       )}
     >
-      {value && name ? (
+      {preview && previewName ? (
         <>
-          <img className="max-h-120" src={value} alt={name} />
+          <img className="max-h-120" src={preview} alt={previewName} />
           <div className="mt-4 flex gap-4">
             <Button
               variant="secondary"
               size="small"
-              onClick={() => handleImageDelete({ onChange, formRef })}
+              onClick={() =>
+                handleImageDelete({
+                  onChange,
+                  setPreview,
+                  setPreviewName,
+                  setFileInputKey,
+                })
+              }
             >
               이미지 삭제
             </Button>
             <Button
               size="small"
-              onClick={() =>
-                handleImageReplace({ isResetting, formRef, fileInputRef })
-              }
+              onClick={() => handleImageReplace({ fileInputRef })}
             >
               이미지 변경
             </Button>
@@ -69,18 +76,23 @@ export default function ImageUpload({
           </Text>
         </label>
       )}
-      <form ref={formRef}>
-        <input
-          id="file-upload"
-          type="file"
-          accept="image/png, image/jpeg"
-          onChange={(event) =>
-            handleFileChange({ event, isResetting, onChange, formRef })
-          }
-          className="hidden"
-          ref={fileInputRef}
-        />
-      </form>
+      <input
+        key={fileInputKey}
+        id="file-upload"
+        type="file"
+        accept="image/png, image/jpeg"
+        onChange={(event) =>
+          handleFileChange({
+            event,
+            onChange,
+            setPreview,
+            setPreviewName,
+            setFileInputKey,
+          })
+        }
+        className="hidden"
+        ref={fileInputRef}
+      />
     </div>
   )
 }

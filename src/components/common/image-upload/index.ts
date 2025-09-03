@@ -1,3 +1,3 @@
-export { default as ImageUpload } from '@/components/common/image-upload/ImageUpload'
-export * from '@/components/common/image-upload/imageUpload.types'
-export * from '@/components/common/image-upload/imageUpload.utils'
+export * from './ImageUpload';
+export * from './imageUpload.types';
+export * from './imageUpload.utils';

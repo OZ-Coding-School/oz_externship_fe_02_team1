@@ -1,4 +1,4 @@
-import type { ChangeEvent, RefObject } from 'react'
+import type { ChangeEvent, RefObject, Dispatch, SetStateAction } from 'react'
 
 export interface ImageUploadProps {
   value?: string | null
@@ -13,18 +13,19 @@ export interface ValidateFileParams {
 
 export interface HandleFileChangeParams {
   event: ChangeEvent<HTMLInputElement>
-  isResetting: RefObject<boolean>
   onChange?: (file: File | null) => void
-  formRef: RefObject<HTMLFormElement | null>
+  setPreview: Dispatch<SetStateAction<string | null>>
+  setPreviewName: Dispatch<SetStateAction<string | null>>
+  setFileInputKey: Dispatch<SetStateAction<number>>
 }
 
 export interface HandleImageDeleteParams {
   onChange?: (file: File | null) => void
-  formRef: RefObject<HTMLFormElement | null>
+  setPreview: Dispatch<SetStateAction<string | null>>
+  setPreviewName: Dispatch<SetStateAction<string | null>>
+  setFileInputKey: Dispatch<SetStateAction<number>>
 }
 
 export interface HandleImageReplaceParams {
-  isResetting: RefObject<boolean>
-  formRef: RefObject<HTMLFormElement | null>
   fileInputRef: RefObject<HTMLInputElement | null>
 }
