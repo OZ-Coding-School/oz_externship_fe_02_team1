@@ -6,7 +6,7 @@ import { cn } from '@/utils'
 import {
   handleFileChange,
   handleImageDelete,
-  handleImageChange,
+  handleImageReplace,
 } from '@/components'
 
 interface ImageUploadProps {
@@ -47,7 +47,7 @@ export default function ImageUpload({
             <Button
               size="small"
               onClick={() =>
-                handleImageChange({ isResetting, formRef, fileInputRef })
+                handleImageReplace({ isResetting, formRef, fileInputRef })
               }
             >
               이미지 변경
