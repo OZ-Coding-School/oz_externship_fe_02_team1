@@ -2,7 +2,7 @@ import type {
   ValidateFileParams,
   HandleFileChangeParams,
   HandleImageDeleteParams,
-  HandleImageChangeParams,
+  HandleImageReplaceParams,
 } from '@/components'
 
 export const handleImageDelete = ({
@@ -13,11 +13,11 @@ export const handleImageDelete = ({
   formRef.current?.reset()
 }
 
-export const handleImageChange = ({
+export const handleImageReplace = ({
   isResetting,
   formRef,
   fileInputRef,
-}: HandleImageChangeParams) => {
+}: HandleImageReplaceParams) => {
   if (fileInputRef.current) {
     isResetting.current = true
     formRef.current?.reset()
