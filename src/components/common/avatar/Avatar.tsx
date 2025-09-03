@@ -7,8 +7,6 @@ import { SIZE_STYLES } from '@/components/common/avatar/avatar.constants'
 
 const FALLBACK_LABEL = 'avatar'
 
-const FALLBACK_LABEL = 'avatar'
-
 export default function Avatar({
   src,
   alt,
