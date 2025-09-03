@@ -1,7 +1,11 @@
 import React from 'react'
-import type { ReadImageParams, ImageDeleteParams } from '@/components'
+import type {
+  ReadImageParams,
+  ImageDeleteParams,
+  HandleFileChangeParams,
+} from '@/components'
 
-export const hanldleReadImage = ({
+export const readImage = ({
   event,
   setImage,
   setImageName,
@@ -40,4 +44,38 @@ export const handleImageChange = (
   if (fileInputRef.current) {
     fileInputRef.current.click()
   }
+}
+
+export const validateFile = (file: File) => {
+  const allowedTypes = ['image/jpeg', 'image/png']
+  const maxSize = 5 * 1024 * 1024
+
+  if (!allowedTypes.includes(file.type)) {
+    alert('JPG 또는 PNG 파일만 업로드 가능합니다.')
+    return false
+  }
+
+  if (file.size > maxSize) {
+    alert('파일 크기는 최대 5MB까지 가능합니다.')
+    return false
+  }
+
+  return true
+}
+
+export const handleFileChange = ({
+  event,
+  setImage,
+  setImageName,
+  fileInputRef,
+}: HandleFileChangeParams) => {
+  const file = event.target.files?.[0]
+  if (!file) return
+
+  if (!validateFile(file)) {
+    if (fileInputRef.current) fileInputRef.current.value = ''
+    return
+  }
+
+  readImage({ event, setImage, setImageName })
 }
