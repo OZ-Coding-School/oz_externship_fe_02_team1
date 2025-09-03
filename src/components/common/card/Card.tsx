@@ -1,6 +1,6 @@
 import { type ComponentPropsWithoutRef, type ReactNode } from 'react'
 import { cn } from '@/utils'
-import { H2 } from '../text'
+import { H2, H5 } from '../text'
 
 export interface CardProps extends ComponentPropsWithoutRef<'div'> {
   title: string
@@ -23,7 +23,7 @@ export default function Card({
           alt={title}
           className="h-32 w-96 items-center justify-center bg-gray-200 object-cover"
         />
-        <H2 className="text-lg font-semibold text-gray-900">{title}</H2>
+        <H5 className="text-gray-900">{title}</H5>
       </header>
       {children}
     </div>
