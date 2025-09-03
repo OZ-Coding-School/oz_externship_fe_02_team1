@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+
 import MODAL_SIZES from '@/components/common/modal/modalSizes'
 
 export type ModalSize = keyof typeof MODAL_SIZES

@@ -1,5 +1,5 @@
-import { cn } from '@/utils'
 import type { ModalBodyProps } from '@/components/common/modal/modal.types'
+import { cn } from '@/utils'
 
 const ModalBody = ({ children, className = '' }: ModalBodyProps) => {
   return (
