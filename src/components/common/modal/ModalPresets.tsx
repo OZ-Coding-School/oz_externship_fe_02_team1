@@ -6,10 +6,29 @@ import type {
   ModalPreset,
   ModalFooterCtx,
   ModalHeaderRenderProps,
+  FooterButton,
+  FooterButtonsProps,
 } from '@/components/common/modal/modal.types'
 
 export const SPLIT_ROW = 'flex w-full max-w-[520px] gap-3' // 12px 간격
 export const SPLIT_BTN = 'flex-1'
+
+// 공용 버튼 렌더러
+export const FooterButtons = ({ buttons }: FooterButtonsProps) => (
+  <>
+    {buttons.map(({ text, variant, onClick, disabled, className }) => (
+      <button
+        key={text}
+        type="button"
+        onClick={onClick}
+        disabled={!!disabled}
+        className={cn(buttonVariants({ variant, size: 'medium' }), className)}
+      >
+        {text}
+      </button>
+    ))}
+  </>
+)
 
 const MODAL_PRESETS = {
   // 1) 날짜 선택
@@ -17,40 +36,34 @@ const MODAL_PRESETS = {
     size: 'xs',
     header: ({
       onClose,
-      title = '스터디 시작일 선택', // title과 subTitle은 api에서 받아 오도록
+      title = '스터디 시작일 선택',
       subTitle,
     }: ModalHeaderRenderProps) => (
       <ModalHeader title={title} subTitle={subTitle} onClose={onClose} />
     ),
-    footer: ({ onClose, confirmDisabled, onConfirm }: ModalFooterCtx) => (
-      <ModalFooter
-        layout="leftRight"
-        left={<span className="text-sm text-[#4B5563]">날짜를 선택하세요</span>}
-        right={
-          <>
-            <button
-              type="button"
-              onClick={onClose}
-              className={cn(
-                buttonVariants({ variant: 'outline', size: 'medium' })
-              )}
-            >
-              취소
-            </button>
-            <button
-              type="button"
-              disabled={!!confirmDisabled}
-              onClick={onConfirm}
-              className={cn(
-                buttonVariants({ variant: 'secondary', size: 'medium' })
-              )}
-            >
-              선택 완료
-            </button>
-          </>
-        }
-      />
-    ),
+    footer: ({ onClose, confirmDisabled, onConfirm }: ModalFooterCtx) => {
+      const footerButtons: FooterButton[] = [
+        { text: '취소', variant: 'outline', onClick: onClose, disabled: false },
+        {
+          text: '선택 완료',
+          variant: 'secondary',
+          onClick: onConfirm ?? (() => {}),
+          disabled: !!confirmDisabled,
+        },
+      ]
+
+      return (
+        <ModalFooter
+          layout="leftRight"
+          left={
+            <span className="text-sm text-[--color-gray-600]">
+              날짜를 선택하세요
+            </span>
+          }
+          right={<FooterButtons buttons={footerButtons} />}
+        />
+      )
+    },
   },
 
   // 2) 리뷰 작성 (가운데 50/50, 간격 12px)
@@ -59,35 +72,35 @@ const MODAL_PRESETS = {
     header: ({ onClose }: ModalHeaderRenderProps) => (
       <ModalHeader title="리뷰 작성" onClose={onClose} />
     ),
-    footer: ({ onClose, onConfirm }: ModalFooterCtx) => (
-      <ModalFooter
-        layout="center"
-        right={
-          <div className={SPLIT_ROW}>
-            <button
-              type="button"
-              onClick={onClose}
-              className={cn(
-                buttonVariants({ variant: 'outline', size: 'medium' }),
-                SPLIT_BTN
-              )}
-            >
-              취소
-            </button>
-            <button
-              type="button"
-              onClick={onConfirm}
-              className={cn(
-                buttonVariants({ variant: 'secondary', size: 'medium' }),
-                SPLIT_BTN
-              )}
-            >
-              작성 완료
-            </button>
-          </div>
-        }
-      />
-    ),
+    footer: ({ onClose, onConfirm }: ModalFooterCtx) => {
+      const footerButtons: FooterButton[] = [
+        {
+          text: '취소',
+          variant: 'outline',
+          onClick: onClose,
+          className: SPLIT_BTN,
+          disabled: false,
+        },
+        {
+          text: '작성 완료',
+          variant: 'secondary',
+          onClick: onConfirm ?? (() => {}),
+          className: SPLIT_BTN,
+          disabled: false,
+        },
+      ]
+
+      return (
+        <ModalFooter
+          layout="center"
+          right={
+            <div className={SPLIT_ROW}>
+              <FooterButtons buttons={footerButtons} />
+            </div>
+          }
+        />
+      )
+    },
   },
 
   // 3) 스터디 리뷰
@@ -100,22 +113,22 @@ const MODAL_PRESETS = {
         onClose={onClose}
       />
     ),
-    footer: ({ onClose, onConfirm }: ModalFooterCtx) => (
-      <ModalFooter
-        layout="center"
-        right={
-          <button
-            type="button"
-            onClick={onConfirm ?? onClose}
-            className={cn(
-              buttonVariants({ variant: 'primary', size: 'medium' })
-            )}
-          >
-            내 리뷰 수정하기
-          </button>
-        }
-      />
-    ),
+    footer: ({ onClose, onConfirm }: ModalFooterCtx) => {
+      const footerButtons: FooterButton[] = [
+        {
+          text: '내 리뷰 수정하기',
+          variant: 'primary',
+          onClick: onConfirm ?? onClose,
+          disabled: false,
+        },
+      ]
+      return (
+        <ModalFooter
+          layout="center"
+          right={<FooterButtons buttons={footerButtons} />}
+        />
+      )
+    },
   },
 
   // 4) 강의 선택
@@ -132,43 +145,35 @@ const MODAL_PRESETS = {
       onClose,
       onConfirm,
       selectedCount,
-    }: ModalFooterCtx & { selectedCount?: number }) => (
-      <ModalFooter
-        layout="leftRight"
-        left={
-          selectedCount && selectedCount > 0 ? (
-            <span className="text-sm text-[#6B7280]">
-              {selectedCount}개의 강의가 선택되었습니다
-            </span>
-          ) : (
-            <span className="text-sm text-[#9CA3AF]">강의를 선택하세요</span>
-          )
-        }
-        right={
-          <>
-            <button
-              type="button"
-              onClick={onClose}
-              className={cn(
-                buttonVariants({ variant: 'outline', size: 'medium' })
-              )}
-            >
-              취소
-            </button>
-            <button
-              type="button"
-              onClick={onConfirm}
-              disabled={!selectedCount || selectedCount === 0}
-              className={cn(
-                buttonVariants({ variant: 'primary', size: 'medium' })
-              )}
-            >
-              선택 완료
-            </button>
-          </>
-        }
-      />
-    ),
+    }: ModalFooterCtx & { selectedCount?: number }) => {
+      const footerButtons: FooterButton[] = [
+        { text: '취소', variant: 'outline', onClick: onClose, disabled: false },
+        {
+          text: '선택 완료',
+          variant: 'primary',
+          onClick: onConfirm ?? (() => {}),
+          disabled: !selectedCount || selectedCount === 0,
+        },
+      ]
+
+      return (
+        <ModalFooter
+          layout="leftRight"
+          left={
+            selectedCount && selectedCount > 0 ? (
+              <span className="text-sm text-[--color-gray-500]">
+                {selectedCount}개의 강의가 선택되었습니다
+              </span>
+            ) : (
+              <span className="text-sm text-[--color-gray-400]">
+                강의를 선택하세요
+              </span>
+            )
+          }
+          right={<FooterButtons buttons={footerButtons} />}
+        />
+      )
+    },
   },
 
   // 5) 스케줄 상세
@@ -177,44 +182,36 @@ const MODAL_PRESETS = {
     header: ({ onClose }: ModalHeaderRenderProps) => (
       <ModalHeader title="스케줄 상세" onClose={onClose} />
     ),
-    footer: ({ onClose, onConfirm }: ModalFooterCtx) => (
-      <ModalFooter
-        layout="leftRight"
-        left={<span className="text-sm text-[#6B7280]">2025-09-03 (수)</span>}
-        right={
-          <>
-            <button
-              type="button"
-              onClick={onClose}
-              className={cn(
-                buttonVariants({ variant: 'outline', size: 'medium' })
-              )}
-            >
-              닫기
-            </button>
-            <button
-              type="button"
-              onClick={onConfirm}
-              className={cn(
-                buttonVariants({ variant: 'danger', size: 'medium' })
-              )}
-            >
-              삭제
-            </button>
-            <button
-              type="button"
-              onClick={onConfirm}
-              className={cn(
-                buttonVariants({ variant: 'primary', size: 'medium' })
-              )}
-            >
-              수정
-            </button>
-          </>
-        }
-      />
-    ),
+    footer: ({ onClose, onConfirm }: ModalFooterCtx) => {
+      const footerButtons: FooterButton[] = [
+        { text: '닫기', variant: 'outline', onClick: onClose, disabled: false },
+        {
+          text: '삭제',
+          variant: 'danger',
+          onClick: onConfirm ?? (() => {}),
+          disabled: false,
+        },
+        {
+          text: '수정',
+          variant: 'primary',
+          onClick: onConfirm ?? (() => {}),
+          disabled: false,
+        },
+      ]
+
+      return (
+        <ModalFooter
+          layout="leftRight"
+          left={
+            <span className="text-sm text-[--color-gray-500]">
+              2025-09-03 (수)
+            </span>
+          }
+          right={<FooterButtons buttons={footerButtons} />}
+        />
+      )
+    },
   },
-} satisfies Record<string, ModalPreset> // 찾아보니 키 확장에도 타입 안전이라고 작성확인
+} satisfies Record<string, ModalPreset>
 
 export default MODAL_PRESETS
