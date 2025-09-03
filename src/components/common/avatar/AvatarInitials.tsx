@@ -1,12 +1,10 @@
 import { cn } from '@/utils/cn'
-import type { AvatarInitialsProps } from './avatar.types'
-
-const SIZE_STYLES: Record<'sm' | 'md', string> = {
-  sm: 'w-8 h-8 text-sm',
-  md: 'w-10 h-10 text-base',
-} as const
+import type { AvatarInitialsProps } from '@/components/common/avatar/avatar.types'
+import { SIZE_STYLES } from '@/components/common/avatar/avatar.constants'
 
 export default function AvatarInitials({ text, size }: AvatarInitialsProps) {
+  const uppercaseText = text[0]?.toUpperCase() ?? '?'
+
   return (
     <span
       role="img"
@@ -18,7 +16,7 @@ export default function AvatarInitials({ text, size }: AvatarInitialsProps) {
         'bg-primary-100 text-primary-600'
       )}
     >
-      {Array.from(text)[0]?.toUpperCase() ?? '?'}
+      {uppercaseText}
     </span>
   )
 }

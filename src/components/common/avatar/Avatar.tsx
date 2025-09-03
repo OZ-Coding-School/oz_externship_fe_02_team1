@@ -1,34 +1,11 @@
 import { useState } from 'react'
-import type { AvatarProps } from './avatar.types'
-import AvatarInitials from './AvatarInitials'
+import type { AvatarProps } from '@/components/common/avatar/avatar.types'
+import AvatarInitials from '@/components/common/avatar/AvatarInitials'
+import AvatarStatusDot from '@/components/common/avatar/AvatarStatusDot'
 import { cn } from '@/utils/cn'
+import { SIZE_STYLES } from '@/components/common/avatar/avatar.constants'
 
-const SIZE_STYLES: Record<'sm' | 'md', string> = {
-  sm: 'w-8 h-8 text-sm',
-  md: 'w-10 h-10 text-base',
-} as const
-
-const STATUS_COLORS: Record<NonNullable<AvatarProps['status']>, string> = {
-  online: 'bg-success-500',
-  away: 'bg-primary-500',
-  busy: 'bg-danger-500',
-  offline: 'bg-gray-400',
-} as const
-
-const StatusDot = ({
-  status,
-}: {
-  status: NonNullable<AvatarProps['status']>
-}) => (
-  <span
-    className={cn(
-      'absolute right-0 bottom-0 block h-3 w-3 translate-x-[2px] translate-y-[2px]',
-      'rounded-full ring-2 ring-white',
-      STATUS_COLORS[status]
-    )}
-    aria-hidden="true"
-  />
-)
+const FALLBACK_LABEL = 'avatar'
 
 export default function Avatar({
   src,
@@ -41,7 +18,7 @@ export default function Avatar({
 }: AvatarProps) {
   const [imgError, setImgError] = useState(false)
 
-  const label = name || alt || 'avatar'
+  const label = name || alt || FALLBACK_LABEL
   const isImageVisible = !!src && !imgError
   const isStatusVisible = !!status && size === 'md'
 
@@ -67,7 +44,7 @@ export default function Avatar({
         <AvatarInitials text={label} size={size} />
       )}
 
-      {isStatusVisible && <StatusDot status={status} />}
+      {isStatusVisible && <AvatarStatusDot status={status} />}
     </span>
   )
 }
