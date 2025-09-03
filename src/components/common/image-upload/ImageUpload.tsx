@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { ImageUploadIcon } from '@/assets'
 import {
@@ -8,14 +8,41 @@ import {
   handleImageDelete,
   handleImageChange,
 } from '@/components'
+import { cn } from '@/utils'
 
-export default function ImageUpload() {
-  const [image, setImage] = useState<string | null>(null)
-  const [imageName, setImageName] = useState<string | null>(null)
+interface ImageUploadProps {
+  value?: string | null
+  name?: string | null
+  onChange?: (fileUrl: string | null, fileName: string | null) => void
+  className?: string
+}
+
+export default function ImageUpload({
+  value = null,
+  name = null,
+  onChange,
+  className,
+}: ImageUploadProps) {
+  const [image, setImage] = useState<string | null>(value)
+  const [imageName, setImageName] = useState<string | null>(name)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
+  useEffect(() => {
+    setImage(value)
+    setImageName(name)
+  }, [value, name])
+
+  useEffect(() => {
+    onChange?.(image, imageName)
+  }, [image, imageName, onChange])
+
   return (
-    <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-6.5">
+    <div
+      className={cn(
+        'flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-6.5',
+        className
+      )}
+    >
       {image && imageName ? (
         <>
           <img className="max-h-120" src={image} alt={imageName} />
@@ -57,6 +84,9 @@ export default function ImageUpload() {
         onChange={(event) =>
           handleFileChange({ event, setImage, setImageName, fileInputRef })
         }
+        onClick={(e) => {
+          ;(e.target as HTMLInputElement).value = ''
+        }}
         className="hidden"
         ref={fileInputRef}
       />
