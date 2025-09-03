@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import type { AvatarProps } from '@/components/common/avatar/avatar.types'
+import type { AvatarProps } from './avatar.types'
+import AvatarInitials from './AvatarInitials'
 import { cn } from '@/utils/cn'
 
 const SIZE_STYLES: Record<'sm' | 'md', string> = {
@@ -13,21 +14,6 @@ const STATUS_COLORS: Record<NonNullable<AvatarProps['status']>, string> = {
   busy: 'bg-danger-500',
   offline: 'bg-gray-400',
 } as const
-
-const Initials = ({ text, size }: { text: string; size: 'sm' | 'md' }) => (
-  <span
-    role="img"
-    aria-label={text}
-    title={text}
-    className={cn(
-      SIZE_STYLES[size],
-      'flex items-center justify-center rounded-full leading-none font-medium',
-      'bg-primary-100 text-primary-600'
-    )}
-  >
-    {Array.from(text)[0]?.toUpperCase() ?? '?'}
-  </span>
-)
 
 const StatusDot = ({
   status,
@@ -44,7 +30,7 @@ const StatusDot = ({
   />
 )
 
-const Avatar = ({
+export default function Avatar({
   src,
   alt,
   name,
@@ -52,7 +38,7 @@ const Avatar = ({
   status,
   className,
   ...rest
-}: AvatarProps) => {
+}: AvatarProps) {
   const [imgError, setImgError] = useState(false)
 
   const label = name || alt || 'avatar'
@@ -78,12 +64,10 @@ const Avatar = ({
           draggable={false}
         />
       ) : (
-        <Initials text={label} size={size} />
+        <AvatarInitials text={label} size={size} />
       )}
 
       {showStatus && <StatusDot status={status} />}
     </span>
   )
 }
-
-export default Avatar
