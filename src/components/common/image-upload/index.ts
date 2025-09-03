@@ -4,3 +4,4 @@ export {
   handleImageDelete,
   handleImageChange,
 } from '@/components/common/image-upload/imageUpload.utils'
+export * from '@/components/common/image-upload/imageUpload.types'

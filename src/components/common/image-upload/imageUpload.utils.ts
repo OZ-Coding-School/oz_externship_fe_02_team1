@@ -1,10 +1,5 @@
 import React from 'react'
-
-interface ReadImageParams {
-  event: React.ChangeEvent<HTMLInputElement>
-  setImage: (image: string | null) => void
-  setImageName: (name: string | null) => void
-}
+import type { ReadImageParams, ImageDeleteParams } from '@/components'
 
 export const hanldleReadImage = ({
   event,
@@ -24,12 +19,6 @@ export const hanldleReadImage = ({
   }
 
   reader.readAsDataURL(file)
-}
-
-interface ImageDeleteParams {
-  setImage: (image: string | null) => void
-  setImageName: (name: string | null) => void
-  fileInputRef: React.RefObject<HTMLInputElement | null>
 }
 
 export const handleImageDelete = ({
