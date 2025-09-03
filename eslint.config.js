@@ -62,7 +62,9 @@ export default tseslint.config(
         version: 'detect', // 설치된 React 버전 자동 감지
       },
       'import/resolver': {
-        typescript: true,
+        typescript: {
+          project: "./tsconfig.app.json",
+        },
         node: true,
       },
     },
@@ -157,6 +159,9 @@ export default tseslint.config(
           },
         },
       ],
+
+      "import/no-unresolved": "error",
+      "import/export": "error",
     },
   },
 
