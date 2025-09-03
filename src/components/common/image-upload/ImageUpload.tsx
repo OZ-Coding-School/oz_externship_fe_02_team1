@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { Button, Text } from '@/components'
 import { ImageUploadIcon } from '@/assets'
 import {
-  hanldleReadImage,
+  handleFileChange,
   handleImageDelete,
   handleImageChange,
 } from '@/components'
@@ -53,7 +53,7 @@ export default function ImageUpload() {
         id="file-upload"
         type="file"
         onChange={(event) =>
-          hanldleReadImage({ event, setImage, setImageName })
+          handleFileChange({ event, setImage, setImageName, fileInputRef })
         }
         className="hidden"
         ref={fileInputRef}

@@ -9,3 +9,10 @@ export interface ImageDeleteParams {
   setImageName: (name: string | null) => void
   fileInputRef: React.RefObject<HTMLInputElement | null>
 }
+
+export interface HandleFileChangeParams {
+  event: React.ChangeEvent<HTMLInputElement>
+  setImage: (image: string | null) => void
+  setImageName: (name: string | null) => void
+  fileInputRef: React.RefObject<HTMLInputElement | null>
+}
