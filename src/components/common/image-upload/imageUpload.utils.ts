@@ -1,51 +1,33 @@
-import React from 'react'
-
 import type {
-  ReadImageParams,
-  ImageDeleteParams,
+  ValidateFileParams,
   HandleFileChangeParams,
+  HandleImageDeleteParams,
+  HandleImageChangeParams,
 } from '@/components'
-
-export const readImage = ({
-  event,
-  onChange,
-}: ReadImageParams) => {
-  const file = event.target.files?.[0]
-  if (!file) return
-
-  const reader = new FileReader()
-
-  reader.onloadend = () => {
-    if (typeof reader.result === 'string') {
-      onChange?.(reader.result, file.name)
-    }
-  }
-
-  reader.readAsDataURL(file)
-}
 
 export const handleImageDelete = ({
   onChange,
-  fileInputRef,
-}: ImageDeleteParams) => {
-  onChange?.(null, null)
-
-  if (fileInputRef.current) {
-    fileInputRef.current.value = ''
-  }
+  formRef,
+}: HandleImageDeleteParams) => {
+  onChange?.(null)
+  formRef.current?.reset()
 }
 
-export const handleImageChange = (
-  fileInputRef: React.RefObject<HTMLInputElement | null>
-) => {
+export const handleImageChange = ({
+  isResetting,
+  formRef,
+  fileInputRef,
+}: HandleImageChangeParams) => {
   if (fileInputRef.current) {
+    isResetting.current = true
+    formRef.current?.reset()
     fileInputRef.current.click()
   }
 }
 
-export const validateFile = (file: File) => {
+export const validateFile = ({ file }: ValidateFileParams): boolean => {
   const ALLOWED_TYPES = ['image/jpeg', 'image/png']
-  const MAX_SIZE = 5 * 1024 * 1024
+  const MAX_SIZE = 5 * 1024 * 1024 // 5MB
 
   if (!ALLOWED_TYPES.includes(file.type)) {
     alert('JPG 또는 PNG 파일만 업로드 가능합니다.')
@@ -63,17 +45,18 @@ export const validateFile = (file: File) => {
 export const handleFileChange = ({
   event,
   onChange,
-  fileInputRef,
+  formRef,
 }: HandleFileChangeParams) => {
   const file = event.target.files?.[0]
-  if (!file) return
 
-  if (!validateFile(file)) {
-    if (fileInputRef.current) {
-      fileInputRef.current.value = ''
-    }
+  if (!file) {
     return
   }
 
-  readImage({ event, onChange })
+  if (!validateFile({ file })) {
+    formRef.current?.reset()
+    return
+  }
+
+  onChange?.(file)
 }

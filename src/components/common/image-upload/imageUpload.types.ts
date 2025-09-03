@@ -1,20 +1,30 @@
+import type { ChangeEvent, RefObject } from 'react';
+
 export interface ImageUploadProps {
-  value?: string | null
-  name?: string | null
-  onChange?: (fileUrl: string | null, fileName: string | null) => void
-  className?: string
+  value?: string | null;
+  name?: string | null;
+  onChange?: (file: File | null) => void;
+  className?: string;
 }
 
-export interface ReadImageParams {
-  event: React.ChangeEvent<HTMLInputElement>
-  onChange?: (fileUrl: string | null, fileName: string | null) => void
+export interface ValidateFileParams {
+  file: File;
 }
 
-export interface ImageDeleteParams {
-  onChange?: (fileUrl: string | null, fileName: string | null) => void
-  fileInputRef: React.RefObject<HTMLInputElement | null>
+export interface HandleFileChangeParams {
+  event: ChangeEvent<HTMLInputElement>;
+  isResetting: RefObject<boolean>;
+  onChange?: (file: File | null) => void;
+  formRef: RefObject<HTMLFormElement | null>;
 }
 
-export interface HandleFileChangeParams extends ReadImageParams {
-  fileInputRef: React.RefObject<HTMLInputElement | null>
+export interface HandleImageDeleteParams {
+  onChange?: (file: File | null) => void;
+  formRef: RefObject<HTMLFormElement | null>;
+}
+
+export interface HandleImageChangeParams {
+  isResetting: RefObject<boolean>;
+  formRef: RefObject<HTMLFormElement | null>;
+  fileInputRef: RefObject<HTMLInputElement | null>;
 }
