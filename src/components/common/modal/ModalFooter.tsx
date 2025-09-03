@@ -16,12 +16,12 @@ const ModalFooter = ({
   layout = 'leftRight',
   className = '',
 }: ModalFooterProps) => {
-  const base = 'flex items-center border-t border-[--color-gray-200] p-6'
+  const base = 'flex items-center border-t border-gray-200 p-6'
 
   return (
     <footer className={cn(base, JUSTIFY_BY_LAYOUT[layout], className)}>
       {layout === 'leftRight' && (
-        <div className="text-sm text-[--color-gray-500]">{left}</div>
+        <div className="text-sm text-gray-500">{left}</div>
       )}
       <div
         className={cn(
