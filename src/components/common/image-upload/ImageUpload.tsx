@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 
 import { ImageUploadIcon } from '@/assets'
 import {
@@ -7,15 +7,9 @@ import {
   handleFileChange,
   handleImageDelete,
   handleImageChange,
+  type ImageUploadProps,
 } from '@/components'
 import { cn } from '@/utils'
-
-interface ImageUploadProps {
-  value?: string | null
-  name?: string | null
-  onChange?: (fileUrl: string | null, fileName: string | null) => void
-  className?: string
-}
 
 export default function ImageUpload({
   value = null,
@@ -23,18 +17,7 @@ export default function ImageUpload({
   onChange,
   className,
 }: ImageUploadProps) {
-  const [image, setImage] = useState<string | null>(value)
-  const [imageName, setImageName] = useState<string | null>(name)
   const fileInputRef = useRef<HTMLInputElement>(null)
-
-  useEffect(() => {
-    setImage(value)
-    setImageName(name)
-  }, [value, name])
-
-  useEffect(() => {
-    onChange?.(image, imageName)
-  }, [image, imageName, onChange])
 
   return (
     <div
@@ -43,16 +26,14 @@ export default function ImageUpload({
         className
       )}
     >
-      {image && imageName ? (
+      {value && name ? (
         <>
-          <img className="max-h-120" src={image} alt={imageName} />
+          <img className="max-h-120" src={value} alt={name} />
           <div className="mt-4 flex gap-4">
             <Button
               variant="secondary"
               size="small"
-              onClick={() =>
-                handleImageDelete({ setImage, setImageName, fileInputRef })
-              }
+              onClick={() => handleImageDelete({ onChange, fileInputRef })}
             >
               이미지 삭제
             </Button>
@@ -82,7 +63,7 @@ export default function ImageUpload({
         id="file-upload"
         type="file"
         onChange={(event) =>
-          handleFileChange({ event, setImage, setImageName, fileInputRef })
+          handleFileChange({ event, onChange, fileInputRef })
         }
         onClick={(e) => {
           ;(e.target as HTMLInputElement).value = ''

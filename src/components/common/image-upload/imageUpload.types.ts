@@ -1,12 +1,17 @@
+export interface ImageUploadProps {
+  value?: string | null
+  name?: string | null
+  onChange?: (fileUrl: string | null, fileName: string | null) => void
+  className?: string
+}
+
 export interface ReadImageParams {
   event: React.ChangeEvent<HTMLInputElement>
-  setImage: (image: string | null) => void
-  setImageName: (name: string | null) => void
+  onChange?: (fileUrl: string | null, fileName: string | null) => void
 }
 
 export interface ImageDeleteParams {
-  setImage: (image: string | null) => void
-  setImageName: (name: string | null) => void
+  onChange?: (fileUrl: string | null, fileName: string | null) => void
   fileInputRef: React.RefObject<HTMLInputElement | null>
 }
 
