@@ -1,9 +1,30 @@
 import type { ReactNode } from 'react'
-
 import MODAL_SIZES from '@/components/common/modal/modalSizes'
 
 export type ModalSize = keyof typeof MODAL_SIZES
+export type FooterLayout = 'leftRight' | 'right' | 'center'
 
+export type ButtonVariant =
+  | 'outline'
+  | 'primary'
+  | 'secondary'
+  | 'ghost'
+  | 'danger'
+
+// 공용 버튼 타입 (FooterButtons용)
+export interface FooterButton {
+  text: string
+  variant: ButtonVariant
+  onClick: () => void
+  disabled?: boolean
+  className?: string
+}
+
+export interface FooterButtonsProps {
+  buttons: ReadonlyArray<FooterButton>
+}
+
+// 모달 컴포넌트 props
 export interface BaseModalProps {
   isOpen: boolean
   onClose: () => void
@@ -20,8 +41,6 @@ export interface ModalBodyProps {
   className?: string
 }
 
-export type FooterLayout = 'leftRight' | 'right' | 'center' // 리터럴 합타입은 type
-
 export interface ModalFooterProps {
   left?: ReactNode
   right?: ReactNode
@@ -37,6 +56,7 @@ export interface ModalHeaderProps {
   subTitleId?: string
 }
 
+// 프리셋 렌더 컨텍스트
 export interface ModalFooterCtx {
   onClose: () => void
   confirmDisabled?: boolean
