@@ -42,8 +42,8 @@ export default function Avatar({
   const [imgError, setImgError] = useState(false)
 
   const label = name || alt || 'avatar'
-  const showImage = !!src && !imgError
-  const showStatus = !!status && size === 'md'
+  const isImageVisible = !!src && !imgError
+  const isStatusVisible = !!status && size === 'md'
 
   return (
     <span
@@ -53,7 +53,7 @@ export default function Avatar({
       )}
       {...rest}
     >
-      {showImage ? (
+      {isImageVisible ? (
         <img
           src={src}
           alt={alt}
@@ -67,7 +67,7 @@ export default function Avatar({
         <AvatarInitials text={label} size={size} />
       )}
 
-      {showStatus && <StatusDot status={status} />}
+      {isStatusVisible && <StatusDot status={status} />}
     </span>
   )
 }
