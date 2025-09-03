@@ -8,8 +8,7 @@ import type {
 
 export const readImage = ({
   event,
-  setImage,
-  setImageName,
+  onChange,
 }: ReadImageParams) => {
   const file = event.target.files?.[0]
   if (!file) return
@@ -18,8 +17,7 @@ export const readImage = ({
 
   reader.onloadend = () => {
     if (typeof reader.result === 'string') {
-      setImage(reader.result)
-      setImageName(file.name)
+      onChange?.(reader.result, file.name)
     }
   }
 
@@ -27,12 +25,10 @@ export const readImage = ({
 }
 
 export const handleImageDelete = ({
-  setImage,
-  setImageName,
+  onChange,
   fileInputRef,
 }: ImageDeleteParams) => {
-  setImage(null)
-  setImageName(null)
+  onChange?.(null, null)
 
   if (fileInputRef.current) {
     fileInputRef.current.value = ''
@@ -48,15 +44,15 @@ export const handleImageChange = (
 }
 
 export const validateFile = (file: File) => {
-  const allowedTypes = ['image/jpeg', 'image/png']
-  const maxSize = 5 * 1024 * 1024
+  const ALLOWED_TYPES = ['image/jpeg', 'image/png']
+  const MAX_SIZE = 5 * 1024 * 1024
 
-  if (!allowedTypes.includes(file.type)) {
+  if (!ALLOWED_TYPES.includes(file.type)) {
     alert('JPG 또는 PNG 파일만 업로드 가능합니다.')
     return false
   }
 
-  if (file.size > maxSize) {
+  if (file.size > MAX_SIZE) {
     alert('파일 크기는 최대 5MB까지 가능합니다.')
     return false
   }
@@ -66,17 +62,18 @@ export const validateFile = (file: File) => {
 
 export const handleFileChange = ({
   event,
-  setImage,
-  setImageName,
+  onChange,
   fileInputRef,
 }: HandleFileChangeParams) => {
   const file = event.target.files?.[0]
   if (!file) return
 
   if (!validateFile(file)) {
-    if (fileInputRef.current) fileInputRef.current.value = ''
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
     return
   }
 
-  readImage({ event, setImage, setImageName })
+  readImage({ event, onChange })
 }
