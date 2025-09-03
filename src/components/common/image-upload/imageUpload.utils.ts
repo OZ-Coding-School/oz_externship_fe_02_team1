@@ -7,22 +7,20 @@ import type {
 
 export const handleImageDelete = ({
   onChange,
-  formRef,
+  setPreview,
+  setPreviewName,
+  setFileInputKey,
 }: HandleImageDeleteParams) => {
+  setPreview(null)
+  setPreviewName(null)
   onChange?.(null)
-  formRef.current?.reset()
+  setFileInputKey(Date.now())
 }
 
 export const handleImageReplace = ({
-  isResetting,
-  formRef,
   fileInputRef,
 }: HandleImageReplaceParams) => {
-  if (fileInputRef.current) {
-    isResetting.current = true
-    formRef.current?.reset()
-    fileInputRef.current.click()
-  }
+  fileInputRef.current?.click()
 }
 
 export const validateFile = ({ file }: ValidateFileParams): boolean => {
@@ -45,7 +43,9 @@ export const validateFile = ({ file }: ValidateFileParams): boolean => {
 export const handleFileChange = ({
   event,
   onChange,
-  formRef,
+  setPreview,
+  setPreviewName,
+  setFileInputKey,
 }: HandleFileChangeParams) => {
   const file = event.target.files?.[0]
 
@@ -54,9 +54,16 @@ export const handleFileChange = ({
   }
 
   if (!validateFile({ file })) {
-    formRef.current?.reset()
+    setFileInputKey(Date.now())
     return
   }
+
+  const reader = new FileReader()
+  reader.onloadend = () => {
+    setPreview(reader.result as string)
+    setPreviewName(file.name)
+  }
+  reader.readAsDataURL(file)
 
   onChange?.(file)
 }
