@@ -11,7 +11,7 @@ const Rating = ({
   value = 0,
   max = 5,
   onChange,
-  className = '',
+  className,
   readOnly = false,
   iconSize = 24,
   ariaLabel = '별점',
@@ -40,13 +40,13 @@ const Rating = ({
       className={cn('flex items-center gap-1', className)}
     >
       {Array.from({ length: max }, (_, i) => {
-        const index1 = i + 1
-        const stepped = percentStep10(value, index1) // 0,10,...,100
+        const startIndex = i + 1
+        const stepped = percentStep10(value, startIndex) // 0,10,...,100
         const widthClass = WIDTH_10_CLASS[stepped]
 
         return (
           <button
-            key={index1}
+            key={startIndex}
             type="button"
             aria-hidden={readOnly ? true : undefined}
             tabIndex={-1}
