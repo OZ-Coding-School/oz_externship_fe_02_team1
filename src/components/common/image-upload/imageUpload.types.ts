@@ -3,7 +3,7 @@ import type { ChangeEvent, RefObject, Dispatch, SetStateAction } from 'react'
 export interface ImageUploadProps {
   value?: string | null
   name?: string | null
-  onChange?: (file: File | null) => void
+  onChange: (file: File | null) => void
   className?: string
 }
 
