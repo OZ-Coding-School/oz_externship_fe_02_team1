@@ -13,14 +13,14 @@ export interface ValidateFileParams {
 
 export interface HandleFileChangeParams {
   event: ChangeEvent<HTMLInputElement>
-  onChange?: (file: File | null) => void
+  onChange: (file: File | null) => void
   setPreview: Dispatch<SetStateAction<string | null>>
   setPreviewName: Dispatch<SetStateAction<string | null>>
   setFileInputKey: Dispatch<SetStateAction<number>>
 }
 
 export interface HandleImageDeleteParams {
-  onChange?: (file: File | null) => void
+  onChange: (file: File | null) => void
   setPreview: Dispatch<SetStateAction<string | null>>
   setPreviewName: Dispatch<SetStateAction<string | null>>
   setFileInputKey: Dispatch<SetStateAction<number>>
