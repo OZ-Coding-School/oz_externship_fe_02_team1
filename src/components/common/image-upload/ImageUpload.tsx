@@ -1,8 +1,7 @@
 import { useRef, useEffect, useState } from 'react'
 
 import { ImageUploadIcon } from '@/assets'
-import { Button } from '@/components/common/button'
-import { Text } from '@/components/common/text'
+import { Button, Text } from '@/components'
 import { cn } from '@/utils'
 
 import {
