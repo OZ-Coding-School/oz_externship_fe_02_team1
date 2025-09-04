@@ -1,5 +1,6 @@
-import { cn } from '@/utils'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
+
+import { cn } from '@/utils'
 
 const textClasses = {
   large: 'text-lg',

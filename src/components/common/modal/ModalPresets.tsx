@@ -1,6 +1,3 @@
-import { cn } from '@/utils'
-import ModalHeader from '@/components/common/modal/ModalHeader'
-import ModalFooter from '@/components/common/modal/ModalFooter'
 import { buttonVariants } from '@/components/common/button/buttonVariants'
 import type {
   ModalPreset,
@@ -9,6 +6,9 @@ import type {
   FooterButton,
   FooterButtonsProps,
 } from '@/components/common/modal/modal.types'
+import ModalFooter from '@/components/common/modal/ModalFooter'
+import ModalHeader from '@/components/common/modal/ModalHeader'
+import { cn } from '@/utils'
 
 export const SPLIT_ROW = 'flex w-full max-w-[520px] gap-3' // 12px 간격
 export const SPLIT_BTN = 'flex-1'

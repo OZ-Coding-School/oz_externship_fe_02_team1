@@ -1,1 +1,1 @@
-export * from '@/components/common/form'
+export * from '@/components/common'

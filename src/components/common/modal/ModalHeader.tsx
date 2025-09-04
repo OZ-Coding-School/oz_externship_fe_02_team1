@@ -1,8 +1,8 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
-import { cn } from '@/utils'
 import type { ModalHeaderProps } from '@/components/common/modal/modal.types'
 import { H2 } from '@/components/common/text'
+import { cn } from '@/utils'
 
 const ModalHeader = ({
   title,
