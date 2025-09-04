@@ -46,10 +46,10 @@ const WIDTH_10_CLASS: Record<number, string> = {
   100: 'w-full',
 }
 
-function percentStep10(value: number, index1: number) {
-  const lower = index1 - 1
+function percentStep10(value: number, startIndex: number) {
+  const lower = startIndex - 1
   if (value <= lower) return 0
-  if (value >= index1) return 100
+  if (value >= startIndex) return 100
   const raw = (value - lower) * 100
   return clamp(Math.round(raw / 10) * 10, 0, 100)
 }
