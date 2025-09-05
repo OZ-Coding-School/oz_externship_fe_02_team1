@@ -1,8 +1,8 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
-import Text from '@/components/common/text/Text'
-import { toastStyles } from '@/components/common/toast/toast.styles'
-import type { ToastProps } from '@/components/common/toast/toast.types'
+import { Text } from '@/components'
+import { toastStyles } from '@/components'
+import type { ToastProps } from '@/components'
 import { cn } from '@/utils'
 import { useState } from 'react'
 
