@@ -165,6 +165,22 @@ export default tseslint.config(
     },
   },
 
-  // 5. Prettier와 충돌하는 ESLint 규칙들 비활성화
+  // 5. Node.js 스크립트 파일 설정 (scripts 폴더 내 .js 파일)
+  {
+    files: ['scripts/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2022, // Node.js 환경에 맞는 ECMAScript 버전
+      sourceType: 'commonjs', // CommonJS 모듈 사용
+      globals: {
+        ...globals.node, // Node.js 전역 변수 (process, console 등)
+      },
+    },
+    rules: {
+      // Node.js 스크립트에서는 console.log 허용
+      'no-console': 'off',
+    },
+  },
+
+  // 6. Prettier와 충돌하는 ESLint 규칙들 비활성화
   prettier, // 포맷팅은 Prettier가 담당, ESLint는 코드 품질만 담당
 );
