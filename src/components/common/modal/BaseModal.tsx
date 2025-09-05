@@ -16,25 +16,27 @@ const BaseModal = ({
   describedById,
   panelClassName = '',
 }: BaseModalProps) => {
-  if (typeof document === 'undefined') return null
-  const root = modalUtils.getOrCreateRoot()
+  const isBrowser =
+    typeof window !== 'undefined' && typeof document !== 'undefined'
+  const root = isBrowser ? modalUtils.getOrCreateRoot() : null
 
   // ESC 닫기
   useEffect(() => {
-    if (!isOpen) return
+    if (!isBrowser || !isOpen) return
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
-  }, [isOpen, onClose])
+  }, [isBrowser, isOpen, onClose])
 
   // body 스크롤 잠금
   useEffect(() => {
-    if (!isOpen) return
+    if (!isBrowser || !isOpen) return
     modalUtils.lockScroll()
     return () => modalUtils.unlockScroll()
-  }, [isOpen])
+  }, [isBrowser, isOpen])
 
-  if (!isOpen) return null
+  if (!isBrowser || !root || !isOpen) return null
+
   const { w, h } = MODAL_SIZES[size]
 
   return createPortal(
