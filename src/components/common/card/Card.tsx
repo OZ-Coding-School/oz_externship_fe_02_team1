@@ -1,6 +1,7 @@
 import { type ComponentPropsWithoutRef, type ReactNode } from 'react'
-import { cn } from '@/utils'
+
 import H5 from '@/components/common/text/H5'
+import { cn } from '@/utils'
 
 interface CardProps extends ComponentPropsWithoutRef<'div'> {
   title: string
