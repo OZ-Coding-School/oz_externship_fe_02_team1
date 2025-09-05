@@ -6,8 +6,3 @@ export interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
   status?: 'online' | 'away' | 'busy' | 'offline'
   className?: string
 }
-
-export interface AvatarInitialsProps {
-  text: string
-  size: 'sm' | 'md'
-}

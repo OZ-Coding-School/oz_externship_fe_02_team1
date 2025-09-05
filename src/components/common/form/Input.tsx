@@ -1,7 +1,16 @@
 import { useId } from 'react'
+import type { ComponentPropsWithoutRef, ReactNode, Ref } from 'react'
 
 import { inputStyle } from '@/components/common/form/form.styles'
-import type { InputProps } from '@/components/common/form/form.type'
+
+interface InputProps extends Omit<ComponentPropsWithoutRef<'input'>, 'size'> {
+  label?: string
+  errorText?: string
+  fullWidth?: boolean
+  leftIcon?: ReactNode
+  rightIcon?: ReactNode
+  ref?: Ref<HTMLInputElement>
+}
 
 const Input = ({
   id,

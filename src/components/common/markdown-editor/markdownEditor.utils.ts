@@ -6,8 +6,9 @@ import type {
   ICommand,
   ExecuteState,
   TextAreaTextApi,
-  HeadingLevel,
 } from '@/components/common/markdown-editor/markdownEditor.types'
+
+export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6
 
 export const createHeadingCommand = (
   level: HeadingLevel,

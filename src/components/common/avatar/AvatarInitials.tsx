@@ -1,6 +1,10 @@
 import { cn } from '@/utils/cn'
-import type { AvatarInitialsProps } from '@/components/common/avatar/avatar.types'
 import { SIZE_STYLES } from '@/components/common/avatar/avatar.constants'
+
+interface AvatarInitialsProps {
+  text: string
+  size: 'sm' | 'md'
+}
 
 export default function AvatarInitials({ text, size }: AvatarInitialsProps) {
   const uppercaseText = text[0]?.toUpperCase() ?? '?'

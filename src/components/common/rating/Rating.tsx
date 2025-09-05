@@ -3,9 +3,32 @@ import { StarIcon as StarOutline } from '@heroicons/react/24/outline'
 
 import { cn } from '@/utils'
 
-import type { RatingProps } from '@/components/common/rating/rating.types'
 import ratingUtils from '@/components/common/rating/rating.utils'
 import useRatingInteractions from '@/components/common/rating/rating.interactions'
+
+interface RatingCommon {
+  value?: number
+  max?: number
+  className?: string
+  iconSize?: number // 16/20/24/28/32
+  ariaLabel?: string
+  interactiveStep?: 0.5 | 1
+}
+
+// 입력전용
+interface RatingInteractiveProps extends RatingCommon {
+  readOnly?: false
+  onChange: (value: number) => void
+}
+
+// 읽기전용
+interface RatingReadOnlyProps extends RatingCommon {
+  readOnly: true
+  onChange?: never
+}
+
+// 최종 Props는 유니온 → 여긴 type이 필요
+type RatingProps = RatingInteractiveProps | RatingReadOnlyProps
 
 const Rating = ({
   value = 0,

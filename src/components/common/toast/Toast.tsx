@@ -2,9 +2,17 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 
 import { Text } from '@/components'
 import { toastStyles } from '@/components'
-import type { ToastProps } from '@/components'
 import { cn } from '@/utils'
 import { useState } from 'react'
+
+type ToastType = 'success' | 'warning' | 'error'
+
+export interface ToastProps {
+  type: ToastType
+  title: string
+  message: string
+  className?: string
+}
 
 export default function Toast({ type, title, message, className }: ToastProps) {
   const { icon: Icon, bg, text, border } = toastStyles[type]

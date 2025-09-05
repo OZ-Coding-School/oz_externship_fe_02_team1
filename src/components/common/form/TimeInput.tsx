@@ -1,7 +1,16 @@
 import { useState, useId } from 'react'
+import type { Ref } from 'react'
 
 import { timeInputButtonStyle } from '@/components/common/form/form.styles'
-import type { TimeInputProps } from '@/components/common/form/form.type'
+
+interface TimeInputProps {
+  label?: string
+  fullWidth?: boolean
+  defaultValue?: string
+  onChange?: (value: string) => void
+  times?: string[] // 표시할 시간 리스트
+  ref?: Ref<HTMLDivElement>
+}
 
 const TimeInput = ({
   label,

@@ -1,7 +1,13 @@
 import { useState, useId } from 'react'
+import type { TextareaHTMLAttributes, Ref } from 'react'
 
 import { textareaStyle } from '@/components/common/form/form.styles'
-import type { TextareaProps } from '@/components/common/form/form.type'
+
+interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  label?: string
+  maxLength?: number // 기본 500
+  ref?: Ref<HTMLTextAreaElement>
+}
 
 const Textarea = ({
   label,
