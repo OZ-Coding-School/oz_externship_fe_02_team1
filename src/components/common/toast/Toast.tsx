@@ -17,7 +17,7 @@ export default function Toast({
   return (
     <div
       className={cn(
-        'border-offset-[-1px] flex w-96 max-w-96 justify-between gap-3 rounded-lg border-1 p-4 leading-tight font-medium',
+        'flex w-96 max-w-96 justify-between gap-3 rounded-lg border p-4 leading-tight font-medium outline-offset-[-1px]',
         className,
         bg,
         text,
