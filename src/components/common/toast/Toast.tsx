@@ -1,8 +1,9 @@
-import { cn } from '@/utils'
-import Text from '@/components/common/text/Text'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+
+import Text from '@/components/common/text/Text'
 import { toastStyles } from '@/components/common/toast/Toast.styles'
 import type { ToastProps } from '@/components/common/toast/toast.types'
+import { cn } from '@/utils'
 
 export default function Toast({
   type,
