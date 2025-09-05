@@ -1,9 +1,12 @@
-import type {
-  ValidateFileParams,
-  HandleFileChangeParams,
-  HandleImageDeleteParams,
-  HandleImageReplaceParams,
-} from '@/components'
+import type { RefObject } from 'react'
+import type { ChangeEvent, Dispatch, SetStateAction } from 'react'
+
+interface HandleImageDeleteParams {
+  onChange: (file: File | null) => void
+  setPreview: Dispatch<SetStateAction<string | null>>
+  setPreviewName: Dispatch<SetStateAction<string | null>>
+  setFileInputKey: Dispatch<SetStateAction<number>>
+}
 
 export const handleImageDelete = ({
   onChange,
@@ -17,12 +20,19 @@ export const handleImageDelete = ({
   setFileInputKey(Date.now())
 }
 
+export interface HandleImageReplaceParams {
+  fileInputRef: RefObject<HTMLInputElement | null>
+}
+
 export const handleImageReplace = ({
   fileInputRef,
 }: HandleImageReplaceParams) => {
   fileInputRef.current?.click()
 }
 
+interface ValidateFileParams {
+  file: File
+}
 export const validateFile = ({ file }: ValidateFileParams): boolean => {
   const ALLOWED_TYPES = ['image/jpeg', 'image/png']
   const MAX_SIZE = 5 * 1024 * 1024 // 5MB
@@ -38,6 +48,14 @@ export const validateFile = ({ file }: ValidateFileParams): boolean => {
   }
 
   return true
+}
+
+interface HandleFileChangeParams {
+  event: ChangeEvent<HTMLInputElement>
+  onChange: (file: File | null) => void
+  setPreview: Dispatch<SetStateAction<string | null>>
+  setPreviewName: Dispatch<SetStateAction<string | null>>
+  setFileInputKey: Dispatch<SetStateAction<number>>
 }
 
 export const handleFileChange = ({

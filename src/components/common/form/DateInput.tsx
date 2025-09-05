@@ -1,8 +1,17 @@
 import { CalendarDaysIcon } from '@heroicons/react/24/outline'
 import { useId } from 'react'
+import type { InputHTMLAttributes, Ref } from 'react'
 
 import { dateInputStyle } from '@/components/common/form/form.styles'
-import type { DateInputProps } from '@/components/common/form/form.type'
+
+interface DateInputProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'readOnly'> {
+  label?: string
+  onOpenCalendar?: () => void
+  invalid?: boolean // 폼 검증 결과(테두리만 빨강)
+  errorText?: string // 에러 설명 (선택)
+  ref?: Ref<HTMLInputElement>
+}
 
 const DateInput = ({
   label,

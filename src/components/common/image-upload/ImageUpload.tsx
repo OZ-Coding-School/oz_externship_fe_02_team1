@@ -10,7 +10,12 @@ import {
   handleImageReplace,
 } from '@/components'
 
-import type { ImageUploadProps } from '@/components'
+interface ImageUploadProps {
+  value?: string | null
+  name?: string | null
+  onChange: (file: File | null) => void
+  className?: string
+}
 
 export default function ImageUpload({
   value = null,

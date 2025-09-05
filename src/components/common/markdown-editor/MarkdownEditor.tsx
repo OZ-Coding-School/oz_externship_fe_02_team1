@@ -8,13 +8,22 @@ import {
   EDITOR_TABS,
 } from '@/components/common/markdown-editor/markdownEditor.constants'
 import type {
-  MarkdownEditorProps,
+  MarkdownValue,
   PreviewMode,
 } from '@/components/common/markdown-editor/markdownEditor.types'
 import { createMarkdownToolbarCommands } from '@/components/common/markdown-editor/markdownEditor.utils'
 import MarkdownEditorHint from '@/components/common/markdown-editor/MarkdownEditorHint'
 import '@/components/common/markdown-editor/markdown-editor.css'
 import { cn } from '@/utils/cn'
+
+export interface MarkdownEditorProps {
+  value: MarkdownValue
+  onChange: (newValue: MarkdownValue) => void
+  ariaLabel?: string
+  className?: string
+  placeholder?: string
+  disabled?: boolean
+}
 
 export default function MarkdownEditor({
   value,

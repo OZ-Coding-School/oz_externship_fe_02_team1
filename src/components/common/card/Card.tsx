@@ -2,7 +2,7 @@ import { type ComponentPropsWithoutRef, type ReactNode } from 'react'
 import { cn } from '@/utils'
 import H5 from '@/components/common/text/H5'
 
-export interface CardProps extends ComponentPropsWithoutRef<'div'> {
+interface CardProps extends ComponentPropsWithoutRef<'div'> {
   title: string
   imageUrl: string
   children?: ReactNode

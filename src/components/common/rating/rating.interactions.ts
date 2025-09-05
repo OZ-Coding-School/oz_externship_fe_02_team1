@@ -1,7 +1,14 @@
 import { useCallback } from 'react'
 
 import ratingUtils from '@/components/common/rating/rating.utils'
-import type { UseRatingInteractionsOptions } from '@/components/common/rating'
+
+interface UseRatingInteractionsOptions {
+  value: number
+  max: number
+  interactiveStep: 0.5 | 1
+  readOnly: boolean
+  onChange?: (value: number) => void
+}
 
 const useRatingInteractions = ({
   value,
