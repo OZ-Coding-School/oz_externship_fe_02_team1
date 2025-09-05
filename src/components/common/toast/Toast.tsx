@@ -4,15 +4,19 @@ import Text from '@/components/common/text/Text'
 import { toastStyles } from '@/components/common/toast/toast.styles'
 import type { ToastProps } from '@/components/common/toast/toast.types'
 import { cn } from '@/utils'
+import { useState } from 'react'
 
-export default function Toast({
-  type,
-  title,
-  message,
-  onClose,
-  className,
-}: ToastProps) {
+export default function Toast({ type, title, message, className }: ToastProps) {
   const { icon: Icon, bg, text, border } = toastStyles[type]
+  const [isVisible, setIsVisible] = useState(true)
+
+  const handleClose = () => {
+    setIsVisible(false)
+  }
+
+  if (!isVisible) {
+    return null
+  }
 
   return (
     <div
@@ -30,7 +34,7 @@ export default function Toast({
         <Text variant="small">{message}</Text>
       </div>
       <XMarkIcon
-        onClick={onClose}
+        onClick={handleClose}
         className="h-5 w-5 cursor-pointer stroke-1"
       />
     </div>
