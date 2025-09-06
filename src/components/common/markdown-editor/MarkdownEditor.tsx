@@ -6,15 +6,12 @@ import {
   EDITOR_ARIA_LABEL,
   DEFAULT_PLACEHOLDER_TEXT,
   EDITOR_TABS,
-} from '@/components/common/markdown-editor/markdownEditor.constants'
-import type {
-  MarkdownValue,
-  PreviewMode,
-} from '@/components/common/markdown-editor/markdownEditor.types'
-import { createMarkdownToolbarCommands } from '@/components/common/markdown-editor/markdownEditor.utils'
-import MarkdownEditorHint from '@/components/common/markdown-editor/MarkdownEditorHint'
-import '@/components/common/markdown-editor/markdown-editor.css'
-import { cn } from '@/utils/cn'
+} from '@components'
+import type { MarkdownValue, PreviewMode } from '@components'
+import { createMarkdownToolbarCommands } from '@components'
+import { MarkdownEditorHint } from '@components'
+import '@components'
+import { cn } from '@utils'
 
 export interface MarkdownEditorProps {
   value: MarkdownValue
