@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef, ReactNode, Ref } from 'react'
 
 import { useId } from 'react'
 
-import { inputStyle } from '@/components/common/form/form.styles'
+import { inputStyle } from '@components/common/form/form.styles'
 
 interface InputProps extends Omit<ComponentPropsWithoutRef<'input'>, 'size'> {
   label?: string
