@@ -1,10 +1,8 @@
 import { StarIcon as StarOutline } from '@heroicons/react/24/outline'
 import { StarIcon as StarSolid } from '@heroicons/react/24/solid'
 
-import useRatingInteractions from '@/components/common/rating/rating.interactions'
-import ratingUtils from '@/components/common/rating/rating.utils'
-import { cn } from '@/utils'
-
+import { useRatingInteractions, ratingUtils } from '@components'
+import { cn } from '@utils'
 
 interface RatingCommon {
   value?: number
