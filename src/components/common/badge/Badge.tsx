@@ -1,5 +1,6 @@
-import clsx from 'clsx'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
+
+import clsx from 'clsx'
 
 interface BadgeColor {
   default: string

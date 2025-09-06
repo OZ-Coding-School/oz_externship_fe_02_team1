@@ -1,5 +1,5 @@
-import { cn } from '@/utils/cn'
 import { SIZE_STYLES } from '@/components/common/avatar/avatar.constants'
+import { cn } from '@/utils/cn'
 
 interface AvatarInitialsProps {
   text: string
