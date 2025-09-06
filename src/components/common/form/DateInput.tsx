@@ -3,7 +3,7 @@ import type { InputHTMLAttributes, Ref } from 'react'
 import { CalendarDaysIcon } from '@heroicons/react/24/outline'
 import { useId } from 'react'
 
-import { dateInputStyle } from '@/components/common/form/form.styles'
+import { dateInputStyle } from '@components/common/form/form.styles'
 
 interface DateInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'readOnly'> {

@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-import ratingUtils from '@/components/common/rating/rating.utils'
+import { ratingUtils } from '@components'
 
 interface UseRatingInteractionsOptions {
   value: number

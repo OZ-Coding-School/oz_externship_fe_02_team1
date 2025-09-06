@@ -1,2 +1,2 @@
-export * from './ImageUpload'
-export * from './imageUpload.utils'
+export * from '@components/common/image-upload/ImageUpload'
+export * from '@components/common/image-upload/imageUpload.utils'

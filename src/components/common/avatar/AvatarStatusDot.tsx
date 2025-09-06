@@ -1,5 +1,5 @@
-import type { AvatarProps } from '@/components/common/avatar/avatar.types'
-import { cn } from '@/utils/cn'
+import type { AvatarProps } from '@components/common/avatar/avatar.types'
+import { cn } from '@utils'
 
 const STATUS_COLORS: Record<NonNullable<AvatarProps['status']>, string> = {
   online: 'bg-success-500',

@@ -1,4 +1,4 @@
-import { cn } from '@/utils/cn'
+import { cn } from '@utils'
 
 /** Input 전용 스타일 */
 export const inputStyle = ({

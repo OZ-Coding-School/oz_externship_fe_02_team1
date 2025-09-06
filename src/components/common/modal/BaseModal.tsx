@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { createPortal } from 'react-dom'
 
-import type { BaseModalProps } from '@/components/common/modal/modal.types'
-import modalUtils from '@/components/common/modal/modal.utils'
-import MODAL_SIZES from '@/components/common/modal/modalSizes'
-import { cn } from '@/utils'
+import type { BaseModalProps } from '@components/common/modal/modal.types'
+import modalUtils from '@components/common/modal/modal.utils'
+import MODAL_SIZES from '@components/common/modal/modalSizes'
+import { cn } from '@utils'
 
 const BaseModal = ({
   isOpen,
