@@ -1,8 +1,8 @@
 import type {
   ModalFooterProps,
   FooterLayout,
-} from '@/components/common/modal/modal.types'
-import { cn } from '@/utils'
+} from '@components/common/modal/modal.types'
+import { cn } from '@utils'
 
 const JUSTIFY_BY_LAYOUT: Record<FooterLayout, string> = {
   leftRight: 'justify-between',
