@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from 'react'
 
 import Skeleton from '@/components/common/skeleton/Skeleton'
-import { cn } from '@/utils/cn'
+import { cn } from '@utils'
 
 export interface SkeletonAvatarProps extends HTMLAttributes<HTMLDivElement> {
   sizeClass?: string
