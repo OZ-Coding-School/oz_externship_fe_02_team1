@@ -1,6 +1,7 @@
 import type { HTMLAttributes } from 'react'
-import { cn } from '@/utils/cn'
+
 import Skeleton from '@/components/common/skeleton/Skeleton'
+import { cn } from '@/utils/cn'
 
 export interface SkeletonTextProps extends HTMLAttributes<HTMLDivElement> {
   lineCount?: number

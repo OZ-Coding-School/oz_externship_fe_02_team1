@@ -1,9 +1,11 @@
 import type { HTMLAttributes } from 'react'
+
 import { cn } from '@/utils/cn'
 
-export interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {}
-
-const Skeleton = ({ className, ...restProps }: SkeletonProps) => {
+const Skeleton = ({
+  className,
+  ...restProps
+}: HTMLAttributes<HTMLDivElement>) => {
   return (
     <div
       aria-hidden
