@@ -1,10 +1,11 @@
 import { useState } from 'react'
 
 import { SIZE_STYLES } from '@components/common/avatar/avatar.constants'
-import type { AvatarProps } from '@components/common/avatar/avatar.types'
 import AvatarInitials from '@components/common/avatar/AvatarInitials'
 import AvatarStatusDot from '@components/common/avatar/AvatarStatusDot'
 import { cn } from '@utils'
+
+import type { AvatarProps } from '@components/common/avatar/avatar.types'
 
 const FALLBACK_LABEL = 'avatar'
 
