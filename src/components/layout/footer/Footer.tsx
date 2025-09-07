@@ -28,7 +28,7 @@ export default function Footer() {
             </Text>
           </div>
           {FOOTER_NAV_LISTS.map((item) => (
-            <div key={item.title}>
+            <nav key={item.title}>
               <H4 className="mb-4 text-base font-semibold text-white">
                 {item.title}
               </H4>
@@ -37,7 +37,7 @@ export default function Footer() {
                   <li key={li}>{li}</li>
                 ))}
               </ul>
-            </div>
+            </nav>
           ))}
         </div>
         <div className="mt-8 flex justify-center border border-t-gray-800 pt-8">
