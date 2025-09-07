@@ -3,19 +3,19 @@ import { type ComponentPropsWithoutRef, type ReactNode } from 'react'
 import { H5 } from '@components'
 import { cn } from '@utils'
 
-interface CardProps extends ComponentPropsWithoutRef<'div'> {
+interface ImageCardProps extends ComponentPropsWithoutRef<'div'> {
   title: string
   imageUrl: string
   children?: ReactNode
 }
 
-export default function Card({
+export default function ImageCard({
   title,
   imageUrl,
   children,
   className,
   ...rest
-}: CardProps) {
+}: ImageCardProps) {
   return (
     <div className={cn('flex flex-col rounded-lg p-6', className)} {...rest}>
       <header>
