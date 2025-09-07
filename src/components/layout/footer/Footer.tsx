@@ -15,7 +15,7 @@ const FOOTER_NAV_LISTS = [
 
 export default function Footer() {
   return (
-    <footer className="flex justify-center bg-[#111827] px-4 py-8 sm:px-20 sm:py-12">
+    <footer className="flex justify-center bg-gray-900 px-4 py-8 sm:px-20 sm:py-12">
       <div className="w-full max-w-7xl sm:px-8">
         <div className="grid gap-8 sm:grid-cols-4">
           <div className="col-span-2">
