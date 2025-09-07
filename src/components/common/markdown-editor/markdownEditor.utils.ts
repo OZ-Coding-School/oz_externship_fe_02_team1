@@ -2,6 +2,7 @@ import { commands } from '@uiw/react-md-editor'
 import React, { type ReactElement } from 'react'
 
 import { HEADING_LEVELS } from '@components'
+
 import type { ICommand, ExecuteState, TextAreaTextApi } from '@components'
 
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6

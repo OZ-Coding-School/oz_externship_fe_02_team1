@@ -1,5 +1,6 @@
-import { H3, H4, Text } from '@/components'
 import { Link } from 'react-router'
+
+import { H3, H4, Text } from '@components'
 
 const FOOTER_NAV_LISTS = [
   {

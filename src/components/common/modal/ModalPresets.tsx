@@ -1,4 +1,6 @@
-import { buttonVariants } from '@components'
+import { buttonVariants , ModalHeader, ModalFooter } from '@components'
+import { cn } from '@utils'
+
 import type {
   ModalPreset,
   ModalFooterCtx,
@@ -6,8 +8,7 @@ import type {
   FooterButton,
   FooterButtonsProps,
 } from '@components/common/modal/modal.types'
-import { ModalHeader, ModalFooter } from '@components'
-import { cn } from '@utils'
+
 
 export const SPLIT_ROW = 'flex w-full max-w-[520px] gap-3' // 12px 간격
 export const SPLIT_BTN = 'flex-1'

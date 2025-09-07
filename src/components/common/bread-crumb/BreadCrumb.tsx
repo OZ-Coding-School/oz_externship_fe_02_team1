@@ -1,5 +1,5 @@
-import { Link } from 'react-router'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router'
 
 interface BreadCrumbLinkItem {
   label: string
