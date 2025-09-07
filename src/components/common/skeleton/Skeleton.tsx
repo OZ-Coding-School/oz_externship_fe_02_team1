@@ -1,22 +1,16 @@
 import type { HTMLAttributes } from 'react'
 import { cn } from '@/utils/cn'
 
-export interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
-  isCircle?: boolean
-}
+export interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {}
 
-const Skeleton = ({
-  isCircle = false,
-  className,
-  ...restProps
-}: SkeletonProps) => {
-  const baseClasses = 'animate-pulse bg-gray-200 dark:bg-gray-700'
-  const shapeClasses = isCircle ? 'rounded-full' : 'rounded-md'
-
+const Skeleton = ({ className, ...restProps }: SkeletonProps) => {
   return (
     <div
       aria-hidden
-      className={cn(baseClasses, shapeClasses, className)}
+      className={cn(
+        'animate-pulse rounded-md bg-gray-200 dark:bg-gray-700',
+        className
+      )}
       {...restProps}
     />
   )

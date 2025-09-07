@@ -7,8 +7,16 @@ export interface SkeletonTextProps extends HTMLAttributes<HTMLDivElement> {
   isLastLineShort?: boolean
   lineHeightClass?: string
   gapClass?: string
-  lineWidthClasses?: string[]
+  widthsPercent?: number[]
   lineClassName?: string
+}
+
+const percentWidthClass = (percent: number): string => {
+  if (percent >= 95) return 'w-full'
+  if (percent >= 83) return 'w-5/6'
+  if (percent >= 71) return 'w-3/4'
+  if (percent >= 58) return 'w-2/3'
+  return 'w-1/2'
 }
 
 const SkeletonText = ({
@@ -16,7 +24,7 @@ const SkeletonText = ({
   isLastLineShort = true,
   lineHeightClass = 'h-4',
   gapClass = 'space-y-2',
-  lineWidthClasses,
+  widthsPercent,
   lineClassName,
   className,
   ...restProps
@@ -24,20 +32,24 @@ const SkeletonText = ({
   const lastLineIndex = lineCount - 1
 
   const getLineWidthClass = (lineIndex: number): string => {
-    const widthClass = lineWidthClasses?.[lineIndex]
-    let finalWidthClass = 'w-full'
+    const percent = widthsPercent?.[lineIndex]
 
-    if (widthClass) {
-      finalWidthClass = widthClass
-    } else if (lineIndex === lastLineIndex && isLastLineShort) {
-      finalWidthClass = 'w-[70%]'
+    switch (true) {
+      case typeof percent === 'number':
+        return percentWidthClass(percent)
+      case lineIndex === lastLineIndex && isLastLineShort:
+        return 'w-3/4'
+      default:
+        return 'w-full'
     }
-
-    return finalWidthClass
   }
 
   return (
-    <div className={cn(gapClass, className)} aria-hidden {...restProps}>
+    <div
+      className={cn('w-full', gapClass, className)}
+      aria-hidden
+      {...restProps}
+    >
       {Array.from({ length: lineCount }).map((_, lineIndex) => (
         <Skeleton
           key={lineIndex}
