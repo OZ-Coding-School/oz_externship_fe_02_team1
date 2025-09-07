@@ -5,20 +5,21 @@ export interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
   isCircle?: boolean
 }
 
-export default function Skeleton({
-  isCircle,
+const Skeleton = ({
+  isCircle = false,
   className,
-  ...rest
-}: SkeletonProps) {
+  ...restProps
+}: SkeletonProps) => {
+  const baseClasses = 'animate-pulse bg-gray-200 dark:bg-gray-700'
+  const shapeClasses = isCircle ? 'rounded-full' : 'rounded-md'
+
   return (
     <div
       aria-hidden
-      className={cn(
-        'animate-pulse bg-gray-200 dark:bg-gray-700',
-        isCircle ? 'rounded-full' : 'rounded-md',
-        className
-      )}
-      {...rest}
+      className={cn(baseClasses, shapeClasses, className)}
+      {...restProps}
     />
   )
 }
+
+export default Skeleton

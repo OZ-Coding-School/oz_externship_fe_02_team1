@@ -1,58 +1,56 @@
 import type { HTMLAttributes } from 'react'
-import { useMemo } from 'react'
 import { cn } from '@/utils/cn'
 import Skeleton from '@/components/common/skeleton/Skeleton'
 
 export interface SkeletonTextProps extends HTMLAttributes<HTMLDivElement> {
-  lines?: number
-  lastLineShort?: boolean
+  lineCount?: number
+  isLastLineShort?: boolean
   lineHeightClass?: string
   gapClass?: string
-  widths?: number[]
+  lineWidthClasses?: string[]
   lineClassName?: string
 }
 
-export default function SkeletonText({
-  lines = 3,
-  lastLineShort = true,
+const SkeletonText = ({
+  lineCount = 3,
+  isLastLineShort = true,
   lineHeightClass = 'h-4',
   gapClass = 'space-y-2',
-  widths,
+  lineWidthClasses,
   lineClassName,
   className,
-  ...rest
-}: SkeletonTextProps) {
-  const skeletonKeys = useMemo(
-    () => Array.from({ length: Math.max(1, lines) }, () => crypto.randomUUID()),
-    [lines]
-  )
+  ...restProps
+}: SkeletonTextProps) => {
+  const lastLineIndex = lineCount - 1
 
-  const getSkeletonWidth = (index: number): number => {
-    if (widths?.[index] !== undefined) {
-      return widths[index]
+  const getLineWidthClass = (lineIndex: number): string => {
+    const widthClass = lineWidthClasses?.[lineIndex]
+    let finalWidthClass = 'w-full'
+
+    if (widthClass) {
+      finalWidthClass = widthClass
+    } else if (lineIndex === lastLineIndex && isLastLineShort) {
+      finalWidthClass = 'w-[70%]'
     }
 
-    const isLastLine = index === skeletonKeys.length - 1
-    if (lastLineShort && isLastLine) {
-      return 70
-    }
-
-    return 100
+    return finalWidthClass
   }
 
   return (
-    <div className={cn(gapClass, className)} aria-hidden {...rest}>
-      {skeletonKeys.map((key, index) => {
-        const customWidth = getSkeletonWidth(index)
-
-        return (
-          <Skeleton
-            key={key}
-            className={cn('rounded', lineHeightClass, lineClassName)}
-            style={{ width: `${customWidth}%` }}
-          />
-        )
-      })}
+    <div className={cn(gapClass, className)} aria-hidden {...restProps}>
+      {Array.from({ length: lineCount }).map((_, lineIndex) => (
+        <Skeleton
+          key={lineIndex}
+          className={cn(
+            'rounded',
+            lineHeightClass,
+            getLineWidthClass(lineIndex),
+            lineClassName
+          )}
+        />
+      ))}
     </div>
   )
 }
+
+export default SkeletonText
