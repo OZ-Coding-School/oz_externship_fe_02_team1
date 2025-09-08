@@ -1,14 +1,14 @@
-import { cn } from '@/utils'
-import { HEADER_NAV_LISTS } from '@constants'
+import { useMediaQuery } from 'react-responsive'
 
-interface HeaderNavProps {
-  flexDirection?: 'col' | 'row'
-}
+import { HEADER_NAV_LISTS, mediaQuery } from '@constants'
+import { cn } from '@utils'
 
-export default function HeaderNav({ flexDirection }: HeaderNavProps) {
+export default function HeaderNav() {
+  const isMobile = useMediaQuery({ query: mediaQuery.mobile })
+
   return (
     <nav>
-      <ul className={cn('flex gap-8', flexDirection === 'col' && 'flex-col')}>
+      <ul className={cn('flex gap-8', isMobile && 'flex-col')}>
         {HEADER_NAV_LISTS.map((el) => (
           <li key={el}>{el}</li>
         ))}

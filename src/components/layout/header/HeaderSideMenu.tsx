@@ -31,13 +31,13 @@ export default function HeaderSideMenu({
           <XMarkIcon width="24" className="cursor-pointer" onClick={onClose} />
         </div>
         <div className="p-5">
-          <HeaderNav flexDirection="col" />
+          <HeaderNav />
 
           <div className="mt-8 border-t border-gray-200 pt-8">
             {isLoggedin ? (
               <UserProfileMenu />
             ) : (
-              <AuthButtonGroup flexDirection="col" onClose={onClose} />
+              <AuthButtonGroup onClose={onClose} />
             )}
           </div>
         </div>

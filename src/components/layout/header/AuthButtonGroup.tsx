@@ -1,17 +1,18 @@
-import { cn } from '@/utils'
+import { useMediaQuery } from 'react-responsive'
+
 import { Button } from '@components'
+import { mediaQuery } from '@constants'
+import { cn } from '@utils'
 
 interface AuthButtonGroupProps {
-  flexDirection?: 'col' | 'row'
   onClose?: () => void
 }
 
-export default function AuthButtonGroup({
-  flexDirection,
-  onClose,
-}: AuthButtonGroupProps) {
+export default function AuthButtonGroup({ onClose }: AuthButtonGroupProps) {
+  const isMobile = useMediaQuery({ query: mediaQuery.mobile })
+
   return (
-    <div className={cn('flex gap-2', flexDirection === 'col' && 'flex-col')}>
+    <div className={cn('flex gap-2', isMobile && 'flex-col')}>
       <Button variant="ghost" className="text-base" onClick={onClose}>
         로그인
       </Button>
