@@ -36,7 +36,7 @@ export default function SearchEmptyState({
           <Button variant="primary" onClick={handleReset}>
             {resetLabel}
           </Button>
-          <Button variant="secondary" onClick={handleNewSearch}>
+          <Button variant="outline" onClick={handleNewSearch}>
             {newSearchLabel}
           </Button>
         </>

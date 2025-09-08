@@ -9,8 +9,8 @@ interface EmptyStateProps {
   description?: string
   primaryLabel?: string
   onPrimaryClick?: () => void
-  iconSize?: number // px
-  layout?: EmptyLayout // page/card
+  iconSize?: number
+  layout?: EmptyLayout
 }
 
 export default function EmptyState({
