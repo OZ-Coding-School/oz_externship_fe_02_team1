@@ -7,6 +7,7 @@ import { dateInputStyle } from '@components/common/form/form.styles'
 interface DateInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'readOnly'> {
   label?: string
+  value?: string
   onOpenCalendar?: () => void
   invalid?: boolean
   errorText?: string
@@ -31,6 +32,12 @@ const DateInput = ({
   const describedByIds: string[] = []
   if (errorText) describedByIds.push(`${inputId}-desc`)
 
+  const handleMouseDown: React.MouseEventHandler<HTMLInputElement> = (e) => {
+    if (!onOpenCalendar) return
+    e.preventDefault()
+    onOpenCalendar()
+  }
+
   return (
     <div>
       {label && (
@@ -42,6 +49,7 @@ const DateInput = ({
       <div className="relative">
         <input
           {...rest}
+          value={rest.value}
           id={inputId}
           ref={ref}
           readOnly
@@ -51,6 +59,7 @@ const DateInput = ({
             describedByIds.length ? describedByIds.join(' ') : undefined
           }
           className={dateInputStyle({ invalid, className })}
+          onMouseDown={handleMouseDown}
         />
 
         <button
