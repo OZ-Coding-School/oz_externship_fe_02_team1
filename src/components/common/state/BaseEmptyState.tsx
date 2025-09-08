@@ -20,17 +20,25 @@ export default function BaseEmptyState({
     <div
       aria-live="polite"
       className={cn(
-        'flex flex-col items-center justify-center rounded-xl border border-gray-200 bg-gray-50 px-6 py-14 text-center',
-        'min-h-[260px]',
+        'flex w-full flex-col items-center justify-center text-center',
+        'rounded-xl border border-gray-200 bg-gray-50 px-6 py-12',
+        'max-w-md sm:max-w-xl',
+        'min-h-[360px] sm:min-h-[420px]',
         className
       )}
     >
-      {icon && <div className="mb-5">{icon}</div>}
-      <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-      {description && (
-        <p className="mt-2 text-sm leading-6 text-gray-500">{description}</p>
-      )}
-      {action && <div className="mt-6 flex items-center gap-2">{action}</div>}
+      <div className="flex flex-col items-center gap-3 sm:gap-4">
+        {icon && <div>{icon}</div>}
+        <h3 className="text-xl leading-7 font-semibold text-gray-900">
+          {title}
+        </h3>
+        {description && (
+          <p className="text-base leading-normal text-gray-500">
+            {description}
+          </p>
+        )}
+        {action && <div className="mt-2 flex items-center gap-3">{action}</div>}
+      </div>
     </div>
   )
 }
