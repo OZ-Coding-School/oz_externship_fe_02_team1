@@ -4,7 +4,7 @@ import { PlusIcon } from '@heroicons/react/24/outline'
 import BasicInfoSection from '@/components/common/group/BasicInfoSection'
 import PeriodMembersSection from '@/components/common/group/PeriodMembersSection'
 import LecturePickerSection from '@/components/common/group/LecturePickerSection'
-import DateModal from '@/components/common/group/DatePickerModal'
+// import DateModal from '@/components/common/group/DatePickerModal'
 import { useCreateGroupForm } from '@/components/common/group/useCreateGroupForm'
 
 const CreateGroup = () => {
@@ -30,15 +30,15 @@ const CreateGroup = () => {
     handleSubmit,
 
     // 날짜 모달 관련
-    openDateKind,
-    tempDate,
-    setTempDate,
+    // openDateKind,
+    // tempDate,
+    // setTempDate,
     openStartPicker,
     openEndPicker,
-    closeDateModal,
-    confirmDateModal,
-    minEndForEndPicker,
-    confirmDisabled,
+    // closeDateModal,
+    // confirmDateModal,
+    // minEndForEndPicker,
+    // confirmDisabled,
     hasRangeError,
   } = useCreateGroupForm()
 
@@ -103,7 +103,7 @@ const CreateGroup = () => {
       </footer>
 
       {/* 날짜 선택 모달 */}
-      <DateModal
+      {/* <DateModal
         isOpen={!!openDateKind}
         kind={openDateKind}
         tempDate={tempDate}
@@ -113,7 +113,7 @@ const CreateGroup = () => {
         close={closeDateModal}
         confirm={confirmDateModal}
         confirmDisabled={confirmDisabled}
-      />
+      /> */}
     </form>
   )
 }
