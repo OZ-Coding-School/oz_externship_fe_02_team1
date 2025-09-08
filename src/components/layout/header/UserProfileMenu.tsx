@@ -5,7 +5,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { useMediaQuery } from 'react-responsive'
 
-import { Avatar, Text, UserMenu } from '@components'
+import { Avatar, Text, UserDropdown, UserMenu } from '@components'
 import { mediaQuery } from '@constants'
 import { cn } from '@utils'
 import { useState } from 'react'
@@ -21,19 +21,17 @@ export default function UserProfileMenu() {
         <Avatar src="none" alt="김개발" size="sm" className="mr-2" />
         <Text className="text-primary-600">김개발</Text>
         {!isMobile && (
-          <button
-            type="button"
-            className="w-8 cursor-pointer p-2"
-            onClick={() => setIsDropdownOpen((prev) => !prev)}
-          >
-            {isDropdownOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
-          </button>
-        )}
+          <>
+            <button
+              type="button"
+              className="w-8 cursor-pointer p-2"
+              onClick={() => setIsDropdownOpen((prev) => !prev)}
+            >
+              {isDropdownOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+            </button>
 
-        {isDropdownOpen && (
-          <div className="absolute top-[56.047px] right-[112px] flex w-48 flex-col rounded-lg border border-gray-200 bg-white py-2 shadow-md">
-            <UserMenu />
-          </div>
+            <UserDropdown isOpen={isDropdownOpen} />
+          </>
         )}
       </div>
     </div>
