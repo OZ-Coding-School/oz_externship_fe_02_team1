@@ -1,21 +1,11 @@
 import { Link } from 'react-router'
 
 import { H3, H4, Text } from '@components'
-
-const FOOTER_NAV_LISTS = [
-  {
-    title: '서비스',
-    list: ['강의 목록', '스터디 그룹', '구인 공고'],
-  },
-  {
-    title: '지원',
-    list: ['고객센터', 'FAQ', '개인정보처리방침'],
-  },
-]
+import { FOOTER_NAV_LISTS } from '@constants'
 
 export default function Footer() {
   return (
-    <footer className="flex justify-center bg-gray-900 px-4 py-8 sm:px-20 sm:py-12">
+    <footer className="flex justify-center bg-gray-900 px-6 py-8 sm:px-20 sm:py-12">
       <div className="w-full max-w-7xl sm:px-8">
         <div className="grid gap-8 sm:grid-cols-4">
           <div className="col-span-2">
@@ -28,7 +18,7 @@ export default function Footer() {
             </Text>
           </div>
           {FOOTER_NAV_LISTS.map((item) => (
-            <div key={item.title}>
+            <nav key={item.title}>
               <H4 className="mb-4 text-base font-semibold text-white">
                 {item.title}
               </H4>
@@ -37,7 +27,7 @@ export default function Footer() {
                   <li key={li}>{li}</li>
                 ))}
               </ul>
-            </div>
+            </nav>
           ))}
         </div>
         <div className="mt-8 flex justify-center border border-t-gray-800 pt-8">
