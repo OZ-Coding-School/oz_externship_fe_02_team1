@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { cn } from '@utils'
+import { H3, Text } from '@components/common/text'
 
 interface BaseEmptyStateProps {
   icon?: ReactNode
@@ -27,17 +28,18 @@ export default function BaseEmptyState({
         className
       )}
     >
-      <div className="flex flex-col items-center gap-3 sm:gap-4">
-        {icon && <div>{icon}</div>}
-        <h3 className="text-xl leading-7 font-semibold text-gray-900">
-          {title}
-        </h3>
+      <div className="flex flex-col items-center">
+        {icon && <div className="mb-6">{icon}</div>}
+
+        <H3 className="text-gray-900">{title}</H3>
+
         {description && (
-          <p className="text-base leading-normal text-gray-500">
+          <Text variant="base" className="mt-2 mb-6 block text-gray-500">
             {description}
-          </p>
+          </Text>
         )}
-        {action && <div className="mt-2 flex items-center gap-3">{action}</div>}
+
+        {action && <div className="flex items-center gap-3">{action}</div>}
       </div>
     </div>
   )
