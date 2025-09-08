@@ -5,7 +5,7 @@ export default function HeaderNav() {
     <nav>
       <ul className="flex gap-8">
         {HEADER_NAV_LISTS.map((el) => (
-          <li>{el}</li>
+          <li key={el}>{el}</li>
         ))}
       </ul>
     </nav>
