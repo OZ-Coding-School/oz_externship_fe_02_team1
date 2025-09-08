@@ -1,10 +1,11 @@
-import {
-  XMarkIcon,
-  UserIcon,
-  ArrowLeftStartOnRectangleIcon,
-} from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
-import { AuthButtonGroup, HeaderNav, UserProfileMenu } from '@components'
+import {
+  AuthButtonGroup,
+  HeaderNav,
+  UserMenu,
+  UserProfileMenu,
+} from '@components'
 import { cn } from '@utils'
 
 interface HeaderSideMenuProps {
@@ -40,14 +41,7 @@ export default function HeaderSideMenu({
           <div className="mt-8 border-t border-gray-200 pt-8">
             {isLoggedin && (
               <div className="flex flex-col gap-8 pb-8">
-                <button className="flex items-center">
-                  <UserIcon width={20} className="mr-3" />
-                  마이페이지
-                </button>
-                <button className="flex items-center">
-                  <ArrowLeftStartOnRectangleIcon width={20} className="mr-3" />
-                  로그아웃
-                </button>
+                <UserMenu />
               </div>
             )}
 

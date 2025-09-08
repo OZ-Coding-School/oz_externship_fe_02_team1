@@ -2,12 +2,10 @@ import {
   BellIcon,
   ChevronUpIcon,
   ChevronDownIcon,
-  UserIcon,
-  ArrowLeftStartOnRectangleIcon,
 } from '@heroicons/react/24/outline'
 import { useMediaQuery } from 'react-responsive'
 
-import { Avatar, Text } from '@components'
+import { Avatar, Text, UserMenu } from '@components'
 import { mediaQuery } from '@constants'
 import { cn } from '@utils'
 import { useState } from 'react'
@@ -34,17 +32,7 @@ export default function UserProfileMenu() {
 
         {isDropdownOpen && (
           <div className="absolute top-[56.047px] right-[112px] flex w-48 flex-col rounded-lg border border-gray-200 bg-white py-2 shadow-md">
-            <button className="flex cursor-pointer items-center px-4 py-2 hover:underline">
-              <UserIcon width={16} className="mr-3" />
-              마이페이지
-            </button>
-            <div className="py-2">
-              <div className="border border-gray-100" />
-            </div>
-            <button className="flex cursor-pointer items-center px-4 py-2 hover:underline">
-              <ArrowLeftStartOnRectangleIcon width={16} className="mr-3" />
-              로그아웃
-            </button>
+            <UserMenu />
           </div>
         )}
       </div>

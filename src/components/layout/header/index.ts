@@ -5,4 +5,5 @@ export { default as HeaderSideMenu } from '@components/layout/header/HeaderSideM
 export { default as HeaderNav } from '@components/layout/header/HeaderNav'
 export { default as UserProfileMenu } from '@components/layout/header/UserProfileMenu'
 export { default as AuthButtonGroup } from '@components/layout/header/AuthButtonGroup'
+export { default as UserMenu } from '@components/layout/header/UserMenu'
 export { default as Logo } from '@components/layout/header/Logo'
