@@ -22,7 +22,7 @@ export default function ImageCard({
         <img
           src={imageUrl}
           alt={title}
-          className="h-32 w-96 items-center justify-center bg-gray-200 object-cover"
+          className="h-32 w-96 bg-gray-200 object-cover"
         />
         <H5 className="text-gray-900">{title}</H5>
       </header>
