@@ -1,0 +1,65 @@
+import { Avatar, Button, Text } from '@components'
+import { HEADER_NAV_LISTS } from '@constants'
+import { BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { cn } from '@utils'
+
+interface HeaderSideMenuProps {
+  isLoggedin: boolean
+  isOpen: boolean
+  onClose: () => void
+}
+
+export default function HeaderSideMenu({
+  isLoggedin,
+  isOpen,
+  onClose,
+}: HeaderSideMenuProps) {
+  return (
+    <div className="fixed inset-0 z-50">
+      {/* Overlay */}
+      <div
+        className={cn(
+          'absolute inset-0 bg-black/50',
+          isOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        )}
+        onClick={onClose}
+      />
+
+      {/* Side Menu */}
+      <div className="fixed top-0 left-0 h-full w-60 bg-white shadow-lg">
+        <div className="flex justify-end px-4 py-5">
+          <XMarkIcon width="24" className="cursor-pointer" onClick={onClose} />
+        </div>
+        <div className="p-5">
+          <nav>
+            <ul className="flex flex-col gap-4">
+              {HEADER_NAV_LISTS.map((el) => (
+                <li key={el}>{el}</li>
+              ))}
+            </ul>
+          </nav>
+          <div className="mt-8 border-t border-gray-200 pt-8">
+            {isLoggedin ? (
+              <div className="flex items-center justify-between">
+                <BellIcon height="20" />
+                <div>
+                  <Avatar src="none" alt="김개발" size="sm" className="mr-2" />
+                  <Text className="text-primary-600">김개발</Text>
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-2">
+                <Button variant="ghost" className="text-base" onClick={onClose}>
+                  로그인
+                </Button>
+                <Button className="text-base" onClick={onClose}>
+                  회원가입
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
