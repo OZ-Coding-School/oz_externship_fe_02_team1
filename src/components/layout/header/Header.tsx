@@ -1,6 +1,7 @@
 import { useMediaQuery } from 'react-responsive'
-import { mediaQuery } from '@constants'
+
 import { HeaderDesktop, HeaderMobile } from '@components'
+import { mediaQuery } from '@constants'
 
 interface HeaderProps {
   isLoggedin: boolean

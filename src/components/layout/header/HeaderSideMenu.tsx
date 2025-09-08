@@ -1,5 +1,6 @@
-import { AuthButtonGroup, HeaderNav, UserProfileMenu } from '@components'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+
+import { AuthButtonGroup, HeaderNav, UserProfileMenu } from '@components'
 import { cn } from '@utils'
 
 interface HeaderSideMenuProps {

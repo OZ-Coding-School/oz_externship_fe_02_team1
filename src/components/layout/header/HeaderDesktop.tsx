@@ -1,3 +1,5 @@
+import { Link } from 'react-router'
+
 import {
   Text,
   Logo,
@@ -5,7 +7,6 @@ import {
   AuthButtonGroup,
   UserProfileMenu,
 } from '@components'
-import { Link } from 'react-router'
 
 interface HeaderDesktopProp {
   isLoggedin: boolean

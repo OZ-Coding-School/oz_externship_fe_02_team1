@@ -1,7 +1,8 @@
-import { Logo, HeaderSideMenu } from '@components'
 import { Bars3Icon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 import { Link } from 'react-router'
+
+import { Logo, HeaderSideMenu } from '@components'
 
 interface HeaderProps {
   isLoggedin: boolean

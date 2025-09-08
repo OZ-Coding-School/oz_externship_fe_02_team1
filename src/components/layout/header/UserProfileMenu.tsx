@@ -1,5 +1,6 @@
-import { Avatar, Text } from '@components'
 import { BellIcon } from '@heroicons/react/24/outline'
+
+import { Avatar, Text } from '@components'
 
 export default function UserProfileMenu() {
   return (
