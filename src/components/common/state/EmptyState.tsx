@@ -1,6 +1,6 @@
 import { InboxIcon, PlusIcon } from '@heroicons/react/24/outline'
 import BaseEmptyState from '@components/common/state/BaseEmptyState'
-import { Button } from '@components/common/button'
+import { Button } from '@components'
 
 interface EmptyStateProps {
   title?: string
