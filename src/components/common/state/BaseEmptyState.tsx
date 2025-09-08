@@ -24,7 +24,7 @@ export default function BaseEmptyState({
         'flex w-full flex-col items-center justify-center text-center',
         'rounded-xl border border-gray-200 bg-gray-50 px-6 py-12',
         'max-w-md sm:max-w-xl',
-        'min-h-[360px] sm:min-h-[420px]',
+        'min-h-[320px] sm:min-h-[380px]',
         className
       )}
     >
