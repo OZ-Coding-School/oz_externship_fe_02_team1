@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import BaseEmptyState from './BaseEmptyState'
+import BaseEmptyState from '@components/common/state/BaseEmptyState'
 import { Button } from '@components/common/button'
 
 interface SearchEmptyStateProps {
