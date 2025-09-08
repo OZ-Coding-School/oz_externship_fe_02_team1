@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { addDays, toYMD } from '@/components/common/group/data'
-import type { DateKind } from '@/components/common/group/types'
+import { addDays, toYMD } from '@/components/create-group/data'
+import type { DateKind } from '@/components/create-group/types'
 
 type Args = {
   startDate: string

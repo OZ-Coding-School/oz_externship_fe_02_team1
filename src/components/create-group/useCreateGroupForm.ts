@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
-import useDateModal from '@/components/common/group/useDateModal'
-import { MIN_MEMBERS } from '@/components/common/group/constants'
-import type { PublicOption } from '@/components/common/group/types'
+import useDateModal from '@/components/create-group/useDateModal'
+import { MIN_MEMBERS } from '@/components/create-group/constants'
+import type { PublicOption } from '@/components/create-group/types'
 
 export function useCreateGroupForm() {
   // 기본 정보

@@ -1,5 +1,5 @@
 import { cn } from '@/utils'
-import { MIN_MEMBERS, MAX_MEMBERS } from '@/components/common/group/constants'
+import { MIN_MEMBERS, MAX_MEMBERS } from '@/components/create-group/constants'
 
 type Props = {
   value: number
