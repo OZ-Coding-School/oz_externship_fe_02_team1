@@ -1,17 +1,7 @@
 import { Link } from 'react-router'
 
 import { H3, H4, Text } from '@components'
-
-const FOOTER_NAV_LISTS = [
-  {
-    title: '서비스',
-    list: ['강의 목록', '스터디 그룹', '구인 공고'],
-  },
-  {
-    title: '지원',
-    list: ['고객센터', 'FAQ', '개인정보처리방침'],
-  },
-]
+import { FOOTER_NAV_LISTS } from '@constants'
 
 export default function Footer() {
   return (

@@ -1,8 +1,7 @@
 import { Avatar, Button, Text, Logo } from '@components'
 import { Link } from 'react-router'
 import { BellIcon } from '@heroicons/react/24/outline'
-
-const HEADER_NAV_LISTS = ['강의 목록', '스터디 그룹', '구인 공고']
+import { HEADER_NAV_LISTS } from '@constants'
 
 interface HeaderDesktopProps {
   isLoggedin: boolean
