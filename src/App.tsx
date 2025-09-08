@@ -1,7 +1,14 @@
+import { Route, Routes } from 'react-router'
+
 import './App.css'
+import { Layout } from '@components'
 
 function App() {
-  return <div>template</div>
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}></Route>
+    </Routes>
+  )
 }
 
 export default App
