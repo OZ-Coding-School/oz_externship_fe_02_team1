@@ -1,5 +1,4 @@
-import { Avatar, Button, Text } from '@components'
-import { HEADER_NAV_LISTS } from '@constants'
+import { Avatar, Button, HeaderNav, Text } from '@components'
 import { BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { cn } from '@utils'
 
@@ -31,13 +30,8 @@ export default function HeaderSideMenu({
           <XMarkIcon width="24" className="cursor-pointer" onClick={onClose} />
         </div>
         <div className="p-5">
-          <nav>
-            <ul className="flex flex-col gap-4">
-              {HEADER_NAV_LISTS.map((el) => (
-                <li key={el}>{el}</li>
-              ))}
-            </ul>
-          </nav>
+          <HeaderNav />
+
           <div className="mt-8 border-t border-gray-200 pt-8">
             {isLoggedin ? (
               <div className="flex items-center justify-between">

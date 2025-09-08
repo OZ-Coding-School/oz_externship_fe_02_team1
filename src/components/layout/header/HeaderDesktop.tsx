@@ -1,7 +1,6 @@
-import { Avatar, Button, Text, Logo } from '@components'
+import { Avatar, Button, Text, Logo, HeaderNav } from '@components'
 import { Link } from 'react-router'
 import { BellIcon } from '@heroicons/react/24/outline'
-import { HEADER_NAV_LISTS } from '@constants'
 
 interface HeaderDesktopProps {
   isLoggedin: boolean
@@ -14,14 +13,10 @@ export default function HeaderDesktop({ isLoggedin }: HeaderDesktopProps) {
         <Logo />
         <Text className="text-primary-600 text-xl font-bold">StudyHub</Text>
       </Link>
+
       <div className="flex items-center">
-        <nav>
-          <ul className="flex gap-8">
-            {HEADER_NAV_LISTS.map((el) => (
-              <li>{el}</li>
-            ))}
-          </ul>
-        </nav>
+        <HeaderNav />
+
         {isLoggedin ? (
           <div className="ml-8 flex items-center">
             <BellIcon height="20" />
