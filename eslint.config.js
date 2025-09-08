@@ -63,9 +63,8 @@ export default tseslint.config(
       },
       'import/resolver': {
         typescript: {
-          project: "./tsconfig.app.json",
+          project: './tsconfig.app.json',
         },
-        node: true,
       },
     },
 
@@ -147,7 +146,7 @@ export default tseslint.config(
               position: 'before',
             },
             {
-              pattern: '@/**',
+              pattern: '@/*',
               group: 'internal',
               position: 'after',
             },
@@ -159,9 +158,6 @@ export default tseslint.config(
           },
         },
       ],
-
-      "import/no-unresolved": "error",
-      "import/export": "error",
     },
   },
 
