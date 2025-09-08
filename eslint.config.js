@@ -1,11 +1,11 @@
-import js from '@eslint/js'; // JavaScript 기본 규칙 세트
-import tseslint from 'typescript-eslint'; // TypeScript 전용 규칙 세트
-import react from 'eslint-plugin-react'; // React 컴포넌트 관련 규칙
-import reactHooks from 'eslint-plugin-react-hooks'; // React Hooks 관련 규칙
-import reactRefresh from 'eslint-plugin-react-refresh'; // Vite HMR 최적화 규칙
-import prettier from 'eslint-config-prettier'; // Prettier와 충돌하는 ESLint 규칙 비활성화
-import globals from 'globals'; // 글로벌 변수 정의 (window, document 등)
-import eslintPluginImport from 'eslint-plugin-import';
+import js from '@eslint/js' // JavaScript 기본 규칙 세트
+import tseslint from 'typescript-eslint' // TypeScript 전용 규칙 세트
+import react from 'eslint-plugin-react' // React 컴포넌트 관련 규칙
+import reactHooks from 'eslint-plugin-react-hooks' // React Hooks 관련 규칙
+import reactRefresh from 'eslint-plugin-react-refresh' // Vite HMR 최적화 규칙
+import prettier from 'eslint-config-prettier' // Prettier와 충돌하는 ESLint 규칙 비활성화
+import globals from 'globals' // 글로벌 변수 정의 (window, document 등)
+import eslintPluginImport from 'eslint-plugin-import'
 
 export default tseslint.config(
   // 1. 무시할 파일/폴더 설정
@@ -146,7 +146,7 @@ export default tseslint.config(
               position: 'before',
             },
             {
-              pattern: '@/*',
+              pattern: '@/**',
               group: 'internal',
               position: 'after',
             },
@@ -178,5 +178,5 @@ export default tseslint.config(
   },
 
   // 6. Prettier와 충돌하는 ESLint 규칙들 비활성화
-  prettier, // 포맷팅은 Prettier가 담당, ESLint는 코드 품질만 담당
-);
+  prettier // 포맷팅은 Prettier가 담당, ESLint는 코드 품질만 담당
+)
