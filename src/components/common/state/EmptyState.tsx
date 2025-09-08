@@ -5,16 +5,16 @@ import { BaseEmptyState, Button } from '@components'
 interface EmptyStateProps {
   title?: string
   description?: string
-  primaryLabel?: string
-  onPrimaryClick?: () => void
+  createLabel?: string
+  onCreate?: () => void
   className?: string
 }
 
 export default function EmptyState({
   title = '아직 데이터가 없습니다',
   description = '첫 번째 항목을 추가해보세요',
-  primaryLabel = '새로 만들기',
-  onPrimaryClick,
+  createLabel = '새로 만들기',
+  onCreate,
   className,
 }: EmptyStateProps) {
   return (
@@ -34,12 +34,12 @@ export default function EmptyState({
       action={
         <Button
           variant="primary"
-          onClick={onPrimaryClick}
-          aria-label={primaryLabel}
+          onClick={onCreate}
+          aria-label={createLabel}
           className="inline-flex h-12 items-center gap-3 rounded-xl px-6 py-3 text-base"
         >
           <PlusIcon className="h-6 w-6" aria-hidden />
-          {primaryLabel}
+          {createLabel}
         </Button>
       }
     />
