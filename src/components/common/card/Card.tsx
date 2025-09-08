@@ -1,6 +1,7 @@
-import { cn } from '@utils'
-import { Text } from '@components'
 import type { JSX } from 'react'
+
+import { Text } from '@components'
+import { cn } from '@utils'
 
 interface CardProps {
   title: string
