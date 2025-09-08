@@ -1,5 +1,5 @@
 import { cn } from '@utils'
-import { H3, Text } from '@components/common/text'
+import { H4, Text } from '@components/common/text'
 
 interface LoadingStateProps {
   message?: string
@@ -24,8 +24,7 @@ export default function LoadingState({
       )}
     >
       <div className="border-primary-500 h-12 w-12 animate-spin rounded-full border-2 border-b-2 border-b-transparent [animation-duration:1.5s]" />
-
-      <H3 className="mt-8 text-gray-900">{message}</H3>
+      <H4 className="mt-8 text-gray-900">{message}</H4>
       {subMessage && (
         <Text variant="base" className="mt-2 text-gray-500">
           {subMessage}
