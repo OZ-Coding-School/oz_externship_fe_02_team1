@@ -6,7 +6,7 @@ export default function Layout() {
   return (
     <>
       <Header isLoggedin />
-      <main>
+      <main className="m-auto max-w-7xl p-6 sm:mx-20 sm:p-8">
         <Outlet />
       </main>
       <Footer />
