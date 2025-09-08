@@ -1,5 +1,5 @@
 import { cn } from '@utils'
-import { H4, Text } from '@components/common/text'
+import { H4, Text } from '@components'
 
 interface LoadingStateProps {
   title?: string
