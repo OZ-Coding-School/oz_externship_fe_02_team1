@@ -1,12 +1,12 @@
-import { Avatar, Button, Text, Logo, HeaderNav } from '@components'
+import { Avatar, Text, Logo, HeaderNav, AuthButtonGroup } from '@components'
 import { Link } from 'react-router'
 import { BellIcon } from '@heroicons/react/24/outline'
 
-interface HeaderDesktopProps {
+interface HeaderDesktopProp {
   isLoggedin: boolean
 }
 
-export default function HeaderDesktop({ isLoggedin }: HeaderDesktopProps) {
+export default function HeaderDesktop({ isLoggedin }: HeaderDesktopProp) {
   return (
     <div className="flex w-full max-w-7xl justify-between px-8">
       <Link to="/" className="flex items-center gap-2">
@@ -25,10 +25,7 @@ export default function HeaderDesktop({ isLoggedin }: HeaderDesktopProps) {
           </div>
         ) : (
           <>
-            <Button variant="ghost" className="text-base">
-              로그인
-            </Button>
-            <Button className="ml-0 text-base">회원가입</Button>
+            <AuthButtonGroup />
           </>
         )}
       </div>

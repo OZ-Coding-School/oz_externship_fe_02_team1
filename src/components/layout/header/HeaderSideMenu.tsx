@@ -1,4 +1,4 @@
-import { Avatar, Button, HeaderNav, Text } from '@components'
+import { AuthButtonGroup, Avatar, HeaderNav, Text } from '@components'
 import { BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { cn } from '@utils'
 
@@ -42,14 +42,7 @@ export default function HeaderSideMenu({
                 </div>
               </div>
             ) : (
-              <div className="flex flex-col gap-2">
-                <Button variant="ghost" className="text-base" onClick={onClose}>
-                  로그인
-                </Button>
-                <Button className="text-base" onClick={onClose}>
-                  회원가입
-                </Button>
-              </div>
+              <AuthButtonGroup onClose={onClose} />
             )}
           </div>
         </div>

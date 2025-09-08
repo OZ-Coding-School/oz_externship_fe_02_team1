@@ -3,4 +3,5 @@ export { default as HeaderDesktop } from '@components/layout/header/HeaderDeskto
 export { default as HeaderMobile } from '@components/layout/header/HeaderMobile'
 export { default as HeaderSideMenu } from '@components/layout/header/HeaderSideMenu'
 export { default as HeaderNav } from '@components/layout/header/HeaderNav'
+export { default as AuthButtonGroup } from '@components/layout/header/AuthButtonGroup'
 export { default as Logo } from '@components/layout/header/Logo'
