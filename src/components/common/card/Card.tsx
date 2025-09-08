@@ -1,32 +1,33 @@
-import { type ComponentPropsWithoutRef, type ReactNode } from 'react'
+import type { JSX } from 'react'
 
-import { H5 } from '@components'
+import { Text } from '@components'
 import { cn } from '@utils'
 
-interface CardProps extends ComponentPropsWithoutRef<'div'> {
+interface CardProps {
   title: string
-  imageUrl: string
-  children?: ReactNode
+  content: JSX.Element
+  titleVariant: 'base' | 'large'
+  className?: string
 }
 
 export default function Card({
   title,
-  imageUrl,
-  children,
+  content,
+  titleVariant = 'large',
   className,
-  ...rest
 }: CardProps) {
   return (
-    <div className={cn('flex flex-col rounded-lg p-6', className)} {...rest}>
-      <header>
-        <img
-          src={imageUrl}
-          alt={title}
-          className="h-32 w-96 items-center justify-center bg-gray-200 object-cover"
-        />
-        <H5 className="text-gray-900">{title}</H5>
-      </header>
-      {children}
+    <div className="flex flex-col rounded-lg border border-gray-200 bg-white p-4">
+      <Text
+        variant={titleVariant}
+        className={cn(
+          'pb-2 leading-normal font-semibold text-black',
+          className
+        )}
+      >
+        {title}
+      </Text>
+      {content}
     </div>
   )
 }
