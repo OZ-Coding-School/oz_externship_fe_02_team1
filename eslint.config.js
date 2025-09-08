@@ -65,6 +65,7 @@ export default tseslint.config(
         typescript: {
           project: './tsconfig.app.json',
         },
+        node: true,
       },
     },
 
@@ -158,6 +159,9 @@ export default tseslint.config(
           },
         },
       ],
+
+      'import/no-unresolved': 'error',
+      'import/export': 'error',
     },
   },
 
