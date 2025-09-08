@@ -1,7 +1,8 @@
 import type { HTMLAttributes } from 'react'
 
-import Skeleton from '@/components/common/skeleton/Skeleton'
 import { cn } from '@utils'
+
+import Skeleton from '@/components/common/skeleton/Skeleton'
 
 export interface SkeletonCardProps extends HTMLAttributes<HTMLDivElement> {
   widthClass?: string
