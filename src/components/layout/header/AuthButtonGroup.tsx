@@ -1,10 +1,10 @@
 import { Button } from '@components'
 
-interface AuthButtonGroupProp {
+interface AuthButtonGroupProps {
   onClose?: () => void
 }
 
-export default function AuthButtonGroup({ onClose }: AuthButtonGroupProp) {
+export default function AuthButtonGroup({ onClose }: AuthButtonGroupProps) {
   return (
     <div className="flex flex-col gap-2">
       <Button variant="ghost" className="text-base" onClick={onClose}>
