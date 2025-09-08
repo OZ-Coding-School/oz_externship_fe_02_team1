@@ -2,14 +2,14 @@ import { cn } from '@utils'
 import { H4, Text } from '@components/common/text'
 
 interface LoadingStateProps {
-  message?: string
-  subMessage?: string
+  title?: string
+  description?: string
   className?: string
 }
 
 export default function LoadingState({
-  message = '데이터를 불러오고 있습니다',
-  subMessage = '잠시만 기다려주세요…',
+  title = '데이터를 불러오고 있습니다',
+  description = '잠시만 기다려주세요…',
   className,
 }: LoadingStateProps) {
   return (
@@ -24,10 +24,10 @@ export default function LoadingState({
       )}
     >
       <div className="border-primary-500 h-12 w-12 animate-spin rounded-full border-2 border-b-2 border-b-transparent [animation-duration:1.5s]" />
-      <H4 className="mt-8 text-gray-900">{message}</H4>
-      {subMessage && (
+      <H4 className="mt-8 text-gray-900">{title}</H4>
+      {description && (
         <Text variant="base" className="mt-2 text-gray-500">
-          {subMessage}
+          {description}
         </Text>
       )}
     </div>
