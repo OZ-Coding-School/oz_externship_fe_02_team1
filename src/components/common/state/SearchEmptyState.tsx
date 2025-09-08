@@ -36,11 +36,15 @@ export default function SearchEmptyState({
           <Button
             variant="primary"
             onClick={onResetFilters}
-            className="h-10 w-28"
+            className="h-10 px-4 py-2 text-base"
           >
             {resetLabel}
           </Button>
-          <Button variant="outline" onClick={onNewSearch} className="h-10 w-28">
+          <Button
+            variant="outline"
+            onClick={onNewSearch}
+            className="h-10 px-4 py-2 text-base"
+          >
             {newSearchLabel}
           </Button>
         </>
