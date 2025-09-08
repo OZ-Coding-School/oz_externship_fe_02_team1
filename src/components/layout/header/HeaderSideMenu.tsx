@@ -39,14 +39,13 @@ export default function HeaderSideMenu({
           <HeaderNav />
 
           <div className="mt-8 border-t border-gray-200 pt-8">
-            {isLoggedin && (
-              <div className="flex flex-col gap-8 pb-8">
-                <UserMenu />
-              </div>
-            )}
-
             {isLoggedin ? (
-              <UserProfileMenu />
+              <>
+                <div className="flex flex-col gap-8 pb-8">
+                  <UserMenu />
+                </div>
+                <UserProfileMenu />
+              </>
             ) : (
               <AuthButtonGroup onClose={onClose} />
             )}
