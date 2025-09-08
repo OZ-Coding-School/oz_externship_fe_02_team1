@@ -1,10 +1,11 @@
-import { mediaQuery } from '@constants'
 import {
   UserIcon,
   ArrowLeftStartOnRectangleIcon,
 } from '@heroicons/react/24/outline'
 import { useMediaQuery } from 'react-responsive'
+
 import { UserMenuButton } from '@components'
+import { mediaQuery } from '@constants'
 
 export default function UserMenu() {
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })

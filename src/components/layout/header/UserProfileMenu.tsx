@@ -3,12 +3,12 @@ import {
   ChevronUpIcon,
   ChevronDownIcon,
 } from '@heroicons/react/24/outline'
+import { useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
-import { Avatar, Text, UserDropdown, UserMenu } from '@components'
+import { Avatar, Text, UserDropdown } from '@components'
 import { mediaQuery } from '@constants'
 import { cn } from '@utils'
-import { useState } from 'react'
 
 export default function UserProfileMenu() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)

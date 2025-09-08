@@ -1,5 +1,6 @@
-import { cn } from '@utils'
 import type { ReactNode } from 'react'
+
+import { cn } from '@utils'
 
 interface UserMenuButtonProps {
   icon: ReactNode
