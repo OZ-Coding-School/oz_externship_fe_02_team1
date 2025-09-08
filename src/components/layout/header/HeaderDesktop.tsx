@@ -20,7 +20,7 @@ export default function HeaderDesktop({ isLoggedin }: HeaderDesktopProp) {
         <Text className="text-primary-600 text-xl font-bold">StudyHub</Text>
       </Link>
 
-      <div className="flex items-center">
+      <div className="flex items-center gap-4">
         <HeaderNav />
 
         {isLoggedin ? <UserProfileMenu /> : <AuthButtonGroup />}
