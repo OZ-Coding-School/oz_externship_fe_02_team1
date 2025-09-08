@@ -37,6 +37,7 @@ export default function SearchEmptyState({
             variant="primary"
             onClick={onResetFilters}
             className="h-10 px-4 py-2 text-base"
+            aria-label={resetLabel}
           >
             {resetLabel}
           </Button>
@@ -44,6 +45,7 @@ export default function SearchEmptyState({
             variant="outline"
             onClick={onNewSearch}
             className="h-10 px-4 py-2 text-base"
+            aria-label={newSearchLabel}
           >
             {newSearchLabel}
           </Button>
