@@ -37,7 +37,7 @@ export default function HeaderSideMenu({
             {isLoggedin ? (
               <UserProfileMenu />
             ) : (
-              <AuthButtonGroup onClose={onClose} />
+              <AuthButtonGroup flexDirection="col" onClose={onClose} />
             )}
           </div>
         </div>
