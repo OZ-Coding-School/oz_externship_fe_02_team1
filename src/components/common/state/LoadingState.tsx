@@ -1,5 +1,5 @@
-import { ArrowPathIcon } from '@heroicons/react/24/outline'
 import { cn } from '@utils'
+import { H3, Text } from '@components/common/text'
 
 interface LoadingStateProps {
   message?: string
@@ -17,15 +17,19 @@ export default function LoadingState({
       role="status"
       aria-live="polite"
       className={cn(
-        'flex flex-col items-center justify-center rounded-xl border border-gray-200 bg-gray-50 px-6 py-14 text-center',
-        'min-h-[220px]',
+        'flex flex-col items-center justify-center text-center',
+        'rounded-xl border border-gray-200 bg-gray-50 px-6 py-12',
+        'min-h-[280px] sm:min-h-[320px]',
         className
       )}
     >
-      <ArrowPathIcon className="h-10 w-10 animate-spin text-gray-300" />
-      <p className="mt-4 text-base font-medium text-gray-900">{message}</p>
+      <div className="border-primary-500 h-12 w-12 animate-spin rounded-full border-2 border-b-2 border-b-transparent [animation-duration:1.5s]" />
+
+      <H3 className="mt-8 text-gray-900">{message}</H3>
       {subMessage && (
-        <p className="mt-1 text-sm leading-6 text-gray-500">{subMessage}</p>
+        <Text variant="base" className="mt-2 text-gray-500">
+          {subMessage}
+        </Text>
       )}
     </div>
   )
