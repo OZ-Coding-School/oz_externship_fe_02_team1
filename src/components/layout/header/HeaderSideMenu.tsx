@@ -1,5 +1,5 @@
-import { AuthButtonGroup, Avatar, HeaderNav, Text } from '@components'
-import { BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { AuthButtonGroup, HeaderNav, UserProfileMenu } from '@components'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 import { cn } from '@utils'
 
 interface HeaderSideMenuProps {
@@ -34,13 +34,7 @@ export default function HeaderSideMenu({
 
           <div className="mt-8 border-t border-gray-200 pt-8">
             {isLoggedin ? (
-              <div className="flex items-center justify-between">
-                <BellIcon height="20" />
-                <div>
-                  <Avatar src="none" alt="김개발" size="sm" className="mr-2" />
-                  <Text className="text-primary-600">김개발</Text>
-                </div>
-              </div>
+              <UserProfileMenu />
             ) : (
               <AuthButtonGroup onClose={onClose} />
             )}
