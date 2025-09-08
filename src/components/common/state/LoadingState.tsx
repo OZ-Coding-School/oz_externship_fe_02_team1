@@ -19,7 +19,7 @@ export default function LoadingState({
       className={cn(
         'flex flex-col items-center justify-center text-center',
         'rounded-xl border border-gray-200 bg-gray-50 px-6 py-12',
-        'min-h-[280px] sm:min-h-[320px]',
+        'min-h-[240px] sm:min-h-[280px]',
         className
       )}
     >
