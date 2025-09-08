@@ -1,0 +1,5 @@
+export { default as Header } from '@components/layout/header/Header'
+export { default as HeaderDesktop } from '@components/layout/header/HeaderDesktop'
+export { default as HeaderMobile } from '@components/layout/header/HeaderMobile'
+export { default as HeaderSideMenu } from '@components/layout/header/HeaderSideMenu'
+export { default as Logo } from '@components/layout/header/Logo'
