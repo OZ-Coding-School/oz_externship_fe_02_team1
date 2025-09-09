@@ -14,6 +14,10 @@ export default function UserProfileMenu() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
 
+  const handleToggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev)
+  }
+
   return (
     <div className="flex items-center justify-between">
       <BellIcon height="20" className={cn(!isMobile && 'mx-4')} />
@@ -25,7 +29,7 @@ export default function UserProfileMenu() {
             <button
               type="button"
               className="w-8 cursor-pointer p-2"
-              onClick={() => setIsDropdownOpen((prev) => !prev)}
+              onClick={() => handleToggleDropdown()}
             >
               {isDropdownOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
             </button>
