@@ -3,8 +3,8 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { BaseEmptyState, Button } from '@components'
 
 interface SearchEmptyStateProps {
-  title?: string
-  description?: string
+  title: string
+  description: string
   resetLabel?: string
   newSearchLabel?: string
   onResetFilters?: () => void
