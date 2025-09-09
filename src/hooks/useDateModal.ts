@@ -1,8 +1,13 @@
 import { useState } from 'react'
-import { addDays, toYMD } from '@/components/create-group/data'
-import type { DateKind } from '@/components/create-group/types'
 
-type Args = {
+import { addDays, toYMD } from '@components/create-group/data'
+import type { DateKind } from '@components/create-group/types'
+import {
+  MIN_END_PICKER_OFFSET_DAYS,
+  MIN_RANGE_DAYS,
+} from '@components/create-group/constants'
+
+interface UseDateModalArgs {
   startDate: string
   endDate: string
   setStartDate: (v: string) => void
@@ -14,7 +19,7 @@ export default function useDateModal({
   endDate,
   setStartDate,
   setEndDate,
-}: Args) {
+}: UseDateModalArgs) {
   // 모달 관련 상태만 내부에서 관리
   const [openDateKind, setOpenDateKind] = useState<DateKind | null>(null)
   const [tempDate, setTempDate] = useState<Date | undefined>(undefined)
@@ -35,7 +40,7 @@ export default function useDateModal({
     if (!tempDate) return
     if (openDateKind === 'start') {
       setStartDate(toYMD(tempDate))
-      const minEnd = addDays(tempDate, 5)
+      const minEnd = addDays(tempDate, MIN_RANGE_DAYS)
       if (endDate && new Date(endDate) < minEnd) setEndDate('')
     } else if (openDateKind === 'end') {
       setEndDate(toYMD(tempDate))
@@ -46,11 +51,11 @@ export default function useDateModal({
   const hasRangeError =
     !!startDate &&
     !!endDate &&
-    new Date(endDate) < addDays(new Date(startDate), 5)
+    new Date(endDate) < addDays(new Date(startDate), MIN_RANGE_DAYS)
 
   const minEndForEndPicker =
     openDateKind === 'end' && startDate
-      ? addDays(new Date(startDate), 6)
+      ? addDays(new Date(startDate), MIN_END_PICKER_OFFSET_DAYS)
       : undefined
 
   const confirmDisabled =
