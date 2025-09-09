@@ -1,5 +1,4 @@
 import type { InputHTMLAttributes, Ref } from 'react'
-
 import { CalendarDaysIcon } from '@heroicons/react/24/outline'
 import { useId } from 'react'
 
@@ -9,9 +8,10 @@ interface DateInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'readOnly'> {
   label?: string
   onOpenCalendar?: () => void
-  invalid?: boolean // 폼 검증 결과(테두리만 빨강)
-  errorText?: string // 에러 설명 (선택)
+  invalid?: boolean
+  errorText?: string
   ref?: Ref<HTMLInputElement>
+  required?: boolean
 }
 
 const DateInput = ({
@@ -22,6 +22,7 @@ const DateInput = ({
   errorText,
   className,
   ref,
+  required,
   ...rest
 }: DateInputProps) => {
   const autoId = useId()
@@ -34,7 +35,7 @@ const DateInput = ({
     <div>
       {label && (
         <label htmlFor={inputId} className="mb-1.5 block text-sm text-gray-700">
-          {label}
+          {label} {required && <span className="text-danger-500">*</span>}
         </label>
       )}
 
