@@ -1,7 +1,8 @@
-import { useMemo, useState } from 'react'
-import useDateModal from '@/components/create-group/useDateModal'
-import { MIN_MEMBERS } from '@/components/create-group/constants'
-import type { PublicOption } from '@/components/create-group/types'
+import { useState } from 'react'
+
+import useDateModal from '@/hooks/useDateModal'
+import { MIN_MEMBERS } from '@components'
+import type { PublicOption } from '@components'
 
 export function useCreateGroupForm() {
   // 기본 정보
@@ -24,11 +25,10 @@ export function useCreateGroupForm() {
     setEndDate,
   })
 
-  const isSubmitDisabled = useMemo(() => {
-    const hasRequired =
-      groupName.trim() && startDate.trim() && endDate.trim() && maxMembers > 1
-    return !(hasRequired && !dateModal.hasRangeError)
-  }, [groupName, startDate, endDate, maxMembers, dateModal.hasRangeError])
+  const hasRequired =
+    groupName.trim() && startDate.trim() && endDate.trim() && maxMembers > 1
+
+  const isSubmitDisabled = !(hasRequired && !dateModal.hasRangeError)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
