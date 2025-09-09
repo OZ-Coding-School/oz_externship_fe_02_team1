@@ -24,11 +24,8 @@ export default function SearchEmptyState({
   return (
     <BaseEmptyState
       className={className}
-      icon={
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
-          <MagnifyingGlassIcon className="h-8 w-8 text-gray-400" />
-        </div>
-      }
+      icon={<MagnifyingGlassIcon className="h-8 w-8 text-gray-400" />}
+      iconBgClassName="bg-gray-100"
       title={title}
       description={description}
       action={

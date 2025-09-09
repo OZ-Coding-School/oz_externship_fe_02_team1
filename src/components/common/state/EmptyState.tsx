@@ -21,14 +21,13 @@ export default function EmptyState({
     <BaseEmptyState
       className={className}
       icon={
-        <div className="bg-primary-50 flex h-20 w-20 items-center justify-center rounded-full">
-          <InboxIcon
-            className="text-primary-500 h-8 w-8"
-            strokeWidth={2}
-            aria-hidden
-          />
-        </div>
+        <InboxIcon
+          className="text-primary-500 h-8 w-8"
+          strokeWidth={2}
+          aria-hidden
+        />
       }
+      iconBgClassName="bg-primary-50"
       title={title}
       description={description}
       action={
