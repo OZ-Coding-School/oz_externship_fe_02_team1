@@ -4,7 +4,7 @@ import { Button, H1, Text } from '@components'
 import BasicInfoSection from '@components/create-group/BasicInfoSection'
 import LecturePickerSection from '@components/create-group/LecturePickerSection'
 import PeriodMembersSection from '@components/create-group/PeriodMembersSection'
-// import DateModal from '@/components/common/group/DatePickerModal'
+import DateModal from '@components/create-group/DatePickerModal'
 import { useCreateGroupForm } from '@components/create-group/useCreateGroupForm'
 
 const CreateGroup = () => {
@@ -26,15 +26,15 @@ const CreateGroup = () => {
     handleSubmit,
 
     // 날짜 모달 관련
-    // openDateKind,
-    // tempDate,
-    // setTempDate,
+    openDateKind,
+    tempDate,
+    setTempDate,
     openStartPicker,
     openEndPicker,
-    // closeDateModal,
-    // confirmDateModal,
-    // minEndForEndPicker,
-    // confirmDisabled,
+    closeDateModal,
+    confirmDateModal,
+    minEndForEndPicker,
+    confirmDisabled,
     hasRangeError,
   } = useCreateGroupForm()
 
@@ -109,7 +109,7 @@ const CreateGroup = () => {
       </footer>
 
       {/* 날짜 선택 모달 */}
-      {/* <DateModal
+      <DateModal
         isOpen={!!openDateKind}
         kind={openDateKind}
         tempDate={tempDate}
@@ -119,7 +119,7 @@ const CreateGroup = () => {
         close={closeDateModal}
         confirm={confirmDateModal}
         confirmDisabled={confirmDisabled}
-      /> */}
+      />
     </form>
   )
 }
