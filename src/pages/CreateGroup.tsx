@@ -1,11 +1,11 @@
-import { Button } from '@/components'
-import { PlusIcon } from '@heroicons/react/24/outline'
+import { PlusIcon, ArrowLeftIcon } from '@heroicons/react/24/outline'
 
-import BasicInfoSection from '@/components/create-group/BasicInfoSection'
-import PeriodMembersSection from '@/components/create-group/PeriodMembersSection'
-import LecturePickerSection from '@/components/create-group/LecturePickerSection'
+import BasicInfoSection from '@components/create-group/BasicInfoSection'
+import PeriodMembersSection from '@components/create-group/PeriodMembersSection'
+import LecturePickerSection from '@components/create-group/LecturePickerSection'
 // import DateModal from '@/components/common/group/DatePickerModal'
-import { useCreateGroupForm } from '@/components/create-group/useCreateGroupForm'
+import { useCreateGroupForm } from '@components/create-group/useCreateGroupForm'
+import { Button, H1, Text } from '@components'
 
 const CreateGroup = () => {
   const {
@@ -20,10 +20,6 @@ const CreateGroup = () => {
     endDate,
     maxMembers,
     setMaxMembers,
-
-    // 공개 범위
-    visibility,
-    setVisibility,
 
     // 제출
     isSubmitDisabled,
@@ -45,16 +41,29 @@ const CreateGroup = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto w-full max-w-[880px] px-4 py-8"
+      className="mx-auto w-full max-w-[832px] px-4 py-8"
     >
-      {/* 타이틀 */}
-      <header className="mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900">
-          새 스터디 그룹 만들기
-        </h1>
-        <p className="mt-1 text-sm text-gray-500">
-          함께 공부할 멤버들의 스터디 그룹을 시작해보세요
-        </p>
+      <header className="mb-6 flex items-center gap-2">
+        <Button
+          type="button"
+          variant="ghost"
+          className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200"
+          onClick={() => history.back()}
+        >
+          <ArrowLeftIcon
+            width={28}
+            height={28}
+            className="h-7 w-7 text-gray-600"
+            strokeWidth={2.5}
+          />
+        </Button>
+
+        <div>
+          <H1>새 스터디 그룹 만들기</H1>
+          <Text variant="small" className="mt-1 block text-gray-500">
+            함께 공부할 멤버들의 스터디 그룹을 시작해보세요
+          </Text>
+        </div>
       </header>
 
       {/* 기본 정보 */}
@@ -76,12 +85,9 @@ const CreateGroup = () => {
         hasRangeError={hasRangeError}
       />
 
-      {/* 강의 선택(임시) */}
+      {/* 강의 선택(임시)－모달 생성 후 수정 예정 */}
       <LecturePickerSection
-        visibility={visibility}
-        onToggleVisibility={() =>
-          setVisibility((v) => (v === 'private' ? 'public' : 'private'))
-        }
+        selectedLectures={[]} // 선택된 강의 목록
         actionSlot={
           <Button type="button" size="small" aria-label="강의 선택">
             <span className="inline-flex items-center gap-1.5">
