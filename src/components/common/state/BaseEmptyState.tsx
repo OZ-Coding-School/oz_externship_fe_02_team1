@@ -5,6 +5,7 @@ import { cn } from '@utils'
 
 interface BaseEmptyStateProps {
   icon?: ReactNode
+  iconBgClassName?: string
   title: string
   description: string
   action?: ReactNode
@@ -13,6 +14,7 @@ interface BaseEmptyStateProps {
 
 export default function BaseEmptyState({
   icon,
+  iconBgClassName,
   title,
   description,
   action,
@@ -23,23 +25,24 @@ export default function BaseEmptyState({
       aria-live="polite"
       className={cn(
         'flex w-full flex-col items-center justify-center text-center',
-        'rounded-xl border border-gray-200 bg-gray-50 px-6 py-12',
-        'max-w-md sm:max-w-xl',
-        'min-h-[320px] sm:min-h-[380px]',
         className
       )}
     >
       <div className="flex flex-col items-center">
-        {icon && <div className="mb-6">{icon}</div>}
-
-        <H4 className="text-gray-900">{title}</H4>
-
-        {description && (
-          <Text variant="base" className="mt-2 mb-6 block text-gray-500">
-            {description}
-          </Text>
+        {icon && (
+          <div
+            className={cn(
+              'mb-6 flex h-20 w-20 items-center justify-center rounded-full',
+              iconBgClassName
+            )}
+          >
+            {icon}
+          </div>
         )}
-
+        <H4 className="text-gray-900">{title}</H4>
+        <Text variant="base" className="mt-2 mb-6 block text-gray-500">
+          {description}
+        </Text>
         {action && <div className="flex items-center gap-3">{action}</div>}
       </div>
     </div>
