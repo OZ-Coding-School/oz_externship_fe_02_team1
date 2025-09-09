@@ -1,7 +1,4 @@
-import type {
-  CalendarVariant,
-  CalendarWidth,
-} from '@/components/common/date-picker/calendar.types'
+import type { CalendarVariant, CalendarWidth } from '@components'
 
 export const DEFAULT_FROM_YEAR = 2000
 export const DEFAULT_TO_YEAR = 2050
