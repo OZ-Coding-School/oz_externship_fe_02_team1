@@ -1,31 +1,42 @@
-import type { ReactNode } from 'react'
-import { Text } from '@/components'
 import { BookmarkSquareIcon } from '@heroicons/react/24/outline'
-import type { PublicOption } from './types'
+import type { ReactNode } from 'react'
 
-type Props = {
-  visibility: PublicOption
-  onToggleVisibility: () => void
+import { H2, Text } from '@components'
+
+interface LecturePickerSectionProps {
+  selectedLectures?: string[] // 선택된 강의 목록 (없으면 placeholder 표시)
   actionSlot: ReactNode
 }
 
-const LecturePickerSection = ({ visibility, actionSlot }: Props) => {
+const LecturePickerSection = ({
+  selectedLectures = [],
+  actionSlot,
+}: LecturePickerSectionProps) => {
   return (
     <section className="mt-6 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+      {/* 헤더 */}
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <h2 className="text-base font-semibold text-gray-900">강의 선택</h2>
-          <p className="mt-1 text-sm text-gray-500">
+          <H2>강의 선택</H2>
+          <Text className="mt-1 text-gray-600" variant="small">
             스터디에서 함께 공부할 강의를 선택하세요 (최대 5개)
-          </p>
+          </Text>
         </div>
         {actionSlot}
       </div>
 
-      {visibility === 'public' ? (
-        <div className="border-primary-200 bg-primary-50 text-primary-700 rounded-lg border p-4 text-sm">
-          이 스터디는 공개로 설정됩니다.
-        </div>
+      {/* 본문 */}
+      {selectedLectures.length > 0 ? (
+        <ul className="space-y-2">
+          {selectedLectures.map((lecture, idx) => (
+            <li
+              key={idx}
+              className="rounded-lg border border-gray-200 p-3 text-sm text-gray-800"
+            >
+              {lecture}
+            </li>
+          ))}
+        </ul>
       ) : (
         <div className="flex flex-col items-center justify-center rounded-lg border border-gray-200 p-12 text-center">
           <BookmarkSquareIcon className="h-10 w-10 text-gray-400" aria-hidden />
