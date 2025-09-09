@@ -1,6 +1,11 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
-import { AuthButtonGroup, HeaderNav, UserProfileMenu } from '@components'
+import {
+  AuthButtonGroup,
+  HeaderNav,
+  UserMenu,
+  UserProfileMenu,
+} from '@components'
 import { cn } from '@utils'
 
 interface HeaderSideMenuProps {
@@ -35,7 +40,12 @@ export default function HeaderSideMenu({
 
           <div className="mt-8 border-t border-gray-200 pt-8">
             {isLoggedin ? (
-              <UserProfileMenu />
+              <>
+                <div className="flex flex-col gap-8 pb-8">
+                  <UserMenu />
+                </div>
+                <UserProfileMenu />
+              </>
             ) : (
               <AuthButtonGroup onClose={onClose} />
             )}
