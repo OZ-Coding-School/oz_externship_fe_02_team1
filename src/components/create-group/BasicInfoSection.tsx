@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { Input, MarkdownEditor } from '@components'
-import { H2 } from '@components'
+import { Input, MarkdownEditor , H2 } from '@components'
 import ImageUpload from '@components/common/image-upload/ImageUpload'
 
 interface Props {

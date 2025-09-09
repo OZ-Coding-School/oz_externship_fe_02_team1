@@ -1,5 +1,6 @@
-import { BookmarkSquareIcon } from '@heroicons/react/24/outline'
 import type { ReactNode } from 'react'
+
+import { BookmarkSquareIcon } from '@heroicons/react/24/outline'
 
 import { H2, Text } from '@components'
 
