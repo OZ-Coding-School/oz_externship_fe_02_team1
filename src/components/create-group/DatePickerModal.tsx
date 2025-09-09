@@ -1,10 +1,11 @@
-// import BaseModal from '@/components/common/modal/BaseModal'
-// import ModalBody from '@/components/common/modal/ModalBody'
-// import MODAL_PRESETS from '@/components/common/modal/ModalPresets'
-// import Calendar from '@/components/common/date-picker/Calendar'
-// import type { DateKind } from '@/components/common/group/types'
+// import Calendar from '@components/common/date-picker/Calendar'
+// import BaseModal from '@components/common/modal/BaseModal'
+// import ModalBody from '@components/common/modal/ModalBody'
+// import MODAL_PRESETS from '@components/common/modal/ModalPresets'
 
-// type Props = {
+// import type { DateKind } from '@components/common/group/types'
+
+// interface DatePickerModalProps {
 //   isOpen: boolean
 //   kind: DateKind | null
 //   tempDate?: Date
@@ -26,7 +27,7 @@
 //   confirmDisabled,
 //   minEndForEndPicker,
 //   endDate,
-// }: Props) => (
+// }: DatePickerModalProps) => (
 //   <BaseModal
 //     isOpen={isOpen}
 //     onClose={close}
