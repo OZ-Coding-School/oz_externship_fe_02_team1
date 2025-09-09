@@ -1,6 +1,4 @@
-import { DateRangeFields } from '@components'
-import { MembersSlider } from '@components'
-import { H2 } from '@/components'
+import { DateRangeFields , MembersSlider , H2 } from '@components'
 
 interface PeriodMembersSectionProps {
   startDate: string

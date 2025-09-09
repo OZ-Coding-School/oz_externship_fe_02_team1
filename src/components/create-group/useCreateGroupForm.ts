@@ -1,7 +1,9 @@
 import { useState } from 'react'
 
-import useDateModal from '@/hooks/useDateModal'
 import { MIN_MEMBERS } from '@components'
+
+import useDateModal from '@/hooks/useDateModal'
+
 import type { PublicOption } from '@components'
 
 export function useCreateGroupForm() {

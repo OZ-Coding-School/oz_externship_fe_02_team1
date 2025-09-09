@@ -1,12 +1,11 @@
-import { cn } from '@utils'
-
+import { MIN_MEMBERS, MAX_MEMBERS , Text } from '@components'
 import {
   SLIDER_BASE,
   SLIDER_THUMB,
   SLIDER_TRACK,
 } from '@components/create-group/MembersSlider.styles'
-import { MIN_MEMBERS, MAX_MEMBERS } from '@components'
-import { Text } from '@/components'
+import { cn } from '@utils'
+
 
 interface MembersInputProps {
   value: number
