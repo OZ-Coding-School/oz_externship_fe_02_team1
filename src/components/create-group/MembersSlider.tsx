@@ -1,18 +1,32 @@
-import { cn } from '@/utils'
-import { MIN_MEMBERS, MAX_MEMBERS } from '@/components/create-group/constants'
+import { cn } from '@utils'
 
-type Props = {
+import {
+  SLIDER_BASE,
+  SLIDER_THUMB,
+  SLIDER_TRACK,
+} from '@components/create-group/MembersSlider.styles'
+import { MIN_MEMBERS, MAX_MEMBERS } from '@components'
+import { Text } from '@/components'
+
+interface MembersInputProps {
   value: number
   onChange: (v: number) => void
 }
 
-const MembersSlider = ({ value, onChange }: Props) => (
+const MembersSlider = ({ value, onChange }: MembersInputProps) => (
   <div className="mt-6">
     <div className="mb-2 flex items-center justify-between">
-      <label htmlFor="maxMembers" className="text-sm text-gray-700">
-        최대 인원 수 *
+      <label htmlFor="maxMembers" className="text-sm">
+        <Text className="text-gray-700" variant="small">
+          최대 인원 수
+        </Text>
+        <Text className="text-danger-500 ml-0.5" variant="small">
+          *
+        </Text>
       </label>
-      <span className="text-sm text-gray-600">{value} 명</span>
+      <Text className="text-gray-600" variant="small">
+        {value} 명
+      </Text>
     </div>
 
     <input
@@ -26,19 +40,16 @@ const MembersSlider = ({ value, onChange }: Props) => (
       aria-valuemin={MIN_MEMBERS}
       aria-valuemax={MAX_MEMBERS}
       aria-valuenow={value}
-      className={cn(
-        'w-full appearance-none focus:outline-none',
-        '[&::-webkit-slider-runnable-track]:h-2 [&::-webkit-slider-runnable-track]:rounded-full [&::-webkit-slider-runnable-track]:bg-gray-200',
-        '[&::-moz-range-track]:h-2 [&::-moz-range-track]:rounded-full [&::-moz-range-track]:bg-gray-200',
-        // thumb h-5 vs track h-2 → mt = -(20-8)/2 = -6
-        '[&::-webkit-slider-thumb]:bg-primary-500 [&::-webkit-slider-thumb]:mt-[-6px] [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:shadow',
-        '[&::-moz-range-thumb]:bg-primary-500 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-white [&::-moz-range-thumb]:shadow'
-      )}
+      className={cn(SLIDER_BASE, SLIDER_TRACK, SLIDER_THUMB)}
     />
 
     <div className="mt-1 flex justify-between text-[12px] leading-5 text-gray-400">
-      <span>{MIN_MEMBERS}명</span>
-      <span>{MAX_MEMBERS}명</span>
+      <Text className="text-gray-500" variant="extraSmall">
+        {MIN_MEMBERS}명
+      </Text>
+      <Text className="text-gray-500" variant="extraSmall">
+        {MAX_MEMBERS}명
+      </Text>
     </div>
   </div>
 )
