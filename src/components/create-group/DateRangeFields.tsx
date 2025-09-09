@@ -1,6 +1,6 @@
-import DateInput from '@/components/common/form/DateInput'
+import { DateInput } from '@components'
 
-type Props = {
+interface DateRangeFieldsProps {
   startDate: string
   endDate: string
   hasRangeError: boolean
@@ -14,11 +14,12 @@ const DateRangeFields = ({
   hasRangeError,
   openStartPicker,
   openEndPicker,
-}: Props) => (
+}: DateRangeFieldsProps) => (
   <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
     <div className="relative">
       <DateInput
-        label="스터디 시작일 *"
+        label="스터디 시작일"
+        required
         value={startDate}
         onOpenCalendar={openStartPicker}
         placeholder="날짜를 선택하세요"
@@ -28,7 +29,8 @@ const DateRangeFields = ({
 
     <div className="relative">
       <DateInput
-        label="스터디 종료일 *"
+        label="스터디 종료일"
+        required
         value={endDate}
         onOpenCalendar={openEndPicker}
         placeholder="날짜를 선택하세요"
