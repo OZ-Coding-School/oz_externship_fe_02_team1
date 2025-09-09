@@ -1,11 +1,12 @@
-import { useState } from 'react'
-import Input from '@/components/common/form/Input'
-import MarkdownEditor from '@/components/common/markdown-editor/MarkdownEditor'
-import ImageUpload from '@/components/common/image-upload/ImageUpload'
+import { useEffect, useState } from 'react'
 
-type Props = {
+import { Input, MarkdownEditor } from '@components'
+import { H2 } from '@components'
+import ImageUpload from '@components/common/image-upload/ImageUpload'
+
+interface Props {
   groupName: string
-  description: string
+  description?: string
   onChangeGroupName: (v: string) => void
   onChangeDescription: (v: string) => void
 }
@@ -30,9 +31,18 @@ const BasicInfoSection = ({
     setImageName(file.name)
   }
 
+  // 메모리 누수 방지: imagePreview가 변경되거나 컴포넌트 언마운트 시 해제
+  useEffect(() => {
+    return () => {
+      if (imagePreview) {
+        URL.revokeObjectURL(imagePreview)
+      }
+    }
+  }, [imagePreview])
+
   return (
     <section className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-      <h2 className="mb-4 text-base font-semibold text-gray-900">기본 정보</h2>
+      <H2 className="mb-4">기본 정보</H2>
 
       <div className="space-y-6">
         <Input
@@ -48,14 +58,10 @@ const BasicInfoSection = ({
             스터디 소개 (선택사항)
           </label>
           <MarkdownEditor
-            value={description}
+            value={description ?? ''}
             onChange={onChangeDescription}
             className="mt-2"
           />
-          <p className="mt-1 text-[12px] leading-5 text-gray-400">
-            마크다운 문법 예: <code>**굵게**</code>, <code>_기울임_</code>,{' '}
-            <code>`코드`</code>
-          </p>
         </div>
 
         <div>
