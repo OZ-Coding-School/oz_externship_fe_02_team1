@@ -1,5 +1,6 @@
 import { StudyBadge, Text } from '@components'
 import { UserGroupIcon, CalendarIcon } from '@heroicons/react/24/outline'
+import { formatDate } from '@utils'
 
 interface StudyGroupHeaderProps {
   backgroundImage?: string
@@ -16,15 +17,6 @@ export default function StudyGroupHeader({
   startDate,
   lastDate,
 }: StudyGroupHeaderProps) {
-  const formatDate = (date?: Date) => {
-    if (!date) return null
-    return date.toLocaleDateString('ko-KR', {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-    })
-  }
-
   const formatedStartDate = formatDate(startDate ?? new Date('2024-01-01'))
   const formatedLastDate = formatDate(lastDate ?? new Date('2024-04-30'))
 
