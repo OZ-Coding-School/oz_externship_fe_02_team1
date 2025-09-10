@@ -1,5 +1,10 @@
-import { StudyBadge, Text } from '@components'
-import { UserGroupIcon, CalendarIcon } from '@heroicons/react/24/outline'
+import { Button, StudyBadge, Text } from '@components'
+import {
+  UserGroupIcon,
+  CalendarIcon,
+  ArrowLeftStartOnRectangleIcon,
+  PencilIcon,
+} from '@heroicons/react/24/outline'
 import { formatDate } from '@utils'
 
 interface StudyGroupHeaderProps {
@@ -8,6 +13,8 @@ interface StudyGroupHeaderProps {
   memberCount?: number
   startDate?: Date
   lastDate?: Date
+  currentUserRole?: 'member' | 'leader' | 'guest'
+  isMember?: boolean
 }
 
 export default function StudyGroupHeader({
@@ -16,6 +23,8 @@ export default function StudyGroupHeader({
   memberCount,
   startDate,
   lastDate,
+  currentUserRole,
+  isMember,
 }: StudyGroupHeaderProps) {
   const formatedStartDate = formatDate(startDate ?? new Date('2024-01-01'))
   const formatedLastDate = formatDate(lastDate ?? new Date('2024-04-30'))
@@ -46,6 +55,21 @@ export default function StudyGroupHeader({
           </div>
           <StudyBadge variant="inProgress" />
         </div>
+      </div>
+
+      <div className="absolute top-6 right-6 flex gap-3">
+        {currentUserRole === 'leader' && (
+          <Button variant="ghost" className="bg-white py-2">
+            <PencilIcon width={16} />
+            수정하기
+          </Button>
+        )}
+        {isMember && (
+          <Button variant="danger" className="py-2">
+            <ArrowLeftStartOnRectangleIcon width={16} />
+            나가기
+          </Button>
+        )}
       </div>
     </header>
   )
