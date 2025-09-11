@@ -1,6 +1,7 @@
+import type React from 'react'
+
 import { Text } from '@components'
 import { cn } from '@utils'
-import type React from 'react'
 
 interface CardProps {
   title: string
