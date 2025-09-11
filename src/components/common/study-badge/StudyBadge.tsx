@@ -9,7 +9,6 @@ interface StudyBadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof studyBadgeVariants> {
   member?: number
-  children?: React.ReactNode
 }
 
 interface setLabelTextProps {
@@ -23,7 +22,6 @@ export default function StudyBadge({
   size,
   className,
   member,
-  children,
   ...props
 }: StudyBadgeProps) {
   const setLabelText = ({
