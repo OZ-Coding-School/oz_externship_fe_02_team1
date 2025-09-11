@@ -1,17 +1,19 @@
-import type { StudyGroup } from '@types'
-import { formatDate } from '@utils'
 import { Card, StudyBadge, Text } from '@components'
+import { formatDate } from '@utils'
 
-interface StudyGroupInfoProps extends StudyGroup {}
+import type { StudyGroup } from '@types'
 
 export default function StudyGroupInfo({
   currentMemberCount,
   maxMemberCount,
   startDate,
   lastDate,
-}: StudyGroupInfoProps) {
-  const formattedStartDate = formatDate(startDate ?? new Date('2024-01-01'))
-  const formattedLastDate = formatDate(lastDate ?? new Date('2024-04-30'))
+}: Pick<
+  StudyGroup,
+  'currentMemberCount' | 'maxMemberCount' | 'startDate' | 'lastDate'
+>) {
+  const formattedStartDate = formatDate(startDate)
+  const formattedLastDate = formatDate(lastDate)
 
   const STUDY_GROUP_INFO = [
     {
