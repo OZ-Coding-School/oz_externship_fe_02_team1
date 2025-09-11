@@ -19,6 +19,6 @@ export interface StudyGroup {
   maxMemberCount: number
   startDate: Date
   lastDate: Date
-  lecture: StudyGroupLectureList[]
+  lecture?: StudyGroupLectureList[]
   member: StudyGroupMemberList[]
 }
