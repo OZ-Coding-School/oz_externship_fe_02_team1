@@ -1,4 +1,4 @@
-import studyGroupDefault from '@assets/images/study-group-default.png'
+import studyGroupDefault from '@assets/images/study-group-default.webp'
 
 export const Images = {
   studyGroupDefault,
