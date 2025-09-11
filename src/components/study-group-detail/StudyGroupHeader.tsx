@@ -11,7 +11,16 @@ import { formatDate } from '@utils'
 
 import type { StudyGroup } from '@models'
 
-interface StudyGroupHeaderProps extends StudyGroup {
+interface StudyGroupHeaderProps
+  extends Pick<
+    StudyGroup,
+    | 'backgroundImage'
+    | 'studyGroupName'
+    | 'currentMemberCount'
+    | 'maxMemberCount'
+    | 'startDate'
+    | 'lastDate'
+  > {
   currentUserRole?: 'member' | 'leader' | 'guest'
   isMember?: boolean
 }
