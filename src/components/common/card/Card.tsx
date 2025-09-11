@@ -1,23 +1,22 @@
-import type { JSX } from 'react'
-
 import { Text } from '@components'
 import { cn } from '@utils'
+import type React from 'react'
 
 interface CardProps {
   title: string
-  content: JSX.Element
-  titleVariant: 'base' | 'large'
+  children: React.ReactNode
+  titleVariant?: 'base' | 'large'
   className?: string
 }
 
 export default function Card({
   title,
-  content,
+  children,
   titleVariant = 'large',
   className,
 }: CardProps) {
   return (
-    <div className="flex flex-col rounded-lg border border-gray-200 bg-white p-4">
+    <div className="flex flex-col rounded-lg border border-gray-200 bg-white p-[25px]">
       <Text
         variant={titleVariant}
         className={cn(
@@ -27,7 +26,7 @@ export default function Card({
       >
         {title}
       </Text>
-      {content}
+      {children}
     </div>
   )
 }
