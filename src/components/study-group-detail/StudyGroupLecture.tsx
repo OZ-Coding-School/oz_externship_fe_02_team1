@@ -19,7 +19,7 @@ export default function StudyGroupLecture({
           <ImageCard
             key={el.title}
             title={el.title}
-            imageUrl=""
+            imageUrl={el.image}
             className="p-4"
           >
             <Text className="font-medium text-gray-900">{el.title}</Text>

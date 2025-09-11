@@ -1,3 +1,4 @@
+import { Images } from '@assets'
 import {
   StudyGroupHeader,
   StudyGroupInfo,
@@ -9,6 +10,7 @@ import type { StudyGroup, StudyGroupLectureList } from '@models'
 // 예시 더미 데이터
 const studyGroupLecture: StudyGroupLectureList[] = [
   {
+    image: Images.studyGroupDefault,
     title: 'React 완벽 마스터 강의',
     instructor: '김개발',
     lectureUrl: '/',
