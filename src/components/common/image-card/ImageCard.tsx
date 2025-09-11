@@ -1,11 +1,11 @@
+import { PhotoIcon } from '@heroicons/react/24/outline'
 import { type ComponentPropsWithoutRef, type ReactNode } from 'react'
 
-import { H5 } from '@components'
 import { cn } from '@utils'
 
 interface ImageCardProps extends ComponentPropsWithoutRef<'div'> {
   title: string
-  imageUrl: string
+  imageUrl?: string
   children?: ReactNode
 }
 
@@ -17,14 +17,27 @@ export default function ImageCard({
   ...rest
 }: ImageCardProps) {
   return (
-    <div className={cn('flex flex-col rounded-lg p-6', className)} {...rest}>
-      <header>
-        <img
-          src={imageUrl}
-          alt={title}
-          className="h-32 w-96 bg-gray-200 object-cover"
-        />
-        <H5 className="text-gray-900">{title}</H5>
+    <div
+      className={cn(
+        'relative flex flex-col overflow-hidden rounded-lg border border-gray-200',
+        className
+      )}
+      {...rest}
+    >
+      <header className="pt-32">
+        <div className="absolute inset-0 h-32 max-w-96">
+          {imageUrl ? (
+            <img
+              src={imageUrl}
+              alt={title}
+              className="bg-gray-200 object-cover"
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center bg-gray-200">
+              <PhotoIcon width={30} color="#9CA3AF" />
+            </div>
+          )}
+        </div>
       </header>
       {children}
     </div>
