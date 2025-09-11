@@ -9,12 +9,11 @@ interface StudyBadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof studyBadgeVariants> {
   member?: number
+  maxMember?: number
 }
 
 interface setLabelTextProps {
   variant?: string | null
-  member?: number
-  maxMember?: number
 }
 
 export default function StudyBadge({
@@ -22,16 +21,15 @@ export default function StudyBadge({
   size,
   className,
   member,
+  maxMember,
   ...props
 }: StudyBadgeProps) {
-  const setLabelText = ({
-    variant = 'primary',
-    member,
-    maxMember,
-  }: setLabelTextProps): string => {
+  const memberCountText = `${member ?? '--'}/${maxMember ?? '--'}명`
+
+  const setLabelText = ({ variant = 'primary' }: setLabelTextProps): string => {
     switch (variant) {
       case 'primary':
-        return `${member ?? '--'}/${maxMember ?? '--'}명`
+        return memberCountText
       case 'inProgress':
         return '진행중'
       case 'ended':
