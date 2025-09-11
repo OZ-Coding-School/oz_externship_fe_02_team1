@@ -1,7 +1,8 @@
 export interface StudyGroup {
-  studyGroupName?: string
-  currentMemberCount?: number
-  maxMemberCount?: number
-  startDate?: Date
-  lastDate?: Date
+  backgroundImage?: string
+  studyGroupName: string
+  currentMemberCount: number
+  maxMemberCount: number
+  startDate: Date
+  lastDate: Date
 }
