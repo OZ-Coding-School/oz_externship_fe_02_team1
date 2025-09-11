@@ -1,1 +1,1 @@
-export * from './studyGroup'
+export * from '@models/studyGroup'
