@@ -11,10 +11,12 @@ const studyGroupLecture: StudyGroupLectureList[] = [
   {
     title: 'React 완벽 마스터 강의',
     instructor: '김개발',
+    lectureUrl: '/',
   },
   {
     title: 'Next.js 실전 가이드',
     instructor: '박프론트',
+    lectureUrl: '/',
   },
 ]
 const studyGroup: StudyGroup = {

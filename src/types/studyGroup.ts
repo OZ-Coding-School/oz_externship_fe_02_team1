@@ -2,6 +2,7 @@ export interface StudyGroupLectureList {
   image?: string
   title: string
   instructor: string
+  lectureUrl: string
 }
 
 export interface StudyGroup {
