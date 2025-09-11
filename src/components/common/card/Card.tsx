@@ -17,7 +17,7 @@ export default function Card({
   className,
 }: CardProps) {
   return (
-    <div className="flex flex-col rounded-lg border border-gray-200 bg-white p-[25px]">
+    <div className="relative flex flex-col rounded-lg border border-gray-200 bg-white p-[25px]">
       <Text
         variant={titleVariant}
         className={cn(

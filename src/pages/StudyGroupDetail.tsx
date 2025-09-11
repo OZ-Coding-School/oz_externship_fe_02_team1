@@ -1,37 +1,10 @@
-import { Images } from '@assets'
 import {
   StudyGroupHeader,
   StudyGroupInfo,
   StudyGroupLecture,
+  StudyGroupMember,
 } from '@components'
-
-import type { StudyGroup, StudyGroupLectureList } from '@models'
-
-// 예시 더미 데이터
-const studyGroupLecture: StudyGroupLectureList[] = [
-  {
-    image: Images.studyGroupDefault,
-    title: 'React 완벽 마스터 강의',
-    instructor: '김개발',
-    lectureUrl: '/',
-  },
-  {
-    title: 'Next.js 실전 가이드',
-    instructor: '박프론트',
-    lectureUrl: '/',
-  },
-]
-const studyGroup: StudyGroup = {
-  studyGroupName: 'React 실무 프로젝트 스터디',
-  currentMemberCount: 8,
-  maxMemberCount: 10,
-  startDate: new Date('2024-02-01'),
-  lastDate: new Date('2024-04-30'),
-  lecture: studyGroupLecture,
-}
-
-const currentUserRole: 'leader' | 'member' | 'guest' = 'leader'
-const isMember = true
+import { studyGroup, currentUserRole, isMember } from '@mocks/studyGroupDetail'
 
 export default function StudyGroupDetail() {
   return (
@@ -57,6 +30,7 @@ export default function StudyGroupDetail() {
           {studyGroup.lecture && (
             <StudyGroupLecture lecture={studyGroup.lecture} />
           )}
+          <StudyGroupMember member={studyGroup.member} />
         </div>
       </div>
     </>

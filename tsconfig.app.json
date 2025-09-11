@@ -37,6 +37,8 @@
       "@store/*": ["./src/store/*"],
       "@models": ["./src/types"],
       "@models/*": ["./src/types/*"],
+      "@mocks": ["./src/mocks"],
+      "@mocks/*": ["./src/mocks/*"],
       "@utils": ["./src/utils"],
       "@utils/*": ["./src/utils/*"],
       "@constants": ["./src/constants"],
