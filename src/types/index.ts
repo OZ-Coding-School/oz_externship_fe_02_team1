@@ -1,1 +1,1 @@
-// types
+export * from '@models/studyGroup'

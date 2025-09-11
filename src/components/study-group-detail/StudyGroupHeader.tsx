@@ -9,12 +9,9 @@ import { Images } from '@assets'
 import { Button, StudyBadge, Text } from '@components'
 import { formatDate } from '@utils'
 
-interface StudyGroupHeaderProps {
-  backgroundImage?: string
-  studyGroupName?: string
-  memberCount?: number
-  startDate?: Date
-  lastDate?: Date
+import type { StudyGroup } from '@models'
+
+interface StudyGroupHeaderProps extends StudyGroup {
   currentUserRole?: 'member' | 'leader' | 'guest'
   isMember?: boolean
 }
@@ -22,41 +19,38 @@ interface StudyGroupHeaderProps {
 export default function StudyGroupHeader({
   backgroundImage,
   studyGroupName,
-  memberCount,
+  currentMemberCount,
+  maxMemberCount,
   startDate,
   lastDate,
   currentUserRole,
   isMember,
 }: StudyGroupHeaderProps) {
-  const formatedStartDate = formatDate(startDate ?? new Date('2024-01-01'))
-  const formatedLastDate = formatDate(lastDate ?? new Date('2024-04-30'))
+  const formattedStartDate = formatDate(startDate)
+  const formattedLastDate = formatDate(lastDate)
 
   return (
     <header className="relative aspect-[2/1] overflow-hidden rounded-lg bg-gray-500">
       <img
         className="w-full"
         src={backgroundImage ?? Images.studyGroupDefault}
-        alt={
-          studyGroupName
-            ? `${studyGroupName} 스터디 그룹 이미지`
-            : '스터디 그룹 이미지'
-        }
+        alt={`${studyGroupName} 스터디 그룹 이미지`}
       />
       <div className="absolute inset-0 bg-black/40" />
 
       <div className="absolute bottom-6 left-6 flex flex-col gap-2 text-white">
-        <Text className="text-3xl font-bold">
-          {studyGroupName ?? 'React 실무 프로젝트 스터디'}
-        </Text>
+        <Text className="text-3xl font-bold">{studyGroupName}</Text>
         <div className="flex gap-4">
           <div className="flex items-center gap-1">
             <UserGroupIcon width={16} />
-            <Text>{memberCount ?? 8}/10명</Text>
+            <Text>
+              {currentMemberCount}/{maxMemberCount}명
+            </Text>
           </div>
           <div className="flex items-center gap-1">
             <CalendarIcon width={16} />
             <Text>
-              {formatedStartDate} ~ {formatedLastDate}
+              {formattedStartDate} ~ {formattedLastDate}
             </Text>
           </div>
           <StudyBadge variant="inProgress" />
