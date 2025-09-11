@@ -1,10 +1,10 @@
 import MDEditor from '@uiw/react-md-editor'
 import remarkBreaks from 'remark-breaks'
 
+import { cn } from '@utils'
+
 import type { MarkdownValue } from '@components'
 
-import '@components'
-import { cn } from '@utils'
 
 export interface MarkdownPreviewProps {
   value: MarkdownValue

@@ -1,10 +1,11 @@
-import { Button, StudyBadge, Text } from '@components'
 import {
   UserGroupIcon,
   CalendarIcon,
   ArrowLeftStartOnRectangleIcon,
   PencilIcon,
 } from '@heroicons/react/24/outline'
+
+import { Button, StudyBadge, Text } from '@components'
 import { formatDate } from '@utils'
 
 interface StudyGroupHeaderProps {
