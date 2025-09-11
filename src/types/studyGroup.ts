@@ -5,6 +5,13 @@ export interface StudyGroupLectureList {
   lectureUrl: string
 }
 
+export interface StudyGroupMemberList {
+  id: number
+  name: string
+  profileImage?: string
+  isLeader: boolean
+}
+
 export interface StudyGroup {
   backgroundImage?: string
   studyGroupName: string
@@ -12,5 +19,6 @@ export interface StudyGroup {
   maxMemberCount: number
   startDate: Date
   lastDate: Date
-  lecture?: StudyGroupLectureList[]
+  lecture: StudyGroupLectureList[]
+  member: StudyGroupMemberList[]
 }
