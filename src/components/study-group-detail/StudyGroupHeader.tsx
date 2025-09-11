@@ -5,8 +5,8 @@ import {
   PencilIcon,
 } from '@heroicons/react/24/outline'
 
-import { Button, StudyBadge, Text } from '@components'
 import { Images } from '@assets'
+import { Button, StudyBadge, Text } from '@components'
 import { formatDate } from '@utils'
 
 interface StudyGroupHeaderProps {
@@ -36,7 +36,11 @@ export default function StudyGroupHeader({
       <img
         className="w-full"
         src={backgroundImage ?? Images.studyGroupDefault}
-        alt={studyGroupName}
+        alt={
+          studyGroupName
+            ? `${studyGroupName} 스터디 그룹 이미지`
+            : '스터디 그룹 이미지'
+        }
       />
       <div className="absolute inset-0 bg-black/40" />
 
