@@ -28,22 +28,18 @@ export default function StudyBadge({
     variant = 'primary',
     member,
     maxMember,
-  }: setLabelTextProps) => {
+  }: setLabelTextProps): string => {
     switch (variant) {
       case 'primary':
-        return `${member ?? 0}/${maxMember ?? 0}명`
-        break
+        return `${member ?? '--'}/${maxMember ?? '--'}명`
       case 'inProgress':
         return '진행중'
-        break
       case 'ended':
         return '종료됨'
-        break
       case 'leader':
         return '리더'
-        break
       default:
-        break
+        return ''
     }
   }
 
