@@ -1,15 +1,17 @@
-import { useState } from 'react'
 import { CloudArrowUpIcon } from '@heroicons/react/24/outline'
-import { cn } from '@utils'
-import { Text, Toast } from '@components'
-import {
-  handleFileProcessing,
+import { useState } from 'react'
+
+import { Text, Toast ,
   handleFileDelete,
   handleFileDrag,
   handleFileDrop,
+  handleFileProcessing,
 } from '@components'
 import { MAX_FILE_COUNT, MAX_FILE_SIZE_MB } from '@constants'
+import { cn } from '@utils'
+
 import type { ToastProps } from '@components/common/toast/Toast'
+
 
 interface FileUploadProps {
   onChange: (files: File[]) => void
@@ -56,7 +58,7 @@ export default function FileUpload({ onChange, className }: FileUploadProps) {
           <button
             type="button"
             onClick={() => handleFileDelete(index, files, setFiles, onChange)}
-            className="flex-shrink-0 text-xs text-red-500"
+            className="flex-shrink-0 cursor-pointer text-xs text-red-500"
             aria-label={`파일 ${file.name} 삭제`} // 접근성용 라벨
           >
             삭제

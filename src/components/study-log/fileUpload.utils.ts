@@ -5,7 +5,7 @@ import {
   MAX_FILE_SIZE_MB,
 } from '@constants'
 
-export const validateFile = (file: File): string | null => {
+export const checkValidateFile = (file: File): string | null => {
   if (file.size > MAX_FILE_SIZE_BYTES) {
     return `${file.name} 크기가 너무 큽니다. (최대 ${MAX_FILE_SIZE_MB}MB)`
   }
@@ -39,7 +39,7 @@ export const handleFileProcessing = (
 ) => {
   const validationErrors: string[] = []
   const validFiles = newFiles.filter((file) => {
-    const error = validateFile(file)
+    const error = checkValidateFile(file)
     if (error) {
       validationErrors.push(error)
     }
