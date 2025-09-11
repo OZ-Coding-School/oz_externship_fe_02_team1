@@ -24,7 +24,6 @@ export default function Toast({
   const { icon: Icon, bg, text, border } = toastStyles[type]
   const [isVisible, setIsVisible] = useState(true)
 
-  // toast 자동 닫기 처리
   useEffect(() => {
     if (!isVisible) return
 
@@ -33,7 +32,7 @@ export default function Toast({
       onClose?.()
     }, 3000)
 
-    return () => clearTimeout(timer) // 컴포넌트 언마운트 시 타이머 정리
+    return () => clearTimeout(timer)
   }, [isVisible, onClose])
 
   const handleClose = () => {
