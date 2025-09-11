@@ -1,6 +1,8 @@
-import type { StudyGroup } from '@models'
-import { Card, ImageCard, Text } from '@components'
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
+
+import { Card, ImageCard, Text } from '@components'
+
+import type { StudyGroup } from '@models'
 
 export default function StudyGroupLecture({
   lecture,
@@ -13,7 +15,12 @@ export default function StudyGroupLecture({
     >
       <div className="flex flex-col gap-4">
         {lecture?.map((el) => (
-          <ImageCard title={el.title} imageUrl="" className="p-4">
+          <ImageCard
+            key={el.title}
+            title={el.title}
+            imageUrl=""
+            className="p-4"
+          >
             <Text className="font-medium text-gray-900">{el.title}</Text>
             <Text className="mt-1 mb-3 text-sm">{el.instructor}</Text>
             <Text className="text-primary-600 flex cursor-pointer gap-1 text-sm hover:underline">
