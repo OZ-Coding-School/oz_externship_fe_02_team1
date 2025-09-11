@@ -36,7 +36,7 @@ const useRatingInteractions = ({
         onChange(max)
       }
     },
-    [readOnly, onChange, value, interactiveStep, max]
+    [readOnly, onChange, value, interactiveStep, max, clamp]
   )
 
   const handlePointerDown =
