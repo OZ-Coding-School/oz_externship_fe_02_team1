@@ -1,6 +1,6 @@
 import { StudyGroupHeader, StudyGroupInfo } from '@components'
 
-import type { StudyGroup } from '@types'
+import type { StudyGroup } from '@models'
 
 // 예시 더미 데이터
 const studyGroup: StudyGroup = {

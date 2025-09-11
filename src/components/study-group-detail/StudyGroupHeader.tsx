@@ -9,7 +9,7 @@ import { Images } from '@assets'
 import { Button, StudyBadge, Text } from '@components'
 import { formatDate } from '@utils'
 
-import type { StudyGroup } from '@types'
+import type { StudyGroup } from '@models'
 
 interface StudyGroupHeaderProps extends StudyGroup {
   currentUserRole?: 'member' | 'leader' | 'guest'

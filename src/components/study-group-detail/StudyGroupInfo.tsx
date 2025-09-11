@@ -1,7 +1,7 @@
 import { Card, StudyBadge, Text } from '@components'
 import { formatDate } from '@utils'
 
-import type { StudyGroup } from '@types'
+import type { StudyGroup } from '@models'
 
 export default function StudyGroupInfo({
   currentMemberCount,
