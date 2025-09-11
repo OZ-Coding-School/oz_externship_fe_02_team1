@@ -1,6 +1,5 @@
 import { type ComponentPropsWithoutRef, type ReactNode } from 'react'
 
-import { H5 } from '@components'
 import { cn } from '@utils'
 
 interface ImageCardProps extends ComponentPropsWithoutRef<'div'> {
@@ -17,14 +16,19 @@ export default function ImageCard({
   ...rest
 }: ImageCardProps) {
   return (
-    <div className={cn('flex flex-col rounded-lg p-6', className)} {...rest}>
-      <header>
+    <div
+      className={cn(
+        'relative flex flex-col rounded-lg border border-gray-200',
+        className
+      )}
+      {...rest}
+    >
+      <header className="pt-32">
         <img
           src={imageUrl}
           alt={title}
-          className="h-32 w-96 bg-gray-200 object-cover"
+          className="absolute inset-0 h-32 w-96 bg-gray-200 object-cover"
         />
-        <H5 className="text-gray-900">{title}</H5>
       </header>
       {children}
     </div>
