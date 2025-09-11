@@ -6,6 +6,7 @@ import {
 } from '@heroicons/react/24/outline'
 
 import { Button, StudyBadge, Text } from '@components'
+import { Images } from '@assets'
 import { formatDate } from '@utils'
 
 interface StudyGroupHeaderProps {
@@ -34,7 +35,7 @@ export default function StudyGroupHeader({
     <header className="relative aspect-[2/1] overflow-hidden rounded-lg bg-gray-500">
       <img
         className="w-full"
-        src={backgroundImage ?? '/src/assets/images/study-group-default.png'}
+        src={backgroundImage ?? Images.studyGroupDefault}
         alt={studyGroupName}
       />
       <div className="absolute inset-0 bg-black/40" />
