@@ -1,5 +1,4 @@
 import { PlusIcon, ArrowLeftIcon } from '@heroicons/react/24/outline'
-
 import { Button, H1, Text } from '@components'
 import BasicInfoSection from '@components/create-group/BasicInfoSection'
 import LecturePickerSection from '@components/create-group/LecturePickerSection'
