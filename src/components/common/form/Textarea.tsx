@@ -1,6 +1,4 @@
-import type { TextareaHTMLAttributes, Ref } from 'react'
-
-import { useState, useId } from 'react'
+import { useState, useId, type TextareaHTMLAttributes, type Ref } from 'react'
 
 import { textareaStyle } from '@components/common/form/form.styles'
 
