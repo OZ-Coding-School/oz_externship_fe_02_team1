@@ -1,4 +1,5 @@
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router'
 
 import { Card, ImageCard, Text } from '@components'
 
@@ -23,9 +24,12 @@ export default function StudyGroupLecture({
           >
             <Text className="font-medium text-gray-900">{el.title}</Text>
             <Text className="mt-1 mb-3 text-sm">{el.instructor}</Text>
-            <Text className="text-primary-600 flex cursor-pointer gap-1 text-sm hover:underline">
+            <Link
+              to={el.lectureUrl}
+              className="text-primary-600 flex cursor-pointer gap-1 text-sm hover:underline"
+            >
               강의 바로가기 <ArrowUpRightIcon width={14} />
-            </Text>
+            </Link>
           </ImageCard>
         ))}
       </div>
