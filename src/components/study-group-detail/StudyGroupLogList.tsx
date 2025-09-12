@@ -1,15 +1,16 @@
-import type { StudyGroup } from '@models'
-import { Avatar, Card, Text } from '@components'
 import { PaperClipIcon } from '@heroicons/react/24/outline'
+
+import { Avatar, Card, Text } from '@components'
 import { formatDate } from '@utils'
+
+import type { StudyGroup } from '@models'
 
 export default function StudyGroupLogList({
   member,
   studyLog,
 }: Pick<StudyGroup, 'member' | 'studyLog'>) {
   return (
-    <>
-      <Card
+    <Card
         title="스터디 기록"
         titleClassName=" text-xl "
         cardClassName="flex gap-4"
@@ -41,6 +42,5 @@ export default function StudyGroupLogList({
           )
         })}
       </Card>
-    </>
   )
 }
