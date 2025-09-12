@@ -15,6 +15,7 @@ export interface StudyGroupMemberList {
 export interface StudyGroupLogList {
   id: number
   title: string
+  date: Date
   authorId: number
   attachment?: string[]
 }
