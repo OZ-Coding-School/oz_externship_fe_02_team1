@@ -12,6 +12,12 @@ export interface StudyGroupMemberList {
   isLeader: boolean
 }
 
+export interface StudyGroupLogList {
+  id: number
+  title: string
+  authorId: number
+}
+
 export interface StudyGroup {
   backgroundImage?: string
   studyGroupName: string
@@ -21,4 +27,5 @@ export interface StudyGroup {
   lastDate: Date
   lecture?: StudyGroupLectureList[]
   member: StudyGroupMemberList[]
+  studyLog?: StudyGroupLogList[]
 }
