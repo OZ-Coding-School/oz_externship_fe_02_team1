@@ -2,6 +2,7 @@ import {
   StudyGroupHeader,
   StudyGroupInfo,
   StudyGroupLecture,
+  StudyGroupLogList,
   StudyGroupMember,
 } from '@components'
 import { studyGroup, currentUserRole, isMember } from '@mocks/studyGroupDetail'
@@ -19,7 +20,12 @@ export default function StudyGroupDetail() {
         isMember={isMember}
       />
       <div className="mt-8 grid grid-cols-3 gap-8">
-        <div className="col-span-2"></div>
+        <div className="col-span-2">
+          <StudyGroupLogList
+            member={studyGroup.member}
+            studyLog={studyGroup.studyLog}
+          />
+        </div>
         <div className="flex flex-col gap-6">
           <StudyGroupInfo
             currentMemberCount={studyGroup.currentMemberCount}
