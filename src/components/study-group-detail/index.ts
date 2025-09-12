@@ -2,3 +2,4 @@ export { default as StudyGroupHeader } from '@components/study-group-detail/Stud
 export { default as StudyGroupInfo } from '@components/study-group-detail/StudyGroupInfo'
 export { default as StudyGroupLecture } from '@components/study-group-detail/StudyGroupLecture'
 export { default as StudyGroupMember } from '@components/study-group-detail/StudyGroupMember'
+export { default as StudyGroupLogList } from '@components/study-group-detail/StudyGroupLogList'
