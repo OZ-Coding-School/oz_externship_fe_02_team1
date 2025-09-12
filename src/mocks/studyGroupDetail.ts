@@ -68,18 +68,21 @@ export const studyGroupLog: StudyGroupLogList[] = [
   {
     id: 1,
     title: 'React Hooks 실습 정리',
+    date: new Date('2024-02-16T05:30:00'),
     authorId: 1,
     attachment: ['1.pdf', '2.pdf'],
   },
   {
     id: 2,
     title: 'TypeScript 타입 시스템 학습',
+    date: new Date('2024-02-19T04:15:00'),
     authorId: 2,
     attachment: ['1.pdf'],
   },
   {
     id: 3,
     title: 'Next.js 13 App Router 실습',
+    date: new Date('2024-02-21T06:45:00'),
     authorId: 3,
     attachment: ['1.pdf', '2.pdf'],
   },
