@@ -7,22 +7,29 @@ interface CardProps {
   title: string
   children: React.ReactNode
   titleVariant?: 'base' | 'large'
-  className?: string
+  titleClassName?: string
+  cardClassName?: string
 }
 
 export default function Card({
   title,
   children,
   titleVariant = 'large',
-  className,
+  titleClassName,
+  cardClassName,
 }: CardProps) {
   return (
-    <div className="relative flex flex-col rounded-lg border border-gray-200 bg-white p-[25px]">
+    <div
+      className={cn(
+        'relative flex flex-col rounded-lg border border-gray-200 bg-white p-[25px]',
+        cardClassName
+      )}
+    >
       <Text
         variant={titleVariant}
         className={cn(
           'pb-2 leading-normal font-semibold text-black',
-          className
+          titleClassName
         )}
       >
         {title}

@@ -38,7 +38,7 @@ export default function StudyGroupInfo({
     <Card
       title="스터디 정보"
       titleVariant="base"
-      className="pb-4 text-lg text-gray-900"
+      titleClassName="pb-4 text-lg text-gray-900"
     >
       <div className="flex flex-col gap-3">
         {STUDY_GROUP_INFO.map((el) => (
