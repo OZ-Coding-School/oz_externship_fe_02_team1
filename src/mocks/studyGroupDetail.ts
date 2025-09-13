@@ -4,6 +4,7 @@ import type {
   StudyGroup,
   StudyGroupLectureList,
   StudyGroupMemberList,
+  StudyGroupScheduleList,
 } from '@models'
 
 export const studyGroupLecture: StudyGroupLectureList[] = [
@@ -63,6 +64,30 @@ export const studyGroupMember: StudyGroupMemberList[] = [
   },
 ]
 
+export const studyGroupSchedule: StudyGroupScheduleList[] = [
+  {
+    id: 1,
+    title: '코드 리뷰 세션',
+    date: new Date('2025-09-13'),
+    startTime: new Date('T18:30:00'),
+    endTime: new Date('T20:30:00'),
+  },
+  {
+    id: 2,
+    title: 'React Testing 스터디',
+    date: new Date('2025-09-15'),
+    startTime: new Date('T20:00:00'),
+    endTime: new Date('T22:00:00'),
+  },
+  {
+    id: 3,
+    title: 'React Hooks 심화 학습',
+    date: new Date('2025-09-16'),
+    startTime: new Date('T19:00:00'),
+    endTime: new Date('T21:00:00'),
+  },
+]
+
 export const studyGroup: StudyGroup = {
   studyGroupName: 'React 실무 프로젝트 스터디',
   currentMemberCount: 8,
@@ -71,6 +96,7 @@ export const studyGroup: StudyGroup = {
   lastDate: new Date('2024-04-30'),
   lecture: studyGroupLecture,
   member: studyGroupMember,
+  schedule: studyGroupSchedule,
 }
 
 export const currentUserRole: 'leader' | 'member' | 'guest' = 'leader'
