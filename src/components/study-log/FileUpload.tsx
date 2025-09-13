@@ -5,6 +5,7 @@ import {
   handleFileDrag,
   handleFileDrop,
   handleFileProcessing,
+  type UploadedFile,
 } from '@components'
 import { MAX_FILE_COUNT } from '@constants'
 import { cn } from '@utils'
@@ -12,12 +13,12 @@ import { UploadPlaceholder } from './UploadPlaceholder'
 import { UploadedFileList } from './UploadedFileList'
 
 interface FileUploadProps {
-  onChange: (files: File[]) => void
+  onChange: (files: UploadedFile[]) => void
   className?: string
 }
 
 export default function FileUpload({ onChange, className }: FileUploadProps) {
-  const [files, setFiles] = useState<File[]>([])
+  const [files, setFiles] = useState<UploadedFile[]>([])
   const [isDragging, setIsDragging] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
