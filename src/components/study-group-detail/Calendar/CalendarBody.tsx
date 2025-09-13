@@ -7,9 +7,9 @@ import {
   isSameMonth,
   eachDayOfInterval,
 } from 'date-fns'
-import { cn, formatTime } from '@utils'
+import { cn } from '@utils'
 import type { StudyGroupScheduleList } from '@models'
-import { CalendarBodyDate, Text } from '@components'
+import { CalendarBodyDate, CalendarBodySchedule } from '@components'
 
 interface CalendarBodyProps {
   schedule: StudyGroupScheduleList[]
@@ -49,17 +49,7 @@ export default function CalendarBody({
           >
             <CalendarBodyDate day={day} dateKey={dateKey} />
 
-            {schedule && (
-              <div className="bg-primary-100 border-primary-100 mt-2 aspect-square overflow-hidden rounded-sm border-4">
-                <Text className="text-primary-800 text-xs font-medium text-nowrap">
-                  {schedule.title}
-                </Text>
-                <Text className="text-primary-800 text-xs break-all">
-                  {formatTime(schedule.startTime)} ~
-                  {formatTime(schedule.endTime)}
-                </Text>
-              </div>
-            )}
+            <CalendarBodySchedule schedule={schedule} />
           </div>
         )
       })}
