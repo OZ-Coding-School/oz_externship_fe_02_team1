@@ -15,7 +15,7 @@ export default function StudyGroupLogList({
       titleClassName="text-xl mt-1.5 mb-2"
       cardClassName="flex gap-4"
     >
-      <Button className="absolute right-[25px] px-4 py-2" size="large">
+      <Button className="absolute right-6 px-4 py-2" size="large">
         <PencilIcon width={16} />
         작성하기
       </Button>
@@ -24,8 +24,8 @@ export default function StudyGroupLogList({
         const author = member.find((el) => el.id === log.authorId)
 
         return (
-          <Card key={log.id} title={log.title} cardClassName="p-[17px]">
-            <Text className="absolute right-[17px] mb-3 text-sm text-gray-500">
+          <Card key={log.id} title={log.title} cardClassName="p-4">
+            <Text className="absolute right-4 mb-3 text-sm text-gray-500">
               {formatDate(log.date)}
             </Text>
 
@@ -35,9 +35,9 @@ export default function StudyGroupLogList({
                 <Text className="text-sm font-medium text-gray-700">
                   {author?.name}
                 </Text>
-                <div className="flex gap-1">
-                  <PaperClipIcon width={12} className="text-gray-500" />
-                  <Text className="text-xs font-medium text-gray-500">
+                <div className="flex gap-1 text-gray-500">
+                  <PaperClipIcon width={12} />
+                  <Text className="text-xs font-medium">
                     첨부파일 {log.attachment?.length} 개
                   </Text>
                 </div>

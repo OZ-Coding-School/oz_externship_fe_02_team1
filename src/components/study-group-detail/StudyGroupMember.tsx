@@ -7,7 +7,7 @@ export default function StudyGroupMember({
 }: Pick<StudyGroup, 'member'>) {
   return (
     <Card title="멤버 목록">
-      <Text className="absolute top-[29px] right-[25px] text-sm text-gray-500">
+      <Text className="absolute top-7 right-6 text-sm text-gray-500">
         {member.length}명
       </Text>
       <div className="mt-2 flex flex-col gap-3">

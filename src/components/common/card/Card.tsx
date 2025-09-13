@@ -21,7 +21,7 @@ export default function Card({
   return (
     <div
       className={cn(
-        'relative flex flex-col rounded-lg border border-gray-200 bg-white p-[25px]',
+        'relative flex flex-col rounded-lg border border-gray-200 bg-white p-6',
         cardClassName
       )}
     >
