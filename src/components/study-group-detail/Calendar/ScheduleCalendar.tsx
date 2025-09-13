@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import {
   format,
-  addMonths,
-  subMonths,
   startOfMonth,
   endOfMonth,
   startOfWeek,
@@ -11,11 +9,9 @@ import {
   isSameDay,
   eachDayOfInterval,
 } from 'date-fns'
-import { ko } from 'date-fns/locale'
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 import { cn, formatTime } from '@utils'
 import type { StudyGroupScheduleList } from '@models'
-import { Text } from '@components'
+import { Text, CalendarHeader } from '@components'
 
 interface CalendarProps {
   schedule: StudyGroupScheduleList[]
@@ -28,14 +24,6 @@ export default function ScheduleCalendar({ schedule }: CalendarProps) {
     schedule.map((e) => [format(e.date, 'yyyy-MM-dd'), e])
   )
 
-  const handlePrevMonth = () => {
-    setCurrentMonth(subMonths(currentMonth, 1))
-  }
-
-  const handleNextMonth = () => {
-    setCurrentMonth(addMonths(currentMonth, 1))
-  }
-
   const monthStart = startOfMonth(currentMonth)
   const monthEnd = endOfMonth(currentMonth)
   const startDate = startOfWeek(monthStart)
@@ -45,35 +33,12 @@ export default function ScheduleCalendar({ schedule }: CalendarProps) {
   const dayNames = ['일', '월', '화', '수', '목', '금', '토']
 
   return (
-    <div className="">
-      {/* Header */}
-      <div className="mb-4 flex items-center justify-between px-2">
-        <button
-          type="button"
-          onClick={handlePrevMonth}
-          className="rounded-full p-1 hover:bg-gray-100"
-        >
-          <ChevronLeftIcon
-            width={16}
-            className="cursor-pointer p-0.5 text-gray-600"
-          />
-        </button>
-        <h2 className="text-lg font-semibold text-gray-900">
-          {format(currentMonth, 'yyyy년 MMMM', { locale: ko })}
-        </h2>
-        <button
-          type="button"
-          onClick={handleNextMonth}
-          className="rounded-full p-1 hover:bg-gray-100"
-        >
-          <ChevronRightIcon
-            width={16}
-            className="cursor-pointer p-0.5 text-gray-600"
-          />
-        </button>
-      </div>
+    <>
+      <CalendarHeader
+        currentMonth={currentMonth}
+        setCurrentMonth={setCurrentMonth}
+      />
 
-      {/* Calendar Grid */}
       <div className="grid grid-cols-7 rounded-t-lg border-t border-l border-gray-200 text-center text-sm text-gray-500">
         {dayNames.map((day, index) => (
           <div
@@ -126,6 +91,6 @@ export default function ScheduleCalendar({ schedule }: CalendarProps) {
           )
         })}
       </div>
-    </div>
+    </>
   )
 }

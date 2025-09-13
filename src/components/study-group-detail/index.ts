@@ -3,4 +3,5 @@ export { default as StudyGroupInfo } from '@components/study-group-detail/StudyG
 export { default as StudyGroupLecture } from '@components/study-group-detail/StudyGroupLecture'
 export { default as StudyGroupMember } from '@components/study-group-detail/StudyGroupMember'
 export { default as StudyGroupSchedule } from '@components/study-group-detail/StudyGroupSchedule'
-export { default as ScheduleCalendar } from '@components/study-group-detail/ScheduleCalendar'
+export { default as ScheduleCalendar } from '@/components/study-group-detail/Calendar/ScheduleCalendar'
+export { default as CalendarHeader } from '@components/study-group-detail/Calendar/CalendarHeader'
