@@ -21,7 +21,7 @@ export default function StudyGroupDetail() {
       />
       <div className="mt-8 grid grid-cols-3 gap-8">
         <div className="col-span-2">
-          <StudyGroupSchedule />
+          <StudyGroupSchedule schedule={studyGroup.schedule} />
         </div>
         <div className="flex flex-col gap-6">
           <StudyGroupInfo
