@@ -1,9 +1,9 @@
-import { handleFileDelete } from '@components'
+import { handleFileDelete, type UploadedFile } from '@components'
 
 interface UploadedFileListProps {
-  files: File[]
-  setFiles: React.Dispatch<React.SetStateAction<File[]>>
-  onChange: (files: File[]) => void
+  files: UploadedFile[]
+  setFiles: React.Dispatch<React.SetStateAction<UploadedFile[]>>
+  onChange: (files: UploadedFile[]) => void
 }
 
 export const UploadedFileList = ({
@@ -12,17 +12,19 @@ export const UploadedFileList = ({
   onChange,
 }: UploadedFileListProps) => (
   <ul className="mb-4 w-full space-y-1 text-sm text-gray-700">
-    {files.map((file, index) => (
+    {files.map((uploadedFile) => (
       <li
-        key={`${file.name}-${file.lastModified}`}
+        key={uploadedFile.id}
         className="flex items-center justify-between gap-2"
       >
-        <span className="truncate">{file.name}</span>
+        <span className="truncate">{uploadedFile.file.name}</span>
         <button
           type="button"
-          onClick={() => handleFileDelete(index, files, setFiles, onChange)}
+          onClick={() =>
+            handleFileDelete(uploadedFile.id, files, setFiles, onChange)
+          }
           className="flex-shrink-0 cursor-pointer text-xs text-red-500"
-          aria-label={`파일 ${file.name} 삭제`}
+          aria-label={`파일 ${uploadedFile.file.name} 삭제`}
         >
           삭제
         </button>
