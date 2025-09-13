@@ -1,16 +1,16 @@
 import {
   ALLOWED_FILE_TYPES,
+  ERROR_MESSAGES,
   MAX_FILE_COUNT,
   MAX_FILE_SIZE_BYTES,
-  MAX_FILE_SIZE_MB,
 } from '@constants'
 
 export const checkValidateFile = (file: File): string | null => {
   if (file.size > MAX_FILE_SIZE_BYTES) {
-    return `${file.name} 크기가 너무 큽니다. (최대 ${MAX_FILE_SIZE_MB}MB)`
+    return ERROR_MESSAGES.FILE_TOO_LARGE(file)
   }
   if (!ALLOWED_FILE_TYPES.includes(file.type)) {
-    return `${file.name}은(는) 지원하지 않는 파일 형식입니다.`
+    return ERROR_MESSAGES.UNSUPPORTED_TYPE(file)
   }
   return null
 }
@@ -25,7 +25,7 @@ export const checkMaxFileCount = (
   maxCount: number
 ): string | null => {
   if (currentFiles.length + newFiles.length > maxCount) {
-    return `파일은 최대 ${maxCount}개까지 업로드할 수 있습니다.`
+    return ERROR_MESSAGES.MAX_COUNT()
   }
   return null
 }
@@ -63,7 +63,7 @@ export const handleFileProcessing = (
   const uniqueNewFiles = validFiles.filter((file) => {
     const duplicate = isDuplicate(file, currentFiles)
     if (duplicate) {
-      onError(`${file.name} 파일은 이미 추가되었습니다.`)
+      onError(ERROR_MESSAGES.DUPLICATE(file))
     }
     return !duplicate
   })
@@ -110,4 +110,10 @@ export const handleFileDrop = (
   if (!e.dataTransfer.files) return
   const droppedFiles = Array.from(e.dataTransfer.files)
   handleFileProcessing(droppedFiles, files, setFiles, onChange, onError)
+}
+
+export const formatFileSize = (size: number): string => {
+  if (size >= 1024 * 1024) return `${(size / (1024 * 1024)).toFixed(2)} MB`
+  if (size >= 1024) return `${(size / 1024).toFixed(2)} KB`
+  return `${size} B`
 }
