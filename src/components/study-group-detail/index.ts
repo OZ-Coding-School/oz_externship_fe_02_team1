@@ -7,3 +7,4 @@ export { default as ScheduleCalendar } from '@/components/study-group-detail/Cal
 export { default as CalendarHeader } from '@components/study-group-detail/Calendar/CalendarHeader'
 export { default as CalendarDays } from '@components/study-group-detail/Calendar/CalendarDays'
 export { default as CalendarBody } from '@components/study-group-detail/Calendar/CalendarBody'
+export { default as CalendarBodyDate } from '@components/study-group-detail/Calendar/CalendarBodyDate'
