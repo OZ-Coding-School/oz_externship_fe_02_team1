@@ -14,7 +14,7 @@ export const UploadedFileList = ({
   <ul className="mb-4 w-full space-y-1 text-sm text-gray-700">
     {files.map((file, index) => (
       <li
-        key={`${file.name}-${index}`}
+        key={`${file.name}-${file.lastModified}`}
         className="flex items-center justify-between gap-2"
       >
         <span className="truncate">{file.name}</span>
