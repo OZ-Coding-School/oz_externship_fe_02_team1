@@ -5,3 +5,4 @@ export { default as StudyGroupMember } from '@components/study-group-detail/Stud
 export { default as StudyGroupSchedule } from '@components/study-group-detail/StudyGroupSchedule'
 export { default as ScheduleCalendar } from '@/components/study-group-detail/Calendar/ScheduleCalendar'
 export { default as CalendarHeader } from '@components/study-group-detail/Calendar/CalendarHeader'
+export { default as CalendarDays } from '@components/study-group-detail/Calendar/CalendarDays'
