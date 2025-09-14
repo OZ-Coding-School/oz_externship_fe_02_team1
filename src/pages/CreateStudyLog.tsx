@@ -17,6 +17,7 @@ export default function CreateStudyLog() {
   const [title, setTitle] = useState('')
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([])
 
+  // todo: api 연결 및 파일 업로드 로직 구현
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     return uploadedFiles
