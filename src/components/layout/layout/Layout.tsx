@@ -5,13 +5,19 @@ import { cn } from '@utils'
 
 interface LayoutProps {
   maxWidth: 'medium' | 'large'
+  isBackgroundGray?: boolean
 }
 
-export default function Layout({ maxWidth }: LayoutProps) {
+export default function Layout({ maxWidth, isBackgroundGray }: LayoutProps) {
   return (
     <>
       <Header isLoggedin />
-      <main className="w-full pt-16 sm:px-20">
+      <main
+        className={cn(
+          'w-full pt-16 sm:px-20',
+          isBackgroundGray && 'bg-gray-50'
+        )}
+      >
         <div
           className={cn(
             'm-auto p-6 sm:p-8',
