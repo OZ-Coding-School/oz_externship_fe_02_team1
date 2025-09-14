@@ -19,6 +19,7 @@ export default function CreateStudyLog() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    return uploadedFiles
   }
 
   const handleFilesChange = (files: UploadedFile[]) => {
