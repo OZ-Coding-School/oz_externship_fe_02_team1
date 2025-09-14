@@ -21,7 +21,7 @@ export default function StudyGroupDetail() {
         isMember={isMember}
       />
       <div className="mt-8 gap-8 lg:grid lg:grid-cols-3">
-        <div className="col-span-2">
+        <div className="col-span-2 flex flex-col gap-8">
           <div className="flex flex-col gap-8">
             <StudyGroupSchedule schedule={studyGroup.schedule} />
             <StudyGroupLogList
