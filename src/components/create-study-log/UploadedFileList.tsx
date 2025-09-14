@@ -1,4 +1,4 @@
-import { handleFileDelete, type UploadedFile } from '@components'
+import { handleFileDelete, type UploadedFile } from './fileUpload.utils'
 
 interface UploadedFileListProps {
   files: UploadedFile[]

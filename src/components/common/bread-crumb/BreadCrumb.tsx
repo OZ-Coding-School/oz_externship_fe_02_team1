@@ -30,7 +30,7 @@ export default function BreadCrumb({ items, className }: BreadCrumbProps) {
         {items.map((item, i) => (
           <li
             key={'to' in item ? item.to : item.label}
-            className={`flex items-center gap-2 ${i === 0 ? '' : 'pl-2'}`}
+            className={cn('flex items-center gap-2', i !== 0 && 'pl-2')}
           >
             {'to' in item ? (
               <Link to={item.to as string}>{item.label}</Link>
