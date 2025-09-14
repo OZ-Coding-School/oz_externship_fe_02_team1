@@ -1,4 +1,8 @@
-export const HEADER_NAV_LISTS = ['강의 목록', '스터디 그룹', '구인 공고']
+export const HEADER_NAV_LISTS = [
+  { name: '강의 목록', path: '/lectures' },
+  { name: '스터디 그룹', path: '/study-group' },
+  { name: '구인 공고', path: '/jobs' },
+]
 
 export const FOOTER_NAV_LISTS = [
   {
@@ -7,6 +11,10 @@ export const FOOTER_NAV_LISTS = [
   },
   {
     title: '지원',
-    list: ['고객센터', 'FAQ', '개인정보처리방침'],
+    list: [
+      { name: '고객센터', path: '/' },
+      { name: 'FAQ', path: '/' },
+      { name: '개인정보처리방침', path: '/' },
+    ],
   },
 ]
