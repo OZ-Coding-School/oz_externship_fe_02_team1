@@ -1,13 +1,12 @@
-import { H2, Text } from '@components'
+import { useState } from 'react'
+
+import { H2, Input, MarkdownEditor, Text } from '@components'
 import { BreadCrumb } from '@components'
+import { BREAD_CRUMB_PATH } from '@constants'
 
 export default function CreateStudyLog() {
-  const items = [
-    { label: '홈', to: '/' },
-    { label: '스터디 그룹', to: '/study' },
-    { label: '스터디 상세', to: '/study-detail' },
-    { label: '기록 작성' },
-  ]
+  const [description, setDescription] = useState('Hello')
+  const [title, setTitle] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -15,13 +14,48 @@ export default function CreateStudyLog() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-4xl">
-      <BreadCrumb items={items} className="pb-4" />
+      <BreadCrumb items={BREAD_CRUMB_PATH} className="pb-4" />
       <header className="pb-6">
         <H2 className="leading-9 font-bold text-gray-900">스터디 기록 작성</H2>
         <Text className="inline-flex pt-2 text-gray-600">
           학습한 내용을 자세히 기록해보세요
         </Text>
       </header>
+
+      <section className="flex flex-col items-start justify-start rounded-xl border border-gray-200 p-6">
+        <div>
+          <div className="pb-2">
+            <Text className="text-sm font-medium text-gray-700">제목 </Text>
+            <Text className="text-sm font-medium text-red-500">*</Text>
+          </div>
+          <Input
+            maxLength={99}
+            value={title}
+            placeholder="스터디 기록의 제목을 입력하세요"
+            className="w-full rounded-lg px-3 py-2"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <Text variant="small" className="pt-1 font-normal text-gray-500">
+            {title.length}/100자
+          </Text>
+        </div>
+        {/* 내용 시작 */}
+        <div className="pt-6">
+          <Text className="pb-2 text-sm font-medium text-gray-700">내용 </Text>
+          <Text className="text-sm font-medium text-red-500">*</Text>
+
+          <MarkdownEditor value={description} onChange={setDescription} />
+          <Text className="text-xs font-normal text-gray-500">
+            마크다운 문법을 사용할 수 있습니다. 이미지는 드래그 앤 드롭으로
+            첨부할 수 있습니다
+          </Text>
+        </div>
+        {/* 첨부파일 시작 */}
+        <div className="pt-6">
+          <Text className="text-sm font-medium text-gray-700">첨부 파일</Text>
+          <div>첨부 파일 들어감</div>
+        </div>
+      </section>
     </form>
   )
 }
