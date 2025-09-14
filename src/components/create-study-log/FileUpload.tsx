@@ -1,15 +1,15 @@
 import { useState } from 'react'
 
+import { Toast } from '@components'
+import { MAX_FILE_COUNT } from '@constants'
+import { cn } from '@utils'
+
 import {
-  Toast,
   handleFileDrag,
   handleFileDrop,
   handleFileProcessing,
   type UploadedFile,
-} from '@components'
-import { MAX_FILE_COUNT } from '@constants'
-import { cn } from '@utils'
-
+} from './fileUpload.utils'
 import { UploadedFileList } from './UploadedFileList'
 import { UploadPlaceholder } from './UploadPlaceholder'
 

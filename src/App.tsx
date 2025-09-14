@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router'
 
 import './App.css'
-import { Layout } from '@components'
+import { CreateStudyLog, Layout } from '@components'
 import { StudyGroupDetail, StudyGroupEdit } from '@pages'
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
         element={<Layout maxWidth="medium" isBackgroundGray />}
       >
         <Route path=":groupId/edit" element={<StudyGroupEdit />} />
+        <Route path=":groupId/records/create" element={<CreateStudyLog />} />
       </Route>
     </Routes>
   )
