@@ -5,7 +5,7 @@ import { CalendarBody, CalendarDays, CalendarHeader } from '@components'
 import type { StudyGroupScheduleList } from '@models'
 
 interface CalendarProps {
-  schedule: StudyGroupScheduleList[]
+  schedule: StudyGroupScheduleList[] | undefined
 }
 
 export default function ScheduleCalendar({ schedule }: CalendarProps) {
