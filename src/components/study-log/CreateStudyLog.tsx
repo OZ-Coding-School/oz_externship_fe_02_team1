@@ -7,8 +7,8 @@ import {
   Input,
   MarkdownEditor,
   Text,
+  BreadCrumb,
 } from '@components'
-import { BreadCrumb } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
 
 export default function CreateStudyLog() {
@@ -19,9 +19,8 @@ export default function CreateStudyLog() {
     e.preventDefault()
   }
 
-  const handleFileUpload = (e: any) => {
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
-    console.log(e.target)
   }
 
   return (
