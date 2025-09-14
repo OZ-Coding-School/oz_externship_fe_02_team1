@@ -1,6 +1,8 @@
-import type { StudyGroup } from '@models'
-import { ScheduleCalendar, Card, Button } from '@components'
 import { PlusIcon } from '@heroicons/react/24/outline'
+
+import { ScheduleCalendar, Card, Button } from '@components'
+
+import type { StudyGroup } from '@models'
 
 export default function StudyGroupSchedule({
   schedule,
