@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { H2, Input, MarkdownEditor, Text } from '@components'
+import { FileUpload, H2, Input, MarkdownEditor, Text } from '@components'
 import { BreadCrumb } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
 
@@ -12,10 +12,15 @@ export default function CreateStudyLog() {
     e.preventDefault()
   }
 
+  const handleFileUpload = (e: any) => {
+    e.preventDefault()
+    console.log(e.target)
+  }
+
   return (
     <form onSubmit={handleSubmit} className="max-w-4xl">
       <BreadCrumb items={BREAD_CRUMB_PATH} className="pb-4" />
-      <header className="pb-6">
+      <header className="w-full pb-6">
         <H2 className="leading-9 font-bold text-gray-900">스터디 기록 작성</H2>
         <Text className="inline-flex pt-2 text-gray-600">
           학습한 내용을 자세히 기록해보세요
@@ -23,7 +28,7 @@ export default function CreateStudyLog() {
       </header>
 
       <section className="flex flex-col items-start justify-start rounded-xl border border-gray-200 p-6">
-        <div>
+        <div className="w-full">
           <div className="pb-2">
             <Text className="text-sm font-medium text-gray-700">제목 </Text>
             <Text className="text-sm font-medium text-red-500">*</Text>
@@ -51,9 +56,11 @@ export default function CreateStudyLog() {
           </Text>
         </div>
         {/* 첨부파일 시작 */}
-        <div className="pt-6">
-          <Text className="text-sm font-medium text-gray-700">첨부 파일</Text>
-          <div>첨부 파일 들어감</div>
+        <div className="flex w-full flex-col pt-6">
+          <Text className="pb-2 text-sm font-medium text-gray-700">
+            첨부 파일
+          </Text>
+          <FileUpload onChange={handleFileUpload} />
         </div>
       </section>
     </form>
