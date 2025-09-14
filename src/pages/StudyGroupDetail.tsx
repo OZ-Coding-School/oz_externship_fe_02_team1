@@ -19,7 +19,7 @@ export default function StudyGroupDetail() {
         currentUserRole={currentUserRole}
         isMember={isMember}
       />
-      <div className="mt-8 grid grid-cols-3 gap-8">
+      <div className="mt-8 gap-8 lg:grid lg:grid-cols-3">
         <div className="col-span-2">
           <StudyGroupLogList
             member={studyGroup.member}
