@@ -18,7 +18,7 @@ function App() {
         element={<Layout maxWidth="medium" isBackgroundGray />}
       >
         <Route path=":groupId/edit" element={<StudyGroupEdit />} />
-        <Route path=":groupId/records/crete" element={<CreateStudyLog />} />
+        <Route path=":groupId/records/create" element={<CreateStudyLog />} />
       </Route>
     </Routes>
   )
