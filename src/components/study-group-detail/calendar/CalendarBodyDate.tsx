@@ -45,7 +45,9 @@ export default function CalendarBodyDate({
 
       {schedule && (
         <div className="bg-primary-100 border-primary-100 mt-2 aspect-square overflow-hidden rounded-sm border-4">
-          <Text className={cn('font-medium text-nowrap', scheduleTextStyle)}>
+          <Text
+            className={cn('block font-medium text-nowrap', scheduleTextStyle)}
+          >
             {schedule.title}
           </Text>
           <Text className={cn('break-all', scheduleTextStyle)}>
