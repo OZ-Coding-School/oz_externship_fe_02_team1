@@ -9,8 +9,9 @@ import {
 } from '@components'
 import { MAX_FILE_COUNT } from '@constants'
 import { cn } from '@utils'
-import { UploadPlaceholder } from './UploadPlaceholder'
+
 import { UploadedFileList } from './UploadedFileList'
+import { UploadPlaceholder } from './UploadPlaceholder'
 
 interface FileUploadProps {
   onChange: (files: UploadedFile[]) => void
