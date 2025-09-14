@@ -1,11 +1,18 @@
 import { useState } from 'react'
 
-import { FileUpload, H2, Input, MarkdownEditor, Text } from '@components'
+import {
+  Button,
+  FileUpload,
+  H2,
+  Input,
+  MarkdownEditor,
+  Text,
+} from '@components'
 import { BreadCrumb } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
 
 export default function CreateStudyLog() {
-  const [description, setDescription] = useState('Hello')
+  const [description, setDescription] = useState('')
   const [title, setTitle] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -45,7 +52,7 @@ export default function CreateStudyLog() {
           </Text>
         </div>
         {/* 내용 시작 */}
-        <div className="pt-6">
+        <div className="w-full pt-6">
           <Text className="pb-2 text-sm font-medium text-gray-700">내용 </Text>
           <Text className="text-sm font-medium text-red-500">*</Text>
 
@@ -63,6 +70,23 @@ export default function CreateStudyLog() {
           <FileUpload onChange={handleFileUpload} />
         </div>
       </section>
+      {/* 맨 아래 취소, 저장 버튼 */}
+      <footer className="flex justify-between pt-6">
+        <Button
+          variant="outline"
+          className="rounded-lg px-6 py-2"
+          type="button"
+        >
+          <Text variant="base" className="font-medium text-gray-700">
+            취소
+          </Text>
+        </Button>
+        <Button className="rounded-lg bg-gray-300 px-6 py-2" type="submit">
+          <Text variant="base" className="font-medium text-white">
+            기록 저장
+          </Text>
+        </Button>
+      </footer>
     </form>
   )
 }
