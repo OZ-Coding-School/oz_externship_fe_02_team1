@@ -11,12 +11,14 @@ export default function Header({ isLoggedin }: HeaderProps) {
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
 
   return (
-    <header className="fixed z-50 flex h-16 w-full items-center border-b border-gray-200 bg-white px-4 sm:px-20">
-      {isMobile ? (
-        <HeaderMobile isLoggedin={isLoggedin} />
-      ) : (
-        <HeaderDesktop isLoggedin={isLoggedin} />
-      )}
+    <header className="fixed z-50 h-16 w-full border-b border-gray-200 bg-white px-4 sm:px-20">
+      <div className="m-auto flex h-full max-w-7xl items-center">
+        {isMobile ? (
+          <HeaderMobile isLoggedin={isLoggedin} />
+        ) : (
+          <HeaderDesktop isLoggedin={isLoggedin} />
+        )}
+      </div>
     </header>
   )
 }

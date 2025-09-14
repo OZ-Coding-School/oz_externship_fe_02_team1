@@ -1,15 +1,16 @@
 import { DayPicker } from 'react-day-picker'
 import 'react-day-picker/style.css'
 import { ko } from 'date-fns/locale'
-import { cn } from '@utils'
 
-import type { CalendarProps } from '@components'
+import ChevronIcon from '@assets/icons/chevron'
 import { CALENDAR_CLASSNAMES } from '@components'
 import {
   buildDisabled,
   buildWrapperClass,
 } from '@components/common/date-picker/calendar.utils'
-import ChevronIcon from '@assets/icons/chevron'
+import { cn } from '@utils'
+
+import type { CalendarProps } from '@components'
 
 const Calendar = ({
   selected,
