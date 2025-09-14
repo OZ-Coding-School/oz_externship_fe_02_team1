@@ -1,5 +1,5 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Text, toastStyles } from '@components'
 import { cn } from '@utils'
@@ -11,14 +11,33 @@ export interface ToastProps {
   title: string
   message: string
   className?: string
+  onClose?: () => void
 }
 
-export default function Toast({ type, title, message, className }: ToastProps) {
+export default function Toast({
+  type,
+  title,
+  message,
+  className,
+  onClose,
+}: ToastProps) {
   const { icon: Icon, bg, text, border } = toastStyles[type]
   const [isVisible, setIsVisible] = useState(true)
 
+  useEffect(() => {
+    if (!isVisible) return
+
+    const timer = setTimeout(() => {
+      setIsVisible(false)
+      onClose?.()
+    }, 3000)
+
+    return () => clearTimeout(timer)
+  }, [isVisible, onClose])
+
   const handleClose = () => {
     setIsVisible(false)
+    onClose?.()
   }
 
   if (!isVisible) {
