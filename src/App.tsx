@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router'
 import './App.css'
 import { CreateStudyLog, Layout } from '@components'
 import { StudyGroupDetail, StudyGroupEdit } from '@pages'
+import { StudyLogDetail } from '@pages'
 
 function App() {
   return (
@@ -17,6 +18,12 @@ function App() {
       >
         <Route path=":groupId/edit" element={<StudyGroupEdit />} />
         <Route path=":groupId/records/create" element={<CreateStudyLog />} />
+      </Route>
+      <Route path="/" element={<Layout maxWidth="medium" />}>
+        <Route
+          path="study-group/:groupId/records/:recordId"
+          element={<StudyLogDetail />}
+        />
       </Route>
     </Routes>
   )
