@@ -14,21 +14,17 @@ import {
 import { ko } from 'date-fns/locale'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 import { cn } from '@utils'
-
-interface CalendarEvent {
-  date: Date
-  title: string
-}
+import type { StudyGroupScheduleList } from '@models'
 
 interface CalendarProps {
-  events?: CalendarEvent[]
+  schedule: StudyGroupScheduleList[]
 }
 
-export default function ScheduleCalendar({ events = [] }: CalendarProps) {
+export default function ScheduleCalendar({ schedule }: CalendarProps) {
   const [currentMonth, setCurrentMonth] = useState(new Date())
 
-  const eventsByDate = new Map(
-    events.map((e) => [format(e.date, 'yyyy-MM-dd'), e])
+  const schedulesByDate = new Map(
+    schedule.map((e) => [format(e.date, 'yyyy-MM-dd'), e])
   )
 
   const handlePrevMonth = () => {
@@ -87,7 +83,7 @@ export default function ScheduleCalendar({ events = [] }: CalendarProps) {
       <div className="grid grid-cols-7 border-t border-l border-gray-200">
         {days.map((day, index) => {
           const dateKey = format(day, 'yyyy-MM-dd')
-          const event = eventsByDate.get(dateKey)
+          const schedule = schedulesByDate.get(dateKey)
 
           return (
             <div
@@ -108,9 +104,9 @@ export default function ScheduleCalendar({ events = [] }: CalendarProps) {
               >
                 {format(day, 'd')}
               </time>
-              {event && (
+              {schedule && (
                 <div className="mt-1 truncate overflow-hidden rounded bg-sky-500 p-1 text-xs text-white">
-                  {event.title}
+                  {schedule.title}
                 </div>
               )}
             </div>

@@ -22,11 +22,13 @@ export default function StudyGroupDetail() {
       />
       <div className="mt-8 gap-8 lg:grid lg:grid-cols-3">
         <div className="col-span-2">
-          <StudyGroupSchedule />
-          <StudyGroupLogList
-            member={studyGroup.member}
-            studyLog={studyGroup.studyLog}
-          />
+          <div className="flex flex-col gap-8">
+            <StudyGroupSchedule schedule={studyGroup.schedule} />
+            <StudyGroupLogList
+              member={studyGroup.member}
+              studyLog={studyGroup.studyLog}
+            />
+          </div>
         </div>
         <div className="flex flex-col gap-6">
           <StudyGroupInfo
