@@ -1,14 +1,18 @@
 import { BREAD_CRUMB_PATH } from '@/constants'
 import { BreadCrumb, Button, H3, Text } from '../common'
 
-export default function LogDetailHeader() {
-  const studyLogData = {
-    title: 'React Hooks 실습 정리',
-    userImage: 'https://placehold.co/32x32',
-    userName: '김개발',
-    createdAt: '작성일: 2024. 02. 16. 오전 05:30',
+interface LogDetailHeaderProps {
+  studyLogData: {
+    title: string
+    userImage: string
+    userName: string
+    createdAt: string
   }
+}
 
+export default function LogDetailHeader({
+  studyLogData,
+}: LogDetailHeaderProps) {
   return (
     <header className="w-full max-w-4xl">
       <BreadCrumb items={BREAD_CRUMB_PATH} className="mb-4" />
