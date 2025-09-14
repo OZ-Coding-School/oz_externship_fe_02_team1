@@ -20,15 +20,13 @@ export default function StudyGroupDetail() {
         currentUserRole={currentUserRole}
         isMember={isMember}
       />
-      <div className="mt-8 gap-8 lg:grid lg:grid-cols-3">
-        <div className="col-span-2 flex flex-col gap-8">
-          <div className="flex flex-col gap-8">
-            <StudyGroupSchedule schedule={studyGroup.schedule} />
-            <StudyGroupLogList
-              member={studyGroup.member}
-              studyLog={studyGroup.studyLog}
-            />
-          </div>
+      <div className="mt-6 flex flex-col gap-6 lg:mt-8 lg:grid lg:grid-cols-3">
+        <div className="col-span-2 flex flex-col gap-6 lg:gap-8">
+          <StudyGroupSchedule schedule={studyGroup.schedule} />
+          <StudyGroupLogList
+            member={studyGroup.member}
+            studyLog={studyGroup.studyLog}
+          />
         </div>
         <div className="flex flex-col gap-6">
           <StudyGroupInfo
