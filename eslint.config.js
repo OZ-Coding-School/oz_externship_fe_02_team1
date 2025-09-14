@@ -64,6 +64,7 @@ export default tseslint.config(
       'import/resolver': {
         typescript: {
           project: "./tsconfig.app.json",
+          tsconfigRootDir: import.meta.dirname,
         },
         node: true,
       },
