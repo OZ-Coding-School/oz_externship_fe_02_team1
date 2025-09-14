@@ -1,7 +1,6 @@
+import { cn } from '@utils'
 import { PhotoIcon } from '@heroicons/react/24/outline'
 import { type ComponentPropsWithoutRef, type ReactNode } from 'react'
-
-import { cn } from '@utils'
 
 interface ImageCardProps extends ComponentPropsWithoutRef<'div'> {
   title: string
@@ -18,19 +17,16 @@ export default function ImageCard({
 }: ImageCardProps) {
   return (
     <div
-      className={cn(
-        'relative flex flex-col overflow-hidden rounded-lg border border-gray-200',
-        className
-      )}
+      className="relative overflow-hidden rounded-lg border border-gray-200"
       {...rest}
     >
-      <header className="pt-32">
-        <div className="absolute inset-0 h-32 max-w-96">
+      <header>
+        <div className="aspect-[2/1] overflow-hidden rounded-t-lg">
           {imageUrl ? (
             <img
               src={imageUrl}
               alt={title}
-              className="bg-gray-200 object-cover"
+              className="h-full w-full bg-gray-200 object-cover"
             />
           ) : (
             <div className="flex h-full items-center justify-center bg-gray-200">
@@ -39,7 +35,7 @@ export default function ImageCard({
           )}
         </div>
       </header>
-      {children}
+      <div className={cn('flex flex-col', className)}>{children}</div>
     </div>
   )
 }
