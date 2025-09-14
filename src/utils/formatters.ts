@@ -23,3 +23,16 @@ export const formatDate = (date?: Date) => {
     day: '2-digit',
   })
 }
+
+export const formatTime = (date?: Date) => {
+  if (!date) return null
+  return (
+    date
+      .toLocaleTimeString('ko-KR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      })
+      .replace(':', '시 ') + '분'
+  )
+}
