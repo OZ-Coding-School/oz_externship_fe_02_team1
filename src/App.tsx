@@ -7,7 +7,7 @@ import { StudyGroupDetail } from '@pages'
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={<Layout maxWidth="large" />}>
         <Route path="study-group/:groupId" element={<StudyGroupDetail />} />
       </Route>
     </Routes>

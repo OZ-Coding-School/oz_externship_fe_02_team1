@@ -1,13 +1,26 @@
 import { Outlet } from 'react-router'
 
 import { Footer, Header } from '@components'
+import { cn } from '@/utils'
 
-export default function Layout() {
+interface LayoutProps {
+  maxWidth: 'medium' | 'large'
+}
+
+export default function Layout({ maxWidth }: LayoutProps) {
   return (
     <>
       <Header isLoggedin />
-      <main className="m-auto max-w-7xl p-6 pt-22 sm:mx-20 sm:p-8 sm:pt-24">
-        <Outlet />
+      <main className="w-full pt-16 sm:px-20">
+        <div
+          className={cn(
+            'm-auto p-6 sm:p-8',
+            maxWidth === 'medium' && 'max-w-4xl',
+            maxWidth === 'large' && 'max-w-7xl'
+          )}
+        >
+          <Outlet />
+        </div>
       </main>
       <Footer />
     </>
