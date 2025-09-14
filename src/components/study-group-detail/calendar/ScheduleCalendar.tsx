@@ -13,8 +13,9 @@ import {
 } from 'date-fns'
 import { ko } from 'date-fns/locale'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
-import { cn } from '@utils'
+import { cn, formatTime } from '@utils'
 import type { StudyGroupScheduleList } from '@models'
+import { Text } from '@components'
 
 interface CalendarProps {
   schedule: StudyGroupScheduleList[]
@@ -52,7 +53,10 @@ export default function ScheduleCalendar({ schedule }: CalendarProps) {
           onClick={handlePrevMonth}
           className="rounded-full p-1 hover:bg-gray-100"
         >
-          <ChevronLeftIcon width={16} className="p-0.5 text-gray-600" />
+          <ChevronLeftIcon
+            width={16}
+            className="cursor-pointer p-0.5 text-gray-600"
+          />
         </button>
         <h2 className="text-lg font-semibold text-gray-900">
           {format(currentMonth, 'yyyy년 MMMM', { locale: ko })}
@@ -62,7 +66,10 @@ export default function ScheduleCalendar({ schedule }: CalendarProps) {
           onClick={handleNextMonth}
           className="rounded-full p-1 hover:bg-gray-100"
         >
-          <ChevronRightIcon width={16} className="p-0.5 text-gray-600" />
+          <ChevronRightIcon
+            width={16}
+            className="cursor-pointer p-0.5 text-gray-600"
+          />
         </button>
       </div>
 
@@ -105,8 +112,14 @@ export default function ScheduleCalendar({ schedule }: CalendarProps) {
                 {format(day, 'd')}
               </time>
               {schedule && (
-                <div className="mt-1 truncate overflow-hidden rounded bg-sky-500 p-1 text-xs text-white">
-                  {schedule.title}
+                <div className="bg-primary-100 border-primary-100 mt-2 aspect-square overflow-hidden rounded-sm border-4">
+                  <Text className="text-primary-800 text-xs font-medium text-nowrap">
+                    {schedule.title}
+                  </Text>
+                  <Text className="text-primary-800 text-xs break-all">
+                    {formatTime(schedule.startTime)} ~
+                    {formatTime(schedule.endTime)}
+                  </Text>
                 </div>
               )}
             </div>
