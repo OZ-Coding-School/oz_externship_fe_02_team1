@@ -30,7 +30,7 @@ export default function Footer() {
             </nav>
           ))}
         </div>
-        <div className="mt-8 flex justify-center border border-t-gray-800 pt-8">
+        <div className="mt-8 flex justify-center pt-8">
           <Text className="text-gray-400">
             © 2024 StudyHub. All rights reserved
           </Text>
