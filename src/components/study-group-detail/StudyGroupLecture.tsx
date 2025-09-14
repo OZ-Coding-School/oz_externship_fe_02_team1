@@ -14,7 +14,7 @@ export default function StudyGroupLecture({
       titleVariant="base"
       titleClassName="pb-4 text-lg text-gray-900"
     >
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 lg:flex">
         {lecture?.map((el) => (
           <ImageCard
             key={el.title}

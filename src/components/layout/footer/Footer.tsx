@@ -23,8 +23,10 @@ export default function Footer() {
                 {item.title}
               </H4>
               <ul className="flex flex-col gap-2 text-gray-300">
-                {item.list.map((li) => (
-                  <li key={li}>{li}</li>
+                {item.list.map((el) => (
+                  <li key={el.name}>
+                    <Link to={el.path}>{el.name}</Link>
+                  </li>
                 ))}
               </ul>
             </nav>
