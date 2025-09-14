@@ -1,5 +1,6 @@
-import { Card, Input, MarkdownEditor, Text, ImageUpload } from '@components'
 import { useState } from 'react'
+
+import { Card, Input, MarkdownEditor, Text, ImageUpload } from '@components'
 
 export default function PrimaryInfoSection() {
   const [description, setDescription] = useState<string>('')
