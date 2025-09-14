@@ -1,6 +1,7 @@
-import useDateModal from '@hooks/useDateModal'
-import { Card, DateInput, MembersSlider, DatePickerModal } from '@components'
 import { useState } from 'react'
+
+import { Card, DateInput, MembersSlider, DatePickerModal } from '@components'
+import useDateModal from '@hooks/useDateModal'
 
 const INITIAL_MEMBER_COUNT = 6
 

@@ -1,10 +1,11 @@
+import { UserGroupIcon } from '@heroicons/react/24/outline'
+
 import { MIN_MEMBERS, MAX_MEMBERS, Text } from '@components'
 import {
   SLIDER_BASE,
   SLIDER_THUMB,
   SLIDER_TRACK,
 } from '@components/create-group/MembersSlider.styles'
-import { UserGroupIcon } from '@heroicons/react/24/outline'
 import { cn } from '@utils'
 
 interface MembersInputProps {

@@ -1,7 +1,6 @@
 import { CalendarDaysIcon } from '@heroicons/react/24/outline'
 import { useId, type InputHTMLAttributes, type Ref } from 'react'
 
-
 import { dateInputStyle } from '@components/common/form/form.styles'
 
 interface DateInputProps
