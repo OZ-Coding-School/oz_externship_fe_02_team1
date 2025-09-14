@@ -1,6 +1,6 @@
 import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
 
-import { Button, H2, Text } from '@components'
+import { Button, H2, Text, PrimaryInfoSection } from '@components'
 
 export default function StudyGroupEdit() {
   return (
@@ -19,6 +19,8 @@ export default function StudyGroupEdit() {
           </Text>
         </div>
       </div>
+
+      <PrimaryInfoSection />
 
       <div className="flex justify-end gap-4">
         <Button variant="outline" className="bg-transparent">

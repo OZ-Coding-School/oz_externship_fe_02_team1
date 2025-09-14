@@ -9,6 +9,7 @@ import { inputStyle } from '@components/common/form/form.styles'
 
 interface InputProps extends Omit<ComponentPropsWithoutRef<'input'>, 'size'> {
   label?: string
+  isRequired?: boolean
   errorText?: string
   fullWidth?: boolean
   leftIcon?: ReactNode
@@ -19,6 +20,7 @@ interface InputProps extends Omit<ComponentPropsWithoutRef<'input'>, 'size'> {
 const Input = ({
   id,
   label,
+  isRequired,
   errorText,
   disabled,
   placeholder,
@@ -38,6 +40,7 @@ const Input = ({
       {label && (
         <label htmlFor={inputId} className="mb-1.5 block text-sm text-gray-700">
           {label}
+          {isRequired && <span className="text-danger-500">&nbsp;*</span>}
         </label>
       )}
 
