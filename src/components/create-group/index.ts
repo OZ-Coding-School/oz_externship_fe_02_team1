@@ -4,5 +4,6 @@ export { default as LecturePickerSection } from '@components/create-group/Lectur
 export { default as DateModal } from '@components/create-group/DatePickerModal'
 export { default as MembersSlider } from '@components/create-group/MembersSlider'
 export { default as DateRangeFields } from '@components/create-group/DateRangeFields'
+export { default as DatePickerModal } from '@components/create-group/DatePickerModal'
 export * from '@components/create-group/constants'
 export * from '@components/create-group/types'

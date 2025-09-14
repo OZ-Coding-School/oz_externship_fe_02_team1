@@ -1,10 +1,16 @@
 import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
 
-import { Button, H2, Text, PrimaryInfoSection } from '@components'
+import {
+  Button,
+  H2,
+  Text,
+  PrimaryInfoSection,
+  PeriodMemberSection,
+} from '@components'
 
 export default function StudyGroupEdit() {
   return (
-    <div className="flex flex-col gap-6 lg:gap-8">
+    <form className="flex flex-col gap-6 lg:gap-8">
       <div className="flex items-center gap-4">
         <button
           type="button"
@@ -21,13 +27,14 @@ export default function StudyGroupEdit() {
       </div>
 
       <PrimaryInfoSection />
+      <PeriodMemberSection />
 
       <div className="flex justify-end gap-4">
         <Button variant="outline" className="bg-transparent">
           취소
         </Button>
-        <Button>스터디 그룹 만들기</Button>
+        <Button type="submit">스터디 그룹 만들기</Button>
       </div>
-    </div>
+    </form>
   )
 }
