@@ -4,6 +4,7 @@ import {
   StudyGroupLecture,
   StudyGroupLogList,
   StudyGroupMember,
+  StudyGroupSchedule,
 } from '@components'
 import { studyGroup, currentUserRole, isMember } from '@mocks/studyGroupDetail'
 
@@ -21,6 +22,7 @@ export default function StudyGroupDetail() {
       />
       <div className="mt-8 gap-8 lg:grid lg:grid-cols-3">
         <div className="col-span-2">
+          <StudyGroupSchedule />
           <StudyGroupLogList
             member={studyGroup.member}
             studyLog={studyGroup.studyLog}
