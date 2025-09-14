@@ -1,6 +1,8 @@
 import type { Matcher } from 'react-day-picker'
-import { cn } from '@utils'
+
 import { VARIANT_STYLE, WRAPPER_WIDTH } from '@components'
+import { cn } from '@utils'
+
 import type { CalendarVariant, CalendarWidth } from '@components'
 
 export const buildDisabled = (

@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router'
 
 import { Footer, Header } from '@components'
-import { cn } from '@/utils'
+import { cn } from '@utils'
 
 interface LayoutProps {
   maxWidth: 'medium' | 'large'

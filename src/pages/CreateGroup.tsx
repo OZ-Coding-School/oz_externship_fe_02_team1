@@ -2,9 +2,9 @@ import { PlusIcon, ArrowLeftIcon } from '@heroicons/react/24/outline'
 
 import { Button, H1, Text } from '@components'
 import BasicInfoSection from '@components/create-group/BasicInfoSection'
+import DateModal from '@components/create-group/DatePickerModal'
 import LecturePickerSection from '@components/create-group/LecturePickerSection'
 import PeriodMembersSection from '@components/create-group/PeriodMembersSection'
-import DateModal from '@components/create-group/DatePickerModal'
 import { useCreateGroupForm } from '@components/create-group/useCreateGroupForm'
 
 const CreateGroup = () => {
