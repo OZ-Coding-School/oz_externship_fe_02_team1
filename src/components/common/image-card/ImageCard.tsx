@@ -1,6 +1,7 @@
-import { cn } from '@utils'
 import { PhotoIcon } from '@heroicons/react/24/outline'
 import { type ComponentPropsWithoutRef, type ReactNode } from 'react'
+
+import { cn } from '@utils'
 
 interface ImageCardProps extends ComponentPropsWithoutRef<'div'> {
   title: string

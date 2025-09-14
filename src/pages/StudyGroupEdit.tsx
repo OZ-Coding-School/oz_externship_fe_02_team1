@@ -1,5 +1,6 @@
-import { Button, H2, Text } from '@components'
 import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
+
+import { Button, H2, Text } from '@components'
 
 export default function StudyGroupEdit() {
   return (
