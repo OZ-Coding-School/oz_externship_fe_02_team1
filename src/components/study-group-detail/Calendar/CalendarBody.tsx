@@ -7,7 +7,7 @@ import {
   eachDayOfInterval,
 } from 'date-fns'
 
-import { CalendarBodyDate } from '@components'
+import CalendarBodyDate from './CalendarBodyDate'
 
 import type { StudyGroupScheduleList } from '@models'
 
