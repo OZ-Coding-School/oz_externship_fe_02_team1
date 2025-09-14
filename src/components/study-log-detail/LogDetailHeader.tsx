@@ -13,7 +13,7 @@ export default function LogDetailHeader() {
     <header className="w-full max-w-4xl">
       <BreadCrumb items={BREAD_CRUMB_PATH} className="mb-4" />
       <div className="flex w-full flex-col p-6">
-        <div className="mb-4 flex w-full justify-between">
+        <div className="mb-4 flex w-full flex-col justify-between sm:flex-row">
           <H3 className="text-gray-900">{studyLogData.title}</H3>
           <div>
             <div className="flex">
