@@ -1,3 +1,4 @@
+import { cn } from '@/utils'
 import { ChevronRightIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router'
 
@@ -15,19 +16,20 @@ type BreadCrumbItem = BreadCrumbLinkItem | BreadCrumbCurrentItem
 
 interface BreadCrumbProps {
   items: BreadCrumbItem[]
+  className?: string
 }
 
-export default function BreadCrumb({ items }: BreadCrumbProps) {
+export default function BreadCrumb({ items, className }: BreadCrumbProps) {
   return (
     <nav
       aria-label="breadCrumb"
-      className="max-w-[854px] p-[25px] text-sm text-gray-600"
+      className={cn('max-w-[854px] text-sm text-gray-600', className)}
     >
       <ol className="flex">
         {items.map((item, i) => (
           <li
             key={'to' in item ? item.to : item.label}
-            className="flex items-center gap-2 pl-2"
+            className={`flex items-center gap-2 ${i === 0 ? '' : 'pl-2'}`}
           >
             {'to' in item ? (
               <Link to={item.to as string}>{item.label}</Link>
