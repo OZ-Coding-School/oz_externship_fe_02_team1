@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
-import { CalendarHeader, CalendarDays, CalendarBody } from '@components'
+import CalendarHeader from './CalendarHeader'
+import CalendarDays from './CalendarDays'
+import CalendarBody from './CalendarBody'
 
 import type { StudyGroupScheduleList } from '@models'
 

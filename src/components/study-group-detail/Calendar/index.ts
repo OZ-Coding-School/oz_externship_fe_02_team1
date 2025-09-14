@@ -1,5 +1,0 @@
-export { default as CalendarHeader } from '@components/study-group-detail/calendar/CalendarHeader'
-export { default as CalendarDays } from '@components/study-group-detail/calendar/CalendarDays'
-export { default as CalendarBody } from '@components/study-group-detail/calendar/CalendarBody'
-export { default as CalendarBodyDate } from '@components/study-group-detail/calendar/CalendarBodyDate'
-export { default as ScheduleCalendar } from '@components/study-group-detail/calendar/ScheduleCalendar'

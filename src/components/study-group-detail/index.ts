@@ -3,4 +3,3 @@ export { default as StudyGroupInfo } from '@components/study-group-detail/StudyG
 export { default as StudyGroupLecture } from '@components/study-group-detail/StudyGroupLecture'
 export { default as StudyGroupMember } from '@components/study-group-detail/StudyGroupMember'
 export { default as StudyGroupSchedule } from '@components/study-group-detail/StudyGroupSchedule'
-export * from '@components/study-group-detail/calendar'

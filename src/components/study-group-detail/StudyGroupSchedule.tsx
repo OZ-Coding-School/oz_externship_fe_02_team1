@@ -1,6 +1,7 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
 
-import { ScheduleCalendar, Card, Button } from '@components'
+import { Card, Button } from '@components'
+import ScheduleCalendar from '@components/study-group-detail/calendar/ScheduleCalendar'
 
 import type { StudyGroup } from '@models'
 
