@@ -3,6 +3,7 @@ import { useState } from 'react'
 import {
   BreadCrumb,
   Button,
+  FileUpload,
   H2,
   Input,
   MarkdownEditor,
@@ -10,10 +11,6 @@ import {
 } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
 import type { UploadedFile } from '@/components/create-study-log'
-import FileUpload from '@/components/create-study-log/FileUpload'
-
-import type { UploadedFile } from '@/components/create-study-log'
-import FileUpload from '@/components/create-study-log/FileUpload'
 
 export default function CreateStudyLog() {
   const [description, setDescription] = useState('')
