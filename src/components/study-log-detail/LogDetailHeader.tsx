@@ -32,7 +32,7 @@ export default function LogDetailHeader() {
         </div>
         <div className="flex items-center">
           <div className="h-8 w-8 max-w-8">
-            <img src={studyLogData.userImage} alt="" />
+            <img src={studyLogData.userImage} alt={studyLogData.userName} />
           </div>
           <Text variant="small" className="ml-2 font-medium text-gray-600">
             {studyLogData.userName}
