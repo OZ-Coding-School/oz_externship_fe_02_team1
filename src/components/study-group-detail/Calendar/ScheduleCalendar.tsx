@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import type { StudyGroupScheduleList } from '@models'
+
 import { CalendarHeader, CalendarDays, CalendarBody } from '@components'
+
+import type { StudyGroupScheduleList } from '@models'
 
 interface CalendarProps {
   schedule: StudyGroupScheduleList[]
