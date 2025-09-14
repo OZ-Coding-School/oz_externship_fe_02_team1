@@ -18,27 +18,28 @@ export default function LogDetailHeader({
     <header className="w-full max-w-4xl">
       <BreadCrumb items={BREAD_CRUMB_PATH} className="mb-4" />
       <div className="flex w-full flex-col p-6">
-        <div className="mb-4 flex w-full flex-col justify-between sm:flex-row">
+        <section className="mb-4 flex w-full flex-col justify-between sm:flex-row">
           <H3 className="text-gray-900">{studyLogData.title}</H3>
-          <div>
-            <div className="flex">
-              <Button className="rounded-lg bg-gray-100 px-3 py-1.5">
-                <Text variant="small" className="font-medium text-gray-700">
-                  수정하기
-                </Text>
-              </Button>
-              <Button className="ml-2 rounded-lg bg-red-100 px-3 py-1.5">
-                <Text variant="small" className="font-medium text-red-700">
-                  삭제하기
-                </Text>
-              </Button>
-            </div>
+          <div className="flex">
+            <Button className="rounded-lg bg-gray-100 px-3 py-1.5">
+              <Text variant="small" className="font-medium text-gray-700">
+                수정하기
+              </Text>
+            </Button>
+            <Button className="ml-2 rounded-lg bg-red-100 px-3 py-1.5">
+              <Text variant="small" className="font-medium text-red-700">
+                삭제하기
+              </Text>
+            </Button>
           </div>
-        </div>
-        <div className="flex items-center">
-          <div className="h-8 w-8 max-w-8">
-            <img src={studyLogData.userImage} alt={studyLogData.userName} />
-          </div>
+        </section>
+
+        <section className="flex items-center">
+          <img
+            src={studyLogData.userImage}
+            alt={studyLogData.userName}
+            className="h-8 w-8 rounded-full"
+          />
           <Text variant="small" className="ml-2 font-medium text-gray-600">
             {studyLogData.userName}
           </Text>
@@ -49,7 +50,7 @@ export default function LogDetailHeader({
             {formatDate(new Date(studyLogData.createdAt))}
           </Text>
           <Text>.</Text>
-        </div>
+        </section>
       </div>
     </header>
   )
