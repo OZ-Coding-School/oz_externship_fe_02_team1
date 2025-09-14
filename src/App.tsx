@@ -2,7 +2,8 @@ import { Route, Routes } from 'react-router'
 
 import './App.css'
 import { CreateStudyLog, Layout } from '@components'
-import { StudyGroupDetail, StudyGroupEdit } from '@pages'
+import { StudyGroupDetail } from '@pages'
+import StudyGroupEdit from './pages/StudyGroupEdit'
 
 function App() {
   return (

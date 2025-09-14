@@ -4,14 +4,14 @@ import { Toast } from '@components'
 import { MAX_FILE_COUNT } from '@constants'
 import { cn } from '@utils'
 
+import { UploadedFileList } from './UploadedFileList'
+import { UploadPlaceholder } from './UploadPlaceholder'
 import {
   handleFileDrag,
   handleFileDrop,
   handleFileProcessing,
   type UploadedFile,
 } from './fileUpload.utils'
-import { UploadedFileList } from './UploadedFileList'
-import { UploadPlaceholder } from './UploadPlaceholder'
 
 interface FileUploadProps {
   onChange: (files: UploadedFile[]) => void

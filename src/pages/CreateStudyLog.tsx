@@ -9,6 +9,8 @@ import {
   Text,
 } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
+import type { UploadedFile } from '@/components/create-study-log'
+import FileUpload from '@/components/create-study-log/FileUpload'
 
 import type { UploadedFile } from '@/components/create-study-log'
 import FileUpload from '@/components/create-study-log/FileUpload'
