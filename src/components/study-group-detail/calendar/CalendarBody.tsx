@@ -7,8 +7,9 @@ import {
   eachDayOfInterval,
 } from 'date-fns'
 
-import type { StudyGroupScheduleList } from '@models'
 import { CalendarBodyDate } from '@components'
+
+import type { StudyGroupScheduleList } from '@models'
 
 interface CalendarBodyProps {
   schedule: StudyGroupScheduleList[]

@@ -1,6 +1,6 @@
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 import { format, subMonths, addMonths } from 'date-fns'
 import { ko } from 'date-fns/locale'
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 
 const buttonStyle = 'rounded-full p-1 hover:bg-gray-100'
 const arrowIconStyle = 'cursor-pointer p-0.5 text-gray-600'
