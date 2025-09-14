@@ -14,7 +14,7 @@ export default function CreateStudyLog() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-48 p-8">
+    <form onSubmit={handleSubmit} className="max-w-4xl">
       <BreadCrumb items={items} className="pb-4" />
       <header className="pb-6">
         <H2 className="leading-9 font-bold text-gray-900">스터디 기록 작성</H2>
