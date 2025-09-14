@@ -4,12 +4,12 @@ import {
   endOfMonth,
   startOfWeek,
   endOfWeek,
-  isSameMonth,
   eachDayOfInterval,
 } from 'date-fns'
-import { cn } from '@utils'
+
+import { CalendarBodyDate } from '@components'
+
 import type { StudyGroupScheduleList } from '@models'
-import { CalendarBodyDate, CalendarBodySchedule } from '@components'
 
 interface CalendarBodyProps {
   schedule: StudyGroupScheduleList[]
@@ -38,19 +38,15 @@ export default function CalendarBody({
         const schedule = schedulesByDate.get(dateKey)
 
         return (
-          <div
+          <CalendarBodyDate
             key={index}
-            className={cn(
-              'relative h-28 border-r border-b border-gray-200 p-2 text-left text-sm text-gray-900',
-              !isSameMonth(day, currentMonth) && 'text-white',
-              index === days.length - 1 && 'rounded-br-lg',
-              index === days.length - 7 && 'rounded-bl-lg'
-            )}
-          >
-            <CalendarBodyDate day={day} dateKey={dateKey} />
-
-            <CalendarBodySchedule schedule={schedule} />
-          </div>
+            day={day}
+            dateKey={dateKey}
+            schedule={schedule}
+            currentMonth={currentMonth}
+            index={index}
+            daysLength={days.length}
+          />
         )
       })}
     </div>
