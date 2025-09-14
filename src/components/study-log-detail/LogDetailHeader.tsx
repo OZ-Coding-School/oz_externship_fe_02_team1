@@ -1,5 +1,6 @@
 import { BREAD_CRUMB_PATH } from '@/constants'
-import { BreadCrumb, Button, H3, Text } from '../common'
+import { BreadCrumb, Button, H3, Text } from '@components'
+import { formatDate } from '@utils'
 
 interface LogDetailHeaderProps {
   studyLogData: {
@@ -45,7 +46,7 @@ export default function LogDetailHeader({
             •
           </Text>
           <Text variant="small" className="ml-4 text-gray-600">
-            {studyLogData.createdAt}
+            {formatDate(new Date(studyLogData.createdAt))}
           </Text>
           <Text>.</Text>
         </div>
