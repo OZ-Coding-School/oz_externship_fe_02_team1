@@ -11,7 +11,7 @@ import {
 } from 'date-fns'
 import { cn, formatTime } from '@utils'
 import type { StudyGroupScheduleList } from '@models'
-import { CalendarHeader, Text } from '@components'
+import { CalendarDays, CalendarHeader, Text } from '@components'
 
 interface CalendarProps {
   schedule: StudyGroupScheduleList[]
@@ -30,7 +30,6 @@ export default function ScheduleCalendar({ schedule }: CalendarProps) {
   const endDate = endOfWeek(monthEnd)
 
   const days = eachDayOfInterval({ start: startDate, end: endDate })
-  const dayNames = ['일', '월', '화', '수', '목', '금', '토']
 
   return (
     <>
@@ -39,20 +38,7 @@ export default function ScheduleCalendar({ schedule }: CalendarProps) {
         setCurrentMonth={setCurrentMonth}
       />
 
-      {/* Calendar Grid */}
-      <div className="grid grid-cols-7 rounded-t-lg border-t border-l border-gray-200 text-center text-sm text-gray-500">
-        {dayNames.map((day, index) => (
-          <div
-            key={day}
-            className={cn(
-              'border-r border-gray-200 bg-gray-50 py-2 text-sm text-gray-700',
-              index === dayNames.length - 1 && 'rounded-tr-lg'
-            )}
-          >
-            {day}
-          </div>
-        ))}
-      </div>
+      <CalendarDays />
       <div className="grid grid-cols-7 border-t border-l border-gray-200">
         {days.map((day, index) => {
           const dateKey = format(day, 'yyyy-MM-dd')
