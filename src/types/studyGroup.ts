@@ -20,6 +20,14 @@ export interface StudyGroupLogList {
   attachment?: string[]
 }
 
+export interface StudyGroupScheduleList {
+  id: number
+  title: string
+  date: Date
+  startTime: Date
+  endTime: Date
+}
+
 export interface StudyGroup {
   backgroundImage?: string
   studyGroupName: string
@@ -30,4 +38,5 @@ export interface StudyGroup {
   lecture?: StudyGroupLectureList[]
   member: StudyGroupMemberList[]
   studyLog?: StudyGroupLogList[]
+  schedule?: StudyGroupScheduleList[]
 }
