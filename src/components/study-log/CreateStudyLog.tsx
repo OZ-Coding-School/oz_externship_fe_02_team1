@@ -1,26 +1,28 @@
 import { useState } from 'react'
 
 import {
+  BreadCrumb,
   Button,
   FileUpload,
   H2,
   Input,
   MarkdownEditor,
   Text,
-  BreadCrumb,
+  type UploadedFile,
 } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
 
 export default function CreateStudyLog() {
   const [description, setDescription] = useState('')
   const [title, setTitle] = useState('')
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
   }
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
+  const handleFilesChange = (files: UploadedFile[]) => {
+    setUploadedFiles(files)
   }
 
   return (
@@ -66,7 +68,7 @@ export default function CreateStudyLog() {
           <Text className="pb-2 text-sm font-medium text-gray-700">
             첨부 파일
           </Text>
-          <FileUpload onChange={handleFileUpload} />
+          <FileUpload onChange={handleFilesChange} />
         </div>
       </section>
       {/* 맨 아래 취소, 저장 버튼 */}
