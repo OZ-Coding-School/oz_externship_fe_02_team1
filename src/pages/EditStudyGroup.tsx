@@ -14,6 +14,8 @@ import { useMediaQuery } from 'react-responsive'
 import { mediaQuery } from '@constants'
 import { cn } from '@utils'
 
+const INITIAL_MEMBER_COUNT = 6
+
 export default function StudyGroupEdit() {
   const { handleGoBack } = usePageNav()
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
@@ -21,6 +23,10 @@ export default function StudyGroupEdit() {
   const [groupName, setGroupName] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [imageFile, setImageFile] = useState<File | null>(null)
+
+  const [startDate, setStartDate] = useState<string>('')
+  const [endDate, setEndDate] = useState<string>('')
+  const [memberCount, setMemberCount] = useState<number>(INITIAL_MEMBER_COUNT)
 
   return (
     <form className="flex flex-col gap-6 lg:gap-8">
@@ -48,7 +54,14 @@ export default function StudyGroupEdit() {
         imageFile={imageFile}
         onChangeImage={setImageFile}
       />
-      <PeriodMemberSection />
+      <PeriodMemberSection
+        startDate={startDate}
+        endDate={endDate}
+        memberCount={memberCount}
+        onStartDateChange={setStartDate}
+        onEndDateChange={setEndDate}
+        onMemberCountChange={setMemberCount}
+      />
       <LectureSelectSection />
 
       <div className="flex justify-end gap-4">
