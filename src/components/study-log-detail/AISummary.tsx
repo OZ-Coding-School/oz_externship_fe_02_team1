@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { BaseEmptyState, LoadingState } from '@components'
 
 interface AISummaryProps {
-  recordId: string
+  recordId: string | undefined
 }
 
 export default function AISummary({ recordId }: AISummaryProps) {
@@ -13,6 +13,8 @@ export default function AISummary({ recordId }: AISummaryProps) {
   const [error, setError] = useState<string>('')
 
   useEffect(() => {
+    if (!recordId) return
+
     const fetchAISummary = async () => {
       try {
         setLoading(true)
