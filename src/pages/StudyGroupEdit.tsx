@@ -6,6 +6,7 @@ import {
   Text,
   PrimaryInfoSection,
   PeriodMemberSection,
+  LectureSelectSection,
 } from '@components'
 
 export default function StudyGroupEdit() {
@@ -28,6 +29,7 @@ export default function StudyGroupEdit() {
 
       <PrimaryInfoSection />
       <PeriodMemberSection />
+      <LectureSelectSection />
 
       <div className="flex justify-end gap-4">
         <Button variant="outline" className="bg-transparent">
