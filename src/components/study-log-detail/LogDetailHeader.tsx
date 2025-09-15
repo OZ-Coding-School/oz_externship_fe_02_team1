@@ -1,5 +1,5 @@
 import { BREAD_CRUMB_PATH } from '@/constants'
-import { BreadCrumb, Button, H3, Text } from '@components'
+import { Avatar, BreadCrumb, Button, H3, Text } from '@components'
 import { formatDate } from '@utils'
 
 interface LogDetailHeaderProps {
@@ -36,10 +36,10 @@ export default function LogDetailHeader({
 
         <section className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <img
+            <Avatar
+              size="sm"
               src={studyLogData.userImage}
               alt={studyLogData.userName}
-              className="h-8 w-8 rounded-full"
             />
             <Text variant="small" className="font-medium text-gray-600">
               {studyLogData.userName}
