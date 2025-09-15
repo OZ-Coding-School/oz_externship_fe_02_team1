@@ -9,4 +9,4 @@ export const SLIDER_THUMB_STYLE =
   '[&::-webkit-slider-thumb]:bg-[#007BFF] [&::-webkit-slider-thumb]:mt-[-4px] [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 ' +
   '[&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow ' +
   '[&::-moz-range-thumb]:bg-primary-500 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5' +
-  ' [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:shadow'
+  '[&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:shadow'
