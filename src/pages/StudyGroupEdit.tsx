@@ -9,9 +9,13 @@ import {
   PeriodMemberSection,
   LectureSelectSection,
 } from '@components'
+import { useMediaQuery } from 'react-responsive'
+import { mediaQuery } from '@constants'
+import { cn } from '@utils'
 
 export default function StudyGroupEdit() {
   const { handleGoBack } = usePageNav()
+  const isMobile = useMediaQuery({ query: mediaQuery.mobile })
 
   return (
     <form className="flex flex-col gap-6 lg:gap-8">
@@ -24,7 +28,7 @@ export default function StudyGroupEdit() {
           <ArrowLongLeftIcon width={16} />
         </button>
         <div className="flex flex-col gap-1">
-          <H2>스터디 그룹 수정</H2>
+          <H2 className={cn(isMobile && 'text-2xl')}>스터디 그룹 수정</H2>
           <Text className="text-gray-600">
             스터디 그룹 정보를 수정해주세요.
           </Text>
@@ -39,13 +43,17 @@ export default function StudyGroupEdit() {
         <Button
           type="button"
           variant="outline"
-          size="large"
+          size={isMobile ? 'small' : 'large'}
           className="bg-transparent"
           onClick={handleGoBack}
         >
           취소
         </Button>
-        <Button type="submit" size="large" className="px-8">
+        <Button
+          type="submit"
+          size={isMobile ? 'small' : 'large'}
+          className={cn(!isMobile && 'px-8')}
+        >
           스터디 그룹 만들기
         </Button>
       </div>
