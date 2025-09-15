@@ -6,5 +6,6 @@ export { default as MembersSlider } from '@components/create-study-group/Members
 export { default as StudyGroupForm } from '@components/create-study-group/StudyGroupForm'
 export { default as StudyGroupFormContainer } from '@components/create-study-group/StudyGroupFormContainer'
 export { default as FormHeader } from '@components/create-study-group/FormHeader'
+export { default as FormFooter } from '@components/create-study-group/FormFooter'
 export * from '@components/create-study-group/MembersSlider.styles'
 export * from '@components/create-study-group/modal'
