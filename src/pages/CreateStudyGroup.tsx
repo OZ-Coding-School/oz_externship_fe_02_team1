@@ -1,125 +1,105 @@
-import { PlusIcon, ArrowLeftIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react'
+import { ArrowLongLeftIcon, PlusIcon } from '@heroicons/react/24/outline'
 
-import { Button, H1, Text } from '@components'
-import BasicInfoSection from '@components/create-group/BasicInfoSection'
-import DateModal from '@components/create-group/DatePickerModal'
-import LecturePickerSection from '@components/create-group/LecturePickerSection'
-import PeriodMembersSection from '@components/create-group/PeriodMembersSection'
-import { useCreateGroupForm } from '@components/create-group/useCreateGroupForm'
+import {
+  Button,
+  H2,
+  Text,
+  PrimaryInfoSection,
+  PeriodMemberSection,
+  LectureSelectSection,
+} from '@components'
+import { usePageNav } from '@hooks'
+import { useMediaQuery } from 'react-responsive'
+import { mediaQuery } from '@constants'
+import { cn } from '@utils'
+import type { StudyGroupLectureList } from '@models'
+
+const INITIAL_MEMBER_COUNT = 6
 
 export default function CreateStudyGroup() {
-  const {
-    // 기본 정보
-    groupName,
-    setGroupName,
-    description,
-    setDescription,
+  const { handleGoBack } = usePageNav()
+  const isMobile = useMediaQuery({ query: mediaQuery.mobile })
 
-    // 기간/인원
-    startDate,
-    endDate,
-    maxMembers,
-    setMaxMembers,
+  // --- 기본 정보 상태 ---
+  const [groupName, setGroupName] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
+  const [imageFile, setImageFile] = useState<File | null>(null)
 
-    // 제출
-    isSubmitDisabled,
-    handleSubmit,
+  // --- 기간/인원 상태 ---
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
+  const [memberCount, setMemberCount] = useState<number>(INITIAL_MEMBER_COUNT)
 
-    // 날짜 모달 관련
-    openDateKind,
-    tempDate,
-    setTempDate,
-    openStartPicker,
-    openEndPicker,
-    closeDateModal,
-    confirmDateModal,
-    minEndForEndPicker,
-    confirmDisabled,
-    hasRangeError,
-  } = useCreateGroupForm()
+  // --- 강의 정보 상태 ---
+  const [lectures, setLectures] = useState<StudyGroupLectureList[]>([])
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mx-auto w-full max-w-[832px] px-4 py-8"
-    >
-      <header className="mb-6 flex items-center gap-2">
-        <Button
+    <form className="flex flex-col gap-6 lg:gap-8">
+      <div className="flex items-center gap-4">
+        <button
           type="button"
-          variant="ghost"
-          className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200"
-          onClick={() => history.back()}
+          className="cursor-pointer rounded-full bg-gray-100 p-3 transition-colors duration-300 hover:bg-gray-200"
+          onClick={handleGoBack}
         >
-          <ArrowLeftIcon
-            width={28}
-            height={28}
-            className="h-7 w-7 text-gray-600"
-            strokeWidth={2.5}
-          />
-        </Button>
-
-        <div>
-          <H1>새 스터디 그룹 만들기</H1>
-          <Text variant="small" className="mt-1 block text-gray-500">
-            함께 공부할 멤버들의 스터디 그룹을 시작해보세요
+          <ArrowLongLeftIcon width={16} />
+        </button>
+        <div className="flex flex-col gap-1">
+          <H2 className={cn(isMobile && 'text-2xl')}>새 스터디 그룹 만들기</H2>
+          <Text className="text-gray-600">
+            함께 공부할 멤버들과 스터디 그룹을 시작해보세요.
           </Text>
         </div>
-      </header>
+      </div>
 
-      {/* 기본 정보 */}
-      <BasicInfoSection
+      <PrimaryInfoSection
         groupName={groupName}
-        description={description}
         onChangeGroupName={setGroupName}
+        description={description}
         onChangeDescription={setDescription}
+        imageFile={imageFile}
+        onChangeImage={setImageFile}
       />
-
-      {/* 기간 & 인원 */}
-      <PeriodMembersSection
+      <PeriodMemberSection
         startDate={startDate}
         endDate={endDate}
-        maxMembers={maxMembers}
-        onOpenStart={openStartPicker}
-        onOpenEnd={openEndPicker}
-        onChangeMaxMembers={setMaxMembers}
-        hasRangeError={hasRangeError}
+        memberCount={memberCount}
+        onStartDateChange={setStartDate}
+        onEndDateChange={setEndDate}
+        onMemberCountChange={setMemberCount}
       />
-
-      {/* 강의 선택(임시)－모달 생성 후 수정 예정 */}
-      <LecturePickerSection
-        selectedLectures={[]} // 선택된 강의 목록
+      <LectureSelectSection
+        lectures={lectures}
         actionSlot={
-          <Button type="button" size="small" aria-label="강의 선택">
-            <span className="inline-flex items-center gap-1.5">
-              <PlusIcon className="h-4 w-4" aria-hidden />
-              <span>강의 선택</span>
-            </span>
+          <Button
+            type="button"
+            size={isMobile ? 'small' : 'medium'}
+            className={cn(isMobile ? 'py-2' : 'py-2 text-base')}
+          >
+            <PlusIcon width={16} />
+            강의 추가하기
           </Button>
         }
       />
 
-      {/* 액션 */}
-      <footer className="mt-8 flex items-center justify-end gap-3">
-        <Button type="button" variant="outline" onClick={() => history.back()}>
+      <div className="flex justify-end gap-4">
+        <Button
+          type="button"
+          variant="outline"
+          size={isMobile ? 'small' : 'large'}
+          className="bg-transparent"
+          onClick={handleGoBack}
+        >
           취소
         </Button>
-        <Button type="submit" variant="primary" disabled={isSubmitDisabled}>
+        <Button
+          type="submit"
+          size={isMobile ? 'small' : 'large'}
+          className={cn(!isMobile && 'px-8')}
+        >
           스터디 그룹 만들기
         </Button>
-      </footer>
-
-      {/* 날짜 선택 모달 */}
-      <DateModal
-        isOpen={!!openDateKind}
-        kind={openDateKind}
-        tempDate={tempDate}
-        setTempDate={setTempDate}
-        minEndForEndPicker={minEndForEndPicker}
-        endDate={endDate}
-        close={closeDateModal}
-        confirm={confirmDateModal}
-        confirmDisabled={confirmDisabled}
-      />
+      </div>
     </form>
   )
 }
