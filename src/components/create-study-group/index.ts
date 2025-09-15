@@ -2,3 +2,4 @@ export { default as PrimaryInfoSection } from '@components/create-study-group/Pr
 export { default as PeriodMemberSection } from '@components/create-study-group/PeriodMemberSection'
 export { default as LectureSelectSection } from '@components/create-study-group/LectureSelectSection'
 export { default as SelectedLectureCard } from '@components/create-study-group/SelectedLectureCard'
+export { default as DatePickerModal } from '@components/create-study-group/DatePickerModal'
