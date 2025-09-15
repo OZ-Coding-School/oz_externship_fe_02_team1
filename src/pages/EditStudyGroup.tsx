@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
+import { ArrowLongLeftIcon, PlusIcon } from '@heroicons/react/24/outline'
 
 import {
   Button,
@@ -13,6 +13,7 @@ import { usePageNav } from '@hooks'
 import { useMediaQuery } from 'react-responsive'
 import { mediaQuery } from '@constants'
 import { cn } from '@utils'
+import type { StudyGroupLectureList } from '@models'
 
 const INITIAL_MEMBER_COUNT = 6
 
@@ -20,13 +21,18 @@ export default function StudyGroupEdit() {
   const { handleGoBack } = usePageNav()
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
 
+  // --- 기본 정보 상태 ---
   const [groupName, setGroupName] = useState<string>('')
   const [description, setDescription] = useState<string>('')
   const [imageFile, setImageFile] = useState<File | null>(null)
 
-  const [startDate, setStartDate] = useState<string>('')
-  const [endDate, setEndDate] = useState<string>('')
+  // --- 기간/인원 상태 ---
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
   const [memberCount, setMemberCount] = useState<number>(INITIAL_MEMBER_COUNT)
+
+  // --- 강의 정보 상태 ---
+  const [lectures, setLectures] = useState<StudyGroupLectureList[]>([])
 
   return (
     <form className="flex flex-col gap-6 lg:gap-8">
@@ -62,7 +68,19 @@ export default function StudyGroupEdit() {
         onEndDateChange={setEndDate}
         onMemberCountChange={setMemberCount}
       />
-      <LectureSelectSection />
+      <LectureSelectSection
+        lectures={lectures}
+        actionSlot={
+          <Button
+            type="button"
+            size={isMobile ? 'small' : 'medium'}
+            className={cn(isMobile ? 'py-2' : 'py-2 text-base')}
+          >
+            <PlusIcon width={16} />
+            강의 추가하기
+          </Button>
+        }
+      />
 
       <div className="flex justify-end gap-4">
         <Button

@@ -1,49 +1,51 @@
-import { PlusIcon } from '@heroicons/react/24/outline'
-import { useMediaQuery } from 'react-responsive'
+import type { ReactNode } from 'react'
+import { BookmarkSquareIcon } from '@heroicons/react/24/outline'
 
-import { Button, Card, SelectedLectureCard, Text } from '@components'
-import { mediaQuery } from '@constants'
-import { studyGroup } from '@mocks/studyGroupDetail'
-import { cn } from '@utils'
+import { Card, SelectedLectureCard, Text } from '@components'
+import type { StudyGroupLectureList } from '@models'
 
-export default function LectureSelectSection() {
-  const isMobile = useMediaQuery({ query: mediaQuery.mobile })
+interface LectureSelectSectionProps {
+  lectures: StudyGroupLectureList[]
+  actionSlot: ReactNode
+}
 
+export default function LectureSelectSection({
+  lectures,
+  actionSlot,
+}: LectureSelectSectionProps) {
   return (
     <Card
       title="강의 선택"
       titleClassName="text-xl pb-0"
       cardClassName="lg:p-8 gap-1"
     >
-      <Button
-        size={isMobile ? 'small' : 'medium'}
-        className={cn(
-          'absolute',
-          isMobile ? 'right-6' : 'right-8 py-2 text-base'
-        )}
-      >
-        <PlusIcon width={16} />
-        강의 추가하기
-      </Button>
+      <div className="absolute top-8 right-8">{actionSlot}</div>
 
       <div className="flex flex-col gap-4">
         <Text className="text-gray-600" variant="small">
           스터디에서 함께 공부할 강의를 선택하세요 (최대 5개)
         </Text>
 
-        {studyGroup.lecture && studyGroup.lecture.length ? (
+        {lectures && lectures.length > 0 ? (
           <div className="flex flex-col gap-4 p-3">
-            {studyGroup.lecture.map((el) => (
+            {lectures.map((el) => (
               <SelectedLectureCard key={el.title} lecture={el} />
             ))}
             <Text variant="small" className="font-medium text-gray-500">
-              {studyGroup.lecture.length}/5개 강의 선택됨
+              {lectures.length}/5개 강의 선택됨
             </Text>
           </div>
         ) : (
-          <div className="py-10 text-center">
-            <Text className="text-gray-600" variant="small">
-              선택된 강의가 없습니다.
+          <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-gray-300 p-12 text-center">
+            <BookmarkSquareIcon
+              className="h-10 w-10 text-gray-400"
+              aria-hidden
+            />
+            <Text className="mt-3 text-gray-500">
+              아직 선택된 강의가 없습니다
+            </Text>
+            <Text className="mt-1 text-gray-400" variant="extraSmall">
+              강의 추가하기 버튼을 클릭해서 강의를 선택해보세요
             </Text>
           </div>
         )}
