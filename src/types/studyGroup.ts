@@ -31,6 +31,7 @@ export interface StudyGroupScheduleList {
 export interface StudyGroup {
   backgroundImage?: string
   studyGroupName: string
+  description?: string
   currentMemberCount: number
   maxMemberCount: number
   startDate: Date
