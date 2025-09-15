@@ -1,19 +1,13 @@
 import { useState, useEffect } from 'react'
 
-import { StudyGroupForm } from '@components'
+import { StudyGroupForm, type FormMode } from '@components'
 import { formatToYMD } from '@utils'
 import type { StudyGroupLectureList } from '@models'
 import { studyGroup } from '@mocks/studyGroupDetail'
 
-interface StudyGroupFormContainerProps {
-  mode: 'create' | 'edit'
-}
-
 const INITIAL_MEMBER_COUNT = 6
 
-export default function StudyGroupFormContainer({
-  mode,
-}: StudyGroupFormContainerProps) {
+export default function StudyGroupFormContainer({ mode }: FormMode) {
   const [groupName, setGroupName] = useState<string>('')
   const [description, setDescription] = useState<string | undefined>('')
   const [imageFile, setImageFile] = useState<File | null>(null)

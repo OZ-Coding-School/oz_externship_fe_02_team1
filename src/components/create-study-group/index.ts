@@ -9,3 +9,4 @@ export { default as FormHeader } from '@components/create-study-group/FormHeader
 export { default as FormFooter } from '@components/create-study-group/FormFooter'
 export * from '@components/create-study-group/MembersSlider.styles'
 export * from '@components/create-study-group/modal'
+export * from '@components/create-study-group/form.types'

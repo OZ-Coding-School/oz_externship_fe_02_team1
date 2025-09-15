@@ -1,14 +1,10 @@
 import { usePageNav } from '@hooks'
-import { Button } from '@components'
+import { Button, type FormMode } from '@components'
 import { useMediaQuery } from 'react-responsive'
 import { mediaQuery } from '@constants'
 import { cn } from '@utils'
 
-interface FormFooterProps {
-  mode: 'create' | 'edit'
-}
-
-export default function FormFooter({ mode }: FormFooterProps) {
+export default function FormFooter({ mode }: FormMode) {
   const { handleGoBack } = usePageNav()
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
 

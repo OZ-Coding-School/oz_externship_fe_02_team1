@@ -7,14 +7,14 @@ import {
   LectureSelectSection,
   FormHeader,
   FormFooter,
+  type FormMode,
 } from '@components'
 import { cn } from '@utils'
 import type { StudyGroupLectureList } from '@models'
 import { useMediaQuery } from 'react-responsive'
 import { mediaQuery } from '@constants'
 
-interface StudyGroupFormProps {
-  mode: 'create' | 'edit'
+interface StudyGroupFormProps extends FormMode {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
 
   // Primary Info
