@@ -114,6 +114,7 @@ export const studyGroupSchedule: StudyGroupScheduleList[] = [
 ]
 
 export const studyGroup: StudyGroup = {
+  backgroundImage: Images.studyGroupDefault,
   studyGroupName: 'React 실무 프로젝트 스터디',
   description: 'React 실무 프로젝트 스터디입니다.',
   currentMemberCount: 8,
