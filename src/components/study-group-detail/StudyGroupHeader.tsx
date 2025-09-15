@@ -7,10 +7,10 @@ import {
 
 import { Images } from '@assets'
 import { Button, StudyBadge, Text } from '@components'
+import { usePageNav } from '@hooks'
 import { formatDate } from '@utils'
 
 import type { StudyGroup } from '@models'
-import { usePageNav } from '@hooks'
 
 interface StudyGroupHeaderProps
   extends Pick<

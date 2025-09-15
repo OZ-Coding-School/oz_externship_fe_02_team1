@@ -1,9 +1,9 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
+import { useMediaQuery } from 'react-responsive'
 
 import { Button, Card, SelectedLectureCard, Text } from '@components'
-import { studyGroup } from '@mocks/studyGroupDetail'
-import { useMediaQuery } from 'react-responsive'
 import { mediaQuery } from '@constants'
+import { studyGroup } from '@mocks/studyGroupDetail'
 import { cn } from '@utils'
 
 export default function LectureSelectSection() {

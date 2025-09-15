@@ -1,5 +1,5 @@
 import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
-import { usePageNav } from '@hooks'
+import { useMediaQuery } from 'react-responsive'
 
 import {
   Button,
@@ -9,8 +9,8 @@ import {
   PeriodMemberSection,
   LectureSelectSection,
 } from '@components'
-import { useMediaQuery } from 'react-responsive'
 import { mediaQuery } from '@constants'
+import { usePageNav } from '@hooks'
 import { cn } from '@utils'
 
 export default function StudyGroupEdit() {

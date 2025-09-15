@@ -1,6 +1,7 @@
-import { BREAD_CRUMB_PATH } from '@/constants'
 import { Avatar, BreadCrumb, Button, H3, Text } from '@components'
 import { formatDate } from '@utils'
+
+import { BREAD_CRUMB_PATH } from '@constants'
 
 interface LogDetailHeaderProps {
   studyLogData: {
