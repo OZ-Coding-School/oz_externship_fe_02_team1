@@ -3,11 +3,9 @@ import BaseModal from '@components/common/modal/BaseModal'
 import ModalBody from '@components/common/modal/ModalBody'
 import MODAL_PRESETS from '@components/common/modal/ModalPresets'
 
-import type { DateKind } from '@components/create-group/types'
-
 interface DatePickerModalProps {
   isOpen: boolean
-  kind: DateKind | null
+  kind: 'start' | 'end' | null
   tempDate?: Date
   setTempDate: (d?: Date) => void
   close: () => void
