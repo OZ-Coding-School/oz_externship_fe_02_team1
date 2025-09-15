@@ -3,3 +3,5 @@ export { default as PeriodMemberSection } from '@components/create-study-group/P
 export { default as LectureSelectSection } from '@components/create-study-group/LectureSelectSection'
 export { default as SelectedLectureCard } from '@components/create-study-group/SelectedLectureCard'
 export { default as DatePickerModal } from '@components/create-study-group/DatePickerModal'
+export { default as MembersSlider } from '@components/create-study-group/MembersSlider'
+export * from '@components/create-study-group/MembersSlider.styles'

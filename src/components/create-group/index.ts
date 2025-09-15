@@ -1,6 +1,5 @@
 export { default as PeriodMembersSection } from '@components/create-group/PeriodMembersSection'
 export { default as LecturePickerSection } from '@components/create-group/LecturePickerSection'
-export { default as MembersSlider } from '@components/create-group/MembersSlider'
 export { default as DateRangeFields } from '@components/create-group/DateRangeFields'
 export * from '@components/create-group/constants'
 export * from '@components/create-group/types'

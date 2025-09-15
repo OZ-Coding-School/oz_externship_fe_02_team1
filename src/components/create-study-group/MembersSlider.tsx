@@ -1,11 +1,13 @@
 import { UserGroupIcon } from '@heroicons/react/24/outline'
 
-import { MIN_MEMBERS, MAX_MEMBERS, Text } from '@components'
 import {
-  SLIDER_BASE,
-  SLIDER_THUMB,
-  SLIDER_TRACK,
-} from '@components/create-group/MembersSlider.styles'
+  MIN_MEMBERS,
+  MAX_MEMBERS,
+  Text,
+  SLIDER_BASE_STYLE,
+  SLIDER_THUMB_STYLE,
+  SLIDER_TRACK_STYLE,
+} from '@components'
 import { cn } from '@utils'
 
 interface MembersInputProps {
@@ -44,7 +46,11 @@ export default function MembersSlider({
           aria-valuemin={MIN_MEMBERS}
           aria-valuemax={MAX_MEMBERS}
           aria-valuenow={value}
-          className={cn(SLIDER_BASE, SLIDER_TRACK, SLIDER_THUMB)}
+          className={cn(
+            SLIDER_BASE_STYLE,
+            SLIDER_TRACK_STYLE,
+            SLIDER_THUMB_STYLE
+          )}
         />
         <div className="flex items-center">
           <UserGroupIcon width={16} className="text-gray-400" />
