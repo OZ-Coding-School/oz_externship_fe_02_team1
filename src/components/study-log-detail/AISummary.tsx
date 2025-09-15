@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { BaseEmptyState, LoadingState } from '@components'
 
 interface AISummaryProps {
-  recordId: string | undefined
+  recordId?: string
 }
 
 export default function AISummary({ recordId }: AISummaryProps) {
@@ -18,10 +18,15 @@ export default function AISummary({ recordId }: AISummaryProps) {
     const fetchAISummary = async () => {
       try {
         setLoading(true)
-        const res = await axios.get('')
-        setSummary(res.data.summary)
+        const { data } = await axios.get('')
+        const { summary } = data
+        setSummary(summary)
       } catch (err) {
-        setError('AI 요약을 불러오는 데 실패했어요 😢')
+        if (err instanceof Error) {
+          setError(err.message)
+        } else {
+          setError('AI 요약을 불러오는데 실패했습니다.')
+        }
       } finally {
         setLoading(false)
       }
