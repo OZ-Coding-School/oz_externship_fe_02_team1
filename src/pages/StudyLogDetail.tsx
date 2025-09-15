@@ -1,3 +1,4 @@
+import { LogDetailAISummary } from '@components'
 import { LogDetailHeader } from '@components'
 
 export default function StudyLogDetail() {
@@ -10,6 +11,7 @@ export default function StudyLogDetail() {
   return (
     <>
       <LogDetailHeader studyLogData={studyLogData} />
+      <LogDetailAISummary />
     </>
   )
 }
