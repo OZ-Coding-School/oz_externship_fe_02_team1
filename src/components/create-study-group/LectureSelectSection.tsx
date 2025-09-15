@@ -18,7 +18,7 @@ export default function LectureSelectSection() {
       {studyGroup.lecture && studyGroup.lecture.length ? (
         <div className="mt-4 flex flex-col gap-4 p-3">
           {studyGroup.lecture.map((el) => (
-            <SelectedLectureCard lecture={el} />
+            <SelectedLectureCard key={el.title} lecture={el} />
           ))}
           <Text variant="small" className="font-medium text-gray-500">
             {studyGroup.lecture.length}/5개 강의 선택됨
