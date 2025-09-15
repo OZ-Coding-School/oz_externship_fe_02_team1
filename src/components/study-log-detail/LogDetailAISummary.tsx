@@ -1,9 +1,9 @@
-import { useState } from 'react'
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react'
 
 import { AIIcon } from '@assets'
-import { Text } from '@components'
-import { AISummary } from '@components'
+import { Text , AISummary } from '@components'
+
 
 export default function LogDetailAISummary() {
   const [isSummaryOpened, setIsSummaryOpened] = useState(false)
