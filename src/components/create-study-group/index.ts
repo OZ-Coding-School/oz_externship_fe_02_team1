@@ -3,5 +3,7 @@ export { default as PeriodMemberSection } from '@components/create-study-group/P
 export { default as LectureSelectSection } from '@components/create-study-group/LectureSelectSection'
 export { default as SelectedLectureCard } from '@components/create-study-group/SelectedLectureCard'
 export { default as MembersSlider } from '@components/create-study-group/MembersSlider'
+export { default as StudyGroupForm } from '@components/create-study-group/StudyGroupForm'
+export { default as StudyGroupFormContainer } from '@components/create-study-group/StudyGroupFormContainer'
 export * from '@components/create-study-group/MembersSlider.styles'
 export * from '@components/create-study-group/modal'
