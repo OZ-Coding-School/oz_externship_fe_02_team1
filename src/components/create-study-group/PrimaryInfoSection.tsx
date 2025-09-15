@@ -39,6 +39,7 @@ export default function PrimaryInfoSection({
     >
       <Input
         label="스터디 그룹명"
+        placeholder="스터디 그룹의 이름을 입력하세요"
         isRequired
         className="mt-0.5"
         value={groupName}
