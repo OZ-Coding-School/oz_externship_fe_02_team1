@@ -115,6 +115,7 @@ export const studyGroupSchedule: StudyGroupScheduleList[] = [
 
 export const studyGroup: StudyGroup = {
   studyGroupName: 'React 실무 프로젝트 스터디',
+  description: 'React 실무 프로젝트 스터디입니다.',
   currentMemberCount: 8,
   maxMemberCount: 10,
   startDate: new Date('2024-02-01'),
