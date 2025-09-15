@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { useEffect, useState } from 'react'
+
 import { BaseEmptyState, LoadingState } from '@components'
 
 interface AISummaryProps {
