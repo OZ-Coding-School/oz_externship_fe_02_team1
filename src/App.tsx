@@ -5,7 +5,7 @@ import { CreateStudyLog, Layout } from '@components'
 import {
   CreateStudyGroup,
   StudyGroupDetail,
-  StudyGroupEdit,
+  EditStudyGroup,
   StudyLogDetail,
 } from '@pages'
 
@@ -21,7 +21,7 @@ function App() {
         element={<Layout maxWidth="medium" isBackgroundGray />}
       >
         <Route path="create" element={<CreateStudyGroup />} />
-        <Route path=":groupId/edit" element={<StudyGroupEdit />} />
+        <Route path=":groupId/edit" element={<EditStudyGroup />} />
       </Route>
 
       <Route path="/study-group" element={<Layout maxWidth="medium" />}>

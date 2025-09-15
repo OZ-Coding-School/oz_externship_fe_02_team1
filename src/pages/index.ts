@@ -1,5 +1,5 @@
 export { default as StudyGroupDetail } from '@pages/StudyGroupDetail'
-export { default as StudyGroupEdit } from '@pages/StudyGroupEdit'
+export { default as EditStudyGroup } from '@/pages/EditStudyGroup'
 export { default as CreateStudyLog } from '@pages/CreateStudyLog'
 export { default as CreateStudyGroup } from '@pages/CreateStudyGroup'
 export { default as StudyLogDetail } from '@pages/StudyLogDetail'
