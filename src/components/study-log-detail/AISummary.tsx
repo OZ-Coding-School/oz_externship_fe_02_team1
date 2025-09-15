@@ -9,7 +9,7 @@ interface AISummaryProps {
 
 export default function AISummary({ recordId }: AISummaryProps) {
   const [summary, setSummary] = useState<string>('')
-  const [loading, setLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function AISummary({ recordId }: AISummaryProps) {
 
     const fetchAISummary = async () => {
       try {
-        setLoading(true)
+        setIsLoading(true)
         const { data } = await axios.get('')
         const { summary } = data
         setSummary(summary)
@@ -28,14 +28,14 @@ export default function AISummary({ recordId }: AISummaryProps) {
           setError('AI 요약을 불러오는데 실패했습니다.')
         }
       } finally {
-        setLoading(false)
+        setIsLoading(false)
       }
     }
 
     fetchAISummary()
   }, [recordId])
 
-  if (loading)
+  if (isLoading)
     return (
       <div className="p-4">
         <LoadingState />
