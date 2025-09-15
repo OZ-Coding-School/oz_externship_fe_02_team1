@@ -1,14 +1,15 @@
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { AIIcon } from '@assets'
-import { Text , AISummary } from '@components'
-
+import { Text, AISummary } from '@components'
 
 export default function LogDetailAISummary() {
   const [isSummaryOpened, setIsSummaryOpened] = useState(false)
+  const { recordId } = useParams<{ recordId: string }>()
 
-  const handleClickFold = () => {
+  const handleToggleSummary = () => {
     setIsSummaryOpened((prev) => !prev)
   }
 
@@ -29,7 +30,7 @@ export default function LogDetailAISummary() {
         </div>
         <button
           className="flex cursor-pointer items-center gap-1"
-          onClick={handleClickFold}
+          onClick={handleToggleSummary}
         >
           <Icon className="h-4 w-4" />
           <Text variant="small" className="text-gray-600">
@@ -37,7 +38,7 @@ export default function LogDetailAISummary() {
           </Text>
         </button>
       </div>
-      {isSummaryOpened && <AISummary />}
+      {isSummaryOpened && <AISummary recordId={recordId} />}
     </section>
   )
 }
