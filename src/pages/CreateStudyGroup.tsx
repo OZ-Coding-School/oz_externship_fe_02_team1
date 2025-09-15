@@ -7,7 +7,7 @@ import LecturePickerSection from '@components/create-group/LecturePickerSection'
 import PeriodMembersSection from '@components/create-group/PeriodMembersSection'
 import { useCreateGroupForm } from '@components/create-group/useCreateGroupForm'
 
-const CreateGroup = () => {
+export default function CreateStudyGroup() {
   const {
     // 기본 정보
     groupName,
@@ -123,5 +123,3 @@ const CreateGroup = () => {
     </form>
   )
 }
-
-export default CreateGroup
