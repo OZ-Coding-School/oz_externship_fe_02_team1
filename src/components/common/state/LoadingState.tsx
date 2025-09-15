@@ -2,8 +2,8 @@ import { H4, Text } from '@components'
 import { cn } from '@utils'
 
 interface LoadingStateProps {
-  title: string
-  description: string
+  title?: string
+  description?: string
   className?: string
 }
 

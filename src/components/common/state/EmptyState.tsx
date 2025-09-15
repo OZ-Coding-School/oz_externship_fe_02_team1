@@ -3,8 +3,8 @@ import { InboxIcon, PlusIcon } from '@heroicons/react/24/outline'
 import { BaseEmptyState, Button } from '@components'
 
 interface EmptyStateProps {
-  title: string
-  description: string
+  title?: string
+  description?: string
   createLabel?: string
   onCreate?: () => void
   className?: string
