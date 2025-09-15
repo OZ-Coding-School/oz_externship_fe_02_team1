@@ -54,9 +54,9 @@ export default function EditStudyGroup() {
           <ArrowLongLeftIcon width={16} />
         </button>
         <div className="flex flex-col gap-1">
-          <H2 className={cn(isMobile && 'text-2xl')}>스터디 그룹 수정</H2>
+          <H2 className={cn(isMobile && 'text-2xl')}>스터디 그룹 수정하기</H2>
           <Text className="text-gray-600">
-            스터디 그룹 정보를 수정해주세요.
+            스터디 그룹 정보를 수정할 수 있습니다.
           </Text>
         </div>
       </div>
@@ -68,6 +68,7 @@ export default function EditStudyGroup() {
         onChangeDescription={setDescription}
         imageFile={imageFile}
         onChangeImage={setImageFile}
+        initialImageUrl={studyGroup.backgroundImage}
       />
       <PeriodMemberSection
         startDate={startDate}

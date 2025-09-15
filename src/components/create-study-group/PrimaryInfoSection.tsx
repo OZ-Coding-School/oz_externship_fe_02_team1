@@ -6,6 +6,7 @@ interface PrimaryInfoSectionProps {
   groupName: string
   description?: string
   imageFile: File | null
+  initialImageUrl?: string | null
   onChangeGroupName: (value: string) => void
   onChangeDescription: (value: string) => void
   onChangeImage: (file: File | null) => void
@@ -15,11 +16,14 @@ export default function PrimaryInfoSection({
   groupName,
   description,
   imageFile,
+  initialImageUrl,
   onChangeGroupName,
   onChangeDescription,
   onChangeImage,
 }: PrimaryInfoSectionProps) {
-  const [imageUrl, setImageUrl] = useState<string | null>(null)
+  const [imageUrl, setImageUrl] = useState<string | null>(
+    initialImageUrl || null
+  )
 
   useEffect(() => {
     if (imageFile) {
@@ -27,9 +31,10 @@ export default function PrimaryInfoSection({
       setImageUrl(url)
 
       return () => URL.revokeObjectURL(url)
+    } else {
+      setImageUrl(initialImageUrl || null)
     }
-    setImageUrl(null)
-  }, [imageFile])
+  }, [imageFile, initialImageUrl])
 
   return (
     <Card
