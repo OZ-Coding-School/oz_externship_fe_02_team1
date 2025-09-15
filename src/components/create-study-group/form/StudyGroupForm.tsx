@@ -1,4 +1,5 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
+import { useMediaQuery } from 'react-responsive'
 
 import {
   Button,
@@ -9,10 +10,10 @@ import {
   FormFooter,
   type FormMode,
 } from '@components'
-import { cn } from '@utils'
-import type { StudyGroupLectureList } from '@models'
-import { useMediaQuery } from 'react-responsive'
 import { mediaQuery } from '@constants'
+import { cn } from '@utils'
+
+import type { StudyGroupLectureList } from '@models'
 
 interface StudyGroupFormProps extends FormMode {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void

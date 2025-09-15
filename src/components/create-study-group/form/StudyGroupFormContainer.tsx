@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 
 import { StudyGroupForm, type FormMode } from '@components'
-import { formatToYMD } from '@utils'
-import type { StudyGroupLectureList } from '@models'
 import { studyGroup } from '@mocks/studyGroupDetail'
+import { formatToYMD } from '@utils'
+
+import type { StudyGroupLectureList } from '@models'
 
 const INITIAL_MEMBER_COUNT = 6
 

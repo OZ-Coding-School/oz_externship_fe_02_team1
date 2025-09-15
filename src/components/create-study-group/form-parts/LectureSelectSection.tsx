@@ -1,7 +1,9 @@
 import type { ReactNode } from 'react'
+
 import { BookmarkSquareIcon } from '@heroicons/react/24/outline'
 
 import { Card, SelectedLectureCard, Text } from '@components'
+
 import type { StudyGroupLectureList } from '@models'
 
 interface LectureSelectSectionProps {

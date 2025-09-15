@@ -1,10 +1,10 @@
 import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
+import { useMediaQuery } from 'react-responsive'
 
 import { H2, Text, type FormMode } from '@components'
-import { cn } from '@utils'
-import { usePageNav } from '@hooks'
-import { useMediaQuery } from 'react-responsive'
 import { mediaQuery } from '@constants'
+import { usePageNav } from '@hooks'
+import { cn } from '@utils'
 
 export default function FormHeader({ mode }: FormMode) {
   const { handleGoBack } = usePageNav()

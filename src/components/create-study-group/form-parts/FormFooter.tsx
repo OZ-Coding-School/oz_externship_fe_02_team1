@@ -1,7 +1,8 @@
-import { usePageNav } from '@hooks'
-import { Button, type FormMode } from '@components'
 import { useMediaQuery } from 'react-responsive'
+
+import { Button, type FormMode } from '@components'
 import { mediaQuery } from '@constants'
+import { usePageNav } from '@hooks'
 import { cn } from '@utils'
 
 export default function FormFooter({ mode }: FormMode) {
