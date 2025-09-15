@@ -7,6 +7,7 @@ import {
 
 import { Images } from '@assets'
 import { Button, StudyBadge, Text } from '@components'
+import { usePageNav } from '@hooks'
 import { formatDate } from '@utils'
 
 import type { StudyGroup } from '@models'
@@ -35,6 +36,8 @@ export default function StudyGroupHeader({
   currentUserRole,
   isMember,
 }: StudyGroupHeaderProps) {
+  const { navigateToGroupEdit } = usePageNav()
+
   const formattedStartDate = formatDate(startDate)
   const formattedLastDate = formatDate(lastDate)
 
@@ -68,13 +71,18 @@ export default function StudyGroupHeader({
 
       <div className="absolute top-6 right-6 flex gap-3">
         {currentUserRole === 'leader' && (
-          <Button variant="ghost" className="bg-white py-2">
+          <Button
+            type="button"
+            variant="ghost"
+            className="bg-white py-2"
+            onClick={navigateToGroupEdit}
+          >
             <PencilIcon width={16} />
             수정하기
           </Button>
         )}
         {isMember && (
-          <Button variant="danger" className="py-2">
+          <Button type="button" variant="danger" className="py-2">
             <ArrowLeftStartOnRectangleIcon width={16} />
             나가기
           </Button>

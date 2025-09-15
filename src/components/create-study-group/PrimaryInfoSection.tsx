@@ -21,7 +21,7 @@ export default function PrimaryInfoSection() {
     <Card
       title="기본 정보"
       titleClassName="text-xl pb-0"
-      cardClassName="p-8 gap-6"
+      cardClassName="lg:p-8 gap-6"
     >
       <Input label="스터디 그룹명" isRequired className="mt-0.5" />
 

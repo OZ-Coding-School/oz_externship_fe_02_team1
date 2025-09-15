@@ -1,16 +1,27 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
+import { useMediaQuery } from 'react-responsive'
 
 import { Button, Card, SelectedLectureCard, Text } from '@components'
+import { mediaQuery } from '@constants'
 import { studyGroup } from '@mocks/studyGroupDetail'
+import { cn } from '@utils'
 
 export default function LectureSelectSection() {
+  const isMobile = useMediaQuery({ query: mediaQuery.mobile })
+
   return (
     <Card
       title="강의 선택"
       titleClassName="text-xl pb-0"
-      cardClassName="p-8 gap-1"
+      cardClassName="lg:p-8 gap-1"
     >
-      <Button className="absolute right-8 py-2 text-base">
+      <Button
+        size={isMobile ? 'small' : 'medium'}
+        className={cn(
+          'absolute',
+          isMobile ? 'right-6' : 'right-8 py-2 text-base'
+        )}
+      >
         <PlusIcon width={16} />
         강의 추가하기
       </Button>

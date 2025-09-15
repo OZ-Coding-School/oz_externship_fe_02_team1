@@ -34,7 +34,7 @@ export default function PeriodMemberSection() {
       <Card
         title="스터디 기간 및 인원"
         titleClassName="text-xl pb-0"
-        cardClassName="p-8 gap-6"
+        cardClassName="lg:p-8 gap-6"
       >
         <div className="grid grid-cols-2 grid-rows-2 gap-6">
           <DateInput
