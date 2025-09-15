@@ -1,5 +1,6 @@
-import { Button, Card, SelectedLectureCard, Text } from '@components'
 import { PlusIcon } from '@heroicons/react/24/outline'
+
+import { Button, Card, SelectedLectureCard, Text } from '@components'
 import { studyGroup } from '@mocks/studyGroupDetail'
 
 export default function LectureSelectSection() {
