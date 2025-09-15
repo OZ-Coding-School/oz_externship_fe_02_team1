@@ -18,8 +18,9 @@ export default function AISummary({ recordId }: AISummaryProps) {
     const fetchAISummary = async () => {
       try {
         setIsLoading(true)
-        const { data } = await axios.get('')
-        const { summary } = data
+        const {
+          data: { summary },
+        } = await axios.get('')
         setSummary(summary)
       } catch (err) {
         if (err instanceof Error) {
