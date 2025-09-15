@@ -5,6 +5,11 @@ import { useState } from 'react'
 
 export default function LogDetailAISummary() {
   const [isSummaryOpened, setIsSummaryOpened] = useState(false)
+
+  const handleClickFold = () => {
+    setIsSummaryOpened((prev) => !prev)
+  }
+
   return (
     <section className="flex items-center justify-between p-6">
       <div className="flex items-center gap-2">
@@ -13,15 +18,22 @@ export default function LogDetailAISummary() {
           AI 학습 내용 요약
         </Text>
       </div>
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-1" onClick={handleClickFold}>
         {isSummaryOpened === true ? (
-          <EyeSlashIcon className="h-4 w-4" />
+          <>
+            <EyeSlashIcon className="h-4 w-4" />
+            <Text variant="small" className="text-gray-600">
+              접기
+            </Text>
+          </>
         ) : (
-          <EyeIcon />
+          <>
+            <EyeIcon className="h-4 w-4" />
+            <Text variant="small" className="text-gray-600">
+              펼치기
+            </Text>
+          </>
         )}
-        <Text variant="small" className="text-gray-600">
-          접기
-        </Text>
       </div>
     </section>
   )
