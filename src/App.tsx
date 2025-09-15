@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router'
 
 import './App.css'
 import { CreateStudyLog, Layout } from '@components'
-import { StudyGroupDetail, StudyGroupEdit } from '@pages'
+import { StudyGroupDetail, StudyGroupEdit, StudyLogDetail } from '@pages'
 
 function App() {
   return (
@@ -16,7 +16,10 @@ function App() {
         element={<Layout maxWidth="medium" isBackgroundGray />}
       >
         <Route path=":groupId/edit" element={<StudyGroupEdit />} />
+      </Route>
+      <Route path="/study-group" element={<Layout maxWidth="medium" />}>
         <Route path=":groupId/records/create" element={<CreateStudyLog />} />
+        <Route path=":groupId/records/:recordId" element={<StudyLogDetail />} />
       </Route>
     </Routes>
   )
