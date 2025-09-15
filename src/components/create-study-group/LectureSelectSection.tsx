@@ -5,7 +5,7 @@ import { Card, SelectedLectureCard, Text } from '@components'
 import type { StudyGroupLectureList } from '@models'
 
 interface LectureSelectSectionProps {
-  lectures: StudyGroupLectureList[]
+  lectures: StudyGroupLectureList[] | undefined
   actionSlot: ReactNode
 }
 

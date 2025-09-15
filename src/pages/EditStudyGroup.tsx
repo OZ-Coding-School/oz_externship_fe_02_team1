@@ -12,27 +12,36 @@ import {
 import { usePageNav } from '@hooks'
 import { useMediaQuery } from 'react-responsive'
 import { mediaQuery } from '@constants'
-import { cn } from '@utils'
+import { cn, formatToYMD } from '@utils'
 import type { StudyGroupLectureList } from '@models'
+import { studyGroup } from '@mocks/studyGroupDetail'
 
-const INITIAL_MEMBER_COUNT = 6
-
-export default function StudyGroupEdit() {
+export default function EditStudyGroup() {
   const { handleGoBack } = usePageNav()
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
 
   // --- 기본 정보 상태 ---
-  const [groupName, setGroupName] = useState<string>('')
-  const [description, setDescription] = useState<string>('')
+  const [groupName, setGroupName] = useState<string>(studyGroup.studyGroupName)
+  const [description, setDescription] = useState<string | undefined>(
+    studyGroup.description
+  )
   const [imageFile, setImageFile] = useState<File | null>(null)
 
   // --- 기간/인원 상태 ---
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
-  const [memberCount, setMemberCount] = useState<number>(INITIAL_MEMBER_COUNT)
+  const [startDate, setStartDate] = useState<string>(
+    formatToYMD(studyGroup.startDate)
+  )
+  const [endDate, setEndDate] = useState<string>(
+    formatToYMD(studyGroup.lastDate)
+  )
+  const [memberCount, setMemberCount] = useState<number>(
+    studyGroup.currentMemberCount
+  )
 
   // --- 강의 정보 상태 ---
-  const [lectures, setLectures] = useState<StudyGroupLectureList[]>([])
+  const [lectures, setLectures] = useState<StudyGroupLectureList[] | undefined>(
+    studyGroup.lecture
+  )
 
   return (
     <form className="flex flex-col gap-6 lg:gap-8">
@@ -97,7 +106,7 @@ export default function StudyGroupEdit() {
           size={isMobile ? 'small' : 'large'}
           className={cn(!isMobile && 'px-8')}
         >
-          스터디 그룹 만들기
+          수정 완료
         </Button>
       </div>
     </form>

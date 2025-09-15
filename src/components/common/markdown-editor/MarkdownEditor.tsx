@@ -14,7 +14,7 @@ import {
 import { cn } from '@utils'
 
 export interface MarkdownEditorProps {
-  value: MarkdownValue
+  value?: MarkdownValue
   onChange: (newValue: MarkdownValue) => void
   ariaLabel?: string
   className?: string
