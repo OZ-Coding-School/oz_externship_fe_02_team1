@@ -23,7 +23,7 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
       setDescription(studyGroup.description)
       setStartDate(formatToYMD(studyGroup.startDate))
       setEndDate(formatToYMD(studyGroup.lastDate))
-      setMemberCount(studyGroup.maxMemberCount)
+      setMemberCount(studyGroup.currentMemberCount)
       setLectures(studyGroup.lecture || [])
       setInitialImageUrl(studyGroup.backgroundImage || null)
     }
