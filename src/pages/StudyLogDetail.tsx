@@ -1,5 +1,4 @@
-import { LogDetailAISummary , LogDetailHeader } from '@components'
-
+import { LogDetailAISummary, LogDetailHeader, LogDetailMain } from '@components'
 
 export default function StudyLogDetail() {
   const studyLogData = {
@@ -12,6 +11,7 @@ export default function StudyLogDetail() {
     <>
       <LogDetailHeader studyLogData={studyLogData} />
       <LogDetailAISummary />
+      <LogDetailMain />
     </>
   )
 }
