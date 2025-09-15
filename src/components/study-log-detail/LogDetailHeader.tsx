@@ -15,18 +15,18 @@ export default function LogDetailHeader({
   studyLogData,
 }: LogDetailHeaderProps) {
   return (
-    <header className="w-full max-w-4xl">
-      <BreadCrumb items={BREAD_CRUMB_PATH} className="mb-4" />
-      <div className="flex w-full flex-col p-6">
-        <section className="mb-4 flex w-full flex-col justify-between sm:flex-row">
+    <header className="w-full max-w-4xl gap-4">
+      <BreadCrumb items={BREAD_CRUMB_PATH} />
+      <div className="flex w-full flex-col gap-4 p-6">
+        <section className="flex w-full flex-col justify-between sm:flex-row">
           <H3 className="text-gray-900">{studyLogData.title}</H3>
-          <div className="flex">
+          <div className="flex gap-2">
             <Button className="rounded-lg bg-gray-100 px-3 py-1.5">
               <Text variant="small" className="font-medium text-gray-700">
                 수정하기
               </Text>
             </Button>
-            <Button className="ml-2 rounded-lg bg-red-100 px-3 py-1.5">
+            <Button className="rounded-lg bg-red-100 px-3 py-1.5">
               <Text variant="small" className="font-medium text-red-700">
                 삭제하기
               </Text>
@@ -34,22 +34,23 @@ export default function LogDetailHeader({
           </div>
         </section>
 
-        <section className="flex items-center">
-          <img
-            src={studyLogData.userImage}
-            alt={studyLogData.userName}
-            className="h-8 w-8 rounded-full"
-          />
-          <Text variant="small" className="ml-2 font-medium text-gray-600">
-            {studyLogData.userName}
-          </Text>
-          <Text variant="small" className="ml-4 font-normal text-gray-600">
+        <section className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <img
+              src={studyLogData.userImage}
+              alt={studyLogData.userName}
+              className="h-8 w-8 rounded-full"
+            />
+            <Text variant="small" className="font-medium text-gray-600">
+              {studyLogData.userName}
+            </Text>
+          </div>
+          <Text variant="small" className="font-normal text-gray-600">
             •
           </Text>
-          <Text variant="small" className="ml-4 text-gray-600">
+          <Text variant="small" className="text-gray-600">
             {formatDate(new Date(studyLogData.createdAt))}
           </Text>
-          <Text>.</Text>
         </section>
       </div>
     </header>
