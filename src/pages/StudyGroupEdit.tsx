@@ -32,10 +32,17 @@ export default function StudyGroupEdit() {
       <LectureSelectSection />
 
       <div className="flex justify-end gap-4">
-        <Button variant="outline" className="bg-transparent">
+        <Button
+          type="button"
+          variant="outline"
+          size="large"
+          className="bg-transparent"
+        >
           취소
         </Button>
-        <Button type="submit">스터디 그룹 만들기</Button>
+        <Button type="submit" size="large" className="px-8">
+          스터디 그룹 만들기
+        </Button>
       </div>
     </form>
   )
