@@ -1,4 +1,5 @@
 import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
+import { usePageNav } from '@hooks'
 
 import {
   Button,
@@ -10,12 +11,15 @@ import {
 } from '@components'
 
 export default function StudyGroupEdit() {
+  const { handleGoBack } = usePageNav()
+
   return (
     <form className="flex flex-col gap-6 lg:gap-8">
       <div className="flex items-center gap-4">
         <button
           type="button"
           className="cursor-pointer rounded-full bg-gray-100 p-3 transition-colors duration-300 hover:bg-gray-200"
+          onClick={handleGoBack}
         >
           <ArrowLongLeftIcon width={16} />
         </button>
@@ -37,6 +41,7 @@ export default function StudyGroupEdit() {
           variant="outline"
           size="large"
           className="bg-transparent"
+          onClick={handleGoBack}
         >
           취소
         </Button>
