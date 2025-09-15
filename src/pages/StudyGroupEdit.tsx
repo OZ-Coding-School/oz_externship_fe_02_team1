@@ -1,5 +1,5 @@
+import { useState } from 'react'
 import { ArrowLongLeftIcon } from '@heroicons/react/24/outline'
-import { useMediaQuery } from 'react-responsive'
 
 import {
   Button,
@@ -9,13 +9,18 @@ import {
   PeriodMemberSection,
   LectureSelectSection,
 } from '@components'
-import { mediaQuery } from '@constants'
 import { usePageNav } from '@hooks'
+import { useMediaQuery } from 'react-responsive'
+import { mediaQuery } from '@constants'
 import { cn } from '@utils'
 
 export default function StudyGroupEdit() {
   const { handleGoBack } = usePageNav()
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
+
+  const [groupName, setGroupName] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
+  const [imageFile, setImageFile] = useState<File | null>(null)
 
   return (
     <form className="flex flex-col gap-6 lg:gap-8">
@@ -35,7 +40,14 @@ export default function StudyGroupEdit() {
         </div>
       </div>
 
-      <PrimaryInfoSection />
+      <PrimaryInfoSection
+        groupName={groupName}
+        onChangeGroupName={setGroupName}
+        description={description}
+        onChangeDescription={setDescription}
+        imageFile={imageFile}
+        onChangeImage={setImageFile}
+      />
       <PeriodMemberSection />
       <LectureSelectSection />
 

@@ -1,21 +1,35 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Card, Input, MarkdownEditor, Text, ImageUpload } from '@components'
 
-export default function PrimaryInfoSection() {
-  const [description, setDescription] = useState<string>('')
-  const [imageFile, setImageFile] = useState<File | null>(null)
+interface PrimaryInfoSectionProps {
+  groupName: string
+  description: string
+  imageFile: File | null
+  onChangeGroupName: (value: string) => void
+  onChangeDescription: (value: string) => void
+  onChangeImage: (file: File | null) => void
+}
+
+export default function PrimaryInfoSection({
+  groupName,
+  description,
+  imageFile,
+  onChangeGroupName,
+  onChangeDescription,
+  onChangeImage,
+}: PrimaryInfoSectionProps) {
   const [imageUrl, setImageUrl] = useState<string | null>(null)
 
-  const handleImageChange = (file: File | null) => {
-    setImageFile(file)
+  useEffect(() => {
+    if (imageFile) {
+      const url = URL.createObjectURL(imageFile)
+      setImageUrl(url)
 
-    if (file) {
-      setImageUrl(URL.createObjectURL(file))
-    } else {
-      setImageUrl(null)
+      return () => URL.revokeObjectURL(url)
     }
-  }
+    setImageUrl(null)
+  }, [imageFile])
 
   return (
     <Card
@@ -23,19 +37,25 @@ export default function PrimaryInfoSection() {
       titleClassName="text-xl pb-0"
       cardClassName="lg:p-8 gap-6"
     >
-      <Input label="스터디 그룹명" isRequired className="mt-0.5" />
+      <Input
+        label="스터디 그룹명"
+        isRequired
+        className="mt-0.5"
+        value={groupName}
+        onChange={(e) => onChangeGroupName(e.target.value)}
+      />
 
       <div>
         <Text className="mb-2 text-sm text-gray-700">
           스터디 그룹 소개 (선택사항)
         </Text>
-        <MarkdownEditor value={description} onChange={setDescription} />
+        <MarkdownEditor value={description} onChange={onChangeDescription} />
       </div>
 
       <ImageUpload
         value={imageUrl}
         name={imageFile?.name || 'Default Image'}
-        onChange={handleImageChange}
+        onChange={onChangeImage}
       />
     </Card>
   )
