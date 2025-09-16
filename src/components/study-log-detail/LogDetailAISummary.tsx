@@ -2,8 +2,9 @@ import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 
 import { AIIcon } from '@assets'
-import type { AiSummary } from '@models'
 import { Text } from '@components'
+
+import type { AiSummary } from '@models'
 
 interface LogDetailAISummaryProps {
   aiSummary: AiSummary

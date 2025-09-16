@@ -1,7 +1,8 @@
-import type { StudyLog } from '@/types/studyLog'
 import { Avatar, BreadCrumb, Button, H3, Text } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
 import { formatDate } from '@utils'
+
+import type { StudyLog } from '@models'
 
 interface LogDetailHeaderProps {
   studyLogData: StudyLog
