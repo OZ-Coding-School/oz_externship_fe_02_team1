@@ -8,11 +8,19 @@ interface AddScheduleModalProps {
   onClose: () => void
 }
 
-const AddScheduleModal = ({ isOpen, onClose }: AddScheduleModalProps) => {
+export default function AddScheduleModal({
+  isOpen,
+  onClose,
+}: AddScheduleModalProps) {
+  const handleConfirm = () => {
+    // TODO: Implement confirm logic
+    onClose()
+  }
+
   return (
     <BaseModal isOpen={isOpen} onClose={onClose} size="md">
       {MODAL_PRESETS.scheduleAdd.header({
-        onClose: close,
+        onClose: onClose,
         title: '새 스케줄 추가',
       })}
       <ModalBody>
@@ -23,11 +31,9 @@ const AddScheduleModal = ({ isOpen, onClose }: AddScheduleModalProps) => {
         </form>
       </ModalBody>
       {MODAL_PRESETS.scheduleAdd.footer({
-        onClose: close,
-        onConfirm: confirm,
+        onClose: onClose,
+        onConfirm: handleConfirm,
       })}
     </BaseModal>
   )
 }
-
-export default AddScheduleModal
