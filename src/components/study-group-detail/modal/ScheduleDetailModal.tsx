@@ -90,6 +90,7 @@ export default function ScheduleDetailModal({
       {MODAL_PRESETS.scheduleDetail.footer({
         onClose: close,
         onConfirm: confirm,
+        createDate: formatDate(schedule.createDate),
       })}
     </BaseModal>
   )
