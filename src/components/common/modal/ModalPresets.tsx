@@ -1,4 +1,4 @@
-import { buttonVariants, ModalHeader, ModalFooter } from '@components'
+import { buttonVariants, ModalHeader, ModalFooter, Text } from '@components'
 import { cn } from '@utils'
 
 import type {
@@ -177,7 +177,7 @@ const MODAL_PRESETS = {
     header: ({ onClose }: ModalHeaderRenderProps) => (
       <ModalHeader title="스케줄 상세" onClose={onClose} />
     ),
-    footer: ({ onClose, onConfirm }: ModalFooterCtx) => {
+    footer: ({ onClose, onConfirm, createDate }: ModalFooterCtx) => {
       const footerButtons: FooterButton[] = [
         { text: '닫기', variant: 'outline', onClick: onClose, disabled: false },
         {
@@ -197,7 +197,9 @@ const MODAL_PRESETS = {
       return (
         <ModalFooter
           layout="leftRight"
-          left={<span className="text-sm text-gray-500">2025-09-03 (수)</span>}
+          left={
+            <Text className="text-sm text-gray-500">생성일: {createDate}</Text>
+          }
           right={<FooterButtons buttons={footerButtons} />}
         />
       )
