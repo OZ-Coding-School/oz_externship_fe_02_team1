@@ -13,7 +13,7 @@ export default function LogDetailMain({ studyLogData }: LogDetailMainProps) {
   return (
     <main>
       {/* 마크다운  */}
-      <section className="flex flex-col items-start justify-start border border-t-0 border-gray-200 p-6">
+      <section className="markdown-preview flex flex-col items-start justify-start border border-gray-200 p-6">
         <MarkdownPreview value={content} />
       </section>
 
