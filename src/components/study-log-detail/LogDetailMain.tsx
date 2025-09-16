@@ -1,5 +1,6 @@
-import { AttachmentIcon, DownloadIcon, ZipIcon } from '@/assets'
 import { MarkdownPreview, Text } from '@components'
+
+import { AttachmentIcon, DownloadIcon, ZipIcon } from '@/assets'
 
 import type { StudyLog } from '@models'
 
@@ -13,7 +14,7 @@ export default function LogDetailMain({ studyLogData }: LogDetailMainProps) {
   return (
     <main>
       {/* 마크다운  */}
-      <section className="markdown-preview flex flex-col items-start justify-start border border-gray-200 p-6">
+      <section className="flex flex-col items-start justify-start border border-gray-200 p-6">
         <MarkdownPreview value={content} />
       </section>
 
@@ -26,7 +27,7 @@ export default function LogDetailMain({ studyLogData }: LogDetailMainProps) {
           </Text>
         </div>
         {attachments && attachments.length > 0 && (
-          <div className="flex h-16 justify-between gap-4">
+          <ul className="flex h-16 justify-between gap-4">
             {attachments.map((file) => (
               <li
                 key={file.id}
@@ -53,7 +54,7 @@ export default function LogDetailMain({ studyLogData }: LogDetailMainProps) {
                 <DownloadIcon />
               </li>
             ))}
-          </div>
+          </ul>
         )}
       </section>
     </main>
