@@ -1,13 +1,18 @@
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
 
 import { AIIcon } from '@assets'
-import { Text, AISummary } from '@components'
+import type { AiSummary } from '@models'
+import { Text } from '@components'
 
-export default function LogDetailAISummary() {
+interface LogDetailAISummaryProps {
+  aiSummary: AiSummary
+}
+
+export default function LogDetailAISummary({
+  aiSummary,
+}: LogDetailAISummaryProps) {
   const [isSummaryOpened, setIsSummaryOpened] = useState(false)
-  const { recordId } = useParams<{ recordId: string }>()
 
   const handleToggleSummary = () => {
     setIsSummaryOpened((prev) => !prev)
@@ -18,6 +23,10 @@ export default function LogDetailAISummary() {
     : { icon: EyeIcon, label: '펼치기' }
 
   const Icon = toggleConfig.icon
+
+  if (!aiSummary || !aiSummary.summary) {
+    return null
+  }
 
   return (
     <section className="flex flex-col p-6">
@@ -38,7 +47,11 @@ export default function LogDetailAISummary() {
           </Text>
         </button>
       </div>
-      {isSummaryOpened && <AISummary recordId={recordId} />}
+      {isSummaryOpened && (
+        <div className="mt-4">
+          <Text className="text-gray-800">{aiSummary.summary}</Text>
+        </div>
+      )}
     </section>
   )
 }
