@@ -28,7 +28,6 @@ export default function LogDetailAISummary({
   if (!aiSummary || !aiSummary.summary) {
     return null
   }
-
   return (
     <section className="flex flex-col border border-b-0 border-gray-200 p-6">
       <div className="flex items-center justify-between pb-4">

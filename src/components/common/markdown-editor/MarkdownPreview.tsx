@@ -5,7 +5,6 @@ import { cn } from '@utils'
 
 import type { MarkdownValue } from '@components'
 
-
 export interface MarkdownPreviewProps {
   value: MarkdownValue
   className?: string
