@@ -93,6 +93,7 @@ export const studyGroupSchedule: StudyGroupScheduleList[] = [
   {
     id: 1,
     title: '코드 리뷰 세션',
+    goal: '코드 리뷰하는 방법 학습',
     date: new Date('2025-09-13'),
     startTime: new Date('2025-09-13T18:30:00'),
     endTime: new Date('2025-09-13T20:30:00'),
@@ -100,6 +101,7 @@ export const studyGroupSchedule: StudyGroupScheduleList[] = [
   {
     id: 2,
     title: 'React Testing 스터디',
+    goal: 'React Testing 도구 사용 방법 학습',
     date: new Date('2025-09-15'),
     startTime: new Date('2025-09-15T20:00:00'),
     endTime: new Date('2025-09-15T22:00:00'),
@@ -107,6 +109,7 @@ export const studyGroupSchedule: StudyGroupScheduleList[] = [
   {
     id: 3,
     title: 'React Hooks 심화 학습',
+    goal: 'useState, useEffect, useContext 등 주요 Hook들의 동작 원리와 최적화 방법 학습',
     date: new Date('2025-09-16'),
     startTime: new Date('2025-09-16T19:00:00'),
     endTime: new Date('2025-09-16T21:00:00'),

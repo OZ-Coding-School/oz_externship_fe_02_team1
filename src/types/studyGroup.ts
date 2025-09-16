@@ -23,6 +23,7 @@ export interface StudyGroupLogList {
 export interface StudyGroupScheduleList {
   id: number
   title: string
+  goal: string
   date: Date
   startTime: Date
   endTime: Date
