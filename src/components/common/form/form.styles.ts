@@ -42,7 +42,7 @@ export const dateInputStyle = ({
 export const textareaStyle = (className?: string) =>
   cn(
     'w-full rounded-[8px] border border-gray-300 text-[14px] transition-colors outline-none',
-    'resize-none px-[13px] py-[9px] placeholder:text-gray-400',
+    'resize-none px-[13px] py-[9px] placeholder:text-gray-400 focus:border-2 focus:border-primary-500',
     className
   )
 
