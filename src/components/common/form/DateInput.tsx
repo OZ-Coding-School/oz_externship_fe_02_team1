@@ -12,6 +12,7 @@ interface DateInputProps
   errorText?: string
   ref?: Ref<HTMLInputElement>
   required?: boolean
+  placeholder?: string
 }
 
 const DateInput = ({
@@ -23,6 +24,7 @@ const DateInput = ({
   className,
   ref,
   required,
+  placeholder,
   ...rest
 }: DateInputProps) => {
   const autoId = useId()
@@ -52,7 +54,7 @@ const DateInput = ({
           id={inputId}
           ref={ref}
           readOnly
-          placeholder="날짜를 선택하세요"
+          placeholder={placeholder ?? '날짜를 선택하세요'}
           aria-invalid={invalid || undefined}
           aria-describedby={
             describedByIds.length ? describedByIds.join(' ') : undefined
