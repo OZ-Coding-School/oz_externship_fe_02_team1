@@ -4,12 +4,14 @@ import { textareaStyle } from '@components/common/form/form.styles'
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string
+  isRequired?: boolean
   maxLength?: number // 기본 500
   ref?: Ref<HTMLTextAreaElement>
 }
 
 const Textarea = ({
   label,
+  isRequired,
   id,
   maxLength = 500,
   className,
@@ -37,6 +39,7 @@ const Textarea = ({
           className="mb-1.5 block text-sm text-gray-700"
         >
           {label}
+          {isRequired && <span className="text-danger-500">&nbsp;*</span>}
         </label>
       )}
 
