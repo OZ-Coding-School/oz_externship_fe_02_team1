@@ -57,7 +57,7 @@ const BaseModal = ({
       />
       <div
         className={cn(
-          'relative min-h-[200px] w-[92%] min-w-[320px] rounded-[12px] bg-white shadow-2xl',
+          'relative h-[92%] min-h-[200px] w-[92%] min-w-[320px] rounded-[12px] bg-white shadow-2xl',
           w,
           h,
           'flex max-h-full flex-col',
