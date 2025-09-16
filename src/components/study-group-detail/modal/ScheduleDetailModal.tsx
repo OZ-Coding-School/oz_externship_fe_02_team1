@@ -8,23 +8,23 @@ import {
   ScheduleDetailDiv,
   Text,
 } from '@components'
-import { studyGroupSchedule } from '@mocks/studyGroupDetail'
 import { formatDate, formatTime } from '@utils'
 import { CalendarIcon, ClockIcon } from '@heroicons/react/24/outline'
+import type { StudyGroupScheduleList } from '@models'
 
 interface scheduleDetailModalProps {
+  schedule: StudyGroupScheduleList
   isOpen: boolean
   onClose: () => void
   confirm: () => void
 }
 
 export default function ScheduleDetailModal({
+  schedule,
   isOpen,
   onClose,
   confirm,
 }: scheduleDetailModalProps) {
-  const schedule = studyGroupSchedule[2]
-
   return (
     <BaseModal
       isOpen={isOpen}
@@ -33,8 +33,8 @@ export default function ScheduleDetailModal({
       labelledById="modal-title"
     >
       {MODAL_PRESETS.scheduleDetail.header({
-        onClose: close,
-        title: '스터디 날짜 선택',
+        onClose: onClose,
+        title: '스케줄 상세',
       })}
 
       <ModalBody className="space-y-6">

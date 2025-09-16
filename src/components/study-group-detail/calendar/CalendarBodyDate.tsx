@@ -49,28 +49,34 @@ export default function CalendarBodyDate({
         </time>
 
         {schedule && (
-          <div
-            className="bg-primary-100 border-primary-100 mt-2 aspect-square overflow-hidden rounded-sm border-4"
-            onClick={openModal}
-          >
-            <Text
-              className={cn('block font-medium text-nowrap', scheduleTextStyle)}
+          <>
+            <div
+              className="bg-primary-100 border-primary-100 mt-2 aspect-square overflow-hidden rounded-sm border-4"
+              onClick={openModal}
             >
-              {schedule.title}
-            </Text>
-            <Text className={cn('break-all', scheduleTextStyle)}>
-              {formatTime(schedule.startTime)}~{formatTime(schedule.endTime)}
-            </Text>
-          </div>
+              <Text
+                className={cn(
+                  'block font-medium text-nowrap',
+                  scheduleTextStyle
+                )}
+              >
+                {schedule.title}
+              </Text>
+              <Text className={cn('break-all', scheduleTextStyle)}>
+                {formatTime(schedule.startTime)}~{formatTime(schedule.endTime)}
+              </Text>
+            </div>
+
+            <ScheduleDetailModal
+              schedule={schedule}
+              isOpen={isOpen}
+              onClose={closeModal}
+              confirm={() => {}}
+            />
+          </>
         )}
         <div className="absolute right-0 bottom-0 left-0 block h-px border-y-4 border-white" />
       </div>
-
-      <ScheduleDetailModal
-        isOpen={isOpen}
-        onClose={closeModal}
-        confirm={() => {}}
-      />
     </>
   )
 }
