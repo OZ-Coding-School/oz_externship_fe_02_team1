@@ -1,6 +1,11 @@
+export interface AiSummary {
+  summary: string
+  collapsible: boolean
+}
+
 export interface Author {
   id: number
-  nickName: string
+  nickname: string
   profile_image: string
 }
 
