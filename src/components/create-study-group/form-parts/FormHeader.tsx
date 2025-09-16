@@ -16,6 +16,7 @@ export default function FormHeader({ mode }: FormMode) {
         type="button"
         className="cursor-pointer rounded-full bg-gray-100 p-3 transition-colors duration-300 hover:bg-gray-200"
         onClick={handleGoBack}
+        aria-label="뒤로 가기"
       >
         <ArrowLongLeftIcon width={16} />
       </button>
