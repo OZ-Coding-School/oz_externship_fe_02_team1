@@ -39,10 +39,10 @@ export default function LogDetailHeader({
             <Avatar
               size="sm"
               src={author.profile_image}
-              alt={author.nickName}
+              alt={author.nickname}
             />
             <Text variant="small" className="font-medium text-gray-600">
-              {author.nickName}
+              {author.nickname}
             </Text>
           </div>
           <Text variant="small" className="font-normal text-gray-600">
