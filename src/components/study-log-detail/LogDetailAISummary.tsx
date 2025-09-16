@@ -30,9 +30,9 @@ export default function LogDetailAISummary({
   }
 
   return (
-    <section className="flex flex-col p-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+    <section className="flex flex-col border border-b-0 border-gray-200 p-6">
+      <div className="flex items-center justify-between pb-4">
+        <div className="flex items-center justify-center gap-2">
           <AIIcon />
           <Text variant="large" className="font-semibold text-gray-900">
             AI 학습 내용 요약
@@ -49,7 +49,7 @@ export default function LogDetailAISummary({
         </button>
       </div>
       {isSummaryOpened && (
-        <div className="mt-4">
+        <div className="rounded-lg bg-yellow-50 p-4">
           <Text className="text-gray-800">{aiSummary.summary}</Text>
         </div>
       )}
