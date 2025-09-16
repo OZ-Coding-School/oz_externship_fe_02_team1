@@ -3,9 +3,9 @@ import type { ReactNode } from 'react'
 import { BookmarkSquareIcon } from '@heroicons/react/24/outline'
 
 import { Card, SelectedLectureCard, Text } from '@components'
+import { MAX_LECTURES } from '@constants'
 
 import type { StudyGroupLectureList } from '@models'
-import { MAX_LECTURES } from '@constants'
 
 interface LectureSelectSectionProps {
   lectures: StudyGroupLectureList[] | undefined
