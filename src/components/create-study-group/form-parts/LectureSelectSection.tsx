@@ -5,6 +5,7 @@ import { BookmarkSquareIcon } from '@heroicons/react/24/outline'
 import { Card, SelectedLectureCard, Text } from '@components'
 
 import type { StudyGroupLectureList } from '@models'
+import { MAX_LECTURES } from '@constants'
 
 interface LectureSelectSectionProps {
   lectures: StudyGroupLectureList[] | undefined
@@ -25,7 +26,7 @@ export default function LectureSelectSection({
 
       <div className="flex flex-col gap-4">
         <Text className="text-gray-600" variant="small">
-          스터디에서 함께 공부할 강의를 선택하세요 (최대 5개)
+          스터디에서 함께 공부할 강의를 선택하세요 (최대 {MAX_LECTURES}개)
         </Text>
 
         {lectures && lectures.length > 0 ? (
@@ -34,7 +35,7 @@ export default function LectureSelectSection({
               <SelectedLectureCard key={el.title} lecture={el} />
             ))}
             <Text variant="small" className="font-medium text-gray-500">
-              {lectures.length}/5개 강의 선택됨
+              {lectures.length}/{MAX_LECTURES}개 강의 선택됨
             </Text>
           </div>
         ) : (

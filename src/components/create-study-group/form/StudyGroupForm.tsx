@@ -10,7 +10,7 @@ import {
   FormFooter,
   type FormMode,
 } from '@components'
-import { mediaQuery } from '@constants'
+import { MAX_LECTURES, mediaQuery } from '@constants'
 import { cn } from '@utils'
 
 import type { StudyGroupLectureList } from '@models'
@@ -83,7 +83,7 @@ export default function StudyGroupForm({
       <LectureSelectSection
         lectures={lectures}
         actionSlot={
-          lectures.length < 5 ? (
+          lectures.length < MAX_LECTURES ? (
             <Button
               type="button"
               size={isMobile ? 'small' : 'medium'}
