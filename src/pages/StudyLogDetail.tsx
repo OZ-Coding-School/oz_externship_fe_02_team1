@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
+import { BREAD_CRUMB_PATH } from '@constants'
 
 import {
+  BreadCrumb,
   LoadingState,
   LogDetailAISummary,
   LogDetailHeader,
@@ -35,10 +37,17 @@ export default function StudyLogDetail() {
   }
 
   return (
-    <>
-      <LogDetailHeader studyLogData={studyLogData} />
-      <LogDetailAISummary aiSummary={studyLogData.ai_summary} />
-      <LogDetailMain studyLogData={studyLogData} />
-    </>
+    <div className="flex flex-col gap-4">
+      <BreadCrumb items={BREAD_CRUMB_PATH} />
+      <div>
+        <LogDetailHeader studyLogData={studyLogData} />
+        <LogDetailAISummary aiSummary={studyLogData.ai_summary} />
+        <LogDetailMain studyLogData={studyLogData} />
+      </div>
+      <Link
+        to={'/study-group'}
+        className="text-base font-normal text-gray-600"
+      >{`<- 스터디 그룹으로 돌아가기`}</Link>
+    </div>
   )
 }
