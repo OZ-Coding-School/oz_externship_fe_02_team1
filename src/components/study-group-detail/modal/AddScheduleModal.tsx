@@ -5,7 +5,6 @@ import {
   Input,
   Textarea,
   DateInput,
-  Card,
   Badge,
   Text,
 } from '@components'
@@ -29,11 +28,10 @@ export default function AddScheduleModal({
   }
 
   const handleCheckboxChange = (name: string) => {
-    setSelectedMembers(
-      (prev) =>
-        prev.includes(name)
-          ? prev.filter((member) => member !== name)
-          : [...prev, name] // 추가
+    setSelectedMembers((prev) =>
+      prev.includes(name)
+        ? prev.filter((member) => member !== name)
+        : [...prev, name]
     )
   }
 
@@ -54,7 +52,7 @@ export default function AddScheduleModal({
 
           <Textarea
             label="스터디 목표"
-            placeholder="이번 스터디에서 달성하곶 하는 목표를 입력하세요"
+            placeholder="이번 스터디에서 달성하고자 하는 목표를 입력하세요"
             isRequired
           />
 
@@ -65,43 +63,37 @@ export default function AddScheduleModal({
             <Input label="종료 시간" type="time" isRequired />
           </div>
 
-          <div>
-            <Text variant="small" className="mb-1.5 block text-gray-700">
+          <fieldset>
+            <legend className="mb-1.5 block text-sm font-medium text-gray-700">
               참여자 선택 <span className="text-danger-500">*</span>
-            </Text>
-            <div className="flex flex-col gap-2">
-              <Card
-                title=""
-                titleClassName="p-0"
-                cardClassName="p-4 gap-3 border-gray-300"
-              >
-                {studyGroup.member.map((el) => (
-                  <label className="flex items-center gap-3">
-                    <input
-                      type="checkbox"
-                      checked={selectedMembers.includes(el.name)}
-                      onChange={() => handleCheckboxChange(el.name)}
-                    />
-                    <div className="flex items-center gap-2">
-                      {el.name}
-                      {el.isLeader && (
-                        <Badge
-                          color="primary"
-                          size="md"
-                          className="rounded-sm !px-2 text-xs"
-                        >
-                          리더
-                        </Badge>
-                      )}
-                    </div>
-                  </label>
-                ))}
-              </Card>
-              <Text variant="extraSmall" className="text-gray-500">
-                선택된 참여자: {selectedMembers.length}명
-              </Text>
+            </legend>
+            <div className="flex flex-col gap-2 rounded-lg border border-gray-300 p-4">
+              {studyGroup.member.map((el) => (
+                <label key={el.name} className="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    checked={selectedMembers.includes(el.name)}
+                    onChange={() => handleCheckboxChange(el.name)}
+                  />
+                  <div className="flex items-center gap-2">
+                    {el.name}
+                    {el.isLeader && (
+                      <Badge
+                        color="primary"
+                        size="md"
+                        className="rounded-sm !px-2 text-xs"
+                      >
+                        리더
+                      </Badge>
+                    )}
+                  </div>
+                </label>
+              ))}
             </div>
-          </div>
+            <Text variant="extraSmall" className="mt-2 text-gray-500">
+              선택된 참여자: {selectedMembers.length}명
+            </Text>
+          </fieldset>
         </form>
       </ModalBody>
 
