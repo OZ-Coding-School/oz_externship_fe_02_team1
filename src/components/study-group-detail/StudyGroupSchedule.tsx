@@ -1,23 +1,14 @@
-import { useState } from 'react'
 import { PlusIcon } from '@heroicons/react/24/outline'
 
-import { ScheduleCalendar, Card, Button } from '@components'
-import { AddScheduleModal } from './modal'
+import { ScheduleCalendar, Card, Button, AddScheduleModal } from '@components'
 
 import type { StudyGroup } from '@models'
+import { useModal } from '@hooks'
 
 export default function StudyGroupSchedule({
   schedule,
 }: Pick<StudyGroup, 'schedule'>) {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const openModal = () => {
-    setIsModalOpen(true)
-  }
-
-  const closeModal = () => {
-    setIsModalOpen(false)
-  }
+  const { isOpen, openModal, closeModal } = useModal()
 
   return (
     <Card title="스케줄 관리" titleClassName="pt-1.5 pb-7.5 text-xl">
@@ -26,7 +17,7 @@ export default function StudyGroupSchedule({
         스케줄 추가
       </Button>
       <ScheduleCalendar schedule={schedule} />
-      <AddScheduleModal isOpen={isModalOpen} onClose={closeModal} />
+      <AddScheduleModal isOpen={isOpen} onClose={closeModal} />
     </Card>
   )
 }
