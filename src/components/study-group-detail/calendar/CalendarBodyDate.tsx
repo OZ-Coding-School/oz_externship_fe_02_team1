@@ -1,8 +1,9 @@
 import { format, isSameDay, isSameMonth } from 'date-fns'
 
 import { Text } from '@components'
-import { cn, formatTime } from '@utils'
 import { useModal } from '@hooks'
+import { cn, formatTime } from '@utils'
+
 import { ScheduleDetailModal } from '../modal'
 
 import type { StudyGroupScheduleList } from '@models'
@@ -29,8 +30,7 @@ export default function CalendarBodyDate({
   const { isOpen, openModal, closeModal } = useModal()
 
   return (
-    <>
-      <div
+    <div
         className={cn(
           'relative aspect-square overflow-hidden border-r border-b border-gray-200 p-2 text-left text-sm text-gray-900',
           !isSameMonth(day, currentMonth) && 'text-gray-400',
@@ -77,6 +77,5 @@ export default function CalendarBodyDate({
         )}
         <div className="absolute right-0 bottom-0 left-0 block h-px border-y-4 border-white" />
       </div>
-    </>
   )
 }

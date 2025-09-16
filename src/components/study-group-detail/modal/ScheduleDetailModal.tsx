@@ -1,4 +1,5 @@
-import MODAL_PRESETS from '@components/common/modal/ModalPresets'
+import { CalendarIcon, ClockIcon } from '@heroicons/react/24/outline'
+
 import {
   Avatar,
   Badge,
@@ -8,8 +9,10 @@ import {
   ScheduleDetailDiv,
   Text,
 } from '@components'
+import MODAL_PRESETS from '@components/common/modal/ModalPresets'
 import { formatDate, formatTime } from '@utils'
-import { CalendarIcon, ClockIcon } from '@heroicons/react/24/outline'
+
+
 import type { StudyGroupScheduleList } from '@models'
 
 interface scheduleDetailModalProps {

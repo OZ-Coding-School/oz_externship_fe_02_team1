@@ -1,5 +1,6 @@
-import { Text } from '@components'
 import type { ReactNode } from 'react'
+
+import { Text } from '@components'
 
 interface scheduleDetailDivProps {
   title: string
