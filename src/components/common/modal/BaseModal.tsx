@@ -60,7 +60,7 @@ const BaseModal = ({
           'relative min-h-[200px] w-[92%] min-w-[320px] rounded-[12px] bg-white shadow-2xl',
           w,
           h,
-          'flex max-h-full flex-col',
+          'flex max-h-[92%] flex-col',
           panelClassName
         )}
       >

@@ -5,3 +5,4 @@ export { default as StudyGroupMember } from '@components/study-group-detail/Stud
 export { default as StudyGroupLogList } from '@components/study-group-detail/StudyGroupLogList'
 export { default as StudyGroupSchedule } from '@components/study-group-detail/StudyGroupSchedule'
 export * from '@components/study-group-detail/calendar'
+export * from '@components/study-group-detail/modal'

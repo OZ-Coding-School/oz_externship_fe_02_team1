@@ -1,4 +1,4 @@
-import { buttonVariants , ModalHeader, ModalFooter } from '@components'
+import { buttonVariants, ModalHeader, ModalFooter } from '@components'
 import { cn } from '@utils'
 
 import type {
@@ -8,7 +8,6 @@ import type {
   FooterButton,
   FooterButtonsProps,
 } from '@components/common/modal/modal.types'
-
 
 export const SPLIT_ROW = 'flex w-full max-w-[520px] gap-3' // 12px 간격
 export const SPLIT_BTN = 'flex-1'
@@ -199,6 +198,32 @@ const MODAL_PRESETS = {
         <ModalFooter
           layout="leftRight"
           left={<span className="text-sm text-gray-500">2025-09-03 (수)</span>}
+          right={<FooterButtons buttons={footerButtons} />}
+        />
+      )
+    },
+  },
+
+  // 6) 스케줄 추가
+  scheduleAdd: {
+    size: 'md',
+    header: ({ onClose }: ModalHeaderRenderProps) => (
+      <ModalHeader title="스케줄 추가" onClose={onClose} />
+    ),
+    footer: ({ onClose, onConfirm }: ModalFooterCtx) => {
+      const footerButtons: FooterButton[] = [
+        { text: '취소', variant: 'outline', onClick: onClose, disabled: false },
+        {
+          text: '추가하기',
+          variant: 'primary',
+          onClick: onConfirm ?? (() => {}),
+          disabled: false,
+        },
+      ]
+
+      return (
+        <ModalFooter
+          layout="right"
           right={<FooterButtons buttons={footerButtons} />}
         />
       )
