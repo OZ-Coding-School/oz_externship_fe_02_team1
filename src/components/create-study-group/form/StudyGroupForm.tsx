@@ -83,14 +83,19 @@ export default function StudyGroupForm({
       <LectureSelectSection
         lectures={lectures}
         actionSlot={
-          <Button
-            type="button"
-            size={isMobile ? 'small' : 'medium'}
-            className={cn('py-2', !isMobile && 'py-2 text-base')}
-          >
-            <PlusIcon width={16} />
-            강의 추가하기
-          </Button>
+          lectures.length < 5 ? (
+            <Button
+              type="button"
+              size={isMobile ? 'small' : 'medium'}
+              className={cn(
+                'absolute top-6 right-6 py-2',
+                !isMobile && 'top-8 right-8 text-base'
+              )}
+            >
+              <PlusIcon width={16} />
+              강의 추가하기
+            </Button>
+          ) : null
         }
       />
 

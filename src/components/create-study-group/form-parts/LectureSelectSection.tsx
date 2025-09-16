@@ -21,7 +21,7 @@ export default function LectureSelectSection({
       titleClassName="text-xl pb-0"
       cardClassName="lg:p-8 gap-1"
     >
-      <div className="absolute top-8 right-8">{actionSlot}</div>
+      {actionSlot}
 
       <div className="flex flex-col gap-4">
         <Text className="text-gray-600" variant="small">
