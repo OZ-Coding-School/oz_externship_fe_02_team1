@@ -1,0 +1,7 @@
+export { default as FormHeader } from '@components/create-study-group/form-parts/FormHeader'
+export { default as FormFooter } from '@components/create-study-group/form-parts/FormFooter'
+export { default as PrimaryInfoSection } from '@/components/create-study-group/form-parts/PrimaryInfoSection'
+export { default as PeriodMemberSection } from '@/components/create-study-group/form-parts/PeriodMemberSection'
+export { default as LectureSelectSection } from '@/components/create-study-group/form-parts/LectureSelectSection'
+export { default as SelectedLectureCard } from '@/components/create-study-group/form-parts/SelectedLectureCard'
+export { default as MembersSlider } from '@/components/create-study-group/form-parts/MembersSlider'

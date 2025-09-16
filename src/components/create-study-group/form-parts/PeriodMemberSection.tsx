@@ -1,16 +1,23 @@
-import { useState } from 'react'
-
 import { Card, DateInput, MembersSlider, DatePickerModal } from '@components'
 import useDateModal from '@hooks/useDateModal'
 
-const INITIAL_MEMBER_COUNT = 6
+interface PeriodMemberSectionProps {
+  startDate: string
+  endDate: string
+  memberCount: number
+  onStartDateChange: (date: string) => void
+  onEndDateChange: (date: string) => void
+  onMemberCountChange: (count: number) => void
+}
 
-export default function PeriodMemberSection() {
-  const [memberCount, setMemberCount] = useState<number>(INITIAL_MEMBER_COUNT)
-
-  const [startDate, setStartDate] = useState('')
-  const [endDate, setEndDate] = useState('')
-
+export default function PeriodMemberSection({
+  startDate,
+  endDate,
+  memberCount,
+  onStartDateChange,
+  onEndDateChange,
+  onMemberCountChange,
+}: PeriodMemberSectionProps) {
   const {
     openDateKind,
     tempDate,
@@ -25,8 +32,8 @@ export default function PeriodMemberSection() {
   } = useDateModal({
     startDate,
     endDate,
-    setStartDate,
-    setEndDate,
+    setStartDate: onStartDateChange,
+    setEndDate: onEndDateChange,
   })
 
   return (
@@ -62,7 +69,7 @@ export default function PeriodMemberSection() {
           <MembersSlider
             className="col-span-2"
             value={memberCount}
-            onChange={setMemberCount}
+            onChange={onMemberCountChange}
           />
         </div>
       </Card>

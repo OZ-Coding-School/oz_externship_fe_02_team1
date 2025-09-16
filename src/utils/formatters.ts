@@ -1,3 +1,7 @@
+/**
+ * Date 객체를 날짜 또는 날짜와 시간 문자열로 변환합니다.
+ * @returns 'YYYY. MM. DD.' 또는 'YYYY. MM. DD. 오전/오후 H:MM' 형식의 문자열. date가 없으면 null.
+ */
 export const formatDate = (date?: Date) => {
   if (!date) return null
 
@@ -24,6 +28,10 @@ export const formatDate = (date?: Date) => {
   })
 }
 
+/**
+ * Date 객체를 시간 문자열로 변환합니다.
+ * @returns 'HH시 MM분' 형식의 문자열. date가 없으면 null.
+ */
 export const formatTime = (date?: Date) => {
   if (!date) return null
   return (
@@ -36,3 +44,16 @@ export const formatTime = (date?: Date) => {
       .replace(':', '시 ') + '분'
   )
 }
+
+/**
+ * Date 객체를 'YYYY-MM-DD' 형식의 문자열로 변환합니다.
+ * @returns 'YYYY-MM-DD' 형식의 문자열
+ */
+export const formatToYMD = (date: Date): string => {
+  const y = date.getFullYear()
+  const m = String(date.getMonth() + 1).padStart(2, '0')
+  const d = String(date.getDate()).padStart(2, '0')
+  return `${y}-${m}-${d}`
+}
+
+
