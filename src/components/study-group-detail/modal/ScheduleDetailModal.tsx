@@ -14,13 +14,13 @@ import { CalendarIcon, ClockIcon } from '@heroicons/react/24/outline'
 
 interface scheduleDetailModalProps {
   isOpen: boolean
-  close: () => void
+  onClose: () => void
   confirm: () => void
 }
 
 export default function ScheduleDetailModal({
   isOpen,
-  close,
+  onClose,
   confirm,
 }: scheduleDetailModalProps) {
   const schedule = studyGroupSchedule[2]
@@ -28,7 +28,7 @@ export default function ScheduleDetailModal({
   return (
     <BaseModal
       isOpen={isOpen}
-      onClose={close}
+      onClose={onClose}
       size={MODAL_PRESETS.scheduleDetail.size}
       labelledById="modal-title"
     >
@@ -88,7 +88,7 @@ export default function ScheduleDetailModal({
       </ModalBody>
 
       {MODAL_PRESETS.scheduleDetail.footer({
-        onClose: close,
+        onClose: onClose,
         onConfirm: confirm,
         createDate: formatDate(schedule.createDate),
       })}
