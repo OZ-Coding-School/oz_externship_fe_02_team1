@@ -21,7 +21,7 @@ export const dummyStudyLog: StudyLog = {
 ORM을 사용하면 데이터베이스에 대한 의존성을 줄이고, 코드를 더 객체 지향적으로 작성할 수 있습니다.`,
   author: {
     id: 5,
-    nickName: 'junGyu',
+    nickname: 'junGyu',
     profile_image: 'https://example.com/profile.png',
   },
   images: [
