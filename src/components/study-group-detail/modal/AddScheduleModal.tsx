@@ -1,6 +1,6 @@
-import { useForm, Controller } from 'react-hook-form'
 import { useState } from 'react'
-import MODAL_PRESETS from '@components/common/modal/ModalPresets'
+import { useForm, Controller } from 'react-hook-form'
+
 import {
   BaseModal,
   ModalBody,
@@ -11,8 +11,9 @@ import {
   Text,
   ScheduleDatePickerModal,
 } from '@components'
-import { studyGroup } from '@mocks/studyGroupDetail'
+import MODAL_PRESETS from '@components/common/modal/ModalPresets'
 import { useModal } from '@hooks'
+import { studyGroup } from '@mocks/studyGroupDetail'
 
 interface ScheduleFormInputs {
   name: string

@@ -1,9 +1,9 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
 
 import { ScheduleCalendar, Card, Button, AddScheduleModal } from '@components'
+import { useModal } from '@hooks'
 
 import type { StudyGroup } from '@models'
-import { useModal } from '@hooks'
 
 export default function StudyGroupSchedule({
   schedule,
