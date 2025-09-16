@@ -31,8 +31,13 @@ ORM을 사용하면 데이터베이스에 대한 의존성을 줄이고, 코드�
   attachments: [
     {
       id: 1,
-      file_name: 'example.pdf',
-      file_url: 'https://example.com/example.pdf',
+      file_name: 'example1.zip',
+      file_url: 'https://example.com/example1.zip',
+    },
+    {
+      id: 2,
+      file_name: 'example2.pdf',
+      file_url: 'https://example.com/example2.pdf',
     },
   ],
   ai_summary: {
