@@ -41,7 +41,7 @@ export const dateInputStyle = ({
 /** Textarea 전용 스타일 */
 export const textareaStyle = (className?: string) =>
   cn(
-    'w-full rounded-[8px] border text-[14px] transition-colors outline-none',
+    'w-full rounded-[8px] border border-gray-300 text-[14px] transition-colors outline-none',
     'resize-none px-[13px] py-[9px] placeholder:text-gray-400',
     className
   )
