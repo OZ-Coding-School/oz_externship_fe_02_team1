@@ -157,7 +157,7 @@
 }
 
 .markdown-preview h1 {
-  @apply mt-8 mb-6 border-0 text-3xl text-gray-900;
+  @apply m-0 border-0 pt-8 pb-6 text-3xl text-gray-900;
 }
 
 .markdown-preview h2 {
@@ -173,7 +173,7 @@
 }
 
 .markdown-preview p {
-  @apply mb-4 leading-relaxed text-gray-700;
+  @apply m-0 pt-2 pb-2 leading-relaxed text-gray-700;
 }
 
 .markdown-preview code {
