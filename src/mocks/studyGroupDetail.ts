@@ -98,6 +98,7 @@ export const studyGroupSchedule: StudyGroupScheduleList[] = [
     startTime: new Date('2025-09-13T18:30:00'),
     endTime: new Date('2025-09-13T20:30:00'),
     participants: [studyGroupMember[0], studyGroupMember[1]],
+    createDate: new Date('2025-09-13T18:30:00'),
   },
   {
     id: 2,
@@ -107,6 +108,7 @@ export const studyGroupSchedule: StudyGroupScheduleList[] = [
     startTime: new Date('2025-09-15T20:00:00'),
     endTime: new Date('2025-09-15T22:00:00'),
     participants: [studyGroupMember[2], studyGroupMember[3]],
+    createDate: new Date('2025-09-13T18:30:00'),
   },
   {
     id: 3,
@@ -121,6 +123,7 @@ export const studyGroupSchedule: StudyGroupScheduleList[] = [
       studyGroupMember[6],
       studyGroupMember[7],
     ],
+    createDate: new Date('2025-09-13T18:30:00'),
   },
 ]
 

@@ -28,6 +28,7 @@ export interface StudyGroupScheduleList {
   startTime: Date
   endTime: Date
   participants: StudyGroupMemberList[]
+  createDate: Date
 }
 
 export interface StudyGroup {
