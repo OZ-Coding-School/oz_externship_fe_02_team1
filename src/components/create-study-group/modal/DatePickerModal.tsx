@@ -38,9 +38,7 @@ export default function DatePickerModal({
         onClose: close,
         title: kind === 'start' ? '스터디 시작일 선택' : '스터디 종료일 선택',
         subTitle:
-          kind === 'end'
-            ? '종료일은 시작일로부터 최소 5일 이후를 선택하세요'
-            : undefined,
+          kind === 'end' && '종료일은 시작일로부터 최소 5일 이후를 선택하세요',
       })}
 
       <ModalBody>
