@@ -33,7 +33,7 @@ export default function AddScheduleModal({
   isOpen,
   onClose,
 }: AddScheduleModalProps) {
-  const datePickerModal = useModal()
+  const datePickerModal = useModal(false, () => setTempDate(undefined))
   const [tempDate, setTempDate] = useState<Date | undefined>(undefined)
 
   const {
@@ -41,6 +41,7 @@ export default function AddScheduleModal({
     handleSubmit,
     control,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<ScheduleFormInputs>({
     defaultValues: {
@@ -50,9 +51,14 @@ export default function AddScheduleModal({
     },
   })
 
-  const handleConfirm = () => {
-    // TODO: Implement confirm logic
+  const handleClose = () => {
+    reset()
     onClose()
+  }
+
+  const handleConfirm = (data: ScheduleFormInputs) => {
+    console.log(data)
+    handleClose()
   }
 
   const confirmDate = () => {
@@ -64,9 +70,9 @@ export default function AddScheduleModal({
 
   return (
     <>
-      <BaseModal isOpen={isOpen} onClose={onClose} size="md">
+      <BaseModal isOpen={isOpen} onClose={handleClose} size="md">
         {MODAL_PRESETS.scheduleAdd.header({
-          onClose: onClose,
+          onClose: handleClose,
           title: '새 스케줄 추가',
         })}
 
@@ -188,7 +194,7 @@ export default function AddScheduleModal({
         </ModalBody>
 
         {MODAL_PRESETS.scheduleAdd.footer({
-          onClose: onClose,
+          onClose: handleClose,
           onConfirm: handleSubmit(handleConfirm),
         })}
       </BaseModal>
