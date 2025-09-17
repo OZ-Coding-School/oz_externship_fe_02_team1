@@ -8,18 +8,21 @@ import {
   handleFileDrag,
   handleFileDrop,
   handleFileProcessing,
-  type UploadedFile,
-} from './fileUpload.utils'
-import { UploadedFileList } from './UploadedFileList'
-import { UploadPlaceholder } from './UploadPlaceholder'
+  type LogUploadedFile,
+} from '@components'
+import { LogUploadPlaceholder } from './LogUploadPlaceholder'
+import { LogUploadedFileList } from './LogUploadedFileList'
 
-interface FileUploadProps {
-  onChange: (files: UploadedFile[]) => void
+interface LogFileUploadProps {
+  onChange: (files: LogUploadedFile[]) => void
   className?: string
 }
 
-export default function FileUpload({ onChange, className }: FileUploadProps) {
-  const [files, setFiles] = useState<UploadedFile[]>([])
+export default function LogFileUpload({
+  onChange,
+  className,
+}: LogFileUploadProps) {
+  const [files, setFiles] = useState<LogUploadedFile[]>([])
   const [isDragging, setIsDragging] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
@@ -73,7 +76,7 @@ export default function FileUpload({ onChange, className }: FileUploadProps) {
         {/* 파일 존재 여부에따라 렌더 */}
         {files.length > 0 ? (
           <>
-            <UploadedFileList
+            <LogUploadedFileList
               files={files}
               setFiles={setFiles}
               onChange={onChange}
@@ -88,7 +91,7 @@ export default function FileUpload({ onChange, className }: FileUploadProps) {
             )}
           </>
         ) : (
-          <UploadPlaceholder />
+          <LogUploadPlaceholder />
         )}
 
         <input
