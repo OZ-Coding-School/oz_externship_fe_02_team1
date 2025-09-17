@@ -5,6 +5,13 @@ import { Input, Text } from '@components'
 export default function CreateStudyLogTitle() {
   const [title, setTitle] = useState('')
 
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const NewTitle = e.target.value
+    if (NewTitle.length <= 100) {
+      setTitle(NewTitle)
+    }
+  }
+
   return (
     <div className="w-full">
       <div className="pb-2">
@@ -12,11 +19,11 @@ export default function CreateStudyLogTitle() {
         <Text className="text-sm font-medium text-red-500">*</Text>
       </div>
       <Input
-        maxLength={99}
+        maxLength={100}
         value={title}
         placeholder="스터디 기록의 제목을 입력하세요"
         className="w-full rounded-lg px-3 py-2"
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={handleTitleChange}
       />
       <Text variant="small" className="pt-1 font-normal text-gray-500">
         {title.length}/100자
