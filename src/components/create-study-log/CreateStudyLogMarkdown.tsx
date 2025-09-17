@@ -6,13 +6,13 @@ import LogFileUpload from './LogFileUpload'
 
 import type { LogUploadedFile } from './logFileUpload.utils'
 
-interface setUploadedFilesProps {
+interface SetUploadedFilesProps {
   setUploadedFiles: (files: LogUploadedFile[]) => void
 }
 
 export default function CreateStudyLogMarkdown({
   setUploadedFiles,
-}: setUploadedFilesProps) {
+}: SetUploadedFilesProps) {
   const [description, setDescription] = useState('')
   const handleFilesChange = (files: LogUploadedFile[]) => {
     setUploadedFiles(files)
