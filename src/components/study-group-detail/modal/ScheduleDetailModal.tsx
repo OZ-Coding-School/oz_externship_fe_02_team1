@@ -68,23 +68,31 @@ export default function ScheduleDetailModal({
           title={`참여자 목록 (${schedule.participants.length}명)`}
         >
           <ul className="flex flex-col gap-3 rounded-lg border border-gray-200 p-4">
-            {schedule.participants.map((participant) => (
-              <li key={participant.id} className="flex items-center">
-                <Avatar size="sm" alt={participant.name} />
-                <Text variant="small" className="mr-2 ml-3 text-gray-900">
-                  {participant.name}
-                </Text>
-                {participant.isLeader && (
-                  <Badge
-                    color="primary"
-                    size="md"
-                    className="rounded-sm !px-2 text-xs"
-                  >
-                    리더
-                  </Badge>
-                )}
-              </li>
-            ))}
+            {schedule.participants.length ? (
+              <>
+                {schedule.participants.map((participant) => (
+                  <li key={participant.id} className="flex items-center">
+                    <Avatar size="sm" alt={participant.name} />
+                    <Text variant="small" className="mr-2 ml-3 text-gray-900">
+                      {participant.name}
+                    </Text>
+                    {participant.isLeader && (
+                      <Badge
+                        color="primary"
+                        size="md"
+                        className="rounded-sm !px-2 text-xs"
+                      >
+                        리더
+                      </Badge>
+                    )}
+                  </li>
+                ))}
+              </>
+            ) : (
+              <Text className="text-gray-900">
+                현재 이 스케줄에 참여 중인 인원이 없습니다.
+              </Text>
+            )}
           </ul>
         </ScheduleDetailDiv>
       </ModalBody>
