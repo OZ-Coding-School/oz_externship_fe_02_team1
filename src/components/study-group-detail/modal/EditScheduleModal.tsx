@@ -2,25 +2,31 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
+import { formatTimeToHHMM } from '@utils'
 
-import type { ScheduleFormInputs } from '@models'
+import type { StudyGroupScheduleList, ScheduleFormInputs } from '@models'
 
-interface AddScheduleModalProps {
+interface EditScheduleModalProps {
   isOpen: boolean
   onClose: () => void
+  schedule: StudyGroupScheduleList
 }
 
-export default function AddScheduleModal({
+export default function EditScheduleModal({
   isOpen,
   onClose,
-}: AddScheduleModalProps) {
+  schedule,
+}: EditScheduleModalProps) {
   const [tempDate, setTempDate] = useState<Date | undefined>(undefined)
 
   const formMethods = useForm<ScheduleFormInputs>({
     defaultValues: {
-      title: '',
-      goal: '',
-      participants: [],
+      title: schedule.title,
+      goal: schedule.goal,
+      date: new Date(schedule.date),
+      startTime: formatTimeToHHMM(schedule.startTime) ?? '',
+      endTime: formatTimeToHHMM(schedule.endTime) ?? '',
+      participants: schedule.participants.map((p) => p.name),
     },
   })
 
@@ -38,15 +44,15 @@ export default function AddScheduleModal({
   }
 
   const handleConfirm = (data: ScheduleFormInputs) => {
-    console.log(data)
+    console.log('Edited Schedule:', data)
     handleClose()
   }
 
   return (
     <BaseModal isOpen={isOpen} onClose={handleClose} size="md">
-        {MODAL_PRESETS.scheduleAdd.header({
+        {MODAL_PRESETS.scheduleEdit.header({
           onClose: handleClose,
-          title: '새 스케줄 추가',
+          title: '스케줄 수정',
         })}
 
         <ModalBody>
@@ -57,7 +63,7 @@ export default function AddScheduleModal({
           />
         </ModalBody>
 
-        {MODAL_PRESETS.scheduleAdd.footer({
+        {MODAL_PRESETS.scheduleEdit.footer({
           onClose: handleClose,
           onConfirm: handleSubmit(handleConfirm),
         })}

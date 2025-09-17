@@ -177,7 +177,7 @@ const MODAL_PRESETS = {
     header: ({ onClose }: ModalHeaderRenderProps) => (
       <ModalHeader title="스케줄 상세" onClose={onClose} />
     ),
-    footer: ({ onClose, onConfirm, createDate }: ModalFooterCtx) => {
+    footer: ({ onClose, onConfirm, createDate, onEdit }: ModalFooterCtx) => {
       const footerButtons: FooterButton[] = [
         { text: '닫기', variant: 'outline', onClick: onClose, disabled: false },
         {
@@ -189,7 +189,7 @@ const MODAL_PRESETS = {
         {
           text: '수정',
           variant: 'primary',
-          onClick: onConfirm ?? (() => {}),
+          onClick: onEdit ?? (() => {}),
           disabled: false,
         },
       ]
@@ -217,6 +217,32 @@ const MODAL_PRESETS = {
         { text: '취소', variant: 'outline', onClick: onClose, disabled: false },
         {
           text: '추가하기',
+          variant: 'primary',
+          onClick: onConfirm ?? (() => {}),
+          disabled: false,
+        },
+      ]
+
+      return (
+        <ModalFooter
+          layout="right"
+          right={<FooterButtons buttons={footerButtons} />}
+        />
+      )
+    },
+  },
+
+  // 7) 스케줄 수정
+  scheduleEdit: {
+    size: 'md',
+    header: ({ onClose }: ModalHeaderRenderProps) => (
+      <ModalHeader title="스케줄 수정" onClose={onClose} />
+    ),
+    footer: ({ onClose, onConfirm }: ModalFooterCtx) => {
+      const footerButtons: FooterButton[] = [
+        { text: '취소', variant: 'outline', onClick: onClose, disabled: false },
+        {
+          text: '수정하기',
           variant: 'primary',
           onClick: onConfirm ?? (() => {}),
           disabled: false,

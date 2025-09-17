@@ -2,15 +2,15 @@ import type { ReactNode } from 'react'
 
 import { Text } from '@components'
 
-interface scheduleDetailDivProps {
+interface ScheduleDetailDivProps {
   title: string
   children: ReactNode
 }
 
-export default function scheduleDetailDiv({
+export default function ScheduleDetailDiv({
   title,
   children,
-}: scheduleDetailDivProps) {
+}: ScheduleDetailDivProps) {
   return (
     <div className="flex flex-col gap-2">
       <Text variant="small" className="font-medium text-gray-700">
