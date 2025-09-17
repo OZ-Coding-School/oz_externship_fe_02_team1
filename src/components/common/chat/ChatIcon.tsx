@@ -3,10 +3,12 @@ import { cn } from '@utils'
 import { ChatBubbleOvalLeftIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useMediaQuery } from 'react-responsive'
 import { useState } from 'react'
+import { ChatAlertCount } from '@components'
 
 export default function ChatIcon() {
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false)
+  const alertCount = 1
 
   const handleToggleChat = () => {
     setIsChatOpen((prev) => !prev)
@@ -24,7 +26,10 @@ export default function ChatIcon() {
       {isChatOpen ? (
         <XMarkIcon width={24} color="white" strokeWidth={2.5} />
       ) : (
-        <ChatBubbleOvalLeftIcon width={24} color="white" strokeWidth={2} />
+        <>
+          <ChatBubbleOvalLeftIcon width={24} color="white" strokeWidth={2} />
+          {alertCount > 0 && <ChatAlertCount alertCount={alertCount} />}
+        </>
       )}
     </button>
   )
