@@ -18,6 +18,7 @@ export default function ChatIcon() {
     <button
       type="button"
       onClick={handleToggleChat}
+      aria-label={isChatOpen ? "채팅 닫기" : "채팅 열기"}
       className={cn(
         'bg-primary-500 fixed flex h-16 w-16 cursor-pointer items-center justify-center rounded-full shadow-md',
         isMobile ? 'right-4 bottom-4' : 'right-6 bottom-6'
@@ -28,7 +29,11 @@ export default function ChatIcon() {
       ) : (
         <>
           <ChatBubbleOvalLeftIcon width={24} color="white" strokeWidth={2} />
-          {alertCount > 0 && <ChatAlertCount alertCount={alertCount} />}
+          {alertCount > 0 && (
+            <div aria-live="polite" aria-atomic="true">
+              <ChatAlertCount alertCount={alertCount} />
+            </div>
+          )}
         </>
       )}
     </button>
