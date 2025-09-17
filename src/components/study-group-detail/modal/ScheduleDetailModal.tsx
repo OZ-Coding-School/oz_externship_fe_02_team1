@@ -67,9 +67,9 @@ export default function ScheduleDetailModal({
         <ScheduleDetailDiv
           title={`참여자 목록 (${schedule.participants.length}명)`}
         >
-          <div className="flex flex-col gap-3 rounded-lg border border-gray-200 p-4">
+          <ul className="flex flex-col gap-3 rounded-lg border border-gray-200 p-4">
             {schedule.participants.map((participant) => (
-              <div key={participant.id} className="flex items-center">
+              <li key={participant.id} className="flex items-center">
                 <Avatar size="sm" alt={participant.name} />
                 <Text variant="small" className="mr-2 ml-3 text-gray-900">
                   {participant.name}
@@ -83,9 +83,9 @@ export default function ScheduleDetailModal({
                     리더
                   </Badge>
                 )}
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </ScheduleDetailDiv>
       </ModalBody>
 
