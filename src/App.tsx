@@ -8,6 +8,7 @@ import {
   EditStudyGroup,
   StudyLogDetail,
   CreateStudyLog,
+  EditStudyLog,
 } from '@pages'
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
       <Route path="/study-group" element={<Layout maxWidth="medium" />}>
         <Route path=":groupId/records/create" element={<CreateStudyLog />} />
         <Route path=":groupId/records/:recordId" element={<StudyLogDetail />} />
+        <Route
+          path=":groupId/records/:recordId/edit"
+          element={<EditStudyLog />}
+        />
       </Route>
     </Routes>
   )
