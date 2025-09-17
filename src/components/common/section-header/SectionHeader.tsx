@@ -6,7 +6,6 @@ import { mediaQuery } from '@constants'
 import { useMediaQuery } from 'react-responsive'
 
 const TITLE_SIZES = {
-  xl: 'text-xl',
   '2xl': 'text-2xl',
   '3xl': 'text-3xl',
   '4xl': 'text-4xl',
@@ -15,7 +14,7 @@ const TITLE_SIZES = {
 interface SectionHeaderProps {
   title: string
   subtitle?: string
-  titleVariant: 'xl' | '2xl' | '3xl' | '4xl'
+  titleVariant: '2xl' | '3xl' | '4xl'
   children?: ReactNode
 }
 
