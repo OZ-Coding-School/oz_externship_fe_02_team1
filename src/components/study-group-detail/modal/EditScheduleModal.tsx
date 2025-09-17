@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
-import type { StudyGroupScheduleList, ScheduleFormInputs } from '@models'
 import { formatTimeToHHMM } from '@utils'
+
+import type { StudyGroupScheduleList, ScheduleFormInputs } from '@models'
 
 interface EditScheduleModalProps {
   isOpen: boolean
@@ -48,8 +49,7 @@ export default function EditScheduleModal({
   }
 
   return (
-    <>
-      <BaseModal isOpen={isOpen} onClose={handleClose} size="md">
+    <BaseModal isOpen={isOpen} onClose={handleClose} size="md">
         {MODAL_PRESETS.scheduleEdit.header({
           onClose: handleClose,
           title: '스케줄 수정',
@@ -68,6 +68,5 @@ export default function EditScheduleModal({
           onConfirm: handleSubmit(handleConfirm),
         })}
       </BaseModal>
-    </>
   )
 }

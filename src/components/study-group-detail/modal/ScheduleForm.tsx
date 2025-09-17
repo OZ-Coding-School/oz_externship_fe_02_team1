@@ -10,6 +10,7 @@ import {
 } from '@components'
 import { useModal } from '@hooks'
 import { studyGroup } from '@mocks/studyGroupDetail'
+
 import type { ScheduleFormInputs } from '@models'
 
 interface ScheduleFormProps {
