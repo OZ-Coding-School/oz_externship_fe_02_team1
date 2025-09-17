@@ -14,8 +14,9 @@ import {
 } from '@components'
 import { useModal } from '@hooks'
 import { studyGroup } from '@mocks/studyGroupDetail'
-import type { StudyGroupScheduleList } from '@models'
 import { formatTimeToHHMM } from '@utils'
+
+import type { StudyGroupMemberList, StudyGroupScheduleList } from '@models'
 
 interface ScheduleFormInputs {
   title: string
@@ -54,7 +55,9 @@ export default function EditScheduleModal({
       date: new Date(schedule.date),
       startTime: formatTimeToHHMM(schedule.startTime),
       endTime: formatTimeToHHMM(schedule.endTime),
-      participants: schedule.participants.map((p: any) => p.name),
+      participants: schedule.participants.map(
+        (p: StudyGroupMemberList) => p.name
+      ),
     },
   })
 
