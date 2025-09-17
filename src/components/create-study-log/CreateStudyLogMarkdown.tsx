@@ -1,7 +1,10 @@
 import { useState } from 'react'
+
 import { MarkdownEditor, Text } from '@components'
-import type { LogUploadedFile } from './logFileUpload.utils'
+
 import LogFileUpload from './LogFileUpload'
+
+import type { LogUploadedFile } from './logFileUpload.utils'
 
 interface setUploadedFilesProps {
   setUploadedFiles: (files: LogUploadedFile[]) => void
