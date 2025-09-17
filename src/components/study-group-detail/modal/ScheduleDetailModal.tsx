@@ -1,4 +1,3 @@
-import { useModal } from '@hooks'
 import { CalendarIcon, ClockIcon } from '@heroicons/react/24/outline'
 
 import {
@@ -12,6 +11,7 @@ import {
   MODAL_PRESETS,
   EditScheduleModal,
 } from '@components'
+import { useModal } from '@hooks'
 import { formatDate, formatTime } from '@utils'
 
 import type { StudyGroupScheduleList } from '@models'
