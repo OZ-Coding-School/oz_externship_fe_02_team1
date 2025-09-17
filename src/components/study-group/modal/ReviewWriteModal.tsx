@@ -1,6 +1,5 @@
 import { useForm, Controller } from 'react-hook-form'
-import { studyGroup } from '@mocks/studyGroupDetail'
-import { formatToYMD } from '@utils'
+
 import {
   BaseModal,
   MODAL_PRESETS,
@@ -9,6 +8,8 @@ import {
   Text,
   Textarea,
 } from '@components'
+import { studyGroup } from '@mocks/studyGroupDetail'
+import { formatToYMD } from '@utils'
 
 interface ReviewFormInputs {
   rating: number
