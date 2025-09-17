@@ -7,7 +7,7 @@ import {
   MAX_FILE_SIZE_BYTES,
 } from '@constants'
 
-export interface UploadedFile {
+export interface LogUploadedFile {
   id: string
   file: File
 }
@@ -25,8 +25,8 @@ export const checkValidateFile = (file: File): string | null => {
 
 // 최대 파일 개수 체크
 export const checkMaxFileCount = (
-  currentFiles: UploadedFile[],
-  newFiles: File[],
+  currentFiles: LogUploadedFile[],
+  newFiles: File[]
 ): string | null => {
   if (currentFiles.length + newFiles.length > MAX_FILE_COUNT) {
     return ERROR_MESSAGES.MAX_COUNT()
@@ -37,18 +37,18 @@ export const checkMaxFileCount = (
 // 중복 파일 검사
 export const isDuplicate = (
   file: File,
-  existingFiles: UploadedFile[],
+  existingFiles: LogUploadedFile[]
 ): boolean => {
   return existingFiles.some(
-    (f) => f.file.name === file.name && f.file.size === file.size,
+    (f) => f.file.name === file.name && f.file.size === file.size
   )
 }
 
 // 신규 파일 처리 (순수 함수)
 export const processNewFiles = (
   newFiles: File[],
-  currentFiles: UploadedFile[],
-): { filesToAdd: UploadedFile[]; errors: string[] } => {
+  currentFiles: LogUploadedFile[]
+): { filesToAdd: LogUploadedFile[]; errors: string[] } => {
   const errors: string[] = []
 
   // 1) 유효성 검사
@@ -79,7 +79,7 @@ export const processNewFiles = (
   })
 
   // 4) ID 부여
-  const filesToAdd: UploadedFile[] = uniqueNewFiles.map((file) => ({
+  const filesToAdd: LogUploadedFile[] = uniqueNewFiles.map((file) => ({
     id: uuidv4(),
     file,
   }))
@@ -90,10 +90,10 @@ export const processNewFiles = (
 // 파일 추가 처리 핸들러 (Side Effect 담당)
 export const handleFileProcessing = (
   newFiles: File[],
-  currentFiles: UploadedFile[],
-  setFiles: React.Dispatch<React.SetStateAction<UploadedFile[]>>,
-  onChange: (files: UploadedFile[]) => void,
-  onError: (message: string) => void,
+  currentFiles: LogUploadedFile[],
+  setFiles: React.Dispatch<React.SetStateAction<LogUploadedFile[]>>,
+  onChange: (files: LogUploadedFile[]) => void,
+  onError: (message: string) => void
 ) => {
   const { filesToAdd, errors } = processNewFiles(newFiles, currentFiles)
 
@@ -111,9 +111,9 @@ export const handleFileProcessing = (
 // 파일 삭제
 export const handleFileDelete = (
   id: string,
-  files: UploadedFile[],
-  setFiles: React.Dispatch<React.SetStateAction<UploadedFile[]>>,
-  onChange: (files: UploadedFile[]) => void,
+  files: LogUploadedFile[],
+  setFiles: React.Dispatch<React.SetStateAction<LogUploadedFile[]>>,
+  onChange: (files: LogUploadedFile[]) => void
 ) => {
   const updatedFiles = files.filter((f) => f.id !== id)
   setFiles(updatedFiles)
@@ -123,7 +123,7 @@ export const handleFileDelete = (
 // 드래그 상태
 export const handleFileDrag = (
   e: React.DragEvent<HTMLDivElement>,
-  setIsDragging: React.Dispatch<React.SetStateAction<boolean>>,
+  setIsDragging: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   e.preventDefault()
   e.stopPropagation()
@@ -133,11 +133,11 @@ export const handleFileDrag = (
 // 파일 드롭
 export const handleFileDrop = (
   e: React.DragEvent<HTMLDivElement>,
-  files: UploadedFile[],
-  setFiles: React.Dispatch<React.SetStateAction<UploadedFile[]>>,
+  files: LogUploadedFile[],
+  setFiles: React.Dispatch<React.SetStateAction<LogUploadedFile[]>>,
   setIsDragging: React.Dispatch<React.SetStateAction<boolean>>,
-  onChange: (files: UploadedFile[]) => void,
-  onError: (message: string) => void,
+  onChange: (files: LogUploadedFile[]) => void,
+  onError: (message: string) => void
 ) => {
   e.preventDefault()
   e.stopPropagation()
