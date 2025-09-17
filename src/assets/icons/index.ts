@@ -1,2 +1,6 @@
 export { default as ImageUploadIcon } from '@assets/icons/image-upload.svg?react'
 export { default as AIIcon } from '@assets/icons/ai-summary.svg?react'
+export { default as AttachmentIcon } from '@assets/icons/attachment.svg?react'
+export { default as DownloadIcon } from '@assets/icons/download.svg?react'
+export { default as PdfIcon } from '@assets/icons/pdf.svg?react'
+export { default as ZipIcon } from '@assets/icons/zip.svg?react'

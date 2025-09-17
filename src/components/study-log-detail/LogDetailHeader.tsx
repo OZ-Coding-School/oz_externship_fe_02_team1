@@ -1,59 +1,61 @@
-import { Avatar, BreadCrumb, Button, H3, Text } from '@components'
-import { BREAD_CRUMB_PATH } from '@constants'
+import { Avatar, Button, H3, Text } from '@components'
 import { formatDate } from '@utils'
 
+import type { StudyLog } from '@models'
 
 interface LogDetailHeaderProps {
-  studyLogData: {
-    title: string
-    userImage: string
-    userName: string
-    createdAt: string
-  }
+  studyLogData: StudyLog
 }
 
 export default function LogDetailHeader({
   studyLogData,
 }: LogDetailHeaderProps) {
-  return (
-    <header className="w-full max-w-4xl gap-4">
-      <BreadCrumb items={BREAD_CRUMB_PATH} />
-      <div className="flex w-full flex-col gap-4 p-6">
-        <section className="flex w-full flex-col justify-between sm:flex-row">
-          <H3 className="text-gray-900">{studyLogData.title}</H3>
-          <div className="flex gap-2">
-            <Button className="rounded-lg bg-gray-100 px-3 py-1.5">
-              <Text variant="small" className="font-medium text-gray-700">
-                수정하기
-              </Text>
-            </Button>
-            <Button className="rounded-lg bg-red-100 px-3 py-1.5">
-              <Text variant="small" className="font-medium text-red-700">
-                삭제하기
-              </Text>
-            </Button>
-          </div>
-        </section>
+  const { title, author, created_at, updated_at } = studyLogData
 
-        <section className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <Avatar
-              size="sm"
-              src={studyLogData.userImage}
-              alt={studyLogData.userName}
-            />
-            <Text variant="small" className="font-medium text-gray-600">
-              {studyLogData.userName}
+  const showUpdatedAt = created_at !== updated_at
+
+  return (
+    <header className="flex w-full max-w-4xl flex-col gap-6 rounded-t-xl border border-b-0 border-gray-200 p-6">
+      <section className="flex w-full flex-col justify-between sm:flex-row">
+        <H3 className="text-gray-900">{title}</H3>
+        <div className="flex gap-2">
+          <Button className="rounded-lg bg-gray-100 px-3 py-1.5">
+            <Text variant="small" className="font-medium text-gray-700">
+              수정하기
             </Text>
-          </div>
-          <Text variant="small" className="font-normal text-gray-600">
-            •
+          </Button>
+          <Button className="rounded-lg bg-red-100 px-3 py-1.5">
+            <Text variant="small" className="font-medium text-red-700">
+              삭제하기
+            </Text>
+          </Button>
+        </div>
+      </section>
+
+      <section className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
+          <Avatar size="sm" src={author.profile_image} alt={author.nickname} />
+          <Text variant="small" className="font-medium text-gray-600">
+            {author.nickname}
           </Text>
-          <Text variant="small" className="text-gray-600">
-            {formatDate(new Date(studyLogData.createdAt))}
-          </Text>
-        </section>
-      </div>
+        </div>
+        <Text variant="small" className="font-normal text-gray-600">
+          •
+        </Text>
+        <Text variant="small" className="text-gray-600">
+          작성일: {formatDate(new Date(created_at))}
+        </Text>
+        {showUpdatedAt && (
+          <>
+            <Text variant="small" className="font-normal text-gray-600">
+              •
+            </Text>
+            <Text variant="small" className="text-gray-600">
+              수정일: {updated_at}
+            </Text>
+          </>
+        )}
+      </section>
     </header>
   )
 }

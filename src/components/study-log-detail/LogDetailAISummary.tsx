@@ -1,13 +1,19 @@
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
 
 import { AIIcon } from '@assets'
-import { Text, AISummary } from '@components'
+import { Text } from '@components'
 
-export default function LogDetailAISummary() {
+import type { AiSummary } from '@models'
+
+interface LogDetailAISummaryProps {
+  aiSummary: AiSummary
+}
+
+export default function LogDetailAISummary({
+  aiSummary,
+}: LogDetailAISummaryProps) {
   const [isSummaryOpened, setIsSummaryOpened] = useState(false)
-  const { recordId } = useParams<{ recordId: string }>()
 
   const handleToggleSummary = () => {
     setIsSummaryOpened((prev) => !prev)
@@ -19,10 +25,13 @@ export default function LogDetailAISummary() {
 
   const Icon = toggleConfig.icon
 
+  if (!aiSummary || !aiSummary.summary) {
+    return null
+  }
   return (
-    <section className="flex flex-col p-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
+    <section className="flex flex-col border border-b-0 border-gray-200 p-6">
+      <div className="flex items-center justify-between pb-4">
+        <div className="flex items-center justify-center gap-2">
           <AIIcon />
           <Text variant="large" className="font-semibold text-gray-900">
             AI 학습 내용 요약
@@ -38,7 +47,11 @@ export default function LogDetailAISummary() {
           </Text>
         </button>
       </div>
-      {isSummaryOpened && <AISummary recordId={recordId} />}
+      {isSummaryOpened && (
+        <div className="rounded-lg bg-yellow-50 p-4">
+          <Text className="text-gray-800">{aiSummary.summary}</Text>
+        </div>
+      )}
     </section>
   )
 }
