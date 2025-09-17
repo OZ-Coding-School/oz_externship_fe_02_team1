@@ -14,7 +14,7 @@ export default function ReviewListModal({
   confirm,
 }: ReviewListModalProps) {
   const totalReviewCount = studyGroupReview.length
-  const averageRaging = calculateAverageRating(studyGroupReview)
+  const averageRating = calculateAverageRating(studyGroupReview)
 
   return (
     <BaseModal
@@ -31,13 +31,13 @@ export default function ReviewListModal({
         <div className="flex flex-col items-center gap-2 border-b border-gray-200 pb-6">
           <div className="flex items-center gap-2">
             <Rating
-              value={averageRaging}
+              value={averageRating}
               iconSize={16}
               className="gap-0"
               readOnly
             />
             <Text className="text-2xl font-bold text-gray-900">
-              {averageRaging}
+              {averageRating}
             </Text>
           </div>
           <Text className="text-gray-600">총 {totalReviewCount}개의 리뷰</Text>
