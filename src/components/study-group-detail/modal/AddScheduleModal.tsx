@@ -19,8 +19,8 @@ interface ScheduleFormInputs {
   title: string
   goal: string
   date: Date
-  startTime: Date
-  endTime: Date
+  startTime: string
+  endTime: string
   participants: string[]
 }
 
