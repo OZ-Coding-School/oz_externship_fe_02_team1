@@ -89,7 +89,7 @@ const Rating = ({
                 widthClass
               )}
             >
-              <StarSolid className="text-primary-500 block h-full w-auto" />
+              <StarSolid className="text-primary-400 block h-full w-auto" />
             </span>
           </button>
         )
