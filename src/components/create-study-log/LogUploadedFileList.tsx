@@ -1,12 +1,12 @@
-import { handleFileDelete, type UploadedFile } from './fileUpload.utils'
+import { handleFileDelete, type LogUploadedFile } from './logFileUpload.utils'
 
 interface UploadedFileListProps {
-  files: UploadedFile[]
-  setFiles: React.Dispatch<React.SetStateAction<UploadedFile[]>>
-  onChange: (files: UploadedFile[]) => void
+  files: LogUploadedFile[]
+  setFiles: React.Dispatch<React.SetStateAction<LogUploadedFile[]>>
+  onChange: (files: LogUploadedFile[]) => void
 }
 
-export const UploadedFileList = ({
+export const LogUploadedFileList = ({
   files,
   setFiles,
   onChange,
