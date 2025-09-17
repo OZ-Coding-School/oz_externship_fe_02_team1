@@ -14,7 +14,7 @@ import { formatDate, formatTime } from '@utils'
 
 import type { StudyGroupScheduleList } from '@models'
 
-interface scheduleDetailModalProps {
+interface ScheduleDetailModalProps {
   schedule: StudyGroupScheduleList
   isOpen: boolean
   onClose: () => void
@@ -26,7 +26,7 @@ export default function ScheduleDetailModal({
   isOpen,
   onClose,
   confirm,
-}: scheduleDetailModalProps) {
+}: ScheduleDetailModalProps) {
   return (
     <BaseModal
       isOpen={isOpen}
