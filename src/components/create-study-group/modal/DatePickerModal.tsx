@@ -1,7 +1,4 @@
-import Calendar from '@components/common/date-picker/Calendar'
-import BaseModal from '@components/common/modal/BaseModal'
-import ModalBody from '@components/common/modal/ModalBody'
-import MODAL_PRESETS from '@components/common/modal/ModalPresets'
+import { Calendar, BaseModal, ModalBody, MODAL_PRESETS } from '@components'
 
 interface DatePickerModalProps {
   isOpen: boolean

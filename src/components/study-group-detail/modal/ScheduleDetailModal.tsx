@@ -8,10 +8,9 @@ import {
   ModalBody,
   ScheduleDetailDiv,
   Text,
+  MODAL_PRESETS,
 } from '@components'
-import MODAL_PRESETS from '@components/common/modal/ModalPresets'
 import { formatDate, formatTime } from '@utils'
-
 
 import type { StudyGroupScheduleList } from '@models'
 
