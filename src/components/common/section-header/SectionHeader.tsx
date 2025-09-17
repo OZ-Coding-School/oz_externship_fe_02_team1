@@ -1,9 +1,11 @@
 import type { ReactNode } from 'react'
 
-import { cn } from '@utils'
+import { useMediaQuery } from 'react-responsive'
+
 import { Text } from '@components'
 import { mediaQuery } from '@constants'
-import { useMediaQuery } from 'react-responsive'
+import { cn } from '@utils'
+
 
 const TITLE_SIZES = {
   '2xl': 'text-2xl',
