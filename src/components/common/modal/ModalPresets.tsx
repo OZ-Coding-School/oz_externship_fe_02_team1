@@ -21,7 +21,11 @@ export const FooterButtons = ({ buttons }: FooterButtonsProps) => (
         type="button"
         onClick={onClick}
         disabled={!!disabled}
-        className={cn(buttonVariants({ variant, size: 'medium' }), className)}
+        className={cn(
+          'justify-center',
+          buttonVariants({ variant, size: 'medium' }),
+          className
+        )}
       >
         {text}
       </button>
@@ -42,7 +46,12 @@ const MODAL_PRESETS = {
     ),
     footer: ({ onClose, confirmDisabled, onConfirm }: ModalFooterCtx) => {
       const footerButtons: FooterButton[] = [
-        { text: '취소', variant: 'outline', onClick: onClose, disabled: false },
+        {
+          text: '취소',
+          variant: 'outline',
+          onClick: onClose,
+          disabled: false,
+        },
         {
           text: '선택 완료',
           variant: 'secondary',
