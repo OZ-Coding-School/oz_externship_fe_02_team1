@@ -2,6 +2,8 @@ import type { ReactNode } from 'react'
 
 import { cn } from '@utils'
 import { Text } from '@components'
+import { mediaQuery } from '@constants'
+import { useMediaQuery } from 'react-responsive'
 
 const TITLE_SIZES = {
   xl: 'text-xl',
@@ -23,14 +25,19 @@ export default function SectionHeader({
   titleVariant,
   children,
 }: SectionHeaderProps) {
+  const isMobile = useMediaQuery({ query: mediaQuery.mobile })
+
   return (
     <div className="flex items-center justify-between">
       <div
-        className={cn('flex flex-col', titleVariant === '3xl' ? 'p-2' : 'p-1')}
+        className={cn(
+          'flex flex-col',
+          titleVariant === '3xl' ? 'gap-2' : 'gap-1'
+        )}
       >
         <p
           className={cn(
-            TITLE_SIZES[titleVariant],
+            isMobile ? 'text-2xl' : TITLE_SIZES[titleVariant],
             'font-bold',
             'text-gray-900'
           )}
