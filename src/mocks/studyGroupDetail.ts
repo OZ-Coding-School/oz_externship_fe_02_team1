@@ -5,6 +5,7 @@ import type {
   StudyGroupLectureList,
   StudyGroupLogList,
   StudyGroupMemberList,
+  StudyGroupReviewList,
   StudyGroupScheduleList,
 } from '@models'
 
@@ -127,6 +128,33 @@ export const studyGroupSchedule: StudyGroupScheduleList[] = [
   },
 ]
 
+export const studyGroupReview: StudyGroupReviewList[] = [
+  {
+    id: 1,
+    writer: studyGroupMember[0],
+    rating: 5,
+    content:
+      '정말 유익한 스터디였습니다. 체계적인 커리큘럼과 좋은 동료들 덕분에 많이 배울 수 있었어요!',
+    createDate: new Date('2025-09-10T19:00:00'),
+  },
+  {
+    id: 2,
+    writer: studyGroupMember[1],
+    rating: 4,
+    content:
+      '스터디 리더님이 열정적으로 이끌어주셔서 끝까지 완주할 수 있었습니다. 다만 난이도가 조금 높았어요.',
+    createDate: new Date('2025-09-11T19:00:00'),
+  },
+  {
+    id: 3,
+    writer: studyGroupMember[2],
+    rating: 5,
+    content:
+      '동료들과의 협업 프로젝트가 특히 도움이 되었습니다. 실무 경험을 쌓을 수 있어서 좋았어요.',
+    createDate: new Date('2025-09-12T19:00:00'),
+  },
+]
+
 export const studyGroup: StudyGroup = {
   backgroundImage: Images.studyGroupDefault,
   studyGroupName: 'React 실무 프로젝트 스터디',
@@ -139,6 +167,7 @@ export const studyGroup: StudyGroup = {
   member: studyGroupMember,
   studyLog: studyGroupLog,
   schedule: studyGroupSchedule,
+  reviews: studyGroupReview,
 }
 
 export const currentUserRole: 'leader' | 'member' | 'guest' = 'leader'
