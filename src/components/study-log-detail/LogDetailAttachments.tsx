@@ -19,7 +19,7 @@ export default function LogDetailAttachments({
         </Text>
       </div>
       {attachments && attachments.length > 0 && (
-        <ul className="flex justify-between gap-4">
+        <ul className="grid grid-cols-2 justify-between gap-4">
           {attachments.map((file) => (
             <li
               key={file.id}
