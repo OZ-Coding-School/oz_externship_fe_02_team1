@@ -16,11 +16,11 @@ import { useModal } from '@hooks'
 import { studyGroup } from '@mocks/studyGroupDetail'
 
 interface ScheduleFormInputs {
-  name: string
+  title: string
   goal: string
   date: Date
-  startTime: string
-  endTime: string
+  startTime: Date
+  endTime: Date
   participants: string[]
 }
 
@@ -45,7 +45,7 @@ export default function AddScheduleModal({
     formState: { errors },
   } = useForm<ScheduleFormInputs>({
     defaultValues: {
-      name: '',
+      title: '',
       goal: '',
       participants: [],
     },
@@ -82,8 +82,8 @@ export default function AddScheduleModal({
               label="스케줄명"
               placeholder="스케줄 제목을 입력하세요"
               isRequired
-              {...register('name', { required: '스케줄명을 입력해주세요.' })}
-              errorText={errors.name?.message}
+              {...register('title', { required: '스케줄명을 입력해주세요.' })}
+              errorText={errors.title?.message}
             />
 
             <Textarea
