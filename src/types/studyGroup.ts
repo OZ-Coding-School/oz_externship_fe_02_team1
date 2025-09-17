@@ -31,6 +31,14 @@ export interface StudyGroupScheduleList {
   createDate: Date
 }
 
+export interface StudyGroupReviewList {
+  id: number
+  writer: StudyGroupMemberList
+  rating: number
+  content: string
+  createDate: Date
+}
+
 export interface StudyGroup {
   backgroundImage?: string
   studyGroupName: string
@@ -43,4 +51,5 @@ export interface StudyGroup {
   member: StudyGroupMemberList[]
   studyLog?: StudyGroupLogList[]
   schedule?: StudyGroupScheduleList[]
+  reviews?: StudyGroupReviewList[]
 }
