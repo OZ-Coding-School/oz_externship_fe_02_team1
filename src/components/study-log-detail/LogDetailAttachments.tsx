@@ -1,6 +1,6 @@
+import { AttachmentIcon, DownloadIcon, ZipIcon } from '@assets'
 import { Text } from '@components'
 
-import { AttachmentIcon, DownloadIcon, ZipIcon } from '@assets'
 import type { Attachment } from '@/types'
 
 interface LogDetailAttachmentsProps {
