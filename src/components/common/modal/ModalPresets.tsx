@@ -177,7 +177,7 @@ const MODAL_PRESETS = {
     header: ({ onClose }: ModalHeaderRenderProps) => (
       <ModalHeader title="스케줄 상세" onClose={onClose} />
     ),
-    footer: ({ onClose, onConfirm, createDate }: ModalFooterCtx) => {
+    footer: ({ onClose, onConfirm, createDate, onEdit }: ModalFooterCtx) => {
       const footerButtons: FooterButton[] = [
         { text: '닫기', variant: 'outline', onClick: onClose, disabled: false },
         {
@@ -189,7 +189,7 @@ const MODAL_PRESETS = {
         {
           text: '수정',
           variant: 'primary',
-          onClick: onConfirm ?? (() => {}),
+          onClick: onEdit ?? (() => {}),
           disabled: false,
         },
       ]
