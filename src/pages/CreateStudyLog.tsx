@@ -1,10 +1,12 @@
 import { useState } from 'react'
 
 import { type LogUploadedFile } from '@components'
-import { CreateStudyLogHeader , CreateStudyLogTitle , CreateStudyLogMarkdown , CreateStudyLogFooter } from '@components'
-
-
-
+import {
+  CreateStudyLogHeader,
+  CreateStudyLogTitle,
+  CreateStudyLogMarkdown,
+  CreateStudyLogFooter,
+} from '@components'
 
 export default function CreateStudyLog() {
   const [uploadedFiles, setUploadedFiles] = useState<LogUploadedFile[]>([])
