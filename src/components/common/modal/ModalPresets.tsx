@@ -231,6 +231,32 @@ const MODAL_PRESETS = {
       )
     },
   },
+
+  // 7) 스케줄 수정
+  scheduleEdit: {
+    size: 'md',
+    header: ({ onClose }: ModalHeaderRenderProps) => (
+      <ModalHeader title="스케줄 수정" onClose={onClose} />
+    ),
+    footer: ({ onClose, onConfirm }: ModalFooterCtx) => {
+      const footerButtons: FooterButton[] = [
+        { text: '취소', variant: 'outline', onClick: onClose, disabled: false },
+        {
+          text: '수정하기',
+          variant: 'primary',
+          onClick: onConfirm ?? (() => {}),
+          disabled: false,
+        },
+      ]
+
+      return (
+        <ModalFooter
+          layout="right"
+          right={<FooterButtons buttons={footerButtons} />}
+        />
+      )
+    },
+  },
 } satisfies Record<string, ModalPreset>
 
 export default MODAL_PRESETS

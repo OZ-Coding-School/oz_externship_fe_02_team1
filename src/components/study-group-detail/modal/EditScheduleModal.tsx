@@ -78,7 +78,7 @@ export default function EditScheduleModal({
   return (
     <>
       <BaseModal isOpen={isOpen} onClose={handleClose} size="md">
-        {MODAL_PRESETS.scheduleAdd.header({
+        {MODAL_PRESETS.scheduleEdit.header({
           onClose: handleClose,
           title: '스케줄 수정',
         })}
@@ -200,7 +200,7 @@ export default function EditScheduleModal({
           </form>
         </ModalBody>
 
-        {MODAL_PRESETS.scheduleAdd.footer({
+        {MODAL_PRESETS.scheduleEdit.footer({
           onClose: handleClose,
           onConfirm: handleSubmit(handleConfirm),
         })}
