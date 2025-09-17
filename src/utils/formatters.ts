@@ -46,6 +46,19 @@ export const formatTime = (date?: Date) => {
 }
 
 /**
+ * Date 객체를 'HH:mm' 형식의 문자열로 변환합니다.
+ * @returns 'HH:mm' 형식의 문자열. date가 없으면 null.
+ */
+export const formatTimeToHHMM = (date?: Date) => {
+  if (!date) return null
+  return date.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  })
+}
+
+/**
  * Date 객체를 'YYYY-MM-DD' 형식의 문자열로 변환합니다.
  * @returns 'YYYY-MM-DD' 형식의 문자열
  */
