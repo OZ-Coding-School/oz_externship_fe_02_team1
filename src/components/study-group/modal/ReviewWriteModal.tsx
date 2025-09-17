@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useForm, Controller } from 'react-hook-form'
 import { studyGroup } from '@mocks/studyGroupDetail'
 import { formatToYMD } from '@utils'
 import {
@@ -10,10 +10,15 @@ import {
   Textarea,
 } from '@components'
 
+interface ReviewFormInputs {
+  rating: number
+  reviewText: string
+}
+
 interface ReviewWriteModalProps {
   isOpen: boolean
   onClose: () => void
-  confirm: () => void
+  confirm: (data: ReviewFormInputs) => void
 }
 
 export default function ReviewWriteModal({
@@ -21,7 +26,21 @@ export default function ReviewWriteModal({
   onClose,
   confirm,
 }: ReviewWriteModalProps) {
-  const [rating, setRating] = useState(0)
+  const {
+    handleSubmit,
+    control,
+    register,
+    formState: { errors },
+  } = useForm<ReviewFormInputs>({
+    defaultValues: {
+      rating: 0,
+      reviewText: '',
+    },
+  })
+
+  const handleConfirm = (data: ReviewFormInputs) => {
+    confirm(data)
+  }
 
   return (
     <BaseModal
@@ -45,21 +64,35 @@ export default function ReviewWriteModal({
           </Text>
         </div>
 
-        <div className="flex flex-col gap-3">
-          <Text variant="small" className="text-gray-700">
-            별점 <span className="text-danger-500">*</span>
-          </Text>
-          <Rating value={rating} onChange={setRating} />
-        </div>
+        <form className="space-y-6">
+          <div className="flex flex-col gap-3">
+            <Text variant="small" className="text-gray-700">
+              별점 <span className="text-danger-500">*</span>
+            </Text>
+            <Controller
+              name="rating"
+              control={control}
+              render={({ field }) => (
+                <Rating value={field.value} onChange={field.onChange} />
+              )}
+            />
+          </div>
 
-        <div className="flex flex-col gap-3">
-          <Textarea label="리뷰 내용" isRequired />
-        </div>
+          <div className="flex flex-col gap-3">
+            <Textarea
+              label="리뷰 내용"
+              isRequired
+              placeholder="스터디에 대한 솔직한 후기를 남겨주세요..."
+              {...register('reviewText', { required: '리뷰를 작성해주세요.' })}
+              errorText={errors.reviewText?.message}
+            />
+          </div>
+        </form>
       </ModalBody>
 
       {MODAL_PRESETS.reviewWrite.footer({
         onClose: onClose,
-        onConfirm: confirm,
+        onConfirm: handleSubmit(handleConfirm),
       })}
     </BaseModal>
   )
