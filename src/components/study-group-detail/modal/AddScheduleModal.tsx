@@ -10,8 +10,8 @@ import {
   Badge,
   Text,
   ScheduleDatePickerModal,
+  MODAL_PRESETS,
 } from '@components'
-import MODAL_PRESETS from '@components/common/modal/ModalPresets'
 import { useModal } from '@hooks'
 import { studyGroup } from '@mocks/studyGroupDetail'
 

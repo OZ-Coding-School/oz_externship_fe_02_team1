@@ -1,5 +1,4 @@
-import { Calendar, BaseModal, ModalBody } from '@components'
-import MODAL_PRESETS from '@components/common/modal/ModalPresets'
+import { Calendar, BaseModal, ModalBody, MODAL_PRESETS } from '@components'
 
 interface ScheduleDatePickerModalProps {
   isOpen: boolean

@@ -1,7 +1,10 @@
 import { format, isSameDay, isSameMonth } from 'date-fns'
 
 import { Text } from '@components'
+import { useModal } from '@hooks'
 import { cn, formatTime } from '@utils'
+
+import { ScheduleDetailModal } from '../modal'
 
 import type { StudyGroupScheduleList } from '@models'
 
@@ -24,6 +27,8 @@ export default function CalendarBodyDate({
   index,
   daysLength,
 }: CalendarBodyDateProps) {
+  const { isOpen, openModal, closeModal } = useModal()
+
   return (
     <div
       className={cn(
@@ -44,16 +49,29 @@ export default function CalendarBodyDate({
       </time>
 
       {schedule && (
-        <div className="bg-primary-100 border-primary-100 mt-2 aspect-square overflow-hidden rounded-sm border-4">
-          <Text
-            className={cn('block font-medium text-nowrap', scheduleTextStyle)}
+        <>
+          <button
+            type="button"
+            onClick={openModal}
+            className="bg-primary-100 border-primary-100 mt-2 aspect-square w-full overflow-hidden rounded-sm border-4 text-left"
           >
-            {schedule.title}
-          </Text>
-          <Text className={cn('break-all', scheduleTextStyle)}>
-            {formatTime(schedule.startTime)} ~{formatTime(schedule.endTime)}
-          </Text>
-        </div>
+            <Text
+              className={cn('block font-medium text-nowrap', scheduleTextStyle)}
+            >
+              {schedule.title}
+            </Text>
+            <Text className={cn('break-all', scheduleTextStyle)}>
+              {formatTime(schedule.startTime)}~{formatTime(schedule.endTime)}
+            </Text>
+          </button>
+
+          <ScheduleDetailModal
+            schedule={schedule}
+            isOpen={isOpen}
+            onClose={closeModal}
+            confirm={() => {}}
+          />
+        </>
       )}
       <div className="absolute right-0 bottom-0 left-0 block h-px border-y-4 border-white" />
     </div>

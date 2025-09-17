@@ -62,6 +62,7 @@ export interface ModalFooterCtx {
   onClose: () => void
   confirmDisabled?: boolean
   onConfirm?: () => void
+  createDate?: string | null
 }
 
 export interface ModalHeaderRenderProps {
