@@ -1,9 +1,10 @@
+import { ChatBubbleOvalLeftIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
+
+import { ChatAlertCount } from '@components'
 import { mediaQuery } from '@constants'
 import { cn } from '@utils'
-import { ChatBubbleOvalLeftIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useMediaQuery } from 'react-responsive'
-import { useState } from 'react'
-import { ChatAlertCount } from '@components'
 
 export default function ChatIcon() {
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
