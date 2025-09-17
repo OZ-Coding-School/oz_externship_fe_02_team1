@@ -1,8 +1,8 @@
 import { Avatar, H3, Text } from '@components'
+import { usePageNav } from '@hooks'
 import { formatDate } from '@utils'
 
 import type { StudyLog } from '@models'
-import { usePageNav } from '@hooks'
 
 interface LogDetailHeaderProps {
   studyLogData: StudyLog
