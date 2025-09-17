@@ -9,6 +9,7 @@ import {
   StudyLogDetail,
   CreateStudyLog,
 } from '@pages'
+import StudyGroup from './pages/StudyGroup'
 
 import EditStudyLog from './pages/EditStudyLog'
 
@@ -16,6 +17,7 @@ function App() {
   return (
     <Routes>
       <Route path="/study-group" element={<Layout maxWidth="large" />}>
+        <Route path="/study-group" element={<StudyGroup />} />
         <Route path=":groupId" element={<StudyGroupDetail />} />
       </Route>
 
