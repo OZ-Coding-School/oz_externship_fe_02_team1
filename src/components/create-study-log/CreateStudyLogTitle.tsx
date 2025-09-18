@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Input, Text } from '@components'
+import { MAX_TITLE_LENGTH } from '@constants'
 
 export default function CreateStudyLogTitle() {
   const [title, setTitle] = useState('')
@@ -26,7 +27,7 @@ export default function CreateStudyLogTitle() {
         onChange={handleTitleChange}
       />
       <Text variant="small" className="pt-1 font-normal text-gray-500">
-        {title.length}/100자
+        {title.length}/{MAX_TITLE_LENGTH}자
       </Text>
     </div>
   )
