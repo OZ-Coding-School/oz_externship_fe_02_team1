@@ -7,9 +7,9 @@ export default function CreateStudyLogTitle() {
   const [title, setTitle] = useState('')
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const NewTitle = e.target.value
-    if (NewTitle.length <= 100) {
-      setTitle(NewTitle)
+    const { value: newTitle } = e.target
+    if (newTitle.length <= 100) {
+      setTitle(newTitle)
     }
   }
 
