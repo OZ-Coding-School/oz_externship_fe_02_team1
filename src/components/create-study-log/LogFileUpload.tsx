@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import { Toast } from '@components'
 import {
+  Toast,
   handleFileDrag,
   handleFileDrop,
   handleFileProcessing,

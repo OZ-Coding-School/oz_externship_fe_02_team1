@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router'
 
-import { Footer, Header } from '@components'
+import { ChatIcon, Footer, Header } from '@components'
 import { cn } from '@utils'
 
 interface LayoutProps {
@@ -29,6 +29,8 @@ export default function Layout({ maxWidth, isBackgroundGray }: LayoutProps) {
         </div>
       </main>
       <Footer />
+
+      <ChatIcon />
     </>
   )
 }

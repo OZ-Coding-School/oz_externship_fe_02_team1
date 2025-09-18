@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
-import { type LogUploadedFile } from '@components'
 import {
   CreateStudyLogHeader,
   CreateStudyLogTitle,
   CreateStudyLogMarkdown,
   CreateStudyLogFooter,
+  type LogUploadedFile,
 } from '@components'
 
 export default function CreateStudyLog() {
