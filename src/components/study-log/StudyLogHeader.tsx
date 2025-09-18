@@ -1,7 +1,7 @@
 import { BreadCrumb, SectionHeader } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
 
-export default function CreateStudyLogHeader() {
+export default function StudyLogHeader() {
   return (
     <div>
       <BreadCrumb items={BREAD_CRUMB_PATH} className="pb-4" />

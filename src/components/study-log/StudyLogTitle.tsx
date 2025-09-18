@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Input, Text } from '@components'
 import { MAX_TITLE_LENGTH } from '@constants'
 
-export default function CreateStudyLogTitle() {
+export default function StudyLogTitle() {
   const [title, setTitle] = useState('')
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

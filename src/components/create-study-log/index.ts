@@ -1,6 +1,2 @@
 export * from '@/components/create-study-log/logFileUpload.utils'
-export { default as CreateStudyLogHeader } from '@components/create-study-log/CreateStudyLogHeader'
-export { default as CreateStudyLogTitle } from '@components/create-study-log/CreateStudyLogTitle'
-export { default as CreateStudyLogMarkdown } from '@components/create-study-log/CreateStudyLogMarkdown'
-export { default as CreateStudyLogFooter } from '@components/create-study-log/CreateStudyLogFooter'
 export { default as LogFileUpload } from '@components/create-study-log/LogFileUpload'

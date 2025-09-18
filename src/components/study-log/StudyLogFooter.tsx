@@ -1,6 +1,6 @@
 import { Button, Text } from '@components'
 
-export default function CreateStudyLogFooter() {
+export default function StudyLogFooter() {
   return (
     <footer className="flex justify-between pt-6">
       <Button variant="outline" className="rounded-lg px-6 py-2" type="button">

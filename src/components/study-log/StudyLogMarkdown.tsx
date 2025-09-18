@@ -11,7 +11,7 @@ interface SetUploadedFilesProps {
   setUploadedFiles: (files: LogUploadedFile[]) => void
 }
 
-export default function CreateStudyLogMarkdown({
+export default function StudyLogMarkdown({
   setUploadedFiles,
 }: SetUploadedFilesProps) {
   const [description, setDescription] = useState('')
