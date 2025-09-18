@@ -1,55 +1,39 @@
-export interface StudyGroupLectureList {
-  image?: string
-  title: string
-  instructor: string
-  lectureUrl: string
-}
+import type { Lecture, LectureBase, Member } from '@models'
 
-export interface StudyGroupMemberList {
-  id: number
+export type StudyGroupStatus = '대기중' | '진행중' | '종료됨'
+
+export interface StudyGroupBase {
+  uuid: string
   name: string
-  profileImage?: string
-  isLeader: boolean
+  img_url?: string
+  start_at: string
+  end_at: string
+  max_headcount: number
 }
 
-export interface StudyGroupLogList {
-  id: number
-  title: string
-  date: Date
-  authorId: number
-  attachment?: string[]
+export interface StudyGroupCreate extends StudyGroupBase {
+  introduction: string
+  created_by: Member
+  created_at: string
 }
 
-export interface StudyGroupScheduleList {
-  id: number
-  title: string
-  goal: string
-  date: Date
-  startTime: Date
-  endTime: Date
-  participants: StudyGroupMemberList[]
-  createDate: Date
+export interface StudyGroupEdit extends StudyGroupCreate {
+  updated_at: string
 }
 
-export interface StudyGroupReviewList {
-  id: number
-  writer: StudyGroupMemberList
-  rating: number
-  content: string
-  createDate: Date
+export interface StudyGroupList extends StudyGroupBase {
+  current_headcount: number
+  is_leader: boolean
+  status: StudyGroupStatus
+  lectures: LectureBase[]
 }
 
-export interface StudyGroup {
-  backgroundImage?: string
-  studyGroupName: string
-  description?: string
-  currentMemberCount: number
-  maxMemberCount: number
-  startDate: Date
-  lastDate: Date
-  lecture?: StudyGroupLectureList[]
-  member: StudyGroupMemberList[]
-  studyLog?: StudyGroupLogList[]
-  schedule?: StudyGroupScheduleList[]
-  reviews?: StudyGroupReviewList[]
+export interface StudyGroupDetail {
+  current_headcount: number
+  status: StudyGroupStatus
+  leader: Member
+  members: (Member & {
+    is_leader: boolean
+  })[]
+  lectures: Lecture[]
 }
