@@ -1,10 +1,11 @@
 import { useState } from 'react'
 
 import {
-  CreateStudyLogHeader,
-  CreateStudyLogTitle,
-  CreateStudyLogMarkdown,
-  CreateStudyLogFooter,
+  StudyLogFooter,
+  StudyLogHeader,
+  StudyLogLayout,
+  StudyLogMarkdown,
+  StudyLogTitle,
   type LogUploadedFile,
 } from '@components'
 
@@ -18,13 +19,12 @@ export default function CreateStudyLog() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-4xl">
-      <CreateStudyLogHeader />
-      <section className="flex flex-col items-start justify-start rounded-xl border border-gray-200 p-6">
-        <CreateStudyLogTitle />
-        <CreateStudyLogMarkdown setUploadedFiles={setUploadedFiles} />
-      </section>
-      <CreateStudyLogFooter />
-    </form>
+    <StudyLogLayout
+      onSubmit={handleSubmit}
+      header={<StudyLogHeader mode="create" />}
+      title={<StudyLogTitle />}
+      markdown={<StudyLogMarkdown setUploadedFiles={setUploadedFiles} />}
+      footer={<StudyLogFooter />}
+    />
   )
 }
