@@ -6,7 +6,6 @@ import { Text } from '@components'
 import { mediaQuery } from '@constants'
 import { cn } from '@utils'
 
-
 const TITLE_SIZES = {
   '2xl': 'text-2xl',
   '3xl': 'text-3xl',
@@ -16,7 +15,7 @@ const TITLE_SIZES = {
 interface SectionHeaderProps {
   title: string
   subtitle?: string
-  titleVariant: '2xl' | '3xl' | '4xl'
+  titleVariant: keyof typeof TITLE_SIZES
   children?: ReactNode
 }
 
@@ -36,7 +35,7 @@ export default function SectionHeader({
           titleVariant === '3xl' ? 'gap-2' : 'gap-1'
         )}
       >
-        <p
+        <h2
           className={cn(
             isMobile ? 'text-2xl' : TITLE_SIZES[titleVariant],
             'font-bold',
@@ -44,7 +43,7 @@ export default function SectionHeader({
           )}
         >
           {title}
-        </p>
+        </h2>
         <Text className="font-normal text-gray-600">{subtitle}</Text>
       </div>
       {children}
