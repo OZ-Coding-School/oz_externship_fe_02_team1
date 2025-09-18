@@ -13,7 +13,7 @@ export const usePageNav = () => {
   }
 
   const navigateToLogEdit = () => {
-    navigate(`/study-group/${params.groupId}/edit`)
+    navigate(`/study-group/${params.groupId}/records/${params.recordId}/edit`)
   }
 
   return { handleGoBack, navigateToGroupEdit, navigateToLogEdit }
