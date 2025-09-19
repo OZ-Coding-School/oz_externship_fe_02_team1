@@ -1,5 +1,14 @@
 import type { User } from '@models'
 
+export interface ScheduleFormInputs {
+  title: string
+  objective: string
+  sessionDate: string
+  startTime: string
+  endTime: string
+  participants: ScheduleParticipant[]
+}
+
 export interface ScheduleBase {
   id: number
   title: string
