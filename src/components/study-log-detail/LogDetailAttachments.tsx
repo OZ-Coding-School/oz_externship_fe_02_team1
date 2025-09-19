@@ -1,10 +1,10 @@
 import { AttachmentIcon, DownloadIcon, ZipIcon } from '@assets'
 import { Text } from '@components'
 
-import type { Attachment } from '@/types'
+import type { Attachment } from '@models'
 
 interface LogDetailAttachmentsProps {
-  attachments: Attachment[]
+  attachments: Attachment[] | []
 }
 
 export default function LogDetailAttachments({
@@ -29,12 +29,12 @@ export default function LogDetailAttachments({
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href={file.file_url}
-                download={file.file_name}
+                href={file.fileUrl}
+                download={file.fileName}
                 className="flex w-full flex-col"
               >
                 <Text variant="small" className="font-medium text-gray-900">
-                  {file.file_name}
+                  {file.fileName}
                 </Text>
                 <Text
                   variant="extraSmall"

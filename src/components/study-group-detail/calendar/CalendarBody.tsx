@@ -9,10 +9,10 @@ import {
 
 import { CalendarBodyDate } from '@components'
 
-import type { StudyGroupScheduleList } from '@models'
+import type { ScheduleDetail } from '@models'
 
 interface CalendarBodyProps {
-  schedule: StudyGroupScheduleList[] | undefined
+  schedule: ScheduleDetail[] | undefined
   currentMonth: Date
 }
 
@@ -21,7 +21,7 @@ export default function CalendarBody({
   currentMonth,
 }: CalendarBodyProps) {
   const schedulesByDate = new Map(
-    schedule?.map((e) => [format(e.date, 'yyyy-MM-dd'), e])
+    schedule?.map((e) => [format(e.sessionDate, 'yyyy-MM-dd'), e])
   )
 
   const monthStart = startOfMonth(currentMonth)

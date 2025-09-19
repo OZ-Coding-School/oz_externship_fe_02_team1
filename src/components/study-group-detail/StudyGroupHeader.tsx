@@ -10,53 +10,53 @@ import { Button, StudyBadge, Text } from '@components'
 import { usePageNav } from '@hooks'
 import { formatDate } from '@utils'
 
-import type { StudyGroup } from '@models'
+import type { StudyGroupDetail } from '@models'
 
 interface StudyGroupHeaderProps
   extends Pick<
-    StudyGroup,
-    | 'backgroundImage'
-    | 'studyGroupName'
-    | 'currentMemberCount'
-    | 'maxMemberCount'
-    | 'startDate'
-    | 'lastDate'
+    StudyGroupDetail,
+    | 'imgUrl'
+    | 'name'
+    | 'currentHeadcount'
+    | 'maxHeadcount'
+    | 'startAt'
+    | 'endAt'
   > {
   currentUserRole?: 'member' | 'leader' | 'guest'
   isMember?: boolean
 }
 
 export default function StudyGroupHeader({
-  backgroundImage,
-  studyGroupName,
-  currentMemberCount,
-  maxMemberCount,
-  startDate,
-  lastDate,
+  imgUrl,
+  name,
+  currentHeadcount,
+  maxHeadcount,
+  startAt,
+  endAt,
   currentUserRole,
   isMember,
 }: StudyGroupHeaderProps) {
   const { navigateToGroupEdit } = usePageNav()
 
-  const formattedStartDate = formatDate(startDate)
-  const formattedLastDate = formatDate(lastDate)
+  const formattedStartDate = formatDate(new Date(startAt))
+  const formattedLastDate = formatDate(new Date(endAt))
 
   return (
     <header className="relative aspect-[2/1] overflow-hidden rounded-lg bg-gray-500">
       <img
         className="w-full"
-        src={backgroundImage ?? Images.studyGroupDefault}
-        alt={`${studyGroupName} 스터디 그룹 이미지`}
+        src={imgUrl ?? Images.studyGroupDefault}
+        alt={`${name} 스터디 그룹 이미지`}
       />
       <div className="absolute inset-0 bg-black/40" />
 
       <div className="absolute bottom-6 left-6 flex flex-col gap-2 text-white">
-        <Text className="text-3xl font-bold">{studyGroupName}</Text>
+        <Text className="text-3xl font-bold">{name}</Text>
         <div className="flex gap-4">
           <div className="flex items-center gap-1">
             <UserGroupIcon width={16} />
             <Text>
-              {currentMemberCount}/{maxMemberCount}명
+              {currentHeadcount}/{maxHeadcount}명
             </Text>
           </div>
           <div className="flex items-center gap-1">

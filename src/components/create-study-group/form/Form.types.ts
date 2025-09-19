@@ -1,16 +1,16 @@
-import type { StudyGroupLectureList } from '@models'
+import type { Lecture } from '@models'
 
 export interface FormMode {
   mode: 'create' | 'edit'
 }
 
 export interface StudyGroupFormValues {
-  groupName: string
-  description?: string
+  name: string
+  introduction?: string
   imageFile: File | null
-  startDate: string
-  endDate: string
-  memberCount: number
-  lectures: StudyGroupLectureList[]
-  initialImageUrl?: string | null
+  startAt: string
+  endAt: string
+  currentHeadcount: number
+  lectures: Lecture[]
+  imgUrl?: string | null
 }

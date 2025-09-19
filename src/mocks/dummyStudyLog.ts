@@ -1,6 +1,6 @@
-import type { StudyLog } from '@/types/studyLog'
+import type { StudyLogDetail } from '@models'
 
-export const dummyStudyLog: StudyLog = {
+export const dummyStudyLog: StudyLogDetail = {
   id: 10,
   title: 'Django ORM 학습',
   content: `# Django ORM의 개념
@@ -20,40 +20,30 @@ export const dummyStudyLog: StudyLog = {
 **결론:**
 ORM을 사용하면 데이터베이스에 대한 의존성을 줄이고, 코드를 더 객체 지향적으로 작성할 수 있습니다.`,
   author: {
-    id: 5,
+    id: 1,
     nickname: 'junGyu',
-    profile_image: 'https://example.com/profile.png',
+    profileImage: 'https://example.com/profile.png',
   },
   images: [
-    { id: 1, img_url: 'https://example.com/image_orm_structure.png' },
-    { id: 2, img_url: 'https://example.com/image_query_example.jpg' },
+    { id: 1, imgUrl: 'https://example.com/image_orm_structure.png' },
+    { id: 2, imgUrl: 'https://example.com/image_query_example.jpg' },
   ],
   attachments: [
     {
       id: 1,
-      file_name: 'example1.zip',
-      file_url: 'https://example.com/example1.zip',
+      fileName: 'example1.zip',
+      fileUrl: 'https://example.com/example1.zip',
     },
     {
       id: 2,
-      file_name: 'example2.pdf',
-      file_url: 'https://example.com/example2.pdf',
-    },
-    {
-      id: 1,
-      file_name: 'example1.zip',
-      file_url: 'https://example.com/example1.zip',
-    },
-    {
-      id: 2,
-      file_name: 'example2.pdf',
-      file_url: 'https://example.com/example2.pdf',
+      fileName: 'example2.pdf',
+      fileUrl: 'https://example.com/example2.pdf',
     },
   ],
-  ai_summary: {
+  aiSummary: {
     summary: '오늘은 Django ORM 기본 개념과 QuerySet 사용법을 학습했습니다.',
     collapsible: true,
   },
-  created_at: '2025-08-30 10:20',
-  updated_at: '2025-08-30 11:00',
+  createdAt: '2025-08-30T10:20:00Z',
+  updatedAt: '2025-08-30T11:00:00Z',
 }

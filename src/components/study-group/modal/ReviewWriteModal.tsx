@@ -9,7 +9,6 @@ import {
   Textarea,
 } from '@components'
 import { studyGroup } from '@mocks/studyGroupDetail'
-import { formatToYMD } from '@utils'
 
 interface ReviewFormInputs {
   rating: number
@@ -56,12 +55,10 @@ export default function ReviewWriteModal({
 
       <ModalBody className="space-y-6">
         <div className="flex flex-col gap-2">
-          <Text className="font-medium text-gray-900">
-            {studyGroup.studyGroupName}
-          </Text>
+          <Text className="font-medium text-gray-900">{studyGroup.name}</Text>
           <Text variant="small" className="text-gray-600">
-            {formatToYMD(studyGroup.startDate)}&nbsp;~&nbsp;
-            {formatToYMD(studyGroup.lastDate)}
+            {studyGroup.startAt}&nbsp;~&nbsp;
+            {studyGroup.endAt}
           </Text>
         </div>
 

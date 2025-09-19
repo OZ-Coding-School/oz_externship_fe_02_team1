@@ -34,7 +34,7 @@ export default function StudyGroupForm({
       <FormHeader mode={mode} />
 
       <Controller
-        name="groupName"
+        name="name"
         control={control}
         render={({ field }) => (
           <PrimaryInfoSection
@@ -50,7 +50,7 @@ export default function StudyGroupForm({
       />
 
       <Controller
-        name="startDate"
+        name="startAt"
         control={control}
         render={({ field }) => (
           <PeriodMemberSection

@@ -1,33 +1,53 @@
+import type { User } from '@models'
+
 export interface AiSummary {
   summary: string
   collapsible: boolean
 }
 
-export interface Author {
-  id: number
-  nickname: string
-  profile_image: string
-}
-
 export interface Image {
   id: number
-  img_url: string
+  imgUrl: string
 }
 
 export interface Attachment {
   id: number
-  file_name: string
-  file_url: string
+  fileName: string
+  fileUrl: string
 }
 
-export interface StudyLog {
+export interface StudyLogBase {
+  id: number
+  title: string
+}
+
+export interface StudyLogEdit extends StudyLogBase {
+  content: string
+  updatedAt: string
+}
+
+export interface StudyLogDetail {
   id: number
   title: string
   content: string
-  author: Author
-  images: Image[]
-  attachments: Attachment[]
-  ai_summary: AiSummary
-  created_at: string
-  updated_at: string
+  author: User
+  images: Image[] | null
+  attachments: Attachment[] | null
+  aiSummary: AiSummary | null
+  createdAt: string
+  updatedAt: string
+}
+
+export interface StudyLogCreate extends StudyLogDetail {
+  studyGroup: string
+}
+
+export interface StudyLogListItem extends StudyLogBase {
+  author: User
+  createdAt: string
+}
+
+export interface StudyLogListResponse {
+  count: number
+  results: StudyLogListItem[]
 }

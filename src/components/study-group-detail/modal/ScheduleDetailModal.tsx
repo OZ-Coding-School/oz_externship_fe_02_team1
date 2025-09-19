@@ -14,10 +14,10 @@ import {
 import { useModal } from '@hooks'
 import { formatDate, formatTime } from '@utils'
 
-import type { StudyGroupScheduleList } from '@models'
+import type { ScheduleDetail } from '@models'
 
 interface ScheduleDetailModalProps {
-  schedule: StudyGroupScheduleList
+  schedule: ScheduleDetail
   isOpen: boolean
   onClose: () => void
   confirm: () => void
@@ -52,7 +52,9 @@ export default function ScheduleDetailModal({
           <H5 className="text-gray-900">{schedule.title}</H5>
 
           <ScheduleDetailDiv title="스터디 목표">
-            <div className="rounded-lg bg-gray-50 p-4">{schedule.goal}</div>
+            <div className="rounded-lg bg-gray-50 p-4">
+              {schedule.objective}
+            </div>
           </ScheduleDetailDiv>
 
           <div className="grid grid-cols-2 gap-4">
@@ -60,7 +62,7 @@ export default function ScheduleDetailModal({
               <div className="flex gap-2">
                 <CalendarIcon width={16} className="text-gray-400" />
                 <Text className="text-gray-900">
-                  {formatDate(schedule.date)}
+                  {formatDate(new Date(schedule.sessionDate))}
                 </Text>
               </div>
             </ScheduleDetailDiv>
@@ -68,8 +70,9 @@ export default function ScheduleDetailModal({
               <div className="flex gap-2">
                 <ClockIcon width={16} className="text-gray-400" />
                 <Text className="text-gray-900">
-                  {formatTime(schedule.startTime)}&nbsp;~&nbsp;
-                  {formatTime(schedule.endTime)}
+                  {formatTime(new Date(`2000-01-01T${schedule.startTime}`))}
+                  &nbsp;~&nbsp;
+                  {formatTime(new Date(`2000-01-01T${schedule.endTime}`))}
                 </Text>
               </div>
             </ScheduleDetailDiv>
@@ -82,12 +85,15 @@ export default function ScheduleDetailModal({
               {schedule.participants.length ? (
                 <>
                   {schedule.participants.map((participant) => (
-                    <li key={participant.id} className="flex items-center">
-                      <Avatar size="sm" alt={participant.name} />
+                    <li
+                      key={participant.memberId}
+                      className="flex items-center"
+                    >
+                      <Avatar size="sm" alt={participant.user.nickname} />
                       <Text variant="small" className="mr-2 ml-3 text-gray-900">
-                        {participant.name}
+                        {participant.user.nickname}
                       </Text>
-                      {participant.isLeader && (
+                      {participant.user.isLeader && (
                         <Badge
                           color="primary"
                           size="md"
@@ -111,7 +117,7 @@ export default function ScheduleDetailModal({
         {MODAL_PRESETS.scheduleDetail.footer({
           onClose: onClose,
           onConfirm: confirm,
-          createDate: formatDate(schedule.createDate),
+          createDate: formatDate(new Date(schedule.createdAt)),
           onEdit: () => {
             onClose()
             openEditModal()

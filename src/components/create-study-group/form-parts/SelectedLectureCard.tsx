@@ -2,10 +2,10 @@ import { PhotoIcon, TrashIcon } from '@heroicons/react/24/outline'
 
 import { Text } from '@components'
 
-import type { StudyGroupLectureList } from '@models'
+import type { Lecture } from '@models'
 
 interface SelectedLectureCardProps {
-  lecture: StudyGroupLectureList
+  lecture: Lecture
 }
 
 export default function SelectedLectureCard({
@@ -14,9 +14,9 @@ export default function SelectedLectureCard({
   return (
     <div className="flex items-center justify-between rounded-lg border border-gray-200 p-4">
       <div className="flex items-center gap-4">
-        {lecture.image ? (
+        {lecture.thumbnailImg ? (
           <img
-            src={lecture.image}
+            src={lecture.thumbnailImg}
             alt={lecture.title}
             className="aspect-[5/3] w-20 object-cover"
           />

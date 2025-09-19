@@ -3,11 +3,11 @@ import { PlusIcon } from '@heroicons/react/24/outline'
 import { ScheduleCalendar, Card, Button, AddScheduleModal } from '@components'
 import { useModal } from '@hooks'
 
-import type { StudyGroup } from '@models'
+import type { ScheduleDetail } from '@models'
 
 export default function StudyGroupSchedule({
   schedule,
-}: Pick<StudyGroup, 'schedule'>) {
+}: { schedule: ScheduleDetail[] }) {
   const { isOpen, openModal, closeModal } = useModal()
 
   return (

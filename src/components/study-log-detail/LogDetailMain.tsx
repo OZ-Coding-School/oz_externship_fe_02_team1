@@ -1,9 +1,9 @@
 import { LogDetailAttachments, MarkdownPreview } from '@components'
 
-import type { StudyLog } from '@models'
+import type { StudyLogDetail } from '@models'
 
 interface LogDetailMainProps {
-  studyLogData: StudyLog
+  studyLogData: StudyLogDetail
 }
 
 export default function LogDetailMain({ studyLogData }: LogDetailMainProps) {
@@ -14,7 +14,7 @@ export default function LogDetailMain({ studyLogData }: LogDetailMainProps) {
       <section className="flex flex-col items-start justify-start border border-gray-200 p-6">
         <MarkdownPreview value={content} />
       </section>
-      <LogDetailAttachments attachments={attachments} />
+      <LogDetailAttachments attachments={attachments || []} />
     </main>
   )
 }

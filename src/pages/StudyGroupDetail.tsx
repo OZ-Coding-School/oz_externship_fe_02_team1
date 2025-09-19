@@ -6,39 +6,41 @@ import {
   StudyGroupMember,
   StudyGroupSchedule,
 } from '@components'
-import { studyGroup, currentUserRole, isMember } from '@mocks/studyGroupDetail'
+import {
+  studyGroup,
+  studyGroupLog,
+  studyGroupSchedule,
+} from '@mocks/studyGroupDetail'
 
 export default function StudyGroupDetail() {
   return (
     <>
       <StudyGroupHeader
-        studyGroupName={studyGroup.studyGroupName}
-        currentMemberCount={studyGroup.currentMemberCount}
-        maxMemberCount={studyGroup.maxMemberCount}
-        startDate={studyGroup.startDate}
-        lastDate={studyGroup.lastDate}
-        currentUserRole={currentUserRole}
-        isMember={isMember}
+        name={studyGroup.name}
+        currentHeadcount={studyGroup.currentHeadcount}
+        maxHeadcount={studyGroup.maxHeadcount}
+        startAt={studyGroup.startAt}
+        endAt={studyGroup.endAt}
       />
       <div className="mt-6 flex flex-col gap-6 lg:mt-8 lg:grid lg:grid-cols-3">
         <div className="col-span-2 flex flex-col gap-6 lg:gap-8">
-          <StudyGroupSchedule schedule={studyGroup.schedule} />
+          <StudyGroupSchedule schedule={studyGroupSchedule} />
           <StudyGroupLogList
-            member={studyGroup.member}
-            studyLog={studyGroup.studyLog}
+            member={studyGroup.members}
+            studyLog={studyGroupLog}
           />
         </div>
         <div className="flex flex-col gap-6">
           <StudyGroupInfo
-            currentMemberCount={studyGroup.currentMemberCount}
-            maxMemberCount={studyGroup.maxMemberCount}
-            startDate={studyGroup.startDate}
-            lastDate={studyGroup.lastDate}
+            currentHeadcount={studyGroup.currentHeadcount}
+            maxHeadcount={studyGroup.maxHeadcount}
+            startAt={studyGroup.startAt}
+            endAt={studyGroup.endAt}
           />
-          {studyGroup.lecture && (
-            <StudyGroupLecture lecture={studyGroup.lecture} />
+          {studyGroup.lectures && (
+            <StudyGroupLecture lectures={studyGroup.lectures} />
           )}
-          <StudyGroupMember member={studyGroup.member} />
+          <StudyGroupMember members={studyGroup.members} />
         </div>
       </div>
     </>

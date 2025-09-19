@@ -1,19 +1,17 @@
 import { format, isSameDay, isSameMonth } from 'date-fns'
 
-import { Text } from '@components'
+import { Text, ScheduleDetailModal } from '@components'
 import { useModal } from '@hooks'
 import { cn, formatTime } from '@utils'
 
-import { ScheduleDetailModal } from '../modal'
-
-import type { StudyGroupScheduleList } from '@models'
+import type { ScheduleDetail } from '@models'
 
 const scheduleTextStyle = 'text-primary-800 text-xs'
 
 interface CalendarBodyDateProps {
   day: Date
   dateKey: string
-  schedule: StudyGroupScheduleList | undefined
+  schedule: ScheduleDetail | undefined
   currentMonth: Date
   index: number
   daysLength: number
@@ -61,7 +59,8 @@ export default function CalendarBodyDate({
               {schedule.title}
             </Text>
             <Text className={cn('break-all', scheduleTextStyle)}>
-              {formatTime(schedule.startTime)}~{formatTime(schedule.endTime)}
+              {formatTime(new Date(`2000-01-01T${schedule.startTime}`))}~
+              {formatTime(new Date(`2000-01-01T${schedule.endTime}`))}
             </Text>
           </button>
 

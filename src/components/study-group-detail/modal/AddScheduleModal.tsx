@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
-
 import type { ScheduleFormInputs } from '@models'
 
 interface AddScheduleModalProps {
@@ -19,7 +18,7 @@ export default function AddScheduleModal({
   const formMethods = useForm<ScheduleFormInputs>({
     defaultValues: {
       title: '',
-      goal: '',
+      objective: '',
       participants: [],
     },
   })
@@ -43,7 +42,8 @@ export default function AddScheduleModal({
   }
 
   return (
-    <BaseModal isOpen={isOpen} onClose={handleClose} size="md">
+    <>
+      <BaseModal isOpen={isOpen} onClose={handleClose} size="md">
         {MODAL_PRESETS.scheduleAdd.header({
           onClose: handleClose,
           title: '새 스케줄 추가',
@@ -62,5 +62,6 @@ export default function AddScheduleModal({
           onConfirm: handleSubmit(handleConfirm),
         })}
       </BaseModal>
+    </>
   )
 }
