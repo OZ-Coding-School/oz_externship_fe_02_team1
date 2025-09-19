@@ -1,24 +1,24 @@
 import { Card, StudyBadge, Text } from '@components'
 import { formatDate } from '@utils'
 
-import type { StudyGroup } from '@models'
+import type { StudyGroupDetail } from '@models'
 
 export default function StudyGroupInfo({
-  currentMemberCount,
-  maxMemberCount,
-  startDate,
-  lastDate,
+  currentHeadcount,
+  maxHeadcount,
+  startAt,
+  endAt,
 }: Pick<
-  StudyGroup,
-  'currentMemberCount' | 'maxMemberCount' | 'startDate' | 'lastDate'
+  StudyGroupDetail,
+  'currentHeadcount' | 'maxHeadcount' | 'startAt' | 'endAt'
 >) {
-  const formattedStartDate = formatDate(startDate)
-  const formattedLastDate = formatDate(lastDate)
+  const formattedStartDate = formatDate(new Date(startAt))
+  const formattedLastDate = formatDate(new Date(endAt))
 
   const STUDY_GROUP_INFO = [
     {
       title: '인원',
-      content: `${currentMemberCount ?? 8}/${maxMemberCount ?? 10}명`,
+      content: `${currentHeadcount ?? 8}/${maxHeadcount ?? 10}명`,
     },
     {
       title: '시작일',

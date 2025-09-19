@@ -2,10 +2,10 @@ import { useState } from 'react'
 
 import { CalendarBody, CalendarDays, CalendarHeader } from '@components'
 
-import type { StudyGroupScheduleList } from '@models'
+import type { ScheduleDetail } from '@models'
 
 interface CalendarProps {
-  schedule: StudyGroupScheduleList[] | undefined
+  schedule: ScheduleDetail[] | undefined
 }
 
 export default function ScheduleCalendar({ schedule }: CalendarProps) {

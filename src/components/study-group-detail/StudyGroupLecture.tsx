@@ -3,11 +3,13 @@ import { Link } from 'react-router'
 
 import { Card, ImageCard, Text } from '@components'
 
-import type { StudyGroup } from '@models'
+import type { Lecture } from '@models'
 
 export default function StudyGroupLecture({
-  lecture,
-}: Pick<StudyGroup, 'lecture'>) {
+  lectures,
+}: {
+  lectures: Lecture[]
+}) {
   return (
     <Card
       title="스터디 강의"
@@ -15,17 +17,17 @@ export default function StudyGroupLecture({
       titleClassName="pb-4 text-lg text-gray-900"
     >
       <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 lg:flex">
-        {lecture?.map((el) => (
+        {lectures?.map((lecture) => (
           <ImageCard
-            key={el.title}
-            title={el.title}
-            imageUrl={el.image}
+            key={lecture.id}
+            title={lecture.title}
+            imageUrl={lecture.thumbnailImg}
             className="p-4"
           >
-            <Text className="font-medium text-gray-900">{el.title}</Text>
-            <Text className="mt-1 mb-3 text-sm">{el.instructor}</Text>
+            <Text className="font-medium text-gray-900">{lecture.title}</Text>
+            <Text className="mt-1 mb-3 text-sm">{lecture.instructor}</Text>
             <Link
-              to={el.lectureUrl}
+              to={lecture.urlLink}
               className="text-primary-600 flex cursor-pointer gap-1 text-sm hover:underline"
             >
               강의 바로가기 <ArrowUpRightIcon width={14} />
