@@ -8,10 +8,9 @@ import {
   EditStudyGroup,
   StudyLogDetail,
   CreateStudyLog,
+  StudyGroup,
+  EditStudyLog,
 } from '@pages'
-import StudyGroup from './pages/StudyGroup'
-
-import EditStudyLog from './pages/EditStudyLog'
 
 function App() {
   return (
