@@ -2,18 +2,18 @@ import { Avatar, H3, Text } from '@components'
 import { usePageNav } from '@hooks'
 import { formatDate } from '@utils'
 
-import type { StudyLog } from '@models'
+import type { StudyLogDetail } from '@models'
 
 interface LogDetailHeaderProps {
-  studyLogData: StudyLog
+  studyLogData: StudyLogDetail
 }
 
 export default function LogDetailHeader({
   studyLogData,
 }: LogDetailHeaderProps) {
-  const { title, author, created_at, updated_at } = studyLogData
+  const { title, author, createdAt, updatedAt } = studyLogData
 
-  const showUpdatedAt = created_at !== updated_at
+  const showUpdatedAt = createdAt !== updatedAt
 
   const { navigateToLogEdit } = usePageNav()
 
@@ -40,7 +40,7 @@ export default function LogDetailHeader({
 
       <section className="flex items-center gap-4">
         <div className="flex items-center gap-2">
-          <Avatar size="sm" src={author.profile_image} alt={author.nickname} />
+          <Avatar size="sm" src={author.profileImage} alt={author.nickname} />
           <Text variant="small" className="font-medium text-gray-600">
             {author.nickname}
           </Text>
@@ -49,7 +49,7 @@ export default function LogDetailHeader({
           •
         </Text>
         <Text variant="small" className="text-gray-600">
-          작성일: {formatDate(new Date(created_at))}
+          작성일: {formatDate(new Date(createdAt))}
         </Text>
         {showUpdatedAt && (
           <>
@@ -57,7 +57,7 @@ export default function LogDetailHeader({
               •
             </Text>
             <Text variant="small" className="text-gray-600">
-              수정일: {updated_at}
+              수정일: {formatDate(new Date(updatedAt))}
             </Text>
           </>
         )}

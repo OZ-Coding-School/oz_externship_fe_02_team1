@@ -10,13 +10,12 @@ import {
 } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
 
+import { dummyStudyLog } from '@mocks/dummyStudyLog'
 
-import { dummyStudyLog } from '@/mocks/dummyStudyLog'
-
-import type { StudyLog } from '@models'
+import type { StudyLogDetail } from '@models'
 
 export default function StudyLogDetail() {
-  const [studyLogData, setStudyLogData] = useState<StudyLog | null>(null)
+  const [studyLogData, setStudyLogData] = useState<StudyLogDetail | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
   const { recordId } = useParams()
@@ -42,7 +41,9 @@ export default function StudyLogDetail() {
       <BreadCrumb items={BREAD_CRUMB_PATH} />
       <div>
         <LogDetailHeader studyLogData={studyLogData} />
-        <LogDetailAISummary aiSummary={studyLogData.ai_summary} />
+        {studyLogData.aiSummary && (
+          <LogDetailAISummary aiSummary={studyLogData.aiSummary} />
+        )}
         <LogDetailMain studyLogData={studyLogData} />
       </div>
       <Link
