@@ -1,4 +1,5 @@
-import { Avatar, Button, H3, Text } from '@components'
+import { Avatar, H3, Text } from '@components'
+import { usePageNav } from '@hooks'
 import { formatDate } from '@utils'
 
 import type { StudyLog } from '@models'
@@ -14,21 +15,26 @@ export default function LogDetailHeader({
 
   const showUpdatedAt = created_at !== updated_at
 
+  const { navigateToLogEdit } = usePageNav()
+
   return (
     <header className="flex w-full max-w-4xl flex-col gap-6 rounded-t-xl border border-b-0 border-gray-200 p-6">
       <section className="flex w-full flex-col justify-between sm:flex-row">
         <H3 className="text-gray-900">{title}</H3>
         <div className="flex gap-2">
-          <Button className="rounded-lg bg-gray-100 px-3 py-1.5">
+          <button
+            className="cursor-pointer rounded-lg bg-gray-100 px-3 py-1.5 hover:scale-105"
+            onClick={navigateToLogEdit}
+          >
             <Text variant="small" className="font-medium text-gray-700">
               수정하기
             </Text>
-          </Button>
-          <Button className="rounded-lg bg-red-100 px-3 py-1.5">
+          </button>
+          <button className="cursor-pointer rounded-lg bg-red-100 px-3 py-1.5 hover:scale-105">
             <Text variant="small" className="font-medium text-red-700">
               삭제하기
             </Text>
-          </Button>
+          </button>
         </div>
       </section>
 
