@@ -1,10 +1,8 @@
 import { format, isSameDay, isSameMonth } from 'date-fns'
 
-import { Text } from '@components'
+import { Text, ScheduleDetailModal } from '@components'
 import { useModal } from '@hooks'
 import { cn, formatTime } from '@utils'
-
-import { ScheduleDetailModal } from '../modal'
 
 import type { ScheduleDetail } from '@models'
 

@@ -3,8 +3,7 @@ import { useForm } from 'react-hook-form'
 
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
 
-import type { ScheduleDetail } from '@models'
-import type { ScheduleFormInputs } from '@models'
+import type { ScheduleDetail, ScheduleFormInputs } from '@models'
 
 interface EditScheduleModalProps {
   isOpen: boolean
