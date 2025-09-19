@@ -10,9 +10,9 @@ import {
 } from '@components'
 import { useModal } from '@hooks'
 import { studyGroup } from '@mocks/studyGroupDetail'
+import { formatToYMD } from '@utils'
 
 import type { ScheduleFormInputs } from '@models'
-import { formatToYMD } from '@utils'
 
 interface ScheduleFormProps {
   formMethods: UseFormReturn<ScheduleFormInputs>

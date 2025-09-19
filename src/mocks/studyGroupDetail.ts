@@ -1,5 +1,7 @@
-import { Images } from '@assets'
 import { v4 as uuidv4 } from 'uuid'
+
+import { Images } from '@assets'
+import { formatTimeToHHMM, formatToYMD } from '@utils'
 
 import type {
   LectureBase,
@@ -8,7 +10,6 @@ import type {
   StudyGroupMemberList,
   StudyLogListItem,
 } from '@models'
-import { formatTimeToHHMM, formatToYMD } from '@utils'
 
 export const studyGroupLecture: LectureBase[] = [
   {
