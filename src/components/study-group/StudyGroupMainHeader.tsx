@@ -2,8 +2,10 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 import { Button, Input, SectionHeader, Text } from '@components'
 import { useNavigate } from 'react-router'
+import { useState } from 'react'
 
-export default function StudyGroupHeader() {
+export default function StudyGroupMainHeader() {
+  const [text, setText] = useState('')
   const navigate = useNavigate()
 
   const handleCreateNewStudy = () => {
@@ -24,6 +26,10 @@ export default function StudyGroupHeader() {
       <Input
         placeholder="스터디 그룹 검색...."
         leftIcon={<MagnifyingGlassIcon className="h-4 w-4" />}
+        onChange={(e) => {
+          setText(e.target.value)
+        }}
+        value={text}
       />
     </header>
   )
