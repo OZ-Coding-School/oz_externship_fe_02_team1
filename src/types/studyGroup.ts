@@ -28,12 +28,14 @@ export interface StudyGroupList extends StudyGroupBase {
   lectures: LectureBase[]
 }
 
-export interface StudyGroupDetail {
+export interface StudyGroupMemberList extends Member {
+  is_leader: boolean
+}
+
+export interface StudyGroupDetail extends StudyGroupBase {
   current_headcount: number
   status: StudyGroupStatus
   leader: Member
-  members: (Member & {
-    is_leader: boolean
-  })[]
+  members: StudyGroupMemberList[]
   lectures: Lecture[]
 }
