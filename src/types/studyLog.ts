@@ -7,13 +7,13 @@ export interface AiSummary {
 
 export interface Image {
   id: number
-  img_url: string
+  imgUrl: string
 }
 
 export interface Attachment {
   id: number
-  file_name: string
-  file_url: string
+  fileName: string
+  fileUrl: string
 }
 
 export interface StudyLogBase {
@@ -23,7 +23,7 @@ export interface StudyLogBase {
 
 export interface StudyLogEdit extends StudyLogBase {
   content: string
-  updated_at: string
+  updatedAt: string
 }
 
 export interface StudyLogDetail {
@@ -33,18 +33,18 @@ export interface StudyLogDetail {
   author: User
   images: Image[] | null
   attachments: Attachment[] | null
-  ai_summary: AiSummary | null
-  created_at: string
-  updated_at: string
+  aiSummary: AiSummary | null
+  createdAt: string
+  updatedAt: string
 }
 
 export interface StudyLogCreate extends StudyLogDetail {
-  study_group: string
+  studyGroup: string
 }
 
 export interface StudyLogListItem extends StudyLogBase {
   author: User
-  created_at: string
+  createdAt: string
 }
 
 export interface StudyLogListResponse {

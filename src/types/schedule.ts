@@ -4,35 +4,35 @@ export interface ScheduleBase {
   id: number
   title: string
   objective: string
-  session_date: string
-  start_time: string
-  end_time: string
+  sessionDate: string
+  startTime: string
+  endTime: string
 }
 
 export interface ScheduleCreate extends ScheduleBase {
-  study_group_id: number
-  created_at: string
+  studyGroupId: number
+  createdAt: string
 }
 
 export interface ScheduleUpdate extends ScheduleBase {
-  study_group_id: number
-  updated_at: string
+  studyGroupId: number
+  updatedAt: string
 }
 
 export interface ScheduleListItem extends ScheduleBase {
-  created_at: string
+  createdAt: string
 }
 
 export type ScheduleList = ScheduleListItem[]
 
 export interface ScheduleParticipant {
-  member_id: number
+  memberId: number
   user: User & {
-    is_leader: boolean
+    isLeader: boolean
   }
 }
 
 export interface ScheduleDetail extends ScheduleCreate {
   participants: ScheduleParticipant[]
-  updated_at: string
+  updatedAt: string
 }

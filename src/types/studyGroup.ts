@@ -5,35 +5,35 @@ export type StudyGroupStatus = '대기중' | '진행중' | '종료됨'
 export interface StudyGroupBase {
   uuid: string
   name: string
-  img_url?: string
-  start_at: string
-  end_at: string
-  max_headcount: number
+  imgUrl?: string
+  startAt: string
+  endAt: string
+  maxHeadcount: number
 }
 
 export interface StudyGroupCreate extends StudyGroupBase {
   introduction: string
-  created_by: Member
-  created_at: string
+  createdBy: Member
+  createdAt: string
 }
 
 export interface StudyGroupEdit extends StudyGroupCreate {
-  updated_at: string
+  updatedAt: string
 }
 
 export interface StudyGroupList extends StudyGroupBase {
   current_headcount: number
-  is_leader: boolean
+  isLeader: boolean
   status: StudyGroupStatus
   lectures: LectureBase[]
 }
 
 export interface StudyGroupMemberList extends Member {
-  is_leader: boolean
+  isLeader: boolean
 }
 
 export interface StudyGroupDetail extends StudyGroupBase {
-  current_headcount: number
+  currentHeadcount: number
   status: StudyGroupStatus
   leader: Member
   members: StudyGroupMemberList[]

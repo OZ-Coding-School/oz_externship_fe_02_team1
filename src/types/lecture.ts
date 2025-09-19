@@ -5,12 +5,12 @@ export interface LectureBase {
 }
 
 export interface Lecture extends LectureBase {
-  thumbnail_img: string
-  url_link: string
+  thumbnailImg: string
+  urlLink: string
 }
 
 export interface LectureDetail extends Lecture {
-  original_price: number
-  discount_price: number
+  originalPrice: number
+  discountPrice: number
   platform: string
 }

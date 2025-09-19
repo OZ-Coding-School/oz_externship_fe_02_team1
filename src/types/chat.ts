@@ -1,28 +1,28 @@
 import type { Member } from '@models'
 
 export interface LastMessage {
-  sender_nickname: string
+  senderNickname: string
   content: string
-  created_at: string
+  createdAt: string
 }
 
 export interface ChatPreview {
-  study_group_uuid: string
-  study_group_name: string
-  last_message: LastMessage | null
-  unread_count: number
+  studyGroupUuid: string
+  studyGroupName: string
+  lastMessage: LastMessage | null
+  unreadCount: number
 }
 
 export type ChatList = ChatPreview[]
 
 export interface ChatMessage {
-  message_id: number
+  messageId: number
   sender: Member
   content: string
-  created_at: string
+  createdAt: string
 }
 
 export interface ChatMessageResponse {
-  next_cursor?: string | null
+  nextCursor?: string | null
   result: ChatMessage[]
 }
