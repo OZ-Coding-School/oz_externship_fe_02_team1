@@ -1,8 +1,9 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react'
+import { useNavigate } from 'react-router'
 
 import { Button, Input, SectionHeader, Text } from '@components'
-import { useNavigate } from 'react-router'
-import { useState } from 'react'
+
 
 export default function StudyGroupMainHeader() {
   const [text, setText] = useState('')
