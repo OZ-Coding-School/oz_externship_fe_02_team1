@@ -1,6 +1,6 @@
 import { BaseModal, MODAL_PRESETS, ModalBody, Rating, Text } from '@components'
 import { studyGroupReview } from '@mocks/studyGroupDetail'
-import { cn, formatDate, calculateAverageRating } from '@utils'
+import { cn, calculateAverageRating } from '@utils'
 
 interface ReviewListModalProps {
   isOpen: boolean
@@ -57,7 +57,7 @@ export default function ReviewListModal({
                 <div className="flex justify-between">
                   <div className="flex gap-2">
                     <Rating
-                      value={review.rating}
+                      value={Number(review.rating.split(' '))}
                       iconSize={16}
                       className="gap-0"
                       readOnly
@@ -67,7 +67,7 @@ export default function ReviewListModal({
                     </Text>
                   </div>
                   <Text variant="small" className="text-gray-500">
-                    {formatDate(review.createDate)}
+                    {review.updatedAt}
                   </Text>
                 </div>
                 <Text className="text-gray-700">{review.content}</Text>
