@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
-import { formatTimeToHHMM } from '@utils'
 
-import type { StudyGroupScheduleList, ScheduleFormInputs } from '@models'
+import type { ScheduleDetail } from '@models'
+import type { ScheduleFormInputs } from '@models'
 
 interface EditScheduleModalProps {
   isOpen: boolean
   onClose: () => void
-  schedule: StudyGroupScheduleList
+  schedule: ScheduleDetail
 }
 
 export default function EditScheduleModal({
@@ -22,11 +22,11 @@ export default function EditScheduleModal({
   const formMethods = useForm<ScheduleFormInputs>({
     defaultValues: {
       title: schedule.title,
-      goal: schedule.goal,
-      date: new Date(schedule.date),
-      startTime: formatTimeToHHMM(schedule.startTime) ?? '',
-      endTime: formatTimeToHHMM(schedule.endTime) ?? '',
-      participants: schedule.participants.map((p) => p.name),
+      objective: schedule.objective,
+      sessionDate: schedule.sessionDate,
+      startTime: schedule.startTime,
+      endTime: schedule.endTime,
+      participants: schedule.participants ?? [],
     },
   })
 
@@ -50,23 +50,23 @@ export default function EditScheduleModal({
 
   return (
     <BaseModal isOpen={isOpen} onClose={handleClose} size="md">
-        {MODAL_PRESETS.scheduleEdit.header({
-          onClose: handleClose,
-          title: '스케줄 수정',
-        })}
+      {MODAL_PRESETS.scheduleEdit.header({
+        onClose: handleClose,
+        title: '스케줄 수정',
+      })}
 
-        <ModalBody>
-          <ScheduleForm
-            formMethods={formMethods}
-            tempDate={tempDate}
-            setTempDate={setTempDate}
-          />
-        </ModalBody>
+      <ModalBody>
+        <ScheduleForm
+          formMethods={formMethods}
+          tempDate={tempDate}
+          setTempDate={setTempDate}
+        />
+      </ModalBody>
 
-        {MODAL_PRESETS.scheduleEdit.footer({
-          onClose: handleClose,
-          onConfirm: handleSubmit(handleConfirm),
-        })}
-      </BaseModal>
+      {MODAL_PRESETS.scheduleEdit.footer({
+        onClose: handleClose,
+        onConfirm: handleSubmit(handleConfirm),
+      })}
+    </BaseModal>
   )
 }

@@ -12,6 +12,7 @@ import { useModal } from '@hooks'
 import { studyGroup } from '@mocks/studyGroupDetail'
 
 import type { ScheduleFormInputs } from '@models'
+import { formatToYMD } from '@/utils'
 
 interface ScheduleFormProps {
   formMethods: UseFormReturn<ScheduleFormInputs>
@@ -35,7 +36,7 @@ export default function ScheduleForm({
 
   const confirmDate = () => {
     if (tempDate) {
-      setValue('date', tempDate, { shouldValidate: true })
+      setValue('sessionDate', formatToYMD(tempDate), { shouldValidate: true })
     }
     datePickerModal.closeModal()
   }
@@ -52,7 +53,7 @@ export default function ScheduleForm({
         />
 
         <Controller
-          name="goal"
+          name="objective"
           control={control}
           rules={{ required: '스터디 목표를 입력해주세요.' }}
           render={({ field }) => (
@@ -62,13 +63,13 @@ export default function ScheduleForm({
               isRequired
               value={field.value}
               onChange={field.onChange}
-              errorText={errors.goal?.message}
+              errorText={errors.objective?.message}
             />
           )}
         />
 
         <Controller
-          name="date"
+          name="sessionDate"
           control={control}
           rules={{ required: '스터디 날짜를 선택해주세요.' }}
           render={({ field }) => (
@@ -76,9 +77,9 @@ export default function ScheduleForm({
               label="스터디 날짜"
               placeholder="-/-/-"
               required
-              value={field.value ? field.value.toLocaleDateString() : ''}
+              value={field.value ? field.value : ''}
               onOpenCalendar={datePickerModal.openModal}
-              errorText={errors.date?.message}
+              errorText={errors.sessionDate?.message}
             />
           )}
         />
@@ -113,27 +114,32 @@ export default function ScheduleForm({
             render={({ field }) => (
               <>
                 <div className="flex flex-col gap-2 rounded-lg border border-gray-300 p-4">
-                  {studyGroup.member.map((el) => (
-                    <label key={el.name} className="flex items-center gap-3">
+                  {studyGroup.members.map((member) => (
+                    <label
+                      key={member.nickname}
+                      className="flex items-center gap-3"
+                    >
                       <input
                         type="checkbox"
-                        value={el.name}
-                        checked={field.value.includes(el.name)}
+                        value={member.nickname}
+                        checked={field.value.some(
+                          (p) => p.user.nickname === member.nickname
+                        )}
                         onChange={(e) => {
-                          const selected = field.value
-                          const value = e.target.value
-                          if (selected.includes(value)) {
-                            field.onChange(
-                              selected.filter((item) => item !== value)
-                            )
+                          if (e.target.checked) {
+                            field.onChange([...field.value, member]) // ✅ 객체 추가
                           } else {
-                            field.onChange([...selected, value])
+                            field.onChange(
+                              field.value.filter(
+                                (p) => p.user.nickname !== member.nickname
+                              ) // ✅ 객체 제거
+                            )
                           }
                         }}
                       />
                       <div className="flex items-center gap-2">
-                        {el.name}
-                        {el.isLeader && (
+                        {member.nickname}
+                        {member.isLeader && (
                           <Badge
                             color="primary"
                             size="md"
