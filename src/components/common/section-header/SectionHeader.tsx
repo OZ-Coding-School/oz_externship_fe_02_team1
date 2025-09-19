@@ -17,6 +17,7 @@ interface SectionHeaderProps {
   subtitle?: string
   titleVariant: keyof typeof TITLE_SIZES
   children?: ReactNode
+  className?: string
 }
 
 export default function SectionHeader({
@@ -24,11 +25,12 @@ export default function SectionHeader({
   subtitle,
   titleVariant,
   children,
+  className,
 }: SectionHeaderProps) {
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
 
   return (
-    <div className="flex items-center justify-between">
+    <div className={cn('flex items-center justify-between', className)}>
       <div
         className={cn(
           'flex flex-col',
