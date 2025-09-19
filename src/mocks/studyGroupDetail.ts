@@ -5,7 +5,6 @@ import type {
   LectureBase,
   Review,
   ScheduleDetail,
-  StudyGroupDetail,
   StudyGroupMemberList,
   StudyLogListItem,
 } from '@models'
@@ -234,9 +233,10 @@ export const studyGroupReview: Review[] = [
   },
 ]
 
-export const studyGroup: StudyGroupDetail = {
+export const studyGroup = {
   uuid: uuidv4(),
   name: 'React 실무 프로젝트 스터디',
+  introduction: 'React 실무 프로젝트 스터디입니다.',
   imgUrl: Images.studyGroupDefault,
   startAt: new Date('2024-02-01').toISOString(),
   endAt: new Date('2024-04-30').toISOString(),
