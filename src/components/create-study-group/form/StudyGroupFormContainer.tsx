@@ -7,21 +7,20 @@ import {
   type StudyGroupFormValues,
 } from '@components'
 import { studyGroup } from '@mocks/studyGroupDetail'
-import { formatToYMD } from '@utils'
 
 const INITIAL_MEMBER_COUNT = 6
 
 export default function StudyGroupFormContainer({ mode }: FormMode) {
   const methods = useForm<StudyGroupFormValues>({
     defaultValues: {
-      groupName: '',
-      description: '',
+      name: '',
+      introduction: '',
       imageFile: null,
-      startDate: '',
-      endDate: '',
-      memberCount: INITIAL_MEMBER_COUNT,
+      startAt: '',
+      endAt: '',
+      currentHeadcount: INITIAL_MEMBER_COUNT,
       lectures: [],
-      initialImageUrl: null,
+      imgUrl: null,
     },
   })
 
@@ -30,13 +29,13 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
   useEffect(() => {
     if (mode === 'edit') {
       reset({
-        groupName: studyGroup.studyGroupName,
-        description: studyGroup.description,
-        startDate: formatToYMD(studyGroup.startDate),
-        endDate: formatToYMD(studyGroup.lastDate),
-        memberCount: studyGroup.currentMemberCount,
-        lectures: studyGroup.lecture || [],
-        initialImageUrl: studyGroup.backgroundImage || null,
+        name: studyGroup.name,
+        introduction: studyGroup.introduction,
+        startAt: studyGroup.startAt,
+        endAt: studyGroup.endAt,
+        currentHeadcount: studyGroup.currentHeadcount,
+        lectures: studyGroup.lectures || [],
+        imgUrl: studyGroup.imgUrl || null,
         imageFile: null,
       })
     }

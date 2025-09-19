@@ -5,10 +5,10 @@ import { BookmarkSquareIcon } from '@heroicons/react/24/outline'
 import { Card, SelectedLectureCard, Text } from '@components'
 import { MAX_LECTURES } from '@constants'
 
-import type { StudyGroupLectureList } from '@models'
+import type { Lecture } from '@models'
 
 interface LectureSelectSectionProps {
-  lectures: StudyGroupLectureList[] | undefined
+  lectures: Lecture[] | undefined
   actionSlot: ReactNode
 }
 
@@ -32,7 +32,7 @@ export default function LectureSelectSection({
         {lectures && lectures.length > 0 ? (
           <div className="flex flex-col gap-4 p-3">
             {lectures.map((el) => (
-              <SelectedLectureCard key={el.title} lecture={el} />
+              <SelectedLectureCard key={el.id} lecture={el} />
             ))}
             <Text variant="small" className="font-medium text-gray-500">
               {lectures.length}/{MAX_LECTURES}개 강의 선택됨
