@@ -1,5 +1,6 @@
-import StudyGroupCard from '@/components/study-group/StudyGroupCard'
 import { SectionHeader, StudyBadge, StudyGroupMainHeader } from '@components'
+
+import { StudyGroupCard } from '@components'
 
 export default function StudyGroup() {
   return (

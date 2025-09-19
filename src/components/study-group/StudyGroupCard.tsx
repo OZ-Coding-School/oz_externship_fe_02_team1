@@ -1,7 +1,8 @@
+import { Card, ImageCard, Text } from '@components'
+
 import { BookIcon, CalendarIcon } from '@/assets'
 import { studyGroup } from '@/mocks/studyGroupDetail'
 import { formatToYMD } from '@/utils'
-import { Card, ImageCard, Text } from '@components'
 
 export default function StudyGroupCard({ title }: any) {
   const { lectures, startAt, endAt } = studyGroup
