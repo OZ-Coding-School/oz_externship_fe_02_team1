@@ -27,9 +27,9 @@ export type ScheduleList = ScheduleListItem[]
 
 export interface ScheduleParticipant {
   member_id: number
-  user: (User & {
+  user: User & {
     is_leader: boolean
-  })[]
+  }
 }
 
 export interface ScheduleDetail extends ScheduleCreate {
