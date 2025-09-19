@@ -1,2 +1,2 @@
 export * from '@components/study-group/modal'
-export * from '@components/study-group/StudyGroupHeader'
+export * from '@/components/study-group/StudyGroupMainHeader'

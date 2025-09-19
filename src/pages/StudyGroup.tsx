@@ -1,10 +1,10 @@
+import StudyGroupMainHeader from '@/components/study-group/StudyGroupMainHeader'
 import { SectionHeader, StudyBadge } from '@components'
-import StudyGroupHeader from '@/components/study-group/StudyGroupMainHeader'
 
 export default function StudyGroup() {
   return (
     <div className="flex flex-col gap-8">
-      <StudyGroupHeader />
+      <StudyGroupMainHeader />
       <SectionHeader
         title="진행중인 스터디"
         subtitle="현재 활발히 진행되고 있는 스터디 그룹들"
