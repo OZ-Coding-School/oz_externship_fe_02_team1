@@ -29,3 +29,9 @@ export const dummyChatMessages: ChatMessage[] = [
     createdAt: '2023-09-21T10:03:00Z',
   },
 ]
+
+export const dummyOnlineMembers: string[] = [
+  studyGroupMember[0].uuid,
+  studyGroupMember[1].uuid,
+  studyGroupMember[3].uuid,
+]
