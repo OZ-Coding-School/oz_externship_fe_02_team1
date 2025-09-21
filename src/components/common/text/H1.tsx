@@ -8,7 +8,7 @@ interface H1Props extends ComponentPropsWithoutRef<'h1'> {
 
 export default function H1({ children, className, ...rest }: H1Props) {
   return (
-    <h1 className={cn('text-4xl font-bold', className)} {...rest}>
+    <h1 className={cn('text-4xl font-bold text-gray-900', className)} {...rest}>
       {children}
     </h1>
   )
