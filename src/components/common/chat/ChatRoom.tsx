@@ -1,5 +1,6 @@
-import { Avatar, ChatContainer, Text } from '@components'
-import { dummyChatMessages } from '@mocks/chatRoomMocks'
+import { Avatar, ChatContainer, OnOffIcon, Text } from '@components'
+import { ArrowLeftIcon } from '@heroicons/react/24/outline'
+import { dummyChatMessages, dummyOnlineMembers } from '@mocks/chatRoomMocks'
 import { cn } from '@utils'
 
 const SCROLLBAR_STYLE =
@@ -20,8 +21,22 @@ export default function ChatRoom({
     <ChatContainer
       header={
         <div className="flex items-center gap-2">
-          <button onClick={onBack}>&lt;</button>
-          <Text className="font-semibold">{studyGroupName}</Text>
+          <ArrowLeftIcon
+            width={32}
+            onClick={onBack}
+            className="cursor-pointer p-2 text-gray-600"
+          />
+          <div>
+            <Text variant="small" className="font-semibold">
+              {studyGroupName}
+            </Text>
+            <div className="flex items-center gap-1">
+              <OnOffIcon isActive />
+              <Text variant="extraSmall" className="text-gray-600">
+                {dummyOnlineMembers.length}명 온라인
+              </Text>
+            </div>
+          </div>
         </div>
       }
       onToggle={onToggle}
@@ -47,7 +62,6 @@ export default function ChatRoom({
           </div>
         ))}
       </div>
-      {/* TODO: Add message input */}
     </ChatContainer>
   )
 }
