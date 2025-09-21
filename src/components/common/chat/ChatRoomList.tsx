@@ -1,5 +1,6 @@
 import { ChatContainer, ChatPreview, Text } from '@components'
 import { dummyChatList } from '@mocks/chatListMocks'
+import type { ChatPreview as ChatPreviewType } from '@models'
 import { cn } from '@utils'
 
 const SCROLLBAR_STYLE =
@@ -8,11 +9,13 @@ const SCROLLBAR_STYLE =
 interface ChatRoomListProps {
   totalUnreadCount: number
   onToggle: () => void
+  onSelectChat: (chat: ChatPreviewType) => void
 }
 
 export default function ChatRoomList({
   totalUnreadCount,
   onToggle,
+  onSelectChat,
 }: ChatRoomListProps) {
   return (
     <ChatContainer
@@ -36,8 +39,9 @@ export default function ChatRoomList({
           dummyChatList.map((chat, index) => (
             <div
               key={chat.studyGroupUuid}
+              onClick={() => onSelectChat(chat)}
               className={cn(
-                'flex flex-col gap-1 p-3',
+                'flex cursor-pointer flex-col gap-1 p-3',
                 index !== dummyChatList.length - 1 && 'border-b border-gray-200'
               )}
             >

@@ -2,9 +2,9 @@ import { ChatBubbleOvalLeftIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
-import { ChatAlertCount, ChatRoomList } from '@components'
+import { ChatAlertCount, ChatView } from '@components'
 import { mediaQuery } from '@constants'
-import { dummyChatList } from '@mocks/chatMocks'
+import { dummyChatList } from '@mocks/chatListMocks'
 import { cn } from '@utils'
 
 export default function ChatIcon() {
@@ -46,7 +46,7 @@ export default function ChatIcon() {
       </button>
 
       {isChatOpen && (
-        <ChatRoomList
+        <ChatView
           totalUnreadCount={totalUnreadCount}
           onToggle={handleToggleChat}
         />

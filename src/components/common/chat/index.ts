@@ -3,3 +3,5 @@ export { default as ChatAlertCount } from '@components/common/chat/ChatAlertCoun
 export { default as ChatRoomList } from '@components/common/chat/ChatRoomList'
 export { default as ChatPreview } from '@components/common/chat/ChatPreview'
 export { default as ChatContainer } from '@components/common/chat/ChatContainer'
+export { default as ChatRoom } from '@components/common/chat/ChatRoom'
+export { default as ChatView } from '@components/common/chat/ChatView'
