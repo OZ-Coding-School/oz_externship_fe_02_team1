@@ -45,3 +45,21 @@ body {
   --color-danger-600: #dc2626;
   --color-danger-800: #991b1b;
 }
+
+@layer utilities {
+  .scrollbar-custom {
+    &::-webkit-scrollbar {
+      width: 0.25rem;
+      height: 0.25rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 9999px;
+      background-color: theme('colors.gray.300');
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+  }
+}

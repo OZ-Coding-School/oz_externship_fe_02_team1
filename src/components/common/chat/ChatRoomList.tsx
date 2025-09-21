@@ -3,9 +3,6 @@ import { dummyChatList } from '@mocks/chatListMocks'
 import type { ChatPreview as ChatPreviewType } from '@models'
 import { cn } from '@utils'
 
-const SCROLLBAR_STYLE =
-  '[&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-track]:bg-white'
-
 interface ChatRoomListProps {
   totalUnreadCount: number
   onToggle: () => void
@@ -29,12 +26,7 @@ export default function ChatRoomList({
       }
       onToggle={onToggle}
     >
-      <div
-        className={cn(
-          'h-77 overflow-x-hidden overflow-y-scroll',
-          SCROLLBAR_STYLE
-        )}
-      >
+      <div className="scrollbar-custom h-77 overflow-x-hidden overflow-y-scroll">
         {dummyChatList.length > 0 ? (
           dummyChatList.map((chat, index) => (
             <div

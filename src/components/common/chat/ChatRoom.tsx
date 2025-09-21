@@ -1,10 +1,13 @@
-import { Avatar, ChatContainer, OnOffIcon, Text } from '@components'
+import { studyGroupMember } from '@/mocks/studyGroupDetail'
+import {
+  Avatar,
+  ChatContainer,
+  ChatMemberList,
+  OnOffIcon,
+  Text,
+} from '@components'
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { dummyChatMessages, dummyOnlineMembers } from '@mocks/chatRoomMocks'
-import { cn } from '@utils'
-
-const SCROLLBAR_STYLE =
-  '[&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-track]:bg-white'
 
 interface ChatRoomProps {
   studyGroupName: string
@@ -41,7 +44,9 @@ export default function ChatRoom({
       }
       onToggle={onToggle}
     >
-      <div className={cn('h-77 overflow-y-scroll', SCROLLBAR_STYLE)}>
+      <ChatMemberList members={studyGroupMember} />
+
+      <div className="scrollbar-custom h-77 overflow-y-scroll">
         {dummyChatMessages.map((message) => (
           <div key={message.messageId} className="flex items-start gap-2 p-3">
             <Avatar
