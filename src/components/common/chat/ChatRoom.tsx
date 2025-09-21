@@ -42,11 +42,12 @@ export default function ChatRoom({
           </div>
         </div>
       }
+      className="p-3"
       onToggle={onToggle}
     >
       <ChatMemberList members={studyGroupMember} />
 
-      <div className="scrollbar-custom h-77 overflow-y-scroll">
+      <div className="scrollbar-hidden h-54 overflow-y-scroll">
         {dummyChatMessages.map((message) => (
           <div key={message.messageId} className="flex items-start gap-2 p-3">
             <Avatar

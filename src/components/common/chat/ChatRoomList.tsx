@@ -26,7 +26,7 @@ export default function ChatRoomList({
       }
       onToggle={onToggle}
     >
-      <div className="scrollbar-custom h-77 overflow-x-hidden overflow-y-scroll">
+      <div className="scrollbar-hidden h-77 overflow-x-hidden overflow-y-scroll">
         {dummyChatList.length > 0 ? (
           dummyChatList.map((chat, index) => (
             <div
