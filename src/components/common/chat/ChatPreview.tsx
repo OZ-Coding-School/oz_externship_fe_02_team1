@@ -7,7 +7,7 @@ interface ChatPreviewProps {
   chat: ChatPreview
 }
 
-export default function Component({ chat }: ChatPreviewProps) {
+export default function ChatPreview({ chat }: ChatPreviewProps) {
   return (
     <>
       <div className="flex items-center justify-between">
