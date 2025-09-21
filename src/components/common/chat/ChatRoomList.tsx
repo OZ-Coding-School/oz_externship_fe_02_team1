@@ -38,17 +38,24 @@ export default function ChatRoomList({
           SCROLLBAR_STYLE
         )}
       >
-        {dummyChatList.map((chat, index) => (
-          <div
-            key={chat.studyGroupUuid}
-            className={cn(
-              'flex flex-col gap-1 p-3',
-              index !== dummyChatList.length - 1 && 'border-b border-gray-200'
-            )}
-          >
-            <ChatPreview chat={chat} />
+        {dummyChatList.length > 0 ? (
+          dummyChatList.map((chat, index) => (
+            <div
+              key={chat.studyGroupUuid}
+              className={cn(
+                'flex flex-col gap-1 p-3',
+                index !== dummyChatList.length - 1 &&
+                  'border-b border-gray-200',
+              )}
+            >
+              <ChatPreview chat={chat} />
+            </div>
+          ))
+        ) : (
+          <div className="flex h-full items-center justify-center">
+            <Text className="text-gray-500">채팅방이 없습니다.</Text>
           </div>
-        ))}
+        )}
       </div>
     </div>
   )
