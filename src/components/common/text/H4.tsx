@@ -8,7 +8,10 @@ interface H4Props extends ComponentPropsWithoutRef<'h4'> {
 
 export default function H4({ children, className, ...rest }: H4Props) {
   return (
-    <h4 className={cn('text-xl font-semibold', className)} {...rest}>
+    <h4
+      className={cn('text-xl font-semibold text-gray-900', className)}
+      {...rest}
+    >
       {children}
     </h4>
   )

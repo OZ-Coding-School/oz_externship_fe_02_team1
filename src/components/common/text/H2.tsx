@@ -8,7 +8,7 @@ interface H2Props extends ComponentPropsWithoutRef<'h2'> {
 
 export default function H2({ children, className, ...rest }: H2Props) {
   return (
-    <h2 className={cn('text-3xl font-bold', className)} {...rest}>
+    <h2 className={cn('text-3xl font-bold text-gray-900', className)} {...rest}>
       {children}
     </h2>
   )

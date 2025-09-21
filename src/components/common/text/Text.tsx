@@ -21,7 +21,10 @@ export default function Text({
   ...rest
 }: TextProps) {
   return (
-    <span className={cn(textClasses[variant], className)} {...rest}>
+    <span
+      className={cn('text-gray-900', textClasses[variant], className)}
+      {...rest}
+    >
       {children}
     </span>
   )

@@ -14,7 +14,7 @@ export default function LogDetailAttachments({
     <section className="flex flex-col gap-4 rounded-b-xl border border-t-0 border-gray-200 p-6">
       <div className="flex w-full items-center gap-2">
         <AttachmentIcon />
-        <Text variant="large" className="font-semibold text-gray-900">
+        <Text variant="large" className="font-semibold">
           첨부 파일 ({attachments.length})개
         </Text>
       </div>
@@ -33,7 +33,7 @@ export default function LogDetailAttachments({
                 download={file.fileName}
                 className="flex w-full flex-col"
               >
-                <Text variant="small" className="font-medium text-gray-900">
+                <Text variant="small" className="font-medium">
                   {file.fileName}
                 </Text>
                 <Text

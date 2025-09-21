@@ -8,7 +8,10 @@ interface H5Props extends ComponentPropsWithoutRef<'h5'> {
 
 export default function H5({ children, className, ...rest }: H5Props) {
   return (
-    <h5 className={cn('text-lg font-semibold', className)} {...rest}>
+    <h5
+      className={cn('text-lg font-semibold text-gray-900', className)}
+      {...rest}
+    >
       {children}
     </h5>
   )

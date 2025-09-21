@@ -36,9 +36,7 @@ export default function ReviewListModal({
               className="gap-0"
               readOnly
             />
-            <Text className="text-2xl font-bold text-gray-900">
-              {averageRating}
-            </Text>
+            <Text className="text-2xl font-bold">{averageRating}</Text>
           </div>
           <Text className="text-gray-600">총 {totalReviewCount}개의 리뷰</Text>
         </div>

@@ -24,7 +24,7 @@ export default function LoadingState({
       )}
     >
       <div className="border-primary-500 h-12 w-12 animate-spin rounded-full border-2 border-b-2 border-b-transparent [animation-duration:1.5s]" />
-      <H4 className="mt-8 text-gray-900">{title}</H4>
+      <H4 className="mt-8">{title}</H4>
       <Text variant="base" className="mt-2 text-gray-500">
         {description}
       </Text>

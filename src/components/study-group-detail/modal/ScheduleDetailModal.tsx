@@ -49,7 +49,7 @@ export default function ScheduleDetailModal({
         })}
 
         <ModalBody className="space-y-6">
-          <H5 className="text-gray-900">{schedule.title}</H5>
+          <H5>{schedule.title}</H5>
 
           <ScheduleDetailDiv title="스터디 목표">
             <div className="rounded-lg bg-gray-50 p-4">
@@ -61,15 +61,13 @@ export default function ScheduleDetailModal({
             <ScheduleDetailDiv title="스터디 날짜">
               <div className="flex gap-2">
                 <CalendarIcon width={16} className="text-gray-400" />
-                <Text className="text-gray-900">
-                  {formatDate(new Date(schedule.sessionDate))}
-                </Text>
+                <Text>{formatDate(new Date(schedule.sessionDate))}</Text>
               </div>
             </ScheduleDetailDiv>
             <ScheduleDetailDiv title="스터디 시간">
               <div className="flex gap-2">
                 <ClockIcon width={16} className="text-gray-400" />
-                <Text className="text-gray-900">
+                <Text>
                   {formatTime(new Date(`2000-01-01T${schedule.startTime}`))}
                   &nbsp;~&nbsp;
                   {formatTime(new Date(`2000-01-01T${schedule.endTime}`))}
@@ -90,7 +88,7 @@ export default function ScheduleDetailModal({
                       className="flex items-center"
                     >
                       <Avatar size="sm" alt={participant.user.nickname} />
-                      <Text variant="small" className="mr-2 ml-3 text-gray-900">
+                      <Text variant="small" className="mr-2 ml-3">
                         {participant.user.nickname}
                       </Text>
                       {participant.user.isLeader && (
@@ -106,9 +104,7 @@ export default function ScheduleDetailModal({
                   ))}
                 </>
               ) : (
-                <Text className="text-gray-900">
-                  현재 이 스케줄에 참여 중인 인원이 없습니다.
-                </Text>
+                <Text>현재 이 스케줄에 참여 중인 인원이 없습니다.</Text>
               )}
             </ul>
           </ScheduleDetailDiv>

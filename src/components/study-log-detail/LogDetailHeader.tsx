@@ -20,7 +20,7 @@ export default function LogDetailHeader({
   return (
     <header className="flex w-full max-w-4xl flex-col gap-6 rounded-t-xl border border-b-0 border-gray-200 p-6">
       <section className="flex w-full flex-col justify-between sm:flex-row">
-        <H3 className="text-gray-900">{title}</H3>
+        <H3>{title}</H3>
         <div className="flex gap-2">
           <button
             className="cursor-pointer rounded-lg bg-gray-100 px-3 py-1.5 hover:scale-105"

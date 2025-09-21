@@ -50,18 +50,18 @@ export default function StudyGroupHeader({
       />
       <div className="absolute inset-0 bg-black/40" />
 
-      <div className="absolute bottom-6 left-6 flex flex-col gap-2 text-white">
-        <Text className="text-3xl font-bold">{name}</Text>
+      <div className="absolute bottom-6 left-6 flex flex-col gap-2">
+        <Text className="text-3xl font-bold text-white">{name}</Text>
         <div className="flex gap-4">
           <div className="flex items-center gap-1">
-            <UserGroupIcon width={16} />
-            <Text>
+            <UserGroupIcon width={16} className="text-white" />
+            <Text className="text-white">
               {currentHeadcount}/{maxHeadcount}명
             </Text>
           </div>
           <div className="flex items-center gap-1">
-            <CalendarIcon width={16} />
-            <Text>
+            <CalendarIcon width={16} className="text-white" />
+            <Text className="text-white">
               {formattedStartDate} ~ {formattedLastDate}
             </Text>
           </div>
