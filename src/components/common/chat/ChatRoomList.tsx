@@ -20,7 +20,7 @@ export default function ChatRoomList({
     <div className="fixed right-6 bottom-24 z-9999 h-96 w-80 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-2xl">
       <div className="flex items-center justify-between border-b border-gray-200 bg-gray-50 p-4">
         <div className="flex flex-col items-start">
-          <Text className="font-semibold text-gray-900">채팅방</Text>
+          <Text className="font-semibold">채팅방</Text>
           <Text variant="extraSmall" className="text-primary-600">
             {totalUnreadCount}개의 읽지 않은 메시지
           </Text>
@@ -44,8 +44,7 @@ export default function ChatRoomList({
               key={chat.studyGroupUuid}
               className={cn(
                 'flex flex-col gap-1 p-3',
-                index !== dummyChatList.length - 1 &&
-                  'border-b border-gray-200',
+                index !== dummyChatList.length - 1 && 'border-b border-gray-200'
               )}
             >
               <ChatPreview chat={chat} />

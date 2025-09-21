@@ -11,7 +11,7 @@ export default function ChatPreview({ chat }: ChatPreviewProps) {
   return (
     <>
       <div className="flex items-center justify-between">
-        <Text variant="small" className="font-medium text-gray-900">
+        <Text variant="small" className="font-medium">
           {chat.studyGroupName}
         </Text>
         <div className="flex items-center gap-1">
