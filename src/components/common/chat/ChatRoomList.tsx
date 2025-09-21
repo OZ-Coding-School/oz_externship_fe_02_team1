@@ -1,6 +1,4 @@
-import { XMarkIcon } from '@heroicons/react/24/outline'
-
-import { ChatPreview, Text } from '@components'
+import { ChatContainer, ChatPreview, Text } from '@components'
 import { dummyChatList } from '@mocks/chatMocks'
 import { cn } from '@utils'
 
@@ -17,21 +15,17 @@ export default function ChatRoomList({
   onToggle,
 }: ChatRoomListProps) {
   return (
-    <div className="fixed right-6 bottom-24 z-9999 h-96 w-80 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-2xl">
-      <div className="flex items-center justify-between border-b border-gray-200 bg-gray-50 p-4">
+    <ChatContainer
+      header={
         <div className="flex flex-col items-start">
           <Text className="font-semibold">채팅방</Text>
           <Text variant="extraSmall" className="text-primary-600">
             {totalUnreadCount}개의 읽지 않은 메시지
           </Text>
         </div>
-        <XMarkIcon
-          width={18}
-          onClick={onToggle}
-          className="cursor-pointer text-gray-400"
-        />
-      </div>
-
+      }
+      onToggle={onToggle}
+    >
       <div
         className={cn(
           'h-77 overflow-x-hidden overflow-y-scroll',
@@ -56,6 +50,6 @@ export default function ChatRoomList({
           </div>
         )}
       </div>
-    </div>
+    </ChatContainer>
   )
 }
