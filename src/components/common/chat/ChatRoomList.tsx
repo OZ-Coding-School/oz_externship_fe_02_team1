@@ -1,5 +1,9 @@
+import { cn } from '@utils'
 import { ChatAlertCount, Text } from '@components'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+
+const SCROLLBAR_STYLE =
+  '[&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-track]:bg-white'
 
 interface ChatRoomListProps {
   onToggle: () => void
@@ -22,7 +26,12 @@ export default function ChatRoomList({ onToggle }: ChatRoomListProps) {
         />
       </div>
 
-      <div className="h-77 overflow-x-hidden overflow-y-scroll">
+      <div
+        className={cn(
+          'h-77 overflow-x-hidden overflow-y-scroll',
+          SCROLLBAR_STYLE
+        )}
+      >
         <div className="flex flex-col gap-1 border-b border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <Text variant="small" className="font-medium text-gray-900">
