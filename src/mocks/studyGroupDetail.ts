@@ -255,3 +255,70 @@ export const studyGroup = {
     urlLink: '/',
   })),
 }
+
+export const studyGroups = [
+  {
+    uuid: uuidv4(),
+    name: 'React 실무 프로젝트 스터디',
+    introduction:
+      'React 실무 프로젝트를 함께 진행하며 포트폴리오를 만들어봐요!',
+    imgUrl: Images.studyGroupDefault,
+    startAt: new Date('2024-02-01').toISOString(),
+    endAt: new Date('2024-04-30').toISOString(),
+    maxHeadcount: 10,
+    currentHeadcount: 8,
+    status: '진행중',
+    leader: { ...studyGroupMember[0], profileImage: undefined },
+    members: studyGroupMember.map((member, index) => ({
+      ...member,
+      isLeader: index === 0,
+    })),
+    lectures: studyGroupLecture.map((lecture) => ({
+      ...lecture,
+      thumbnailImg: Images.studyGroupDefault,
+      urlLink: '/',
+    })),
+  },
+  {
+    uuid: uuidv4(),
+    name: 'TypeScript 마스터 스터디',
+    introduction: '타입스크립트의 기초부터 고급 활용까지 배우는 스터디!',
+    imgUrl: Images.studyGroupDefault,
+    startAt: new Date('2024-05-10').toISOString(),
+    endAt: new Date('2024-07-20').toISOString(),
+    maxHeadcount: 15,
+    currentHeadcount: 12,
+    status: '진행중',
+    leader: { ...studyGroupMember[1], profileImage: undefined },
+    members: studyGroupMember.map((member, index) => ({
+      ...member,
+      isLeader: index === 1,
+    })),
+    lectures: studyGroupLecture.map((lecture) => ({
+      ...lecture,
+      thumbnailImg: Images.studyGroupDefault,
+      urlLink: '/',
+    })),
+  },
+  {
+    uuid: uuidv4(),
+    name: 'Next.js 기초 다지기',
+    introduction: 'Next.js 프레임워크의 기본 개념과 라우팅을 학습하는 스터디.',
+    imgUrl: Images.studyGroupDefault,
+    startAt: new Date('2023-11-01').toISOString(),
+    endAt: new Date('2024-01-15').toISOString(),
+    maxHeadcount: 8,
+    currentHeadcount: 8,
+    status: '진행중',
+    leader: { ...studyGroupMember[2], profileImage: undefined },
+    members: studyGroupMember.map((member, index) => ({
+      ...member,
+      isLeader: index === 2,
+    })),
+    lectures: studyGroupLecture.map((lecture) => ({
+      ...lecture,
+      thumbnailImg: Images.studyGroupDefault,
+      urlLink: '/',
+    })),
+  },
+]
