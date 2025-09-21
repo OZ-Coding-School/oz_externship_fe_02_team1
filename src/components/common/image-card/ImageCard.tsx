@@ -5,15 +5,17 @@ import { cn } from '@utils'
 
 interface ImageCardProps extends ComponentPropsWithoutRef<'div'> {
   title: string
-  imageUrl?: string
+  imgUrl?: string
   children?: ReactNode
+  overlayContent?: ReactNode
 }
 
 export default function ImageCard({
   title,
-  imageUrl,
+  imgUrl,
   children,
   className,
+  overlayContent,
   ...rest
 }: ImageCardProps) {
   return (
@@ -22,10 +24,10 @@ export default function ImageCard({
       {...rest}
     >
       <header>
-        <div className="aspect-[2/1] overflow-hidden rounded-t-lg">
-          {imageUrl ? (
+        <div className="relative aspect-[2/1] overflow-hidden rounded-t-lg">
+          {imgUrl ? (
             <img
-              src={imageUrl}
+              src={imgUrl}
               alt={title}
               className="h-full w-full bg-gray-200 object-cover"
             />
@@ -34,6 +36,7 @@ export default function ImageCard({
               <PhotoIcon width={30} color="#9CA3AF" />
             </div>
           )}
+          {overlayContent}
         </div>
       </header>
       <div className={cn('flex flex-col', className)}>{children}</div>
