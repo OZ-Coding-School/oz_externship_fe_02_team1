@@ -1,5 +1,5 @@
-import { cn, formatDateTimeToYYYYMMDDHHMM, formatDateToMonthDay } from '@utils'
-import { ChatAlertCount, Text } from '@components'
+import { cn } from '@utils'
+import { ChatPreview, Text } from '@components'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { dummyChatList } from '@mocks/chatMocks'
 
@@ -45,26 +45,7 @@ export default function ChatRoomList({
               index !== dummyChatList.length - 1 && 'border-b border-gray-200'
             )}
           >
-            <div className="flex items-center justify-between">
-              <Text variant="small" className="font-medium text-gray-900">
-                {chat.studyGroupName}
-              </Text>
-              <div className="flex items-center gap-1">
-                <Text variant="extraSmall" className="text-gray-500">
-                  {formatDateToMonthDay(chat.lastMessage?.createdAt || '')}
-                </Text>
-                {chat.unreadCount > 0 && (
-                  <ChatAlertCount unreadCount={chat.unreadCount} />
-                )}
-              </div>
-            </div>
-            <Text variant="extraSmall" className="text-gray-600">
-              {chat.lastMessage?.senderNickname}: {chat.lastMessage?.content}
-            </Text>
-            <Text variant="extraSmall" className="text-gray-400">
-              수정일시:
-              {formatDateTimeToYYYYMMDDHHMM(chat.lastMessage?.createdAt || '')}
-            </Text>
+            <ChatPreview chat={chat} />
           </div>
         ))}
       </div>
