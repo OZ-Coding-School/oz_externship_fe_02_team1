@@ -13,13 +13,13 @@ export default function ChatAlertCount({
   return (
     <div
       className={cn(
-        'bg-danger-500 flex items-center justify-center rounded-full text-white',
+        'bg-danger-500 flex items-center justify-center rounded-full',
         isTotalCount
           ? 'absolute top-[-8px] right-[-8px] h-6 w-6 shadow-md'
           : 'h-5 w-5'
       )}
     >
-      <Text variant="extraSmall" className="font-semibold">
+      <Text variant="extraSmall" className="font-semibold text-white">
         {unreadCount}
       </Text>
     </div>
