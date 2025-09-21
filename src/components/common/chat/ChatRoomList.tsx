@@ -1,5 +1,5 @@
 import { ChatContainer, ChatPreview, Text } from '@components'
-import { dummyChatList } from '@mocks/chatMocks'
+import { dummyChatList } from '@mocks/chatListMocks'
 import { cn } from '@utils'
 
 const SCROLLBAR_STYLE =
