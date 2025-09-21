@@ -4,8 +4,8 @@ import { useMediaQuery } from 'react-responsive'
 
 import { ChatAlertCount, ChatRoomList } from '@components'
 import { mediaQuery } from '@constants'
-import { cn } from '@utils'
 import { dummyChatList } from '@mocks/chatMocks'
+import { cn } from '@utils'
 
 export default function ChatIcon() {
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })

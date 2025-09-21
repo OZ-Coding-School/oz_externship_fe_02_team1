@@ -1,5 +1,5 @@
-import { cn } from '@utils'
 import { Text } from '@components'
+import { cn } from '@utils'
 
 interface ChatAlertCountProps {
   unreadCount: number

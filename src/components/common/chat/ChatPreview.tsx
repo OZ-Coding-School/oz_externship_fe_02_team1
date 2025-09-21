@@ -1,6 +1,7 @@
-import type { ChatPreview } from '@models'
 import { Text, ChatAlertCount } from '@components'
 import { formatDateTimeToYYYYMMDDHHMM, formatDateToMonthDay } from '@utils'
+
+import type { ChatPreview } from '@models'
 
 interface ChatPreviewProps {
   chat: ChatPreview

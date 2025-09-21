@@ -1,7 +1,8 @@
-import { cn } from '@utils'
-import { ChatPreview, Text } from '@components'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+
+import { ChatPreview, Text } from '@components'
 import { dummyChatList } from '@mocks/chatMocks'
+import { cn } from '@utils'
 
 const SCROLLBAR_STYLE =
   '[&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-track]:bg-white'
