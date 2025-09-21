@@ -59,6 +59,33 @@ export const formatTimeToHHMM = (date?: Date) => {
 }
 
 /**
+ * Date 객체를 'YYYY-MM-DD HH:mm' 형식의 문자열로 변환합니다.
+ * @returns 'YYYY-MM-DD HH:mm' 형식의 문자열. dateString이 없으면 null.
+ */
+export const formatDateTimeToYYYYMMDDHHMM = (dateString: string) => {
+  if (!dateString) return null
+  const date = new Date(dateString)
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
+  return `${year}-${month}-${day} ${hours}:${minutes}`
+}
+
+/**
+ * Date 객체를 '월 일' 형식의 문자열로 변환합니다.
+ * @returns '월 일' 형식의 문자열. dateString이 없으면 빈 문자열.
+ */
+export const formatDateToMonthDay = (dateString: string) => {
+  if (!dateString) return ''
+  const date = new Date(dateString)
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return `${month}월 ${day}일`
+}
+
+/**
  * Date 객체를 'YYYY-MM-DD' 형식의 문자열로 변환합니다.
  * @returns 'YYYY-MM-DD' 형식의 문자열
  */
@@ -68,5 +95,3 @@ export const formatToYMD = (date: Date): string => {
   const d = String(date.getDate()).padStart(2, '0')
   return `${y}-${m}-${d}`
 }
-
-
