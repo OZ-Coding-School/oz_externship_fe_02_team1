@@ -24,7 +24,7 @@ export default function StudyGroupLecture({
             imageUrl={lecture.thumbnailImg}
             className="p-4"
           >
-            <Text className="font-medium text-gray-900">{lecture.title}</Text>
+            <Text className="font-medium">{lecture.title}</Text>
             <Text className="mt-1 mb-3 text-sm">{lecture.instructor}</Text>
             <Link
               to={lecture.urlLink}

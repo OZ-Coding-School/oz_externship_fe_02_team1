@@ -33,7 +33,7 @@ export default function LogDetailAISummary({
       <div className="flex items-center justify-between pb-4">
         <div className="flex items-center justify-center gap-2">
           <AIIcon />
-          <Text variant="large" className="font-semibold text-gray-900">
+          <Text variant="large" className="font-semibold">
             AI 학습 내용 요약
           </Text>
         </div>

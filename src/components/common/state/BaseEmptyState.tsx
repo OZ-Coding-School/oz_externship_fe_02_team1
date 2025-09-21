@@ -39,7 +39,7 @@ export default function BaseEmptyState({
             {icon}
           </div>
         )}
-        <H4 className="text-gray-900">{title}</H4>
+        <H4>{title}</H4>
         <Text variant="base" className="mt-2 mb-6 block text-gray-500">
           {description}
         </Text>

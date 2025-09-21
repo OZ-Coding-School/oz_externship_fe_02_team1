@@ -19,10 +19,7 @@ const ModalHeader = ({
       )}
     >
       <div className="flex min-w-0 flex-col">
-        <H2
-          id={titleId}
-          className="truncate text-xl font-semibold text-gray-900"
-        >
+        <H2 id={titleId} className="truncate text-xl font-semibold">
           {title}
         </H2>
         {subTitle && (

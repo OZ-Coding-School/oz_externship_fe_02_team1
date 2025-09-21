@@ -20,7 +20,7 @@ export default function StudyLogHeader({ mode }: StudyLogHeaderProps) {
     <header>
       <BreadCrumb items={BREAD_CRUMB_PATH} className="pb-4" />
       <div className="w-full pb-6">
-        <H2 className="leading-9 font-bold text-gray-900">{title[mode]}</H2>
+        <H2 className="leading-9 font-bold">{title[mode]}</H2>
         <Text className="inline-flex pt-2 text-gray-600">
           {description[mode]}
         </Text>

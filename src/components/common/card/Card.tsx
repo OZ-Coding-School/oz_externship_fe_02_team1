@@ -27,10 +27,7 @@ export default function Card({
     >
       <Text
         variant={titleVariant}
-        className={cn(
-          'pb-2 leading-normal font-semibold text-black',
-          titleClassName
-        )}
+        className={cn('pb-2 leading-normal font-semibold', titleClassName)}
       >
         {title}
       </Text>
