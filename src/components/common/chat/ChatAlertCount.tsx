@@ -1,13 +1,13 @@
-import { cn } from '@/utils'
+import { cn } from '@utils'
 import { Text } from '@components'
 
 interface ChatAlertCountProps {
-  alertCount: number
+  unreadCount: number
   isTotalCount?: boolean
 }
 
 export default function ChatAlertCount({
-  alertCount,
+  unreadCount,
   isTotalCount = false,
 }: ChatAlertCountProps) {
   return (
@@ -20,7 +20,7 @@ export default function ChatAlertCount({
       )}
     >
       <Text variant="extraSmall" className="font-semibold">
-        {alertCount}
+        {unreadCount}
       </Text>
     </div>
   )
