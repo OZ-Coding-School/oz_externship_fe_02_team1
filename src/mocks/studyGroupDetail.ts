@@ -7,6 +7,7 @@ import type {
   LectureBase,
   Review,
   ScheduleDetail,
+  StudyGroupDetail,
   StudyGroupMemberList,
   StudyLogListItem,
 } from '@models'
@@ -237,7 +238,6 @@ export const studyGroupReview: Review[] = [
 export const studyGroup = {
   uuid: uuidv4(),
   name: 'React 실무 프로젝트 스터디',
-  introduction: 'React 실무 프로젝트 스터디입니다.',
   imgUrl: Images.studyGroupDefault,
   startAt: new Date('2024-02-01').toISOString(),
   endAt: new Date('2024-04-30').toISOString(),
@@ -256,12 +256,11 @@ export const studyGroup = {
   })),
 }
 
-export const studyGroups = [
+export const studyGroups: StudyGroupDetail[] = [
+  // 진행중 스터디
   {
     uuid: uuidv4(),
     name: 'React 실무 프로젝트 스터디',
-    introduction:
-      'React 실무 프로젝트를 함께 진행하며 포트폴리오를 만들어봐요!',
     imgUrl: Images.studyGroupDefault,
     startAt: new Date('2024-02-01').toISOString(),
     endAt: new Date('2024-04-30').toISOString(),
@@ -282,7 +281,6 @@ export const studyGroups = [
   {
     uuid: uuidv4(),
     name: 'TypeScript 마스터 스터디',
-    introduction: '타입스크립트의 기초부터 고급 활용까지 배우는 스터디!',
     imgUrl: Images.studyGroupDefault,
     startAt: new Date('2024-05-10').toISOString(),
     endAt: new Date('2024-07-20').toISOString(),
@@ -303,17 +301,78 @@ export const studyGroups = [
   {
     uuid: uuidv4(),
     name: 'Next.js 기초 다지기',
-    introduction: 'Next.js 프레임워크의 기본 개념과 라우팅을 학습하는 스터디.',
     imgUrl: Images.studyGroupDefault,
-    startAt: new Date('2023-11-01').toISOString(),
-    endAt: new Date('2024-01-15').toISOString(),
+    startAt: new Date('2024-06-01').toISOString(),
+    endAt: new Date('2024-08-15').toISOString(),
     maxHeadcount: 8,
-    currentHeadcount: 8,
+    currentHeadcount: 6,
     status: '진행중',
     leader: { ...studyGroupMember[2], profileImage: undefined },
     members: studyGroupMember.map((member, index) => ({
       ...member,
       isLeader: index === 2,
+    })),
+    lectures: studyGroupLecture.map((lecture) => ({
+      ...lecture,
+      thumbnailImg: Images.studyGroupDefault,
+      urlLink: '/',
+    })),
+  },
+
+  // 완료된 스터디
+  {
+    uuid: uuidv4(),
+    name: 'Node.js 서버 개발 스터디',
+    imgUrl: Images.studyGroupDefault,
+    startAt: new Date('2023-09-01').toISOString(),
+    endAt: new Date('2023-11-30').toISOString(),
+    maxHeadcount: 12,
+    currentHeadcount: 12,
+    status: '종료됨',
+    leader: { ...studyGroupMember[3], profileImage: undefined },
+    members: studyGroupMember.map((member, index) => ({
+      ...member,
+      isLeader: index === 3,
+    })),
+    lectures: studyGroupLecture.map((lecture) => ({
+      ...lecture,
+      thumbnailImg: Images.studyGroupDefault,
+      urlLink: '/',
+    })),
+  },
+  {
+    uuid: uuidv4(),
+    name: 'JavaScript 알고리즘 스터디',
+    imgUrl: Images.studyGroupDefault,
+    startAt: new Date('2023-06-01').toISOString(),
+    endAt: new Date('2023-08-15').toISOString(),
+    maxHeadcount: 20,
+    currentHeadcount: 18,
+    status: '종료됨',
+    leader: { ...studyGroupMember[4], profileImage: undefined },
+    members: studyGroupMember.map((member, index) => ({
+      ...member,
+      isLeader: index === 4,
+    })),
+    lectures: studyGroupLecture.map((lecture) => ({
+      ...lecture,
+      thumbnailImg: Images.studyGroupDefault,
+      urlLink: '/',
+    })),
+  },
+  {
+    uuid: uuidv4(),
+    name: 'UI/UX 디자인 스터디',
+    imgUrl: Images.studyGroupDefault,
+    startAt: new Date('2023-01-10').toISOString(),
+    endAt: new Date('2023-03-30').toISOString(),
+    maxHeadcount: 6,
+    currentHeadcount: 6,
+    status: '종료됨',
+    leader: { ...studyGroupMember[5], profileImage: undefined },
+    members: studyGroupMember.map((member, index) => ({
+      ...member,
+      isLeader: index === 5,
     })),
     lectures: studyGroupLecture.map((lecture) => ({
       ...lecture,
