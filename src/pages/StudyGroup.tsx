@@ -1,24 +1,49 @@
 import { SectionHeader, StudyBadge, StudyGroupMainHeader } from '@components'
 
-import { StudyGroupCard } from '@components'
+import StudyGroupCardList from '@/components/study-group/StudyGroupCardList'
+import { studyGroups } from '@/mocks/studyGroupDetail'
 
 export default function StudyGroup() {
+  const inProgressGroups = studyGroups.filter(
+    (group) => group.status === '진행중'
+  )
+  const completedGroups = studyGroups.filter(
+    (group) => group.status === '종료됨'
+  )
+
   return (
     <div className="flex flex-col gap-8">
       <StudyGroupMainHeader />
-      <section className="flex flex-col gap-6">
-        <SectionHeader
-          title="진행중인 스터디"
-          subtitle="현재 활발히 진행되고 있는 스터디 그룹들"
-          titleVariant="2xl"
-        >
-          <StudyBadge
-            variant={'inProgress'}
-            className="bg-green-100 text-green-800"
-          />
-        </SectionHeader>
-        <StudyGroupCard />
-      </section>
+      <div className="flex flex-col gap-12">
+        <section className="flex flex-col gap-6">
+          <SectionHeader
+            title="진행중인 스터디"
+            subtitle="현재 활발히 진행되고 있는 스터디 그룹들"
+            titleVariant="2xl"
+          >
+            <StudyBadge
+              variant={'inProgress'}
+              className="bg-green-100 text-green-800"
+            >
+              {inProgressGroups.length}개
+            </StudyBadge>
+          </SectionHeader>
+          <StudyGroupCardList studyGroups={inProgressGroups} />
+        </section>
+
+        <section className="flex flex-col gap-6">
+          <SectionHeader
+            title="완료된 스터디"
+            subtitle="성공적으로 마무리된 스터디 그룹들"
+            titleVariant="2xl"
+          >
+            <StudyBadge variant={'ended'} className="bg-gray-100 text-gray-800">
+              {completedGroups.length}개
+            </StudyBadge>
+          </SectionHeader>
+          <StudyGroupCardList studyGroups={completedGroups} />
+        </section>
+      </div>
     </div>
   )
 }
