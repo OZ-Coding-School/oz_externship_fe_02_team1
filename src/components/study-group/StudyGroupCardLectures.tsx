@@ -1,5 +1,4 @@
 import { BookIcon } from '@assets'
-
 import { Text } from '@components'
 
 import type { LectureBase } from '@models'

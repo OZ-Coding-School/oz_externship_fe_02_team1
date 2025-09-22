@@ -1,8 +1,8 @@
+import { Text } from '@components'
 import { formatToYMD } from '@utils'
 
 import { CalendarIcon } from '@/assets'
 
-import { Text } from '@components'
 
 export default function StudyGroupCardPeriod({ startAt, endAt }: any) {
   const startDate = formatToYMD(new Date(startAt))
