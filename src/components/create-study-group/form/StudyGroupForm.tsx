@@ -36,15 +36,21 @@ export default function StudyGroupForm({
       <Controller
         name="name"
         control={control}
-        render={({ field }) => (
-          <PrimaryInfoSection
-            groupName={field.value}
-            onChangeGroupName={field.onChange}
-            description={undefined}
-            onChangeDescription={() => {}}
-            imageFile={null}
-            onChangeImage={() => {}}
-            initialImageUrl={undefined}
+        render={({ field: nameField }) => (
+          <Controller
+            name="introduction"
+            control={control}
+            render={({ field: descriptionField }) => (
+              <PrimaryInfoSection
+                groupName={nameField.value}
+                onChangeGroupName={nameField.onChange}
+                description={descriptionField.value}
+                onChangeDescription={descriptionField.onChange}
+                imageFile={null}
+                onChangeImage={() => {}}
+                initialImageUrl={undefined}
+              />
+            )}
           />
         )}
       />
