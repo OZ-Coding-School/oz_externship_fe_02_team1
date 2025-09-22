@@ -13,9 +13,9 @@ export default function ChatInput() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (message.trim()) {
-      setMessage('')
-    }
+    const text = message.trim()
+    if (!text) return
+    setMessage('')
   }
 
   const isActive = message.trim().length > 0
