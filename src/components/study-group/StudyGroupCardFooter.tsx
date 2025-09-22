@@ -1,7 +1,7 @@
-import type { StudyGroupStatus } from '@/types'
-import { CompletedFooter } from '@components'
-import { InProgressFooter } from '@components'
+import { CompletedFooter , InProgressFooter } from '@components'
 import { STATUS_COMPLETED } from '@constants'
+
+import type { StudyGroupStatus } from '@/types'
 
 interface StudyGroupCardFooterProps {
   status: StudyGroupStatus

@@ -7,11 +7,12 @@ import {
   StudyGroupCardBody,
 } from '@components'
 import { useModal, usePageNav } from '@hooks'
+import { studyGroupReview } from '@mocks/studyGroupDetail'
+
+import { calculateAverageRating } from '@/utils'
 
 import type { ReviewFormInputs } from './modal/ReviewWriteModal'
 import type { StudyGroupList } from '@models'
-import { calculateAverageRating } from '@/utils'
-import { studyGroupReview } from '@mocks/studyGroupDetail'
 
 interface StudyGroupCardProps {
   studyGroup: StudyGroupList

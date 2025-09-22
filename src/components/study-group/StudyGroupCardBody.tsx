@@ -1,7 +1,10 @@
-import { BookIcon, CalendarIcon } from '@/assets'
 import { Text } from '@components'
-import type { LectureBase } from '@models'
 import { formatToYMD } from '@utils'
+
+import { BookIcon, CalendarIcon } from '@/assets'
+
+import type { LectureBase } from '@models'
+
 
 interface StudyGroupCardBodyProps {
   startAt: string
