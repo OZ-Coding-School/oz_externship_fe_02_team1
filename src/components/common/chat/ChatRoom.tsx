@@ -72,7 +72,9 @@ export default function ChatRoom({
                 <div
                   className={cn(
                     'rounded-lg px-3 py-2',
-                    isMyMessage ? 'bg-primary-500' : 'bg-gray-100'
+                    isMyMessage
+                      ? 'bg-primary-500 rounded-br-xs'
+                      : 'rounded-bl-xs bg-gray-100'
                   )}
                 >
                   <Text className={cn(isMyMessage && 'text-white')}>
