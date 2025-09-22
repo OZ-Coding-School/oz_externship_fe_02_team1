@@ -22,10 +22,10 @@ export interface StudyGroupEdit extends StudyGroupCreate {
 }
 
 export interface StudyGroupList extends StudyGroupBase {
-  current_headcount: number
-  isLeader: boolean
+  currentHeadcount: number
   status: StudyGroupStatus
   lectures: LectureBase[]
+  leader: StudyGroupMemberList
 }
 
 export interface StudyGroupMemberList extends Member {
@@ -35,7 +35,7 @@ export interface StudyGroupMemberList extends Member {
 export interface StudyGroupDetail extends StudyGroupBase {
   currentHeadcount: number
   status: StudyGroupStatus
-  leader: Member
+  leader: StudyGroupMemberList
   members: StudyGroupMemberList[]
   lectures: Lecture[]
 }
