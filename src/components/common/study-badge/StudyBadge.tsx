@@ -4,12 +4,14 @@ import { type VariantProps } from 'class-variance-authority'
 
 import { studyBadgeVariants } from '@components'
 import { cn } from '@utils'
+import type { ReactNode } from 'react'
 
 interface StudyBadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof studyBadgeVariants> {
   member?: number
   maxMember?: number
+  children?: ReactNode
 }
 
 interface setLabelTextProps {
@@ -22,6 +24,7 @@ export default function StudyBadge({
   className,
   member,
   maxMember,
+  children,
   ...props
 }: StudyBadgeProps) {
   const memberCountText = `${member ?? '--'}/${maxMember ?? '--'}명`
@@ -48,6 +51,7 @@ export default function StudyBadge({
       className={cn(studyBadgeVariants({ variant, size }), className)}
       {...props}
     >
+      {children}&nbsp;
       {label}
     </div>
   )
