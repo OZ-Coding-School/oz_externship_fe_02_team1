@@ -1,3 +1,4 @@
+import { formatToYMD } from '@utils'
 import { Card, DateInput, MembersSlider, DatePickerModal } from '@components'
 import useDateModal from '@hooks/useDateModal'
 
@@ -47,7 +48,7 @@ export default function PeriodMemberSection({
           <DateInput
             label="스터디 시작일"
             required
-            value={startDate}
+            value={startDate && formatToYMD(startDate)}
             onOpenCalendar={openStartPicker}
             placeholder="날짜를 선택하세요"
             aria-label="스터디 시작일"
@@ -55,7 +56,7 @@ export default function PeriodMemberSection({
           <DateInput
             label="스터디 종료일"
             required
-            value={endDate}
+            value={endDate && formatToYMD(endDate)}
             onOpenCalendar={openEndPicker}
             placeholder="날짜를 선택하세요"
             invalid={hasRangeError}
