@@ -1,10 +1,10 @@
 import type React from 'react'
+import type { ReactNode } from 'react'
 
 import { type VariantProps } from 'class-variance-authority'
 
 import { studyBadgeVariants } from '@components'
 import { cn } from '@utils'
-import type { ReactNode } from 'react'
 
 interface StudyBadgeProps
   extends React.HTMLAttributes<HTMLDivElement>,

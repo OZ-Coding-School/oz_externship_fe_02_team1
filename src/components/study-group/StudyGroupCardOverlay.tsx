@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router'
+
 import { StudyBadge } from '@components'
 
 interface StudyCardOverlayProps {
