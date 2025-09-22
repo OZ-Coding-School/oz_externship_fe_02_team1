@@ -1,4 +1,5 @@
-import { studyGroupMember } from '@mocks/studyGroupDetail'
+import { ArrowLeftIcon } from '@heroicons/react/24/outline'
+
 import {
   ChatContainer,
   ChatInput,
@@ -6,8 +7,8 @@ import {
   OnOffIcon,
   Text,
 } from '@components'
-import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { dummyChatMessages, dummyOnlineMembers } from '@mocks/chatRoomMocks'
+import { studyGroupMember } from '@mocks/studyGroupDetail'
 import { cn, formatTimeToHHMM } from '@utils'
 
 interface ChatRoomProps {

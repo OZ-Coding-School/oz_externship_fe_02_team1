@@ -1,5 +1,6 @@
-import type { ChatMessage } from '@models'
 import { studyGroupMember } from '@mocks/studyGroupDetail'
+
+import type { ChatMessage } from '@models'
 
 export const dummyChatMessages: ChatMessage[] = [
   {

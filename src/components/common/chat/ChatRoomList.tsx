@@ -1,7 +1,8 @@
 import { ChatContainer, ChatPreview, Text } from '@components'
 import { dummyChatList } from '@mocks/chatListMocks'
-import type { ChatPreview as ChatPreviewType } from '@models'
 import { cn } from '@utils'
+
+import type { ChatPreview as ChatPreviewType } from '@models'
 
 interface ChatRoomListProps {
   totalUnreadCount: number

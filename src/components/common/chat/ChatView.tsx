@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { ChatRoom, ChatRoomList } from '@components'
+
 import type { ChatPreview } from '@models'
 
 interface ChatViewProps {

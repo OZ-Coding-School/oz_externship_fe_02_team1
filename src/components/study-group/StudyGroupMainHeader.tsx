@@ -2,6 +2,7 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 
 import { Button, Input, SectionHeader, Text } from '@components'
+
 import { usePageNav } from '@/hooks'
 
 export default function StudyGroupMainHeader() {

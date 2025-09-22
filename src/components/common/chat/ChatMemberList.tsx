@@ -1,7 +1,8 @@
-import type { StudyGroupMemberList } from '@models'
 import { OnOffIcon, Text } from '@components'
-import { cn } from '@utils'
 import { dummyOnlineMembers } from '@mocks/chatRoomMocks'
+import { cn } from '@utils'
+
+import type { StudyGroupMemberList } from '@models'
 
 interface ChatMemberListProps {
   members: StudyGroupMemberList[]
