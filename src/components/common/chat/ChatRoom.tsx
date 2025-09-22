@@ -8,7 +8,7 @@ import {
 } from '@components'
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { dummyChatMessages, dummyOnlineMembers } from '@mocks/chatRoomMocks'
-import { cn } from '@utils'
+import { cn, formatTimeToHHMM } from '@utils'
 
 interface ChatRoomProps {
   studyGroupName: string
@@ -82,7 +82,7 @@ export default function ChatRoom({
                   variant="extraSmall"
                   className={cn('text-gray-500', isMyMessage && 'text-right')}
                 >
-                  {new Date(message.createdAt).toLocaleTimeString()}
+                  {formatTimeToHHMM(new Date(message.createdAt))}
                 </Text>
               </div>
             </div>
