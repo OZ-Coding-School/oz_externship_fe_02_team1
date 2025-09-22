@@ -20,8 +20,9 @@ export const usePageNav = () => {
     navigate('/study-group/create')
   }
 
-  const navigateToGroupDetail = () => {
-    navigate(`/study-group/${params.groupId}`)
+  const navigateToGroupDetail = (groupId?: string) => {
+    const id = groupId || params.groupId
+    navigate(`/study-group/${id}`)
   }
 
   return {
