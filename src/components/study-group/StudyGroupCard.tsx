@@ -49,7 +49,11 @@ export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
 
   return (
     <div className="max-w-96 overflow-hidden">
-      <ImageCard title={name} imgUrl={imgUrl} overlayContent={ImageCardOverLay}>
+      <ImageCard
+        title={name}
+        imageUrl={imgUrl}
+        overlayContent={ImageCardOverLay}
+      >
         <div className="flex max-w-96 flex-col gap-3 p-5">
           <Text variant="large" className="font-semibold text-gray-900">
             {name}

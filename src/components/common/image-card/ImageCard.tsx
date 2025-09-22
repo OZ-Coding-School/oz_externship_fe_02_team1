@@ -5,14 +5,14 @@ import { cn } from '@utils'
 
 interface ImageCardProps extends ComponentPropsWithoutRef<'div'> {
   title: string
-  imgUrl?: string
+  imageUrl?: string
   children?: ReactNode
   overlayContent?: ReactNode
 }
 
 export default function ImageCard({
   title,
-  imgUrl,
+  imageUrl,
   children,
   className,
   overlayContent,
@@ -25,9 +25,9 @@ export default function ImageCard({
     >
       <header>
         <div className="relative aspect-[2/1] overflow-hidden rounded-t-lg">
-          {imgUrl ? (
+          {imageUrl ? (
             <img
-              src={imgUrl}
+              src={imageUrl}
               alt={title}
               className="h-full w-full bg-gray-200 object-cover"
             />
