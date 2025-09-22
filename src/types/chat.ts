@@ -42,8 +42,6 @@ export interface MarkReagPayload {
 }
 
 // WS: 서버 → 클라이언트
-export interface ChatMessagePayload extends ChatMessage {}
-
 export interface UserEventPayload {
   event: 'join' | 'leave'
   nickname: string
