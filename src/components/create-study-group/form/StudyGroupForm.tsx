@@ -58,14 +58,26 @@ export default function StudyGroupForm({
       <Controller
         name="startAt"
         control={control}
-        render={({ field }) => (
-          <PeriodMemberSection
-            startDate={field.value}
-            endDate=""
-            memberCount={0}
-            onStartDateChange={field.onChange}
-            onEndDateChange={() => {}}
-            onMemberCountChange={() => {}}
+        render={({ field: startAtField }) => (
+          <Controller
+            name="endAt"
+            control={control}
+            render={({ field: endAtField }) => (
+              <Controller
+                name="currentHeadcount"
+                control={control}
+                render={({ field: memberCountField }) => (
+                  <PeriodMemberSection
+                    startDate={startAtField.value}
+                    endDate={endAtField.value}
+                    memberCount={memberCountField.value}
+                    onStartDateChange={startAtField.onChange}
+                    onEndDateChange={endAtField.onChange}
+                    onMemberCountChange={memberCountField.onChange}
+                  />
+                )}
+              />
+            )}
           />
         )}
       />
