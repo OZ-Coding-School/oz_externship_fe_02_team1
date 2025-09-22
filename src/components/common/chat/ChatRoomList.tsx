@@ -1,49 +1,40 @@
-import { XMarkIcon } from '@heroicons/react/24/outline'
-
-import { ChatPreview, Text } from '@components'
-import { dummyChatList } from '@mocks/chatMocks'
+import { ChatContainer, ChatPreview, Text } from '@components'
+import { dummyChatList } from '@mocks/chatListMocks'
 import { cn } from '@utils'
 
-const SCROLLBAR_STYLE =
-  '[&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-track]:bg-white'
+import type { ChatPreview as ChatPreviewType } from '@models'
 
 interface ChatRoomListProps {
   totalUnreadCount: number
   onToggle: () => void
+  onSelectChat: (chat: ChatPreviewType) => void
 }
 
 export default function ChatRoomList({
   totalUnreadCount,
   onToggle,
+  onSelectChat,
 }: ChatRoomListProps) {
   return (
-    <div className="fixed right-6 bottom-24 z-9999 h-96 w-80 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-2xl">
-      <div className="flex items-center justify-between border-b border-gray-200 bg-gray-50 p-4">
+    <ChatContainer
+      header={
         <div className="flex flex-col items-start">
           <Text className="font-semibold">채팅방</Text>
           <Text variant="extraSmall" className="text-primary-600">
             {totalUnreadCount}개의 읽지 않은 메시지
           </Text>
         </div>
-        <XMarkIcon
-          width={18}
-          onClick={onToggle}
-          className="cursor-pointer text-gray-400"
-        />
-      </div>
-
-      <div
-        className={cn(
-          'h-77 overflow-x-hidden overflow-y-scroll',
-          SCROLLBAR_STYLE
-        )}
-      >
+      }
+      onToggle={onToggle}
+    >
+      <div className="scrollbar-hidden h-77 overflow-x-hidden overflow-y-scroll">
         {dummyChatList.length > 0 ? (
           dummyChatList.map((chat, index) => (
             <div
               key={chat.studyGroupUuid}
+              onClick={() => onSelectChat(chat)}
               className={cn(
-                'flex flex-col gap-1 p-3',
+                'flex cursor-pointer flex-col gap-1 p-3',
                 index !== dummyChatList.length - 1 && 'border-b border-gray-200'
               )}
             >
@@ -56,6 +47,6 @@ export default function ChatRoomList({
           </div>
         )}
       </div>
-    </div>
+    </ChatContainer>
   )
 }
