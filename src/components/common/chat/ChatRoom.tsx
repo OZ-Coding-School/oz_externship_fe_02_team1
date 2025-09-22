@@ -1,6 +1,5 @@
-import { studyGroupMember } from '@/mocks/studyGroupDetail'
+import { studyGroupMember } from '@mocks/studyGroupDetail'
 import {
-  Avatar,
   ChatContainer,
   ChatInput,
   ChatMemberList,
@@ -9,6 +8,7 @@ import {
 } from '@components'
 import { ArrowLeftIcon } from '@heroicons/react/24/outline'
 import { dummyChatMessages, dummyOnlineMembers } from '@mocks/chatRoomMocks'
+import { cn } from '@utils'
 
 interface ChatRoomProps {
   studyGroupName: string
@@ -21,6 +21,8 @@ export default function ChatRoom({
   onToggle,
   onBack,
 }: ChatRoomProps) {
+  const myUuid = studyGroupMember[0].uuid
+
   return (
     <ChatContainer
       header={
@@ -48,26 +50,44 @@ export default function ChatRoom({
     >
       <ChatMemberList members={studyGroupMember} />
 
-      <div className="scrollbar-hidden h-53 overflow-y-scroll">
-        {dummyChatMessages.map((message) => (
-          <div key={message.messageId} className="flex items-start gap-2 p-3">
-            <Avatar
-              src={message.sender.profileImage}
-              alt={`${message.sender.nickname}'s profile`}
-            />
-            <div className="flex flex-col">
-              <Text variant="small" className="font-medium">
-                {message.sender.nickname}
-              </Text>
-              <div className="rounded-lg bg-gray-100 p-2">
-                <Text>{message.content}</Text>
+      <div className="scrollbar-hidden flex h-53 flex-col gap-3 overflow-y-scroll p-3">
+        {dummyChatMessages.map((message) => {
+          const isMyMessage = message.sender.uuid === myUuid
+
+          return (
+            <div
+              key={message.messageId}
+              className={cn(
+                'flex items-start',
+                isMyMessage ? 'flex-row-reverse justify-end pl-10' : 'pr-10'
+              )}
+            >
+              <div className="flex flex-col gap-1">
+                {!isMyMessage && (
+                  <Text variant="extraSmall" className="text-gray-600">
+                    {message.sender.nickname}
+                  </Text>
+                )}
+                <div
+                  className={cn(
+                    'rounded-lg px-3 py-2',
+                    isMyMessage ? 'bg-primary-500' : 'bg-gray-100'
+                  )}
+                >
+                  <Text className={cn(isMyMessage && 'text-white')}>
+                    {message.content}
+                  </Text>
+                </div>
+                <Text
+                  variant="extraSmall"
+                  className={cn('text-gray-500', isMyMessage && 'text-right')}
+                >
+                  {new Date(message.createdAt).toLocaleTimeString()}
+                </Text>
               </div>
-              <Text variant="extraSmall" className="text-gray-500">
-                {new Date(message.createdAt).toLocaleTimeString()}
-              </Text>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
 
       <ChatInput />
