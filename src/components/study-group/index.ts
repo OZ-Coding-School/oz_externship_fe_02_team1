@@ -1,9 +1,8 @@
 export * from '@components/study-group/modal'
+export { default as StudyGroupCardFooter } from '@components/study-group/StudyGroupCardFooter'
+export { default as StudyGroupCardPeriod } from '@components/study-group/StudyGroupCardPeriod'
 export { default as StudyGroupMainHeader } from '@components/study-group/StudyGroupMainHeader'
 export { default as StudyGroupCard } from '@components/study-group/StudyGroupCard'
-export {
-  InProgressFooter,
-  CompletedFooter,
-} from '@components/study-group/StudyGroupCardFooters'
-
+export { default as StudyGroupCardList } from '@components/study-group/StudyGroupCardList'
 export { default as StudyGroupCardOverlay } from '@components/study-group/StudyGroupCardOverlay'
+export { default as StudyGroupCardLectures } from '@components/study-group/StudyGroupCardLectures'
