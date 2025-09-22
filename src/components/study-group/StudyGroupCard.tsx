@@ -1,49 +1,73 @@
-import { Card, ImageCard, Text } from '@components'
+import {
+  ImageCard,
+  ReviewWriteModal,
+  Text,
+  StudyGroupCardOverlay,
+  StudyGroupCardLectures,
+  StudyGroupCardPeriod,
+  StudyGroupCardFooter,
+} from '@components'
+import { useModal, usePageNav } from '@hooks'
 
-import { BookIcon, CalendarIcon } from '@/assets'
-import { studyGroup } from '@/mocks/studyGroupDetail'
-import { formatToYMD } from '@/utils'
+import type { ReviewFormInputs, StudyGroupList } from '@models'
 
-export default function StudyGroupCard({ title }: any) {
-  const { lectures, startAt, endAt } = studyGroup
+interface StudyGroupCardProps {
+  studyGroup: StudyGroupList
+}
 
-  const startDate = formatToYMD(new Date(startAt))
-  const endDate = formatToYMD(new Date(endAt))
+export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
+  const {
+    lectures,
+    startAt,
+    endAt,
+    imgUrl,
+    name,
+    status,
+    maxHeadcount,
+    currentHeadcount,
+    leader,
+    uuid,
+  } = studyGroup
+
+  const { navigateToGroupDetail } = usePageNav()
+  const { isOpen, openModal, closeModal } = useModal()
+
+  const handleConfirmReview = (data: ReviewFormInputs) => {
+    console.log('Review Data:', data)
+    closeModal()
+  }
+
+  const ImageCardOverLay = (
+    <StudyGroupCardOverlay
+      status={status}
+      isLeader={leader.isLeader}
+      maxHeadcount={maxHeadcount}
+      currentHeadcount={currentHeadcount}
+    />
+  )
 
   return (
-    <div className="max-w-96">
-      <ImageCard title={title} />
-      <Card title={title} cardClassName="flex flex-col gap-3 p-5">
-        <div className="flex flex-col gap-1">
-          <div className="flex items-center gap-2">
-            <CalendarIcon />
-            <Text variant="small" className="font-medium text-gray-600">
-              스터디 기간
-            </Text>
-          </div>
-          <Text variant="small" className="pl-6 font-normal text-gray-700">
-            {startDate} ~ {endDate}
+    <div className="max-w-96 overflow-hidden">
+      <ImageCard title={name} imgUrl={imgUrl} overlayContent={ImageCardOverLay}>
+        <div className="flex max-w-96 flex-col gap-3 p-5">
+          <Text variant="large" className="font-semibold text-gray-900">
+            {name}
           </Text>
+          <StudyGroupCardPeriod startAt={startAt} endAt={endAt} />
+          <StudyGroupCardLectures lectures={lectures} />
+          <StudyGroupCardFooter
+            status={status}
+            navigateToGroupDetail={() => navigateToGroupDetail(uuid)}
+            onWriteReview={openModal}
+          />
         </div>
-        <li className="flex flex-col gap-1">
-          <div className="flex items-center gap-2">
-            <BookIcon />
-            <Text variant="small" className="font-medium text-gray-600">
-              스터디 강의
-            </Text>
-          </div>
-          {lectures.map((lecture) => (
-            <ul key={lecture.id} className="flex flex-col pt-2 pl-5">
-              <Text variant="small" className="font-medium text-gray-600">
-                {lecture.title}
-              </Text>
-              <Text variant="extraSmall" className="font-normal text-gray-500">
-                {lecture.instructor}
-              </Text>
-            </ul>
-          ))}
-        </li>
-      </Card>
+      </ImageCard>
+
+      <ReviewWriteModal
+        isOpen={isOpen}
+        onClose={closeModal}
+        confirm={handleConfirmReview}
+      />
     </div>
   )
 }
