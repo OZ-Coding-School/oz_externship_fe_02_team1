@@ -9,7 +9,8 @@ import {
 } from '@components'
 import { useModal, usePageNav } from '@hooks'
 
-import type { ReviewFormInputs, StudyGroupList } from '@models'
+import type { StudyGroupList } from '@models'
+import type { ReviewFormInputs } from './modal/ReviewWriteModal'
 
 interface StudyGroupCardProps {
   studyGroup: StudyGroupList
