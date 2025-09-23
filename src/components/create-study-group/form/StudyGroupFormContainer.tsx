@@ -7,6 +7,7 @@ import {
   type StudyGroupFormValues,
 } from '@components'
 import { studyGroup } from '@mocks/datas/studyGroupDetail'
+import { useStudyGroupQueries } from '@hooks'
 
 const INITIAL_MEMBER_COUNT = 6
 
@@ -15,16 +16,19 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
     defaultValues: {
       name: '',
       introduction: '',
-      imageFile: null,
+      maxHeadcount: INITIAL_MEMBER_COUNT,
+      currentHeadcount: INITIAL_MEMBER_COUNT,
+      profileImgUrl: '',
+      profileImg: null,
       startAt: '',
       endAt: '',
-      currentHeadcount: INITIAL_MEMBER_COUNT,
       lectures: [],
-      imgUrl: null,
     },
   })
 
   const { reset } = methods
+  const { useCreateStudyGroup } = useStudyGroupQueries()
+  const { mutate: createStudyGroupMutation } = useCreateStudyGroup()
 
   useEffect(() => {
     if (mode === 'edit') {
@@ -34,16 +38,37 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
         startAt: studyGroup.startAt,
         endAt: studyGroup.endAt,
         currentHeadcount: studyGroup.currentHeadcount,
-        lectures: studyGroup.lectures || [],
-        imgUrl: studyGroup.imgUrl || null,
-        imageFile: null,
+        lectures:
+          studyGroup.lectures.map((lecture) => Number(lecture.id)) || [],
+        profileImgUrl: studyGroup.imgUrl || null,
+        profileImg: null,
       })
     }
   }, [mode, reset])
 
   const handleSubmit = (values: StudyGroupFormValues) => {
     if (mode === 'create') {
-      alert(`Creating study group: ${JSON.stringify(values, null, 2)}`)
+      const formData = new FormData()
+
+      formData.append('name', values.name)
+      formData.append('max_headcount', values.currentHeadcount.toString())
+      formData.append('start_at', values.startAt)
+      formData.append('end_at', values.endAt)
+
+      if (values.introduction) {
+        formData.append('introduction', values.introduction)
+      }
+      if (values.profileImgUrl) {
+        formData.append('profile_img_url', values.profileImgUrl)
+      }
+      if (values.profileImg) {
+        formData.append('profile_img', values.profileImg)
+      }
+      if (values.lectures && values.lectures.length > 0) {
+        formData.append('lectures', JSON.stringify(values.lectures))
+      }
+
+      createStudyGroupMutation(formData)
     } else {
       alert(`Updating study group: ${JSON.stringify(values, null, 2)}`)
     }
