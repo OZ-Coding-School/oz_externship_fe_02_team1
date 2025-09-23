@@ -1,10 +1,11 @@
-import { API_BASE_URL, API_PATHS } from '@constants'
 import axios, {
   AxiosError,
   type AxiosInstance,
   type AxiosResponse,
   type InternalAxiosRequestConfig,
 } from 'axios'
+
+import { API_BASE_URL, API_PATHS } from '@constants'
 
 let isRefreshing = false
 let refreshSubscribers: ((token: string) => void)[] = []

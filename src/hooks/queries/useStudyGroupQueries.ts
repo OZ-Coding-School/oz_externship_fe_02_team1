@@ -1,5 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
+
 import { createStudyGroup } from '@api'
+
 import type { CreateStudyGroupResponse } from '@models'
 import type { AxiosResponse } from 'axios'
 

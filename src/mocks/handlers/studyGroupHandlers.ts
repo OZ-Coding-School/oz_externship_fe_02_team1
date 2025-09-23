@@ -1,5 +1,6 @@
-import { API_BASE_URL, API_PATHS } from '@constants'
 import { http, HttpResponse } from 'msw'
+
+import { API_BASE_URL, API_PATHS } from '@constants'
 
 export const studyGroupHandlers = [
   // 스터디 그룹 생성
