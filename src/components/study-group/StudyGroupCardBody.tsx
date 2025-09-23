@@ -2,7 +2,6 @@ import { BookIcon, CalendarIcon } from '@assets'
 import { Text } from '@components'
 import { formatToYMD } from '@utils'
 
-
 import type { LectureBase } from '@models'
 
 interface StudyGroupCardBodyProps {
@@ -44,7 +43,7 @@ export default function StudyGroupCardBody({
           {lectures.map((lecture) => (
             <li key={lecture.id} className="flex flex-col pt-2 pl-5">
               <Text variant="small" className="font-medium text-gray-600">
-                {lecture.title}
+                {lecture.lectureTitle}
               </Text>
               <Text variant="extraSmall" className="font-normal text-gray-500">
                 {lecture.instructor}
