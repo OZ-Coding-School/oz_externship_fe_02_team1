@@ -8,6 +8,7 @@ import {
 } from '@components'
 import { useStudyGroupQueries } from '@hooks'
 import { studyGroup } from '@mocks/datas/studyGroupDetail'
+import type { Lecture } from '@models'
 
 const INITIAL_MEMBER_COUNT = 6
 
@@ -22,7 +23,7 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
       profileImg: null,
       startAt: '',
       endAt: '',
-      lectures: [],
+      lectures: [] as Lecture[],
     },
   })
 
@@ -34,12 +35,11 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
     if (mode === 'edit') {
       reset({
         name: studyGroup.name,
-        introduction: studyGroup.introduction,
+        introduction: studyGroup.introduction || '',
         startAt: studyGroup.startAt,
         endAt: studyGroup.endAt,
         currentHeadcount: studyGroup.currentHeadcount,
-        lectures:
-          studyGroup.lectures.map((lecture) => Number(lecture.id)) || [],
+        lectures: studyGroup.lectures || [],
         profileImgUrl: studyGroup.imgUrl || null,
         profileImg: null,
       })
@@ -65,7 +65,10 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
         formData.append('profile_img', values.profileImg)
       }
       if (values.lectures && values.lectures.length > 0) {
-        formData.append('lectures', JSON.stringify(values.lectures))
+        formData.append(
+          'lectures',
+          JSON.stringify(values.lectures.map((lecture) => lecture.id))
+        )
       }
 
       createStudyGroupMutation(formData)

@@ -1,3 +1,5 @@
+import type { Lecture } from '@models'
+
 export interface FormMode {
   mode: 'create' | 'edit'
 }
@@ -11,5 +13,5 @@ export interface StudyGroupFormValues {
   endAt: string
   maxHeadcount: number
   currentHeadcount: number
-  lectures: number[]
+  lectures: Lecture[]
 }
