@@ -7,7 +7,7 @@ import type {
   LectureBase,
   Review,
   ScheduleDetail,
-  StudyGroupDetail,
+  StudyGroupList,
   StudyGroupMemberList,
   StudyLogListItem,
 } from '@models'
@@ -15,12 +15,12 @@ import type {
 export const studyGroupLecture: LectureBase[] = [
   {
     id: uuidv4(),
-    title: 'React 완벽 마스터 강의',
+    lectureTitle: 'React 완벽 마스터 강의',
     instructor: '김개발',
   },
   {
     id: uuidv4(),
-    title: 'Next.js 실전 가이드',
+    lectureTitle: 'Next.js 실전 가이드',
     instructor: '박프론트',
   },
 ]
@@ -257,128 +257,98 @@ export const studyGroup = {
   })),
 }
 
-export const studyGroups: StudyGroupDetail[] = [
-  // 진행중 스터디
+export const studyGroupList: StudyGroupList[] = [
   {
     uuid: uuidv4(),
     name: 'React 실무 프로젝트 스터디',
+    currentHeadcount: 8,
+    maxHeadcount: 10,
+    isLeader: true,
     imgUrl: Images.studyGroupDefault,
     startAt: new Date('2024-02-01').toISOString(),
     endAt: new Date('2024-04-30').toISOString(),
-    maxHeadcount: 10,
-    currentHeadcount: 8,
     status: '진행중',
-    leader: { ...studyGroupMember[0], profileImage: undefined },
-    members: studyGroupMember.map((member, index) => ({
-      ...member,
-      isLeader: index === 0,
-    })),
-    lectures: studyGroupLecture.map((lecture) => ({
-      ...lecture,
-      thumbnailImg: Images.studyGroupDefault,
-      urlLink: '/',
-    })),
+    lectures: [
+      { id: uuidv4(), lectureTitle: '리액트 컴포넌트', instructor: '김개발' },
+      { id: uuidv4(), lectureTitle: '리액트 훅스', instructor: '박코딩' },
+    ],
   },
   {
     uuid: uuidv4(),
     name: 'TypeScript 마스터 스터디',
+    currentHeadcount: 12,
+    maxHeadcount: 15,
+    isLeader: false,
     imgUrl: Images.studyGroupDefault,
     startAt: new Date('2024-05-10').toISOString(),
     endAt: new Date('2024-07-20').toISOString(),
-    maxHeadcount: 15,
-    currentHeadcount: 12,
     status: '진행중',
-    leader: { ...studyGroupMember[1], profileImage: undefined },
-    members: studyGroupMember.map((member, index) => ({
-      ...member,
-      isLeader: index === 1,
-    })),
-    lectures: studyGroupLecture.map((lecture) => ({
-      ...lecture,
-      thumbnailImg: Images.studyGroupDefault,
-      urlLink: '/',
-    })),
+    lectures: [
+      { id: uuidv4(), lectureTitle: '타입스크립트 기본', instructor: '이타입' },
+    ],
   },
   {
     uuid: uuidv4(),
     name: 'Next.js 기초 다지기',
+    currentHeadcount: 6,
+    maxHeadcount: 8,
+    isLeader: true,
     imgUrl: Images.studyGroupDefault,
     startAt: new Date('2024-06-01').toISOString(),
     endAt: new Date('2024-08-15').toISOString(),
-    maxHeadcount: 8,
-    currentHeadcount: 6,
     status: '진행중',
-    leader: { ...studyGroupMember[2], profileImage: undefined },
-    members: studyGroupMember.map((member, index) => ({
-      ...member,
-      isLeader: index === 2,
-    })),
-    lectures: studyGroupLecture.map((lecture) => ({
-      ...lecture,
-      thumbnailImg: Images.studyGroupDefault,
-      urlLink: '/',
-    })),
+    lectures: [
+      { id: uuidv4(), lectureTitle: 'Next.js 라우팅', instructor: '최넥스트' },
+    ],
   },
-
-  // 완료된 스터디
   {
     uuid: uuidv4(),
     name: 'Node.js 서버 개발 스터디',
+    currentHeadcount: 12,
+    maxHeadcount: 12,
+    isLeader: false,
     imgUrl: Images.studyGroupDefault,
     startAt: new Date('2023-09-01').toISOString(),
     endAt: new Date('2023-11-30').toISOString(),
-    maxHeadcount: 12,
-    currentHeadcount: 12,
     status: '종료됨',
-    leader: { ...studyGroupMember[3], profileImage: undefined },
-    members: studyGroupMember.map((member, index) => ({
-      ...member,
-      isLeader: index === 3,
-    })),
-    lectures: studyGroupLecture.map((lecture) => ({
-      ...lecture,
-      thumbnailImg: Images.studyGroupDefault,
-      urlLink: '/',
-    })),
+    lectures: [
+      {
+        id: uuidv4(),
+        lectureTitle: 'Express로 API 개발',
+        instructor: '유노드',
+      },
+    ],
   },
   {
     uuid: uuidv4(),
     name: 'JavaScript 알고리즘 스터디',
+    currentHeadcount: 18,
+    maxHeadcount: 20,
+    isLeader: true,
     imgUrl: Images.studyGroupDefault,
     startAt: new Date('2023-06-01').toISOString(),
     endAt: new Date('2023-08-15').toISOString(),
-    maxHeadcount: 20,
-    currentHeadcount: 18,
     status: '종료됨',
-    leader: { ...studyGroupMember[4], profileImage: undefined },
-    members: studyGroupMember.map((member, index) => ({
-      ...member,
-      isLeader: index === 4,
-    })),
-    lectures: studyGroupLecture.map((lecture) => ({
-      ...lecture,
-      thumbnailImg: Images.studyGroupDefault,
-      urlLink: '/',
-    })),
+    lectures: [
+      {
+        id: uuidv4(),
+        lectureTitle: '알고리즘 문제 풀이',
+        instructor: '정알고',
+      },
+    ],
   },
   {
     uuid: uuidv4(),
     name: 'UI/UX 디자인 스터디',
+    currentHeadcount: 6,
+    maxHeadcount: 6,
+    isLeader: false,
     imgUrl: Images.studyGroupDefault,
     startAt: new Date('2023-01-10').toISOString(),
     endAt: new Date('2023-03-30').toISOString(),
-    maxHeadcount: 6,
-    currentHeadcount: 6,
     status: '종료됨',
-    leader: { ...studyGroupMember[5], profileImage: undefined },
-    members: studyGroupMember.map((member, index) => ({
-      ...member,
-      isLeader: index === 5,
-    })),
-    lectures: studyGroupLecture.map((lecture) => ({
-      ...lecture,
-      thumbnailImg: Images.studyGroupDefault,
-      urlLink: '/',
-    })),
+    lectures: [
+      { id: uuidv4(), lectureTitle: 'Figma 실무', instructor: '김디자이너' },
+    ],
   },
 ]
