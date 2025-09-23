@@ -20,11 +20,11 @@ export default function StudyGroupLecture({
         {lectures?.map((lecture) => (
           <ImageCard
             key={lecture.id}
-            title={lecture.title}
+            title={lecture.lectureTitle}
             imageUrl={lecture.thumbnailImg}
             className="p-4"
           >
-            <Text className="font-medium">{lecture.title}</Text>
+            <Text className="font-medium">{lecture.lectureTitle}</Text>
             <Text className="mt-1 mb-3 text-sm">{lecture.instructor}</Text>
             <Link
               to={lecture.urlLink}
