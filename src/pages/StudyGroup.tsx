@@ -5,20 +5,19 @@ import { STUDY_GROUP_STATUS } from '@constants'
 import useDebounce from '@hooks/useDebounce'
 import { studyGroupList } from '@mocks/studyGroupDetail'
 
-
 export default function StudyGroup() {
   const [searchQuery, setSearchQuery] = useState('')
-  const debouncedSearchQuery = useDebounce(searchQuery, 500)
+  const debouncedSearchQuery = useDebounce(searchQuery, 300)
 
-  const filteredGroups = studyGroupList.filter((group) =>
-    group.name.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
+  const filteredGroups = studyGroupList.filter(({ name }) =>
+    name.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
   )
 
   const inProgressGroups = filteredGroups.filter(
-    (group) => group.status === STUDY_GROUP_STATUS.IN_PROGRESS
+    ({ status }) => status === STUDY_GROUP_STATUS.IN_PROGRESS
   )
   const completedGroups = filteredGroups.filter(
-    (group) => group.status === STUDY_GROUP_STATUS.COMPLETED
+    ({ status }) => status === STUDY_GROUP_STATUS.COMPLETED
   )
 
   return (
