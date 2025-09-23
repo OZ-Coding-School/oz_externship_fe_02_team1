@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router'
 
 import { StudyBadge } from '@components'
+
 import { STATUS_TO_VARIANT } from '@/constants'
 
 interface StudyCardOverlayProps {

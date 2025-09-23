@@ -5,4 +5,4 @@ export { default as StudyGroupMainHeader } from '@components/study-group/StudyGr
 export { default as StudyGroupCard } from '@components/study-group/StudyGroupCard'
 export { default as StudyGroupCardList } from '@components/study-group/StudyGroupCardList'
 export { default as StudyGroupCardOverlay } from '@components/study-group/StudyGroupCardOverlay'
-export { default as StudyGroupCardBody } from './StudyGroupCardBody'
+export { default as StudyGroupCardBody } from '@components/study-group/StudyGroupCardBody'
