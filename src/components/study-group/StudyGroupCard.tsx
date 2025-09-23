@@ -8,8 +8,7 @@ import {
 } from '@components'
 import { useModal, usePageNav } from '@hooks'
 import { studyGroupReview } from '@mocks/studyGroupDetail'
-
-import { calculateAverageRating } from '@/utils'
+import { calculateAverageRating } from '@utils'
 
 import type { ReviewFormInputs } from './modal/ReviewWriteModal'
 import type { StudyGroupList } from '@models'
@@ -28,7 +27,7 @@ export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
     status,
     maxHeadcount,
     currentHeadcount,
-    leader,
+    isLeader,
     uuid,
   } = studyGroup
 
@@ -51,7 +50,7 @@ export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
         overlayContent={
           <StudyGroupCardOverlay
             status={status}
-            isLeader={leader.isLeader}
+            isLeader={isLeader}
             maxHeadcount={maxHeadcount}
             currentHeadcount={currentHeadcount}
           />

@@ -25,7 +25,7 @@ export interface StudyGroupList extends StudyGroupBase {
   currentHeadcount: number
   status: StudyGroupStatus
   lectures: LectureBase[]
-  leader: StudyGroupMemberList
+  isLeader: boolean
 }
 
 export interface StudyGroupMemberList extends Member {
@@ -35,7 +35,7 @@ export interface StudyGroupMemberList extends Member {
 export interface StudyGroupDetail extends StudyGroupBase {
   currentHeadcount: number
   status: StudyGroupStatus
-  leader: StudyGroupMemberList
+  leader: Member
   members: StudyGroupMemberList[]
   lectures: Lecture[]
 }
