@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router'
 
 import { StudyBadge } from '@components'
+import { STATUS_TO_VARIANT } from '@/constants'
 
 interface StudyCardOverlayProps {
   status: string
@@ -8,13 +9,6 @@ interface StudyCardOverlayProps {
   maxHeadcount: number
   currentHeadcount: number
 }
-
-// status 문자열을 variant 값으로 변환하기 위한 객체
-const statusToVariant = {
-  진행중: 'inProgress',
-  종료됨: 'ended',
-  대기중: 'primary',
-} as const
 
 export default function StudyGroupCardOverlay({
   status,
@@ -27,7 +21,7 @@ export default function StudyGroupCardOverlay({
 
   // status 문자열에 해당하는 variant 값을 찾음
   const statusVariant = status
-    ? statusToVariant[status as keyof typeof statusToVariant]
+    ? STATUS_TO_VARIANT[status as keyof typeof STATUS_TO_VARIANT]
     : undefined
 
   if (!showBadges) {
