@@ -1,4 +1,8 @@
 export const API_PATHS = {
+  AUTH: {
+    REFRESH: '/token/refresh',
+  },
+
   NOTIFICATIONS: {
     LIST: '/notifications',
     READ_ALL: '/notifications/read-all',
