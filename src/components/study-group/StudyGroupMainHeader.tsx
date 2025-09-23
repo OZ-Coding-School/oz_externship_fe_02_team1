@@ -1,20 +1,18 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import { useEffect, useState } from 'react'
 
 import { Button, Input, SectionHeader, Text } from '@components'
 import { usePageNav } from '@hooks'
-import useDebounce from '@/hooks/useDebounce'
 
-export default function StudyGroupMainHeader() {
-  const [text, setText] = useState('')
-  const debouncedText = useDebounce(text, 500)
+interface StudyGroupMainHeaderProps {
+  searchQuery: string
+  setSearchQuery: (query: string) => void
+}
+
+export default function StudyGroupMainHeader({
+  searchQuery,
+  setSearchQuery,
+}: StudyGroupMainHeaderProps) {
   const { navigateToCreateNewStudy } = usePageNav()
-
-  useEffect(() => {
-    if (debouncedText) {
-      console.log('검색 실행', debouncedText)
-    }
-  }, [debouncedText])
 
   return (
     <header className="flex flex-col gap-8">
@@ -31,9 +29,9 @@ export default function StudyGroupMainHeader() {
         placeholder="스터디 그룹 검색...."
         leftIcon={<MagnifyingGlassIcon className="h-4 w-4" />}
         onChange={(e) => {
-          setText(e.target.value)
+          setSearchQuery(e.target.value)
         }}
-        value={text}
+        value={searchQuery}
       />
     </header>
   )
