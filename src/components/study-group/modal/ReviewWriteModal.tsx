@@ -10,11 +10,10 @@ import {
 } from '@components'
 import { studyGroup } from '@mocks/studyGroupDetail'
 
-interface ReviewFormInputs {
+export interface ReviewFormInputs {
   rating: number
   reviewText: string
 }
-
 interface ReviewWriteModalProps {
   isOpen: boolean
   onClose: () => void

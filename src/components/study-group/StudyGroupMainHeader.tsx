@@ -2,13 +2,12 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 
 import { Button, Input, SectionHeader, Text } from '@components'
-
-import { usePageNav } from '@/hooks'
+import { usePageNav } from '@hooks'
 
 export default function StudyGroupMainHeader() {
   const [text, setText] = useState('')
 
-  const { navigateCreateNewStudy } = usePageNav()
+  const { navigateToCreateNewStudy } = usePageNav()
 
   return (
     <header className="flex flex-col gap-8">
@@ -17,7 +16,7 @@ export default function StudyGroupMainHeader() {
         titleVariant="3xl"
         subtitle="함께 공부하며 성장하는 스터디 그룹에 참여해보세요"
       >
-        <Button variant="primary" onClick={navigateCreateNewStudy}>
+        <Button variant="primary" onClick={navigateToCreateNewStudy}>
           <Text>+ 새 스터디 만들기</Text>
         </Button>
       </SectionHeader>

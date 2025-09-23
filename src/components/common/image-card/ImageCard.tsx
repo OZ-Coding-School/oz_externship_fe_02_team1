@@ -7,6 +7,7 @@ interface ImageCardProps extends ComponentPropsWithoutRef<'div'> {
   title: string
   imageUrl?: string
   children?: ReactNode
+  overlayContent?: ReactNode
 }
 
 export default function ImageCard({
@@ -14,6 +15,7 @@ export default function ImageCard({
   imageUrl,
   children,
   className,
+  overlayContent,
   ...rest
 }: ImageCardProps) {
   return (
@@ -22,7 +24,7 @@ export default function ImageCard({
       {...rest}
     >
       <header>
-        <div className="aspect-[2/1] overflow-hidden rounded-t-lg">
+        <div className="relative aspect-[2/1] overflow-hidden rounded-t-lg">
           {imageUrl ? (
             <img
               src={imageUrl}
@@ -34,6 +36,7 @@ export default function ImageCard({
               <PhotoIcon width={30} color="#9CA3AF" />
             </div>
           )}
+          {overlayContent}
         </div>
       </header>
       <div className={cn('flex flex-col', className)}>{children}</div>

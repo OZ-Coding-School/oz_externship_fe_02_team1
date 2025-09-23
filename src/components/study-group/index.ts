@@ -1,2 +1,8 @@
 export * from '@components/study-group/modal'
+export * from '@components/study-group/footer'
+export { default as StudyGroupCardFooter } from '@components/study-group/StudyGroupCardFooter'
 export { default as StudyGroupMainHeader } from '@components/study-group/StudyGroupMainHeader'
+export { default as StudyGroupCard } from '@components/study-group/StudyGroupCard'
+export { default as StudyGroupCardList } from '@components/study-group/StudyGroupCardList'
+export { default as StudyGroupCardOverlay } from '@components/study-group/StudyGroupCardOverlay'
+export { default as StudyGroupCardBody } from '@components/study-group/StudyGroupCardBody'

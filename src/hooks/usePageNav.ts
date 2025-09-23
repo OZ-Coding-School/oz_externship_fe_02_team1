@@ -16,14 +16,20 @@ export const usePageNav = () => {
     navigate(`/study-group/${params.groupId}/records/${params.recordId}/edit`)
   }
 
-  const navigateCreateNewStudy = () => {
+  const navigateToCreateNewStudy = () => {
     navigate('/study-group/create')
+  }
+
+  const navigateToGroupDetail = (groupId?: string) => {
+    const id = groupId || params.groupId
+    navigate(`/study-group/${id}`)
   }
 
   return {
     handleGoBack,
     navigateToGroupEdit,
     navigateToLogEdit,
-    navigateCreateNewStudy,
+    navigateToCreateNewStudy,
+    navigateToGroupDetail,
   }
 }

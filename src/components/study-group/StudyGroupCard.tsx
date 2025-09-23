@@ -1,23 +1,84 @@
-import { Card, ImageCard, Text } from '@components'
+import {
+  ImageCard,
+  ReviewWriteModal,
+  Text,
+  StudyGroupCardOverlay,
+  StudyGroupCardFooter,
+  StudyGroupCardBody,
+} from '@components'
+import { useModal, usePageNav } from '@hooks'
+import { studyGroupReview } from '@mocks/studyGroupDetail'
+import { calculateAverageRating } from '@utils'
 
-export default function StudyGroupCard() {
+import type { ReviewFormInputs } from './modal/ReviewWriteModal'
+import type { StudyGroupList } from '@models'
+
+interface StudyGroupCardProps {
+  studyGroup: StudyGroupList
+}
+
+export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
+  const {
+    lectures,
+    startAt,
+    endAt,
+    imgUrl,
+    name,
+    status,
+    maxHeadcount,
+    currentHeadcount,
+    isLeader,
+    uuid,
+  } = studyGroup
+
+  const { navigateToGroupDetail } = usePageNav()
+  const { isOpen, openModal, closeModal } = useModal()
+  const averageRating = calculateAverageRating(studyGroupReview)
+  const reviewCount = studyGroupReview.length
+
+  // api연동후 api폴더로 이동예정
+  const handleConfirmReview = (data: ReviewFormInputs) => {
+    console.log('Review Data:', data)
+    closeModal()
+  }
+
   return (
-    <div className="max-w-96">
-      <ImageCard title="React 실무 프로젝트 스터디" />
-      <Card
-        title="React 실무 프로젝트 스터디"
-        cardClassName="flex flex-col gap-3 p-5"
+    <div className="max-w-96 overflow-hidden">
+      <ImageCard
+        title={name}
+        imageUrl={imgUrl}
+        overlayContent={
+          <StudyGroupCardOverlay
+            status={status}
+            isLeader={isLeader}
+            maxHeadcount={maxHeadcount}
+            currentHeadcount={currentHeadcount}
+          />
+        }
       >
-        <section className="flex flex-col gap-1">
-          <Text>스터디 기간</Text>
-          <Text>2025년 3월 11일 ~ 2025년 23월 11일</Text>
-        </section>
-        <section className="flex flex-col gap-1">
-          <Text>스터디 강의</Text>
-          <Text>React 완벽 마스터 강의</Text>
-          <Text>Next.js 실전 가이드</Text>
-        </section>
-      </Card>
+        <div className="flex flex-col gap-3 p-5">
+          <Text variant="large" className="font-semibold text-gray-900">
+            {name}
+          </Text>
+          <StudyGroupCardBody
+            startAt={startAt}
+            endAt={endAt}
+            lectures={lectures}
+          />
+          <StudyGroupCardFooter
+            status={status}
+            navigateToGroupDetail={() => navigateToGroupDetail(uuid)}
+            onWriteReview={openModal}
+            averageRating={averageRating}
+            reviewCount={reviewCount}
+          />
+        </div>
+      </ImageCard>
+      <ReviewWriteModal
+        isOpen={isOpen}
+        onClose={closeModal}
+        confirm={handleConfirmReview}
+      />
     </div>
   )
 }

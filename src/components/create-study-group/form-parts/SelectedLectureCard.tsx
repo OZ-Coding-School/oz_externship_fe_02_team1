@@ -17,7 +17,7 @@ export default function SelectedLectureCard({
         {lecture.thumbnailImg ? (
           <img
             src={lecture.thumbnailImg}
-            alt={lecture.title}
+            alt={lecture.lectureTitle}
             className="aspect-[5/3] w-20 object-cover"
           />
         ) : (
@@ -30,7 +30,7 @@ export default function SelectedLectureCard({
         )}
 
         <div className="flex flex-col">
-          <Text className="font-semibold">{lecture.title}</Text>
+          <Text className="font-semibold">{lecture.lectureTitle}</Text>
           <Text variant="small">{lecture.instructor}</Text>
         </div>
       </div>
