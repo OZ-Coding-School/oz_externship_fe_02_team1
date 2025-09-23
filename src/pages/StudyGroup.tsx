@@ -1,10 +1,10 @@
-import { STUDY_GROUP_STATUS } from '@constants'
-import { StudyGroupMainHeader, StudyGroupSection } from '@components'
-
-import useDebounce from '@hooks/useDebounce'
-
-import { studyGroupList } from '@mocks/studyGroupDetail'
 import { useState } from 'react'
+
+import { StudyGroupMainHeader, StudyGroupSection } from '@components'
+import { STUDY_GROUP_STATUS } from '@constants'
+import useDebounce from '@hooks/useDebounce'
+import { studyGroupList } from '@mocks/studyGroupDetail'
+
 
 export default function StudyGroup() {
   const [searchQuery, setSearchQuery] = useState('')

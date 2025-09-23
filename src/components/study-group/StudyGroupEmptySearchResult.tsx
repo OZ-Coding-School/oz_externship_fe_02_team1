@@ -1,6 +1,7 @@
+import { BaseEmptyState, EmptyState } from '@components'
+
 import { CompletedIcon, InProgressIcon } from '@/assets'
 import { usePageNav } from '@/hooks'
-import { BaseEmptyState, EmptyState } from '@components'
 
 interface StudyGroupEmptySearchResultProps {
   variant: 'inProgress' | 'ended'

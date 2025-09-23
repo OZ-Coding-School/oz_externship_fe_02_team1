@@ -1,6 +1,6 @@
+import { SectionHeader, StudyBadge, StudyGroupCardList , StudyGroupEmptySearchResult } from '@components'
+
 import type { StudyGroupList } from '@/types'
-import { SectionHeader, StudyBadge, StudyGroupCardList } from '@components'
-import { StudyGroupEmptySearchResult } from '@components'
 
 interface StudyGroupSectionProps {
   title: string

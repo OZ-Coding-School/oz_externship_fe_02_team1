@@ -1,7 +1,8 @@
+import type { ReactNode } from 'react'
+
 import { InboxIcon, PlusIcon } from '@heroicons/react/24/outline'
 
 import { BaseEmptyState, Button } from '@components'
-import type { ReactNode } from 'react'
 
 interface EmptyStateProps {
   title?: string
