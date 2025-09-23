@@ -1,12 +1,10 @@
-import { API_PATHS } from '@/constants'
+import { API_BASE_URL, API_PATHS } from '@constants'
 import axios, {
   AxiosError,
   type AxiosInstance,
   type AxiosResponse,
   type InternalAxiosRequestConfig,
 } from 'axios'
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 let isRefreshing = false
 let refreshSubscribers: ((token: string) => void)[] = []
@@ -23,9 +21,9 @@ const addRefreshSubscriber = (cb: (token: string) => void) => {
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  // headers: {
+  //   'Content-Type': 'application/json',
+  // },
   withCredentials: true,
 })
 
