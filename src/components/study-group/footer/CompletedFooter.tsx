@@ -1,5 +1,4 @@
 import { Button, Rating, Text } from '@components'
-
 import { cn } from '@utils'
 
 interface CompletedFooterProps {
