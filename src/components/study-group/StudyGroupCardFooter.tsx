@@ -1,6 +1,6 @@
-import { CompletedFooter , InProgressFooter } from '@components'
-import { STATUS_COMPLETED } from '@constants'
+import { CompletedFooter, InProgressFooter } from '@components'
 
+import { STUDY_GROUP_STATUS } from '@/constants'
 import type { StudyGroupStatus } from '@/types'
 
 interface StudyGroupCardFooterProps {
@@ -18,7 +18,7 @@ export default function StudyGroupCardFooter({
   averageRating,
   reviewCount,
 }: StudyGroupCardFooterProps) {
-  if (status === STATUS_COMPLETED) {
+  if (status === STUDY_GROUP_STATUS.COMPLETED) {
     return (
       <CompletedFooter
         averageRating={averageRating as number}
