@@ -7,8 +7,11 @@ import {
   OnOffIcon,
   Text,
 } from '@components'
-import { dummyChatMessages, dummyOnlineMembers } from '@mocks/chatRoomMocks'
-import { studyGroupMember } from '@mocks/studyGroupDetail'
+import {
+  dummyChatMessages,
+  dummyOnlineMembers,
+} from '@mocks/datas/chatRoomMocks'
+import { studyGroupMember } from '@mocks/datas/studyGroupDetail'
 import { cn, formatTimeToHHMM } from '@utils'
 
 interface ChatRoomProps {

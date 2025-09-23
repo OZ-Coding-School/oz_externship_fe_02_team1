@@ -10,7 +10,7 @@ import {
   studyGroup,
   studyGroupLog,
   studyGroupSchedule,
-} from '@mocks/studyGroupDetail'
+} from '@mocks/datas/studyGroupDetail'
 
 export default function StudyGroupDetail() {
   return (

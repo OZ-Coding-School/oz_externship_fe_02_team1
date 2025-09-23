@@ -1,5 +1,5 @@
 import { BaseModal, MODAL_PRESETS, ModalBody, Rating, Text } from '@components'
-import { studyGroupReview } from '@mocks/studyGroupDetail'
+import { studyGroupReview } from '@mocks/datas/studyGroupDetail'
 import { cn, calculateAverageRating } from '@utils'
 
 interface ReviewListModalProps {

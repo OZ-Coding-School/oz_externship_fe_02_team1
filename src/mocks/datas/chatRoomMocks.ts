@@ -1,4 +1,4 @@
-import { studyGroupMember } from '@mocks/studyGroupDetail'
+import { studyGroupMember } from '@/mocks/datas/studyGroupDetail'
 
 import type { ChatMessage } from '@models'
 

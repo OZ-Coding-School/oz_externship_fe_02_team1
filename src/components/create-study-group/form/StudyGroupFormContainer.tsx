@@ -6,7 +6,7 @@ import {
   type FormMode,
   type StudyGroupFormValues,
 } from '@components'
-import { studyGroup } from '@mocks/studyGroupDetail'
+import { studyGroup } from '@mocks/datas/studyGroupDetail'
 
 const INITIAL_MEMBER_COUNT = 6
 

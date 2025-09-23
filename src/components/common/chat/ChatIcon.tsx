@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive'
 
 import { ChatAlertCount, ChatView } from '@components'
 import { mediaQuery } from '@constants'
-import { dummyChatList } from '@mocks/chatListMocks'
+import { dummyChatList } from '@mocks/datas/chatListMocks'
 import { cn } from '@utils'
 
 export default function ChatIcon() {
