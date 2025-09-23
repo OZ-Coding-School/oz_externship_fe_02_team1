@@ -1,4 +1,6 @@
 import { setupWorker } from 'msw/browser'
-import { handlers } from '@mocks/handlers/studyGroupHandlers'
+import { authHandlers, studyGroupHandlers } from '@mocks/handlers'
 
-export const worker = setupWorker(...handlers)
+const allHandlers = [...authHandlers, ...studyGroupHandlers]
+
+export const worker = setupWorker(...allHandlers)
