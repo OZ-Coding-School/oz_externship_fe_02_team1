@@ -6,3 +6,5 @@ export { default as StudyGroupCard } from '@components/study-group/StudyGroupCar
 export { default as StudyGroupCardList } from '@components/study-group/StudyGroupCardList'
 export { default as StudyGroupCardOverlay } from '@components/study-group/StudyGroupCardOverlay'
 export { default as StudyGroupCardBody } from '@components/study-group/StudyGroupCardBody'
+export { default as StudyGroupSection } from '@components/study-group/StudyGroupSection'
+export { default as StudyGroupEmptySearchResult } from '@components/study-group/StudyGroupEmptySearchResult'
