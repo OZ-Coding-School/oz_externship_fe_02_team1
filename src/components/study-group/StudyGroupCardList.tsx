@@ -2,7 +2,6 @@ import { StudyGroupCard } from '@components'
 
 import type { StudyGroupList } from '@/types'
 
-
 interface StudyGroupCardListProps {
   studyGroups: StudyGroupList[]
 }
