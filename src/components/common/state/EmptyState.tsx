@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react'
+
 import { InboxIcon, PlusIcon } from '@heroicons/react/24/outline'
 
 import { BaseEmptyState, Button } from '@components'
@@ -8,6 +10,7 @@ interface EmptyStateProps {
   createLabel?: string
   onCreate?: () => void
   className?: string
+  icon?: ReactNode
 }
 
 export default function EmptyState({
@@ -16,16 +19,19 @@ export default function EmptyState({
   createLabel = '새로 만들기',
   onCreate,
   className,
+  icon,
 }: EmptyStateProps) {
   return (
     <BaseEmptyState
       className={className}
       icon={
-        <InboxIcon
-          className="text-primary-500 h-8 w-8"
-          strokeWidth={2}
-          aria-hidden
-        />
+        icon ?? (
+          <InboxIcon
+            className="text-primary-500 h-8 w-8"
+            strokeWidth={2}
+            aria-hidden
+          />
+        )
       }
       iconBgClassName="bg-primary-50"
       title={title}
