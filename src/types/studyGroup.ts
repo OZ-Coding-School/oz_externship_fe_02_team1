@@ -11,16 +11,6 @@ export interface StudyGroupBase {
   maxHeadcount: number
 }
 
-export interface StudyGroupCreate extends StudyGroupBase {
-  introduction: string
-  createdBy: Member
-  createdAt: string
-}
-
-export interface StudyGroupEdit extends StudyGroupCreate {
-  updatedAt: string
-}
-
 export interface StudyGroupList extends StudyGroupBase {
   currentHeadcount: number
   status: StudyGroupStatus
