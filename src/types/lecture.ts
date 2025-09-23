@@ -1,6 +1,6 @@
 export interface LectureBase {
   id: string
-  title: string
+  lectureTitle: string
   instructor: string
 }
 
