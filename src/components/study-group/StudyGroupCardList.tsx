@@ -10,7 +10,7 @@ export default function StudyGroupCardList({
   studyGroups,
 }: StudyGroupCardListProps) {
   return (
-    <div className="flex justify-center gap-6">
+    <div className="flex flex-wrap gap-6">
       {studyGroups.map((group) => (
         <StudyGroupCard key={group.uuid} studyGroup={group} />
       ))}
