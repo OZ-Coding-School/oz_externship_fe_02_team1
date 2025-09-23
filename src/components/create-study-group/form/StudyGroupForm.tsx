@@ -38,6 +38,15 @@ export default function StudyGroupForm({
     control,
   })
   const { field: lecturesField } = useController({ name: 'lectures', control })
+  // Add useController for profileImgUrl and profileImg
+  const { field: profileImgUrlField } = useController({
+    name: 'profileImgUrl',
+    control,
+  })
+  const { field: profileImgField } = useController({
+    name: 'profileImg',
+    control,
+  })
 
   return (
     <form
@@ -51,9 +60,9 @@ export default function StudyGroupForm({
         onChangeGroupName={nameField.onChange}
         description={descriptionField.value}
         onChangeDescription={descriptionField.onChange}
-        imageFile={null}
-        onChangeImage={() => {}}
-        initialImageUrl={undefined}
+        imageFile={profileImgField.value}
+        onChangeImage={profileImgField.onChange}
+        initialImageUrl={profileImgUrlField.value}
       />
 
       <PeriodMemberSection
