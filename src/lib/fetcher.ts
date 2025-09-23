@@ -1,3 +1,4 @@
+import { API_PATHS } from '@/constants'
 import axios, {
   AxiosError,
   type AxiosInstance,
@@ -59,7 +60,7 @@ axiosInstance.interceptors.response.use(
       isRefreshing = true
       try {
         const { data } = await axios.post(
-          `${API_BASE_URL}/auth/refresh`,
+          `${API_BASE_URL}${API_PATHS.AUTH.REFRESH}`,
           {},
           { withCredentials: true }
         )
