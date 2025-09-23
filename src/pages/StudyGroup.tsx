@@ -1,13 +1,17 @@
-import { SectionHeader, StudyBadge, StudyGroupMainHeader } from '@components'
+import {
+  SectionHeader,
+  StudyBadge,
+  StudyGroupCardList,
+  StudyGroupMainHeader,
+} from '@components'
 
-import StudyGroupCardList from '@/components/study-group/StudyGroupCardList'
-import { studyGroups } from '@/mocks/studyGroupDetail'
+import { studyGroupList } from '@/mocks/studyGroupDetail'
 
 export default function StudyGroup() {
-  const inProgressGroups = studyGroups.filter(
+  const inProgressGroups = studyGroupList.filter(
     (group) => group.status === '진행중'
   )
-  const completedGroups = studyGroups.filter(
+  const completedGroups = studyGroupList.filter(
     (group) => group.status === '종료됨'
   )
 
