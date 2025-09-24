@@ -6,7 +6,7 @@ import {
   type FormMode,
   type StudyGroupFormValues,
 } from '@components'
-import { useStudyGroupQueries } from '@hooks'
+import { useStudyGroupMutations } from '@hooks'
 import { studyGroup } from '@mocks/datas/studyGroupDetail'
 
 import type { Lecture } from '@models'
@@ -29,8 +29,7 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
   })
 
   const { reset } = methods
-  const { useCreateStudyGroup } = useStudyGroupQueries()
-  const { mutate: createStudyGroupMutation } = useCreateStudyGroup()
+  const { mutate: createStudyGroupMutation } = useStudyGroupMutations()
 
   useEffect(() => {
     if (mode === 'edit') {

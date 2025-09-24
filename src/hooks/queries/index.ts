@@ -1,1 +1,2 @@
-export * from '@hooks/queries/useStudyGroupQueries'
+export * from '@hooks/queries/useStudyGroupMutations'
+export * from '@hooks/queries/queryKey'
