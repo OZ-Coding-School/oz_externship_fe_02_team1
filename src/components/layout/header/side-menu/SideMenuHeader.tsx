@@ -13,7 +13,9 @@ export default function SideMenuHeader({ onClose }: SideMenuHeaderProps) {
         <Logo size="lg" />
         <Text className="text-primary-600 text-xl font-bold">StudyHub</Text>
       </div>
-      <XMarkIcon width={18} className="cursor-pointer" onClick={onClose} />
+      <button type="button" aria-label="닫기" onClick={onClose}>
+        <XMarkIcon aria-hidden="true" width={18} className="cursor-pointer" />
+      </button>
     </header>
   )
 }
