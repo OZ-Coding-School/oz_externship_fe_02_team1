@@ -1,1 +1,1 @@
-export * from '@api/studyGroupApi'
+export * from '@api/group'
