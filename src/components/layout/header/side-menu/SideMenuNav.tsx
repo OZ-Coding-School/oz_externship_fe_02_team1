@@ -4,9 +4,10 @@ import {
   UserGroupIcon,
   UserIcon,
 } from '@heroicons/react/24/outline'
-import { HEADER_MOBILE_NAV_LISTS } from '@constants'
 import { Link, useLocation } from 'react-router'
+
 import { Button } from '@components'
+import { HEADER_MOBILE_NAV_LISTS } from '@constants'
 import { cn } from '@utils'
 
 const NAV_ICONS = [
@@ -23,7 +24,7 @@ export default function SideMenuNav() {
     <nav>
       <ul className="flex flex-col gap-2">
         {HEADER_MOBILE_NAV_LISTS.map((el) => (
-          <Link to={el.path}>
+          <Link key={el.name} to={el.path}>
             <Button
               variant="ghost"
               size="large"
