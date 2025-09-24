@@ -30,7 +30,7 @@ export default function UserProfileMenu() {
         <Avatar src="none" alt="김개발" size="sm" />
         <Text className="text-primary-600">김개발</Text>
         {!isMobile && (
-          <>
+          <div>
             <button
               type="button"
               className="w-8 cursor-pointer p-2"
@@ -40,7 +40,7 @@ export default function UserProfileMenu() {
             </button>
 
             <UserDropdown isOpen={isDropdownOpen} />
-          </>
+          </div>
         )}
       </div>
     </div>
