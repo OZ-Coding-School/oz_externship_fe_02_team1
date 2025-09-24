@@ -4,10 +4,15 @@ import {
   MegaphoneIcon,
   UserGroupIcon,
   UserIcon,
-  XMarkIcon,
 } from '@heroicons/react/24/outline'
 
-import { AuthButtonGroup, Avatar, Button, Logo, Text } from '@components'
+import {
+  AuthButtonGroup,
+  Avatar,
+  Button,
+  SideMenuHeader,
+  Text,
+} from '@components'
 import { cn } from '@utils'
 import { HEADER_MOBILE_NAV_LISTS } from '@constants'
 import { Link, useLocation } from 'react-router'
@@ -46,19 +51,7 @@ export default function HeaderSideMenu({
       {/* Side Menu */}
       <div className="fixed top-0 left-0 flex h-full w-80 flex-col justify-between bg-white shadow-lg">
         <div>
-          <header className="flex justify-between border-b border-gray-200 p-4">
-            <div className="flex items-center gap-2">
-              <Logo size="lg" />
-              <Text className="text-primary-600 text-xl font-bold">
-                StudyHub
-              </Text>
-            </div>
-            <XMarkIcon
-              width={18}
-              className="cursor-pointer"
-              onClick={onClose}
-            />
-          </header>
+          <SideMenuHeader onClose={onClose} />
 
           <div className="flex flex-col gap-2 p-4">
             <Text
