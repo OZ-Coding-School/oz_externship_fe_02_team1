@@ -8,3 +8,15 @@ export interface CreateStudyGroupRequest {
   endAt: string
   lectures?: number[]
 }
+
+export interface CreateStudyGroupResponse {
+  uuid: string
+  name: string
+  introduction: string
+  maxHeadcount: number
+  profileImgUrl: string
+  startAt: string
+  endAt: string
+  lectures: number[]
+  createdAt: string
+}
