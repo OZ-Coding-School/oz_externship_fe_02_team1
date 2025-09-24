@@ -7,5 +7,4 @@ export { default as UserProfileMenu } from '@components/layout/header/UserProfil
 export { default as AuthButtonGroup } from '@components/layout/header/AuthButtonGroup'
 export { default as UserDropdown } from '@components/layout/header/UserDropdown'
 export { default as UserMenu } from '@components/layout/header/UserMenu'
-export { default as UserMenuButton } from '@components/layout/header/UserMenuButton'
 export { default as Logo } from '@components/layout/header/Logo'
