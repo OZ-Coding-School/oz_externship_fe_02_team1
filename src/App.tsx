@@ -10,13 +10,16 @@ import {
   CreateStudyLog,
   StudyGroup,
   EditStudyLog,
+  TestLanding,
 } from '@pages'
 
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<TestLanding />}></Route>
+
       <Route path="/study-group" element={<Layout maxWidth="large" />}>
-        <Route path="/study-group" element={<StudyGroup />} />
+        <Route index element={<StudyGroup />} />
         <Route path=":groupId" element={<StudyGroupDetail />} />
       </Route>
 
