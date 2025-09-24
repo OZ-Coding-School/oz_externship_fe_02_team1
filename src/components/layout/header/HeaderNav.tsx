@@ -1,7 +1,7 @@
 import { useMediaQuery } from 'react-responsive'
 import { Link, useLocation } from 'react-router-dom'
 
-import { HEADER_NAV_LISTS, mediaQuery } from '@constants'
+import { HEADER_DESKTOP_NAV_LISTS, mediaQuery } from '@constants'
 import { cn } from '@utils'
 
 export default function HeaderNav() {
@@ -11,17 +11,17 @@ export default function HeaderNav() {
   return (
     <nav>
       <ul className={cn('flex gap-8', isMobile && 'flex-col')}>
-        {HEADER_NAV_LISTS.map((el) => (
-          <li key={el.name}>
+        {HEADER_DESKTOP_NAV_LISTS.map((navItem) => (
+          <li key={navItem.path}>
             <Link
-              to={el.path}
+              to={navItem.path}
               className={cn(
                 'text-gray-600 hover:text-gray-900',
-                pathname.startsWith(el.path) &&
+                pathname.startsWith(navItem.path) &&
                   'text-primary-600 hover:text-primary-600 font-medium'
               )}
             >
-              {el.name}
+              {navItem.name}
             </Link>
           </li>
         ))}

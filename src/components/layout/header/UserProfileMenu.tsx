@@ -19,13 +19,18 @@ export default function UserProfileMenu() {
   }
 
   return (
-    <div className="flex items-center justify-between">
-      <BellIcon height="20" className={cn(!isMobile && 'mx-4')} />
-      <div className="flex items-center">
-        <Avatar src="none" alt="김개발" size="sm" className="mr-2" />
+    <div
+      className={cn(
+        'flex items-center justify-between',
+        isMobile ? 'gap-2' : 'gap-4'
+      )}
+    >
+      <BellIcon height="40" className="cursor-pointer p-2.5" />
+      <div className={cn('flex items-center', isMobile ? 'gap-1' : 'gap-2')}>
+        <Avatar src="none" alt="김개발" size="sm" />
         <Text className="text-primary-600">김개발</Text>
         {!isMobile && (
-          <>
+          <div>
             <button
               type="button"
               className="w-8 cursor-pointer p-2"
@@ -35,7 +40,7 @@ export default function UserProfileMenu() {
             </button>
 
             <UserDropdown isOpen={isDropdownOpen} />
-          </>
+          </div>
         )}
       </div>
     </div>
