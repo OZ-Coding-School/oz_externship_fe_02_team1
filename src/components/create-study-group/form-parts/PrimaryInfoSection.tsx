@@ -5,7 +5,7 @@ import { Card, Input, MarkdownEditor, Text, ImageUpload } from '@components'
 interface PrimaryInfoSectionProps {
   groupName: string
   description?: string
-  imageFile: File | null
+  imageFile: File | null | undefined
   initialImageUrl?: string | null
   onChangeGroupName: (value: string) => void
   onChangeDescription: (value: string) => void

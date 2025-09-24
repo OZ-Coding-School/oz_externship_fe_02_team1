@@ -8,7 +8,7 @@ import {
   Text,
   Textarea,
 } from '@components'
-import { studyGroup } from '@mocks/studyGroupDetail'
+import { studyGroup } from '@mocks/datas/studyGroupDetail'
 
 export interface ReviewFormInputs {
   rating: number

@@ -9,7 +9,7 @@ import {
   ScheduleDatePickerModal,
 } from '@components'
 import { useModal } from '@hooks'
-import { studyGroup } from '@mocks/studyGroupDetail'
+import { studyGroup } from '@mocks/datas/studyGroupDetail'
 import { formatToYMD } from '@utils'
 
 import type { ScheduleFormInputs } from '@models'

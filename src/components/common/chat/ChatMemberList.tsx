@@ -1,5 +1,5 @@
 import { OnOffIcon, Text } from '@components'
-import { dummyOnlineMembers } from '@mocks/chatRoomMocks'
+import { dummyOnlineMembers } from '@mocks/datas/chatRoomMocks'
 import { cn } from '@utils'
 
 import type { StudyGroupMemberList } from '@models'

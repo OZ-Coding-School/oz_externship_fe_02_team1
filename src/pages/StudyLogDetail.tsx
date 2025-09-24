@@ -9,7 +9,7 @@ import {
   LogDetailMain,
 } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
-import { dummyStudyLog } from '@mocks/dummyStudyLog'
+import { dummyStudyLog } from '@mocks/datas/dummyStudyLog'
 
 import type { StudyLogDetail } from '@models'
 

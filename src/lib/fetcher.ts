@@ -5,7 +5,7 @@ import axios, {
   type InternalAxiosRequestConfig,
 } from 'axios'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+import { API_BASE_URL, API_PATHS } from '@constants'
 
 let isRefreshing = false
 let refreshSubscribers: ((token: string) => void)[] = []
@@ -19,12 +19,12 @@ const addRefreshSubscriber = (cb: (token: string) => void) => {
   refreshSubscribers.push(cb)
 }
 
-const axiosInstance: AxiosInstance = axios.create({
+export const axiosInstance: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  // headers: {
+  //   'Content-Type': 'application/json',
+  // },
   withCredentials: true,
 })
 
@@ -59,7 +59,7 @@ axiosInstance.interceptors.response.use(
       isRefreshing = true
       try {
         const { data } = await axios.post(
-          `${API_BASE_URL}/auth/refresh`,
+          `${API_BASE_URL}${API_PATHS.AUTH.REFRESH}`,
           {},
           { withCredentials: true }
         )

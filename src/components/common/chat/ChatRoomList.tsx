@@ -1,5 +1,5 @@
 import { ChatContainer, ChatPreview, Text } from '@components'
-import { dummyChatList } from '@mocks/chatListMocks'
+import { dummyChatList } from '@mocks/datas/chatListMocks'
 import { cn } from '@utils'
 
 import type { ChatPreview as ChatPreviewType } from '@models'

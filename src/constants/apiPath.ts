@@ -1,4 +1,10 @@
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
 export const API_PATHS = {
+  AUTH: {
+    REFRESH: '/token/refresh',
+  },
+
   NOTIFICATIONS: {
     LIST: '/notifications',
     READ_ALL: '/notifications/read-all',
@@ -8,13 +14,13 @@ export const API_PATHS = {
   },
 
   STUDY_GROUP: {
-    LIST: '/study-group',
-    DETAIL: (groupUuid: string) => `/study-group/${groupUuid}`,
-    CREATE: '/study-group',
-    UPDATE_INFO: (groupUuid: string) => `/study-group/${groupUuid}/leader`,
-    LEAVE: (groupUuid: string) => `/study-group/${groupUuid}/me`,
+    LIST: '/study-groups',
+    DETAIL: (groupUuid: string) => `/study-groups/${groupUuid}`,
+    CREATE: '/study-groups',
+    UPDATE_INFO: (groupUuid: string) => `/study-groups/${groupUuid}/leader`,
+    LEAVE: (groupUuid: string) => `/study-groups/${groupUuid}/me`,
     KICK_MEMBER: (groupUuid: string, memberUuid: string) =>
-      `/study-group/${groupUuid}/leader/${memberUuid}`,
+      `/study-groups/${groupUuid}/leader/${memberUuid}`,
   },
 
   SCHEDULE: {
