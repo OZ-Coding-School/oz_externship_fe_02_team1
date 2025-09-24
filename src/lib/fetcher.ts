@@ -22,9 +22,6 @@ const addRefreshSubscriber = (cb: (token: string) => void) => {
 export const axiosInstance: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
-  // headers: {
-  //   'Content-Type': 'application/json',
-  // },
   withCredentials: true,
 })
 
