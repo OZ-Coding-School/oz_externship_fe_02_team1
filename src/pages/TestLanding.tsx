@@ -1,3 +1,4 @@
+import authApi from '@/api/auth'
 import {
   Button,
   ReviewListModal,
@@ -16,12 +17,21 @@ export default function TestLanding() {
   const addScheduleModal = useModal()
   const scheduleDetailModal = useModal()
 
+  const handleLogin = async () => {
+    const response = await authApi.login({
+      email: 'admin@ozcoding.site',
+      password: 'ozcoding0917!@',
+    })
+    localStorage.setItem('accessToken', response.access)
+  }
+
   return (
     <div className="flex flex-col gap-4 p-8">
+      <Button onClick={handleLogin}>로그인</Button>
+
       <Button size="large" onClick={() => navigateToGroupList()}>
         스터디그룹 목록으로 이동
       </Button>
-
       <h2>모달 테스트</h2>
       <div className="flex flex-wrap gap-2">
         <Button variant="secondary" onClick={reviewListModal.openModal}>
