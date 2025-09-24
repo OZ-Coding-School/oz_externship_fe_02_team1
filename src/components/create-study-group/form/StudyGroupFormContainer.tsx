@@ -8,9 +8,9 @@ import {
 } from '@components'
 import { useStudyGroupMutations } from '@hooks'
 import { studyGroup } from '@mocks/datas/studyGroupDetail'
+import { buildCreateStudyGroupFormData } from '@utils'
 
 import type { Lecture } from '@models'
-import { buildCreateStudyGroupFormData } from '@utils'
 
 const INITIAL_MEMBER_COUNT = 6
 

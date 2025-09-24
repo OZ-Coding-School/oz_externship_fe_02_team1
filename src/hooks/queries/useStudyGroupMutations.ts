@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { studyApi } from '@api'
+import { studyQueryKey } from '@hooks'
 
 import type { CreateStudyGroupResponse } from '@models'
 import type { AxiosResponse } from 'axios'
-import { studyQueryKey } from '@hooks'
 
 export const useStudyGroupMutations = () => {
   const queryClient = useQueryClient()
