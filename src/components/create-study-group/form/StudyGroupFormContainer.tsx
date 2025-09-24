@@ -8,6 +8,7 @@ import {
 } from '@components'
 import { useStudyGroupQueries } from '@hooks'
 import { studyGroup } from '@mocks/datas/studyGroupDetail'
+
 import type { Lecture } from '@models'
 
 const INITIAL_MEMBER_COUNT = 6

@@ -1,5 +1,6 @@
-import { AuthButtonGroup, Avatar, Button, Text } from '@components'
 import { ArrowLeftStartOnRectangleIcon } from '@heroicons/react/24/outline'
+
+import { AuthButtonGroup, Avatar, Button, Text } from '@components'
 
 interface SideMenuFooterProps {
   isLoggedin: boolean

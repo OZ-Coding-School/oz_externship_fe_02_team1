@@ -1,5 +1,6 @@
-import { Text, Logo } from '@components'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+
+import { Text, Logo } from '@components'
 
 interface SideMenuHeaderProps {
   onClose: () => void
