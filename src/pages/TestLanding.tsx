@@ -6,7 +6,7 @@ import {
   ScheduleDetailModal,
 } from '@components'
 import { usePageNav, useModal } from '@hooks'
-import { studyGroupSchedule } from '@mocks/studyGroupDetail'
+import { studyGroupSchedule } from '@mocks/datas/studyGroupDetail'
 
 export default function TestLanding() {
   const { navigateToGroupList } = usePageNav()
