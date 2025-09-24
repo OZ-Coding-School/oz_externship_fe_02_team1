@@ -10,6 +10,7 @@ import { useStudyGroupMutations } from '@hooks'
 import { studyGroup } from '@mocks/datas/studyGroupDetail'
 
 import type { Lecture } from '@models'
+import { buildCreateStudyGroupFormData } from '@utils'
 
 const INITIAL_MEMBER_COUNT = 6
 
@@ -47,28 +48,7 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
   }, [mode, reset])
 
   const handleSubmit = async (values: StudyGroupFormValues) => {
-    const formData = new FormData()
-
-    formData.append('name', values.name)
-    formData.append('max_headcount', values.currentHeadcount.toString())
-    formData.append('start_at', values.startAt)
-    formData.append('end_at', values.endAt)
-
-    if (values.introduction) {
-      formData.append('introduction', values.introduction)
-    }
-    if (values.profileImgUrl) {
-      formData.append('profile_img_url', values.profileImgUrl)
-    }
-    if (values.profileImg) {
-      formData.append('profile_img', values.profileImg)
-    }
-    if (values.lectures && values.lectures.length > 0) {
-      formData.append(
-        'lectures',
-        JSON.stringify(values.lectures.map((lecture) => lecture.id))
-      )
-    }
+    const formData = buildCreateStudyGroupFormData(values)
 
     try {
       const response = await createStudyGroupMutation.mutateAsync(formData)
