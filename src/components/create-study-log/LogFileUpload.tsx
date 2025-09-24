@@ -14,12 +14,12 @@ import { LogUploadedFileList } from './LogUploadedFileList'
 import { LogUploadPlaceholder } from './LogUploadPlaceholder'
 
 interface LogFileUploadProps {
-  onChange: (files: LogUploadedFile[]) => void
+  onFileUpload: (files: LogUploadedFile[]) => void
   className?: string
 }
 
 export default function LogFileUpload({
-  onChange,
+  onFileUpload,
   className,
 }: LogFileUploadProps) {
   const [files, setFiles] = useState<LogUploadedFile[]>([])
@@ -34,7 +34,7 @@ export default function LogFileUpload({
       Array.from(e.target.files),
       files,
       setFiles,
-      onChange,
+      onFileUpload,
       setErrorMessage
     )
     e.target.value = ''
@@ -68,7 +68,7 @@ export default function LogFileUpload({
             files,
             setFiles,
             setIsDragging,
-            onChange,
+            onFileUpload,
             (message: string) => setErrorMessage(message)
           )
         }
@@ -79,7 +79,7 @@ export default function LogFileUpload({
             <LogUploadedFileList
               files={files}
               setFiles={setFiles}
-              onChange={onChange}
+              onChange={onFileUpload}
             />
             {files.length < MAX_FILE_COUNT && (
               <label
