@@ -6,7 +6,6 @@ import {
   ScheduleDetailModal,
 } from '@components'
 import { usePageNav, useModal } from '@hooks'
-
 import { studyGroupSchedule } from '@mocks/studyGroupDetail'
 
 export default function TestLanding() {
