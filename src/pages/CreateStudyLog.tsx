@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import { useNavigate, useParams } from 'react-router-dom'
 import {
   StudyLogFooter,
   StudyLogHeader,
@@ -8,66 +8,88 @@ import {
   StudyLogTitle,
   type LogUploadedFile,
 } from '@components'
-import axios from 'axios'
-import axiosInstance from '@/lib/fetcher'
+import {
+  useCreateStudyLog,
+  useUploadFileMutation,
+} from '@/hooks/queries/useStudyLogMutations'
 
 export default function CreateStudyLog() {
-  const [uploadedFiles, setUploadedFiles] = useState<LogUploadedFile[]>([])
-  const [isUploading, setIsUploading] = useState(false)
+  const { id: group_uuid } = useParams<{ id: string }>()
+  const navigate = useNavigate()
 
-  const handleFileUpload = async (file: File) => {
-    try {
-      setIsUploading(true)
-      const formData = new FormData()
-      formData.append('title', 'temp') // 필요하면 실제 값 넣기
-      formData.append('content', 'temp')
-      formData.append('image_files', file) // 이미지 파일 업로드
-      // formData.append('attachment_files', file) // 일반 첨부 파일 업로드 시
+  const [title, setTitle] = useState('')
+  const [markdownContent, setMarkdownContent] = useState('')
+  const [currentFiles, setCurrentFiles] = useState<LogUploadedFile[]>([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-      axiosInstance.get
-      const { data } = await axios.post(
-        `${API_BASE_URL}/study-notes550e8400-e29b-41d4-a716-446655440000/upload`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization:
-              'Bearer zM2MmU1NzZiIiwidXNlcl9pZCI6MX0._4BsV5lj5FHlVmO7eUMXTqVb02DhUjrrLEfI70oG5yE',
-            'X-CSRFTOKEN':
-              'u159g0ZWOrrr1pHVAPVDXUX9ujIhFMM63wgr8V6aIxg7lJqxQa6EemskZ3RQruO6',
-          },
-        }
-      )
+  const { mutateAsync: uploadFile } = useUploadFileMutation()
+  const { mutateAsync: createStudyLog } = useCreateStudyLog()
 
-      // S3 URL 반환 받기
-      const uploadedFile: LogUploadedFile = {
-        name: file.name,
-        url: data.url, // API가 반환하는 URL
-      }
-
-      setUploadedFiles((prev) => [...prev, uploadedFile])
-    } catch (err) {
-      console.error('파일 업로드 실패', err)
-    } finally {
-      setIsUploading(false)
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length <= 100) {
+      setTitle(e.target.value)
     }
+  }
+
+  const handleFileSelectionChange = (updatedFiles: LogUploadedFile[]) => {
+    setCurrentFiles(updatedFiles)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!group_uuid) {
+      alert('스터디 그룹 정보가 올바르지 않습니다.')
+      return
+    }
+    if (!title.trim()) {
+      alert('제목을 입력해주세요.')
+      return
+    }
 
-    if (isUploading) return alert('파일 업로드가 아직 완료되지 않았어요.')
-
+    setIsSubmitting(true)
     try {
-      const markdownContent = ''
-      await axios.post('/api/study-log', {
-        content: markdownContent,
-        files: uploadedFiles,
+      const uploadedUrls = await Promise.all(
+        currentFiles.map((fileWrapper) =>
+          uploadFile({ file: fileWrapper.file, group_uuid })
+        )
+      )
+
+      // 2. 업로드된 URL들을 이미지와 첨부파일로 분류
+      const image_files: string[] = []
+      const attachment_files: string[] = []
+
+      currentFiles.forEach((fileWrapper, index) => {
+        const url = uploadedUrls[index]
+        if (url) {
+          if (fileWrapper.file.type.startsWith('image/')) {
+            image_files.push(url)
+          } else {
+            attachment_files.push(url)
+          }
+        }
       })
-      alert('스터디 기록이 저장되었습니다!')
-    } catch (err) {
-      console.error(err)
-      alert('저장 중 오류 발생')
+
+      // 3. 스터디 기록 생성 API 호출 (분류된 파일 URL 전달)
+      const newLog = await createStudyLog({
+        group_uuid,
+        title,
+        content: markdownContent,
+        image_files,
+        attachment_files,
+      })
+
+      alert('스터디 기록이 성공적으로 저장되었습니다!')
+      // API 응답에 새로 생성된 로그의 ID (note_id)가 포함되어 있다고 가정합니다.
+      navigate(`/study-group/${group_uuid}/log/${newLog.note_id}`)
+    } catch (error) {
+      console.error('스터디 기록 생성 실패:', error)
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : '알 수 없는 오류가 발생했습니다.'
+      alert(`저장 중 오류가 발생했습니다: ${errorMessage}`)
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -75,9 +97,15 @@ export default function CreateStudyLog() {
     <StudyLogLayout
       onSubmit={handleSubmit}
       header={<StudyLogHeader mode="create" />}
-      title={<StudyLogTitle />}
-      markdown={<StudyLogMarkdown setUploadedFiles={setUploadedFiles} />}
-      footer={<StudyLogFooter />}
+      title={<StudyLogTitle value={title} onChange={handleTitleChange} />}
+      markdown={
+        <StudyLogMarkdown
+          content={markdownContent}
+          onFileUpload={handleFileSelectionChange}
+          onContentChange={setMarkdownContent}
+        />
+      }
+      footer={<StudyLogFooter isSubmitting={isSubmitting} />}
     />
   )
 }
