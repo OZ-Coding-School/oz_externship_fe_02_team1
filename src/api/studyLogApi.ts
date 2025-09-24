@@ -18,20 +18,20 @@ export const uploadFile = async (
 export interface CreateStudyLogPayload {
   title: string
   content: string
-  image_files: string[]
-  attachment_files: string[]
-  group_uuid: string
+  imageFiles: string[]
+  attachmentFiles: string[]
+  groupUuid: string
 }
 
 export const createStudyLog = async (payload: CreateStudyLogPayload) => {
-  const { group_uuid, title, content, image_files, attachment_files } = payload
+  const { groupUuid, title, content, imageFiles, attachmentFiles } = payload
   const response = await axiosInstance.post(
-    API_PATHS.STUDY_NOTES.CREATE_AND_SUMMARY(group_uuid),
+    API_PATHS.STUDY_NOTES.CREATE_AND_SUMMARY(groupUuid),
     {
       title,
       content,
-      image_files,
-      attachment_files,
+      imageFiles,
+      attachmentFiles,
     }
   )
   return response.data

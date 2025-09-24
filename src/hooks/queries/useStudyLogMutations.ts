@@ -3,13 +3,13 @@ import { createStudyLog, uploadFile, type CreateStudyLogPayload } from '@api'
 
 interface UploadFileVariables {
   file: File
-  group_uuid: string
+  groupUuid: string
 }
 
 export const useUploadFileMutation = () => {
   return useMutation({
-    mutationFn: ({ file, group_uuid }: UploadFileVariables) =>
-      uploadFile(file, group_uuid),
+    mutationFn: ({ file, groupUuid }: UploadFileVariables) =>
+      uploadFile(file, groupUuid),
   })
 }
 
@@ -21,7 +21,7 @@ export const useCreateStudyLog = () => {
     onSuccess: (_data, variables) => {
       // 성공 시 스터디 로그 목록 쿼리를 무효화하여 데이터를 새로고침합니다.
       queryClient.invalidateQueries({
-        queryKey: ['study-log', variables.group_uuid],
+        queryKey: ['study-log', variables.groupUuid],
       })
     },
   })
