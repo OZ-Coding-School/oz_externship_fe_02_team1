@@ -23,19 +23,19 @@ export default function SideMenuNav() {
   return (
     <nav>
       <ul className="flex flex-col gap-2">
-        {HEADER_MOBILE_NAV_LISTS.map((el) => (
-          <Link key={el.name} to={el.path}>
+        {HEADER_MOBILE_NAV_LISTS.map((navItem) => (
+          <Link key={navItem.path} to={navItem.path}>
             <Button
               variant="ghost"
               size="large"
               className={cn(
                 'hover:bg-primary-50 w-full gap-3 px-3',
-                pathname.startsWith(el.path) &&
+                pathname.startsWith(navItem.path) &&
                   'text-primary-600 bg-primary-50 font-medium'
               )}
             >
-              {NAV_ICONS.find((icon) => el.name === icon.name)?.icon}
-              {el.name}
+              {NAV_ICONS.find((icon) => navItem.name === icon.name)?.icon}
+              {navItem.name}
             </Button>
           </Link>
         ))}
