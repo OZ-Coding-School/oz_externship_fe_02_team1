@@ -10,9 +10,3 @@ export const STUDY_GROUP_STATUS = {
   COMPLETED: '종료됨',
   IN_PROGRESS: '진행중',
 } as const
-
-// status 문자열을 variant 값으로 변환하기 위한 객체
-export const STATUS_TO_VARIANT = {
-  [STUDY_GROUP_STATUS.COMPLETED]: 'ended',
-  [STUDY_GROUP_STATUS.IN_PROGRESS]: 'inProgress',
-} as const
