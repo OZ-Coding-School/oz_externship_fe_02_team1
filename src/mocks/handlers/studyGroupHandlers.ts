@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw'
 
 import { API_BASE_URL, API_PATHS } from '@constants'
+import { studyGroup } from '@mocks/datas/studyGroupDetail'
 
 export const studyGroupHandlers = [
   // 스터디 그룹 생성
@@ -35,6 +36,43 @@ export const studyGroupHandlers = [
         },
         { status: 201 }
       )
+    }
+  ),
+
+  // 스터디 그룹 상세 조회
+  http.get(
+    `${API_BASE_URL}${API_PATHS.STUDY_GROUP.DETAIL(':group_uuid')}`,
+    ({ params }) => {
+      const { group_uuid } = params
+
+      const mockResponse = {
+        uuid: group_uuid,
+        name: studyGroup.name,
+        current_headcount: studyGroup.currentHeadcount,
+        max_headcount: studyGroup.maxHeadcount,
+        leader: {
+          uuid: studyGroup.leader.uuid,
+          nickname: studyGroup.leader.nickname,
+        },
+        members: studyGroup.members.map((member) => ({
+          uuid: member.uuid,
+          nickname: member.nickname,
+          is_leader: member.isLeader,
+        })),
+        img_url: studyGroup.imgUrl,
+        start_at: studyGroup.startAt,
+        end_at: studyGroup.endAt,
+        status: studyGroup.status,
+        lectures: studyGroup.lectures.map((lecture) => ({
+          lecture_id: lecture.id,
+          lecture_title: lecture.lectureTitle,
+          instructor: lecture.instructor,
+          thumnail_img: lecture.thumbnailImg,
+          url_link: lecture.urlLink,
+        })),
+      }
+
+      return HttpResponse.json(mockResponse, { status: 200 })
     }
   ),
 ]
