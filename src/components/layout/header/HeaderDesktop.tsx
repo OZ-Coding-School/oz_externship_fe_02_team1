@@ -7,12 +7,11 @@ import {
   AuthButtonGroup,
   UserProfileMenu,
 } from '@components'
+import { useAuthStore } from '@store'
 
-interface HeaderDesktopProp {
-  isLoggedin: boolean
-}
+export default function HeaderDesktop() {
+  const { isLoggedIn } = useAuthStore()
 
-export default function HeaderDesktop({ isLoggedin }: HeaderDesktopProp) {
   return (
     <div className="flex w-full max-w-7xl justify-between px-8">
       <Link to="/" className="flex items-center gap-2">
@@ -23,7 +22,7 @@ export default function HeaderDesktop({ isLoggedin }: HeaderDesktopProp) {
       <div className="flex items-center gap-8">
         <HeaderNav />
 
-        {isLoggedin ? <UserProfileMenu /> : <AuthButtonGroup />}
+        {isLoggedIn ? <UserProfileMenu /> : <AuthButtonGroup />}
       </div>
     </div>
   )

@@ -1,15 +1,14 @@
 import { ArrowLeftStartOnRectangleIcon } from '@heroicons/react/24/outline'
 
 import { AuthButtonGroup, Avatar, Button, Text } from '@components'
+import { useAuthStore } from '@store'
 
-interface SideMenuFooterProps {
-  isLoggedin: boolean
-}
+export default function SideMenuFooter() {
+  const { isLoggedIn } = useAuthStore()
 
-export default function SideMenuFooter({ isLoggedin }: SideMenuFooterProps) {
   return (
     <footer className="border-t border-gray-200 p-4">
-      {isLoggedin ? (
+      {isLoggedIn ? (
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-3">
             <Avatar src="none" alt="김개발" size="md" />

@@ -3,13 +3,11 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 
 import { Logo, SideMenu, UserProfileMenu } from '@components'
+import { useAuthStore } from '@store'
 
-interface HeaderProps {
-  isLoggedin: boolean
-}
-
-export default function HeaderMobile({ isLoggedin }: HeaderProps) {
+export default function HeaderMobile() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+  const { isLoggedIn } = useAuthStore()
 
   return (
     <div className="flex w-full items-center justify-between">
@@ -24,14 +22,10 @@ export default function HeaderMobile({ isLoggedin }: HeaderProps) {
         </Link>
       </div>
 
-      {isLoggedin && <UserProfileMenu />}
+      {isLoggedIn && <UserProfileMenu />}
 
       {isMenuOpen && (
-        <SideMenu
-          isLoggedin={isLoggedin}
-          isOpen={isMenuOpen}
-          onClose={() => setIsMenuOpen(false)}
-        />
+        <SideMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       )}
     </div>
   )

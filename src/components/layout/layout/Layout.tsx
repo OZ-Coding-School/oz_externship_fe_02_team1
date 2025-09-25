@@ -11,7 +11,7 @@ interface LayoutProps {
 export default function Layout({ maxWidth, isBackgroundGray }: LayoutProps) {
   return (
     <>
-      <Header isLoggedin />
+      <Header />
       <main
         className={cn(
           'w-full pt-16 sm:px-20',
