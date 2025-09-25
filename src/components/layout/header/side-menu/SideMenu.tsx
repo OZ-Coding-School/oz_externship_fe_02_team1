@@ -2,13 +2,11 @@ import { SideMenuFooter, SideMenuHeader, SideMenuNav, Text } from '@components'
 import { cn } from '@utils'
 
 interface HeaderSideMenuProps {
-  isLoggedin: boolean
   isOpen: boolean
   onClose: () => void
 }
 
 export default function HeaderSideMenu({
-  isLoggedin,
   isOpen,
   onClose,
 }: HeaderSideMenuProps) {
@@ -39,7 +37,7 @@ export default function HeaderSideMenu({
           </div>
         </div>
 
-        <SideMenuFooter isLoggedin={isLoggedin} />
+        <SideMenuFooter />
       </div>
     </div>
   )

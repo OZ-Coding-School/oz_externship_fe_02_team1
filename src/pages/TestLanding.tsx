@@ -8,8 +8,6 @@ import {
 import { usePageNav, useModal } from '@hooks'
 import { studyGroupSchedule } from '@mocks/datas/studyGroupDetail'
 
-import { authApi } from '@api'
-
 export default function TestLanding() {
   const { navigateToGroupList } = usePageNav()
 
@@ -18,18 +16,8 @@ export default function TestLanding() {
   const addScheduleModal = useModal()
   const scheduleDetailModal = useModal()
 
-  const handleLogin = async () => {
-    const response = await authApi.login({
-      email: 'admin@ozcoding.site',
-      password: 'ozcoding0917!@',
-    })
-    localStorage.setItem('accessToken', response.access)
-  }
-
   return (
     <div className="flex flex-col gap-4 p-8">
-      <Button onClick={handleLogin}>로그인</Button>
-
       <Button size="large" onClick={() => navigateToGroupList()}>
         스터디그룹 목록으로 이동
       </Button>

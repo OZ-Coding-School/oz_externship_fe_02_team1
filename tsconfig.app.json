@@ -37,6 +37,7 @@
       "@lib/*": ["./src/lib/*"],
       "@pages": ["./src/pages"],
       "@pages/*": ["./src/pages/*"],
+      "@store": ["./src/store"],
       "@store/*": ["./src/store/*"],
       "@models": ["./src/types"],
       "@models/*": ["./src/types/*"],

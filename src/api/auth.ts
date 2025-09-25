@@ -11,4 +11,8 @@ export const authApi = {
     )
     return response.data
   },
+  logout: async () => {
+    const response = await axiosInstance.post(API_PATHS.AUTH.LOGOUT)
+    return response.data
+  },
 }

@@ -4,12 +4,15 @@ import {
 } from '@heroicons/react/24/outline'
 
 import { Button } from '@components'
+import { useAuthActions } from '@hooks'
 
 interface UserDropdownProps {
   isOpen: boolean
 }
 
 export default function UserDropdown({ isOpen }: UserDropdownProps) {
+  const { handleLogout } = useAuthActions()
+
   if (!isOpen) return null
 
   return (
@@ -25,7 +28,11 @@ export default function UserDropdown({ isOpen }: UserDropdownProps) {
           <div className="border border-gray-100" />
         </div>
         <div className="px-2">
-          <Button variant="ghost" className="text-danger-600 w-full gap-3 p-2">
+          <Button
+            variant="ghost"
+            className="text-danger-600 w-full gap-3 p-2"
+            onClick={handleLogout}
+          >
             <ArrowLeftStartOnRectangleIcon
               width={14}
               className="text-danger-600"
