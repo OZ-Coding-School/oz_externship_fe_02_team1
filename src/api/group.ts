@@ -1,7 +1,7 @@
 import { API_PATHS } from '@constants'
 import { axiosInstance } from '@lib'
 
-import type { CreateStudyGroupResponse, StudyGroupDetailResponse } from '@api'
+import type { StudyGroupDetailResponse } from '@api'
 
 export const studyApi = {
   getStudyGroupList: async () => {
@@ -15,7 +15,7 @@ export const studyApi = {
     return response.data
   },
   createStudyGroup: async (data: FormData) => {
-    const response = await axiosInstance.post<CreateStudyGroupResponse>(
+    const response = await axiosInstance.post(
       API_PATHS.STUDY_GROUP.CREATE,
       data
     )
