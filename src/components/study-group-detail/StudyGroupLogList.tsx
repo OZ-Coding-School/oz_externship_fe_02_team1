@@ -3,8 +3,9 @@ import { PaperClipIcon, PencilIcon } from '@heroicons/react/24/outline'
 import { Avatar, Button, Card, EmptyState, Text } from '@components'
 import { formatDate } from '@utils'
 
-import type { StudyGroupMemberList, StudyLogListItem } from '@models'
 import { usePageNav } from '@/hooks'
+
+import type { StudyGroupMemberList, StudyLogListItem } from '@models'
 
 interface StudyGroupLogListProps {
   member: StudyGroupMemberList[]

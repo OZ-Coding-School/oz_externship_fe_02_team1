@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom'
+
 import {
   LoadingState,
   StudyGroupHeader,
@@ -35,9 +36,6 @@ export default function StudyGroupDetail() {
     lectures,
   } = studyGroupData
 
-  const studyGroupLog: any[] = []
-  const studyGroupSchedule: any[] = []
-
   return (
     <>
       <StudyGroupHeader
@@ -50,8 +48,8 @@ export default function StudyGroupDetail() {
       />
       <div className="mt-6 flex flex-col gap-6 lg:mt-8 lg:grid lg:grid-cols-3">
         <div className="col-span-2 flex flex-col gap-6 lg:gap-8">
-          <StudyGroupSchedule schedule={studyGroupSchedule} />
-          <StudyGroupLogList member={members} studyLog={studyGroupLog} />
+          <StudyGroupSchedule schedule={[]} />
+          <StudyGroupLogList member={members} studyLog={[]} />
         </div>
         <div className="flex flex-col gap-6">
           <StudyGroupInfo
