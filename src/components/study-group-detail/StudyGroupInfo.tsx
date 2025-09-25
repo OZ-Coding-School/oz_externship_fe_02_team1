@@ -8,9 +8,10 @@ export default function StudyGroupInfo({
   maxHeadcount,
   startAt,
   endAt,
+  status,
 }: Pick<
   StudyGroupDetail,
-  'currentHeadcount' | 'maxHeadcount' | 'startAt' | 'endAt'
+  'currentHeadcount' | 'maxHeadcount' | 'startAt' | 'endAt' | 'status'
 >) {
   const formattedStartDate = formatDate(new Date(startAt))
   const formattedLastDate = formatDate(new Date(endAt))
@@ -18,7 +19,7 @@ export default function StudyGroupInfo({
   const STUDY_GROUP_INFO = [
     {
       title: '인원',
-      content: `${currentHeadcount ?? 8}/${maxHeadcount ?? 10}명`,
+      content: `${currentHeadcount}/${maxHeadcount}명`,
     },
     {
       title: '시작일',
@@ -30,7 +31,7 @@ export default function StudyGroupInfo({
     },
     {
       title: '상태',
-      content: <StudyBadge variant="inProgress" />,
+      content: <StudyBadge variant={status} />,
     },
   ]
 

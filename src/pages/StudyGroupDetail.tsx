@@ -30,6 +30,7 @@ export default function StudyGroupDetail() {
     max_headcount: maxHeadcount,
     start_at: startAt,
     end_at: endAt,
+    status,
     members,
     lectures,
   } = studyGroupData
@@ -45,6 +46,7 @@ export default function StudyGroupDetail() {
         maxHeadcount={maxHeadcount}
         startAt={startAt}
         endAt={endAt}
+        status={status}
       />
       <div className="mt-6 flex flex-col gap-6 lg:mt-8 lg:grid lg:grid-cols-3">
         <div className="col-span-2 flex flex-col gap-6 lg:gap-8">
@@ -57,6 +59,7 @@ export default function StudyGroupDetail() {
             maxHeadcount={maxHeadcount}
             startAt={startAt}
             endAt={endAt}
+            status={status}
           />
           {lectures && <StudyGroupLecture lectures={lectures} />}
           <StudyGroupMember members={members} />
