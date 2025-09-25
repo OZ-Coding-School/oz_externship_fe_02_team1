@@ -4,6 +4,7 @@ import { Avatar, Button, Card, EmptyState, Text } from '@components'
 import { formatDate } from '@utils'
 
 import type { StudyGroupMemberList, StudyLogListItem } from '@models'
+import { usePageNav } from '@/hooks'
 
 interface StudyGroupLogListProps {
   member: StudyGroupMemberList[]
@@ -14,6 +15,8 @@ export default function StudyGroupLogList({
   member,
   studyLog,
 }: StudyGroupLogListProps) {
+  const { navigateToLogCreate } = usePageNav()
+
   return (
     <Card
       title="스터디 기록"
@@ -21,7 +24,11 @@ export default function StudyGroupLogList({
       cardClassName="flex gap-4"
     >
       {studyLog.length > 0 && (
-        <Button className="absolute right-6 px-4 py-2" size="large">
+        <Button
+          className="absolute right-6 px-4 py-2"
+          size="large"
+          onClick={navigateToLogCreate}
+        >
           <PencilIcon width={16} />
           작성하기
         </Button>
@@ -32,6 +39,7 @@ export default function StudyGroupLogList({
           title="아직 스터디 기록이 없습니다"
           description="첫 번째 기록을 추가해보세요"
           createLabel="작성하기"
+          onCreate={navigateToLogCreate}
         />
       ) : (
         <>
