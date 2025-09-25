@@ -2,10 +2,10 @@ import { useLocation } from 'react-router'
 
 import { StudyBadge } from '@components'
 
-import { STATUS_TO_VARIANT } from '@/constants'
+import type { StudyGroupStatus } from '@models'
 
 interface StudyCardOverlayProps {
-  status: string
+  status: StudyGroupStatus
   isLeader: boolean
   maxHeadcount: number
   currentHeadcount: number
@@ -20,11 +20,6 @@ export default function StudyGroupCardOverlay({
   const location = useLocation()
   const showBadges = location.pathname === '/study-group'
 
-  // status 문자열에 해당하는 variant 값을 찾음
-  const statusVariant = status
-    ? STATUS_TO_VARIANT[status as keyof typeof STATUS_TO_VARIANT]
-    : undefined
-
   if (!showBadges) {
     return null
   }
@@ -32,7 +27,7 @@ export default function StudyGroupCardOverlay({
   return (
     <div className="absolute top-0 z-10 flex h-full w-full flex-col justify-between p-3">
       <div className="flex justify-between">
-        {statusVariant && <StudyBadge variant={statusVariant} size="small" />}
+        {status && <StudyBadge variant={status} size="small" />}
         {isLeader && <StudyBadge variant="leader" size="small" />}
       </div>
       <StudyBadge

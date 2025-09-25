@@ -30,14 +30,14 @@ export default function StudyGroup() {
         <StudyGroupSection
           title="진행중인 스터디"
           subtitle="현재 활발히 진행되고 있는 스터디 그룹들"
-          badgeVariant="inProgress"
+          badgeVariant="진행중"
           badgeClassName="bg-green-100 text-green-800"
           groups={inProgressGroups}
         />
         <StudyGroupSection
           title="완료된 스터디"
           subtitle="성공적으로 마무리된 스터디 그룹들"
-          badgeVariant="ended"
+          badgeVariant="종료됨"
           badgeClassName="bg-gray-100 text-gray-800"
           groups={completedGroups}
         />
