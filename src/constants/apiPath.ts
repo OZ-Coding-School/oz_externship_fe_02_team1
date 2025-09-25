@@ -2,6 +2,8 @@ export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
 export const API_PATHS = {
   AUTH: {
+    LOGIN: '/auth/email/login',
+    LOGOUT: '/auth/logout',
     REFRESH: '/token/refresh',
   },
 
@@ -18,9 +20,16 @@ export const API_PATHS = {
     DETAIL: (groupUuid: string) => `/study-groups/${groupUuid}`,
     CREATE: '/study-groups',
     UPDATE_INFO: (groupUuid: string) => `/study-groups/${groupUuid}/leader`,
-    LEAVE: (groupUuid: string) => `/study-groups/${groupUuid}/me`,
+    LEAVE: (groupUuid: string) => `/study-groups/${groupUuid}/withdraw`,
     KICK_MEMBER: (groupUuid: string, memberUuid: string) =>
       `/study-groups/${groupUuid}/leader/${memberUuid}`,
+    DELEGATE: (groupUuid: string) => `/study-groups/${groupUuid}/delegate`,
+  },
+
+  REVIEW: {
+    LIST: (groupUuid: string) => `/study-groups/${groupUuid}/reviews`,
+    CREATE: (groupUuid: string) => `/study-groups/${groupUuid}/reviews`,
+    UPDATE: (reviewId: number) => `/reviews/${reviewId}/`,
   },
 
   SCHEDULE: {
@@ -54,9 +63,5 @@ export const API_PATHS = {
     LIST: (searchParam: string) => `/lectures/list/${searchParam}`,
     RECOMMEND: (searchKeyword: string) =>
       `/lectures/recommend_categories/${searchKeyword}`,
-  },
-
-  REVIEWS: {
-    UPDATE: (reviewId: number) => `/reviews/${reviewId}/`,
   },
 }

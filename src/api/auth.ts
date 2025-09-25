@@ -1,14 +1,14 @@
-import { axiosInstance } from '@/lib/fetcher'
-import type { LoginRequest, LoginResponse } from '@/types/auth'
+import { API_PATHS } from '@constants'
+import { axiosInstance } from '@lib'
 
-const authApi = {
+import type { LoginRequest, LoginResponse } from '@api'
+
+export const authApi = {
   login: async (params: LoginRequest) => {
     const response = await axiosInstance.post<LoginResponse>(
-      '/auth/email/login',
+      API_PATHS.AUTH.LOGIN,
       params
     )
     return response.data
   },
 }
-
-export default authApi

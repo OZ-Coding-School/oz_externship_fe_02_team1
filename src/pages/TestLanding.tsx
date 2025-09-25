@@ -1,4 +1,3 @@
-import authApi from '@/api/auth'
 import {
   Button,
   ReviewListModal,
@@ -8,6 +7,8 @@ import {
 } from '@components'
 import { usePageNav, useModal } from '@hooks'
 import { studyGroupSchedule } from '@mocks/datas/studyGroupDetail'
+
+import { authApi } from '@api'
 
 export default function TestLanding() {
   const { navigateToGroupList } = usePageNav()

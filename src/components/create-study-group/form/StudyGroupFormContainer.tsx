@@ -6,8 +6,9 @@ import {
   type FormMode,
   type StudyGroupFormValues,
 } from '@components'
-import { useStudyGroupQueries } from '@hooks'
+import { useStudyGroupMutations } from '@hooks'
 import { studyGroup } from '@mocks/datas/studyGroupDetail'
+import { buildCreateStudyGroupFormData } from '@utils'
 
 import type { Lecture } from '@models'
 
@@ -29,8 +30,7 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
   })
 
   const { reset } = methods
-  const { useCreateStudyGroup } = useStudyGroupQueries()
-  const { mutate: createStudyGroupMutation } = useCreateStudyGroup()
+  const createStudyGroupMutation = useStudyGroupMutations()
 
   useEffect(() => {
     if (mode === 'edit') {
@@ -47,34 +47,16 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
     }
   }, [mode, reset])
 
-  const handleSubmit = (values: StudyGroupFormValues) => {
-    if (mode === 'create') {
-      const formData = new FormData()
+  const handleSubmit = async (values: StudyGroupFormValues) => {
+    const formData = buildCreateStudyGroupFormData(values)
 
-      formData.append('name', values.name)
-      formData.append('max_headcount', values.currentHeadcount.toString())
-      formData.append('start_at', values.startAt)
-      formData.append('end_at', values.endAt)
-
-      if (values.introduction) {
-        formData.append('introduction', values.introduction)
-      }
-      if (values.profileImgUrl) {
-        formData.append('profile_img_url', values.profileImgUrl)
-      }
-      if (values.profileImg) {
-        formData.append('profile_img', values.profileImg)
-      }
-      if (values.lectures && values.lectures.length > 0) {
-        formData.append(
-          'lectures',
-          JSON.stringify(values.lectures.map((lecture) => lecture.id))
-        )
-      }
-
-      createStudyGroupMutation(formData)
-    } else {
-      alert(`Updating study group: ${JSON.stringify(values, null, 2)}`)
+    try {
+      const response = await createStudyGroupMutation.mutateAsync(formData)
+      console.log('Succeed to create study group:', response)
+      alert('스터디 그룹이 성공적으로 생성되었습니다!')
+    } catch (error) {
+      console.error('Failed to create study group:', error)
+      alert('스터디 그룹 생성에 실패했습니다. 다시 시도해주세요.')
     }
   }
 
