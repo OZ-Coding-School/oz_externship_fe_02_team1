@@ -3,12 +3,16 @@ import { Link } from 'react-router'
 
 import { Card, ImageCard, Text } from '@components'
 
-import type { Lecture } from '@models'
-
 export default function StudyGroupLecture({
   lectures,
 }: {
-  lectures: Lecture[]
+  lectures: {
+    lectureId: number
+    lectureTitle: string
+    instructor: string
+    thumbnailImg: string
+    urlLink: string
+  }[]
 }) {
   return (
     <Card
@@ -19,7 +23,7 @@ export default function StudyGroupLecture({
       <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 lg:flex">
         {lectures?.map((lecture) => (
           <ImageCard
-            key={lecture.id}
+            key={lecture.lectureId}
             title={lecture.lectureTitle}
             imageUrl={lecture.thumbnailImg}
             className="p-4"
