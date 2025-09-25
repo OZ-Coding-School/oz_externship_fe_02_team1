@@ -1,5 +1,5 @@
 export * from '@models/studyGroup'
-export * from '@models/studyLog'
+export * from '@/types/studyLog'
 export * from '@models/schedule'
 export * from '@models/review'
 export * from '@models/lecture'
