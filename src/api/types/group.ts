@@ -26,7 +26,7 @@ export interface CreateStudyGroupResponse {
 export interface StudyGroupDetailResponse {
   uuid: string
   name: string
-  current_headcount: number
+  currentHeadcount: number
   maxHeadcount: number
   leader: {
     uuid: string
