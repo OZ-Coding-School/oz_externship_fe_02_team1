@@ -2,9 +2,11 @@ import { ArrowLeftStartOnRectangleIcon } from '@heroicons/react/24/outline'
 
 import { AuthButtonGroup, Avatar, Button, Text } from '@components'
 import { useAuthStore } from '@store'
+import { useAuthActions } from '@hooks'
 
 export default function SideMenuFooter() {
   const { isLoggedIn } = useAuthStore()
+  const { handleLogout } = useAuthActions()
 
   return (
     <footer className="border-t border-gray-200 p-4">
@@ -23,6 +25,7 @@ export default function SideMenuFooter() {
             variant="secondary"
             size="large"
             className="justify-center px-4 py-2"
+            onClick={handleLogout}
           >
             <ArrowLeftStartOnRectangleIcon width={18} className="h-7" />
             로그아웃
