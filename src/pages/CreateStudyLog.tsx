@@ -6,21 +6,23 @@ import {
   StudyLogLayout,
   StudyLogMarkdown,
   StudyLogTitle,
-  type Attachment,
   type LogUploadedFile,
 } from '@components'
 import {
   useCreateStudyLog,
   useUploadFileMutation,
 } from '@/hooks/queries/useStudyLogMutations'
+import type { FileUploadFormDataTypes } from '@/utils/form'
 
 export default function CreateStudyLog() {
-  const groupUuid = '550e8400-e29b-41d4-a716-446655440000' // 테스트용 UUID
+  const groupUuid = '663a40a5-8a96-442b-aac2-1a4b49598ba8'
   const navigate = useNavigate()
 
   const [title, setTitle] = useState('')
   const [markdownContent, setMarkdownContent] = useState('')
-  const [currentFiles, setCurrentFiles] = useState<Attachment[]>([])
+  const [currentFiles, setCurrentFiles] = useState<FileUploadFormDataTypes[]>(
+    []
+  )
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const { mutateAsync: uploadFile } = useUploadFileMutation()
@@ -33,9 +35,9 @@ export default function CreateStudyLog() {
   }
 
   const handleFileSelectionChange = async (
-    selectedFiles: LogUploadedFile[]
+    selectedFiles: FileUploadFormDataTypes[]
   ) => {
-    const uploadedFiles: LogUploadedFile[] = []
+    const uploadedFiles: FileUploadFormDataTypes[] = []
 
     for (const fileWrapper of selectedFiles) {
       try {
