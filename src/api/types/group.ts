@@ -20,3 +20,30 @@ export interface CreateStudyGroupResponse {
   lectures: number[]
   createdAt: string
 }
+
+export interface StudyGroupDetailResponse {
+  uuid: string
+  name: string
+  current_headcount: number
+  maxHeadcount: number
+  leader: {
+    uuid: string
+    nickname: string
+  }
+  members: {
+    uuid: string
+    nickname: string
+    isLeader: boolean
+  }[]
+  imgUrl: string
+  startAt: string
+  endAt: string
+  status: string
+  lectures: {
+    lectureId: number
+    lectureTitle: string
+    instructor: string
+    thumbnailImg: string
+    urlLink: string
+  }[]
+}
