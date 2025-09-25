@@ -4,7 +4,7 @@ import { studyQueryKey } from '@hooks'
 
 export const useStudyGroupDetail = (groupUuid: string) => {
   return useQuery({
-    queryKey: [...studyQueryKey.base, groupUuid],
+    queryKey: studyQueryKey.detail(groupUuid),
     queryFn: () => studyApi.getStudyGroupDetail(groupUuid),
     enabled: !!groupUuid,
   })
