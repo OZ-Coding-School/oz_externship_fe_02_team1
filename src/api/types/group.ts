@@ -1,3 +1,5 @@
+import type { StudyGroupStatus } from '@models'
+
 export interface CreateStudyGroupRequest {
   name: string
   introduction?: string | null
@@ -38,7 +40,7 @@ export interface StudyGroupDetailResponse {
   imgUrl: string
   startAt: string
   endAt: string
-  status: string
+  status: StudyGroupStatus
   lectures: {
     lectureId: number
     lectureTitle: string
