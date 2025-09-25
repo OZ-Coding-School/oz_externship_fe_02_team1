@@ -27,7 +27,7 @@ export default function StudyBadge({
   const getLabel = () => {
     if (variant === 'primary') {
       return memberCountText
-    }
+    } else if (variant === 'leader') return '리더'
     return variant
   }
 
@@ -38,7 +38,7 @@ export default function StudyBadge({
       className={cn(studyBadgeVariants({ variant, size }), className)}
       {...props}
     >
-      {children}&nbsp;
+      {children}
       {label}
     </div>
   )
