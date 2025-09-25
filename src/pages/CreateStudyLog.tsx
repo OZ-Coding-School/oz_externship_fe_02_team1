@@ -1,11 +1,12 @@
 import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
   StudyLogFooter,
   StudyLogHeader,
   StudyLogLayout,
   StudyLogMarkdown,
   StudyLogTitle,
+  type Attachment,
   type LogUploadedFile,
 } from '@components'
 import {
@@ -14,14 +15,12 @@ import {
 } from '@/hooks/queries/useStudyLogMutations'
 
 export default function CreateStudyLog() {
-  // const { id: groupUuid } = useParams<{ id: string }>()
-  const groupUuid = '550e8400-e29b-41d4-a716-446655440000'
-
+  const groupUuid = '550e8400-e29b-41d4-a716-446655440000' // 테스트용 UUID
   const navigate = useNavigate()
 
   const [title, setTitle] = useState('')
   const [markdownContent, setMarkdownContent] = useState('')
-  const [currentFiles, setCurrentFiles] = useState<LogUploadedFile[]>([])
+  const [currentFiles, setCurrentFiles] = useState<Attachment[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const { mutateAsync: uploadFile } = useUploadFileMutation()
@@ -33,8 +32,22 @@ export default function CreateStudyLog() {
     }
   }
 
-  const handleFileSelectionChange = (updatedFiles: LogUploadedFile[]) => {
-    setCurrentFiles(updatedFiles)
+  const handleFileSelectionChange = async (
+    selectedFiles: LogUploadedFile[]
+  ) => {
+    const uploadedFiles: LogUploadedFile[] = []
+
+    for (const fileWrapper of selectedFiles) {
+      try {
+        const url = await uploadFile({ file: fileWrapper.file, groupUuid })
+        uploadedFiles.push({ ...fileWrapper, url }) // 업로드 성공 시 URL 추가
+      } catch (error) {
+        console.error(`${fileWrapper.file.name} 업로드 실패`, error)
+        alert(`${fileWrapper.file.name} 업로드 실패`)
+      }
+    }
+
+    setCurrentFiles((prev) => [...prev, ...uploadedFiles])
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -50,28 +63,20 @@ export default function CreateStudyLog() {
 
     setIsSubmitting(true)
     try {
-      const uploadedUrls = await Promise.all(
-        currentFiles.map((fileWrapper) =>
-          uploadFile({ file: fileWrapper.file, groupUuid })
-        )
-      )
-
-      // 2. 업로드된 URL들을 이미지와 첨부파일로 분류
+      // 이미 업로드된 URL이 currentFiles에 있음
       const imageFiles: string[] = []
       const attachmentFiles: string[] = []
 
-      currentFiles.forEach((fileWrapper, index) => {
-        const url = uploadedUrls[index]
-        if (url) {
+      currentFiles.forEach((fileWrapper) => {
+        if (fileWrapper.url) {
           if (fileWrapper.file.type.startsWith('image/')) {
-            imageFiles.push(url)
+            imageFiles.push(fileWrapper.url)
           } else {
-            attachmentFiles.push(url)
+            attachmentFiles.push(fileWrapper.url)
           }
         }
       })
 
-      // 3. 스터디 기록 생성 API 호출 (분류된 파일 URL 전달)
       const newLog = await createStudyLog({
         groupUuid,
         title,
@@ -81,7 +86,6 @@ export default function CreateStudyLog() {
       })
 
       alert('스터디 기록이 성공적으로 저장되었습니다!')
-      // API 응답에 새로 생성된 로그의 ID (note_id)가 포함되어 있다고 가정합니다.
       navigate(`/study-group/${groupUuid}/log/${newLog.note_id}`)
     } catch (error) {
       console.error('스터디 기록 생성 실패:', error)
@@ -103,7 +107,7 @@ export default function CreateStudyLog() {
       markdown={
         <StudyLogMarkdown
           content={markdownContent}
-          onFileUpload={handleFileSelectionChange}
+          onFileUpload={handleFileSelectionChange} // 파일 선택 즉시 업로드
           onContentChange={setMarkdownContent}
         />
       }
