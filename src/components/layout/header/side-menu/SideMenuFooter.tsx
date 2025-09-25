@@ -1,8 +1,8 @@
 import { ArrowLeftStartOnRectangleIcon } from '@heroicons/react/24/outline'
 
 import { AuthButtonGroup, Avatar, Button, Text } from '@components'
-import { useAuthStore } from '@store'
 import { useAuthActions } from '@hooks'
+import { useAuthStore } from '@store'
 
 export default function SideMenuFooter() {
   const { isLoggedIn } = useAuthStore()
