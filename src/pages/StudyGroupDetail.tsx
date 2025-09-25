@@ -27,10 +27,10 @@ export default function StudyGroupDetail() {
 
   const {
     name,
-    current_headcount: currentHeadcount,
-    max_headcount: maxHeadcount,
-    start_at: startAt,
-    end_at: endAt,
+    currentHeadcount,
+    maxHeadcount,
+    startAt,
+    endAt,
     status,
     members,
     lectures,
