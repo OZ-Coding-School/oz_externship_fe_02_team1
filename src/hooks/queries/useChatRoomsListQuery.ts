@@ -4,7 +4,7 @@ import { chatApi } from '@api'
 import { chatQueryKey } from '@hooks'
 import { useAuthStore } from '@store'
 
-export const useChatRoomsList = () => {
+export const useChatRoomsListQeury = () => {
   const { isLoggedIn } = useAuthStore()
 
   return useQuery({
