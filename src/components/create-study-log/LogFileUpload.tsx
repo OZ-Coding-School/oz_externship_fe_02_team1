@@ -11,7 +11,7 @@ import { useLogFileUpload } from '@hooks'
 import { cn } from '@utils'
 
 interface LogFileUploadProps {
-  group_uuid: string
+  groupUuid: string
   files: LogUploadedFile[]
   onFilesAdded: (newFiles: LogUploadedFile[]) => void
   onFileDeleted: (fileId: string) => void
@@ -19,7 +19,7 @@ interface LogFileUploadProps {
 }
 
 export default function LogFileUpload({
-  group_uuid,
+  groupUuid,
   files,
   onFilesAdded,
   onFileDeleted,
@@ -36,7 +36,7 @@ export default function LogFileUpload({
     currentFiles: files,
     onFilesAdded,
     onFileDeleted,
-    group_uuid,
+    groupUuid,
   })
 
   const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

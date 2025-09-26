@@ -10,14 +10,14 @@ interface UseLogFileUploadProps {
   currentFiles: LogUploadedFile[]
   onFilesAdded: (newFiles: LogUploadedFile[]) => void
   onFileDeleted: (fileId: string) => void
-  group_uuid: string
+  groupUuid: string
 }
 
 export function useLogFileUpload({
   currentFiles,
   onFilesAdded,
   onFileDeleted,
-  group_uuid,
+  groupUuid,
 }: UseLogFileUploadProps) {
   const [isDragging, setIsDragging] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -35,7 +35,7 @@ export function useLogFileUpload({
 
     try {
       const filesToUpload = filesToAdd.map((f) => f.file)
-      const response = await logApi.uploadFiles(filesToUpload, group_uuid)
+      const response = await logApi.uploadFiles(filesToUpload, groupUuid)
 
       const urlMap = new Map<string, string>()
       const allUploadedUrls = [
