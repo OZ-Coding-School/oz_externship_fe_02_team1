@@ -1,15 +1,16 @@
-import { useState } from 'react'
-
 import { Input, Text } from '@components'
 import { MAX_TITLE_LENGTH } from '@constants'
 
-export default function StudyLogTitle() {
-  const [title, setTitle] = useState('')
+interface StudyLogTitleProps {
+  value: string
+  onChange: (value: string) => void
+}
 
+export default function StudyLogTitle({ value, onChange }: StudyLogTitleProps) {
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value: newTitle } = e.target
     if (newTitle.length <= 100) {
-      setTitle(newTitle)
+      onChange(newTitle)
     }
   }
 
@@ -21,13 +22,13 @@ export default function StudyLogTitle() {
       </div>
       <Input
         maxLength={100}
-        value={title}
+        value={value}
         placeholder="스터디 기록의 제목을 입력하세요"
         className="w-full rounded-lg px-3 py-2"
         onChange={handleTitleChange}
       />
       <Text variant="small" className="pt-1 font-normal text-gray-500">
-        {title.length}/{MAX_TITLE_LENGTH}자
+        {value.length}/{MAX_TITLE_LENGTH}자
       </Text>
     </div>
   )

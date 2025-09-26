@@ -1,34 +1,32 @@
-import { handleFileDelete, type LogUploadedFile } from './logFileUpload.utils'
+import type { LogUploadedFile } from '@components'
 
 interface UploadedFileListProps {
   files: LogUploadedFile[]
-  setFiles: React.Dispatch<React.SetStateAction<LogUploadedFile[]>>
-  onChange: (files: LogUploadedFile[]) => void
+  onDelete: (fileId: string) => void
 }
 
-export const LogUploadedFileList = ({
+export default function LogUploadedFileList({
   files,
-  setFiles,
-  onChange,
-}: UploadedFileListProps) => (
-  <ul className="mb-4 w-full space-y-1 text-sm text-gray-700">
-    {files.map((uploadedFile) => (
-      <li
-        key={uploadedFile.id}
-        className="flex items-center justify-between gap-2"
-      >
-        <span className="truncate">{uploadedFile.file.name}</span>
-        <button
-          type="button"
-          onClick={() =>
-            handleFileDelete(uploadedFile.id, files, setFiles, onChange)
-          }
-          className="flex-shrink-0 cursor-pointer text-xs text-red-500"
-          aria-label={`파일 ${uploadedFile.file.name} 삭제`}
+  onDelete,
+}: UploadedFileListProps) {
+  return (
+    <ul className="mb-4 w-full space-y-1 text-sm text-gray-700">
+      {files.map((uploadedFile) => (
+        <li
+          key={uploadedFile.id}
+          className="flex items-center justify-between gap-2"
         >
-          삭제
-        </button>
-      </li>
-    ))}
-  </ul>
-)
+          <span className="truncate">{uploadedFile.file.name}</span>
+          <button
+            type="button"
+            onClick={() => onDelete(uploadedFile.id)}
+            className="flex-shrink-0 cursor-pointer text-xs text-red-500"
+            aria-label={`파일 ${uploadedFile.file.name} 삭제`}
+          >
+            삭제
+          </button>
+        </li>
+      ))}
+    </ul>
+  )
+}

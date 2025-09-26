@@ -10,6 +10,7 @@ import {
 export interface LogUploadedFile {
   id: string
   file: File
+  url?: string
 }
 
 // 파일 유효성 검사
@@ -133,11 +134,8 @@ export const handleFileDrag = (
 // 파일 드롭
 export const handleFileDrop = (
   e: React.DragEvent<HTMLDivElement>,
-  files: LogUploadedFile[],
-  setFiles: React.Dispatch<React.SetStateAction<LogUploadedFile[]>>,
-  setIsDragging: React.Dispatch<React.SetStateAction<boolean>>,
-  onChange: (files: LogUploadedFile[]) => void,
-  onError: (message: string) => void
+  onFilesAdded: (files: File[]) => void,
+  setIsDragging: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   e.preventDefault()
   e.stopPropagation()
@@ -145,7 +143,7 @@ export const handleFileDrop = (
 
   if (!e.dataTransfer.files) return
   const droppedFiles = Array.from(e.dataTransfer.files)
-  handleFileProcessing(droppedFiles, files, setFiles, onChange, onError)
+  onFilesAdded(droppedFiles)
 }
 
 // 파일 크기 포맷

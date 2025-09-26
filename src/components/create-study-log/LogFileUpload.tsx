@@ -1,48 +1,57 @@
-import { useState } from 'react'
-
 import {
   Toast,
+  LogUploadedFileList,
+  LogUploadPlaceholder,
   handleFileDrag,
   handleFileDrop,
-  handleFileProcessing,
   type LogUploadedFile,
 } from '@components'
 import { MAX_FILE_COUNT } from '@constants'
+import { useLogFileUpload } from '@hooks'
 import { cn } from '@utils'
 
-import { LogUploadedFileList } from './LogUploadedFileList'
-import { LogUploadPlaceholder } from './LogUploadPlaceholder'
-
 interface LogFileUploadProps {
-  onChange: (files: LogUploadedFile[]) => void
+  groupUuid: string
+  files: LogUploadedFile[]
+  onFilesAdded: (newFiles: LogUploadedFile[]) => void
+  onFileDeleted: (fileId: string) => void
   className?: string
 }
 
 export default function LogFileUpload({
-  onChange,
+  groupUuid,
+  files,
+  onFilesAdded,
+  onFileDeleted,
   className,
 }: LogFileUploadProps) {
-  const [files, setFiles] = useState<LogUploadedFile[]>([])
-  const [isDragging, setIsDragging] = useState<boolean>(false)
-  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const {
+    isDragging,
+    setIsDragging,
+    errorMessage,
+    setErrorMessage,
+    handleAddFiles,
+    handleDeleteFile,
+  } = useLogFileUpload({
+    currentFiles: files,
+    onFilesAdded,
+    onFileDeleted,
+    groupUuid,
+  })
 
-  // 파일 선택 시 처리
-  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return
-
-    handleFileProcessing(
-      Array.from(e.target.files),
-      files,
-      setFiles,
-      onChange,
-      setErrorMessage
-    )
+    const selectedFiles = Array.from(e.target.files)
+    handleAddFiles(selectedFiles)
     e.target.value = ''
+  }
+
+  const onFileDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    handleFileDrop(e, handleAddFiles, setIsDragging)
   }
 
   return (
     <>
-      {/* toast 표시 영역 */}
       {errorMessage && (
         <div className="fixed top-5 right-5 z-50">
           <Toast
@@ -54,7 +63,6 @@ export default function LogFileUpload({
         </div>
       )}
 
-      {/* 파일 업로드 영역 */}
       <div
         className={cn(
           'flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-6 transition-colors',
@@ -62,25 +70,11 @@ export default function LogFileUpload({
           className
         )}
         onDragOver={(e) => handleFileDrag(e, setIsDragging)}
-        onDrop={(e) =>
-          handleFileDrop(
-            e,
-            files,
-            setFiles,
-            setIsDragging,
-            onChange,
-            (message: string) => setErrorMessage(message)
-          )
-        }
+        onDrop={onFileDrop}
       >
-        {/* 파일 존재 여부에따라 렌더 */}
         {files.length > 0 ? (
           <>
-            <LogUploadedFileList
-              files={files}
-              setFiles={setFiles}
-              onChange={onChange}
-            />
+            <LogUploadedFileList files={files} onDelete={handleDeleteFile} />
             {files.length < MAX_FILE_COUNT && (
               <label
                 htmlFor="file-upload"
@@ -98,7 +92,7 @@ export default function LogFileUpload({
           id="file-upload"
           type="file"
           multiple
-          onChange={onFileChange}
+          onChange={onFileInputChange}
           className="hidden"
         />
       </div>

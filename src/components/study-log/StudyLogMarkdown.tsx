@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import {
   MarkdownEditor,
   Text,
@@ -7,18 +5,23 @@ import {
   type LogUploadedFile,
 } from '@components'
 
-interface SetUploadedFilesProps {
-  setUploadedFiles: (files: LogUploadedFile[]) => void
+interface StudyLogMarkdownProps {
+  groupUuid: string
+  value: string
+  files: LogUploadedFile[]
+  onFilesAdded: (newFiles: LogUploadedFile[]) => void
+  onFileDeleted: (fileId: string) => void
+  onChange: (content: string) => void
 }
 
 export default function StudyLogMarkdown({
-  setUploadedFiles,
-}: SetUploadedFilesProps) {
-  const [description, setDescription] = useState('')
-  const handleFilesChange = (files: LogUploadedFile[]) => {
-    setUploadedFiles(files)
-  }
-
+  groupUuid,
+  value,
+  files,
+  onFilesAdded,
+  onFileDeleted,
+  onChange,
+}: StudyLogMarkdownProps) {
   return (
     <div className="w-full">
       <div className="pt-6">
@@ -26,8 +29,8 @@ export default function StudyLogMarkdown({
         <Text className="text-sm font-medium text-red-500">*</Text>
 
         <MarkdownEditor
-          value={description}
-          onChange={setDescription}
+          value={value}
+          onChange={onChange}
           placeholder="학습한 내용을 마크다운 형식으로 입력하세요..."
         />
         <Text className="text-xs font-normal text-gray-500">
@@ -39,7 +42,12 @@ export default function StudyLogMarkdown({
         <Text className="pb-2 text-sm font-medium text-gray-700">
           첨부 파일
         </Text>
-        <LogFileUpload onChange={handleFilesChange} />
+        <LogFileUpload
+          groupUuid={groupUuid}
+          files={files}
+          onFilesAdded={onFilesAdded}
+          onFileDeleted={onFileDeleted}
+        />
       </div>
     </div>
   )
