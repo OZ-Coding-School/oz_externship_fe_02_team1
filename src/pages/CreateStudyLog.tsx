@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { logApi } from '@api'
 import {
   StudyLogFooter,
   StudyLogHeader,
@@ -9,7 +10,6 @@ import {
   StudyLogTitle,
   type LogUploadedFile,
 } from '@components'
-import { logApi } from '@api'
 
 export const group_uuid = '663a40a5-8a96-442b-aac2-1a4b49598ba8' // 테스트용 고정 UUID
 
@@ -45,7 +45,6 @@ export default function CreateStudyLog() {
         attachmentFiles,
       })
       console.log('스터디 기록 생성 성공:', response)
-      // TODO: 생성된 스터디 기록 상세 페이지로 이동하도록 경로 수정 필요
       navigate(`/study-group/${group_uuid}/records/${response.id}`)
     } catch (error) {
       console.error('스터디 기록 생성 실패:', error)

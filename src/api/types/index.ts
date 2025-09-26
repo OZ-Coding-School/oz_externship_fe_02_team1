@@ -1,4 +1,5 @@
 export * from '@api/types/auth'
 export * from '@api/types/group'
+export * from '@api/types/log'
 export * from '@api/types/chat'
 export * from '@api/types/schedule'

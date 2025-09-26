@@ -1,7 +1,7 @@
-import { API_PATHS } from '@/constants'
-import { axiosInstance } from '@/lib'
+import { API_PATHS } from '@constants'
+import { axiosInstance } from '@lib'
 
-import type { CreateStudyLogRequest, UploadLogFileResponse } from './types/log'
+import type { CreateStudyLogRequest, UploadLogFileResponse } from '@api'
 
 export const logApi = {
   uploadFiles: async (files: File[], group_uuid: string) => {

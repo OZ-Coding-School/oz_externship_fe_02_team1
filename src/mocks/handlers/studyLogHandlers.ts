@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw'
 
 import { API_BASE_URL } from '@constants'
+
 import { group_uuid } from '@/pages/CreateStudyLog'
 
 // 스터디 로그 파일 업로드 핸들러
