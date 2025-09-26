@@ -1,14 +1,15 @@
-import { handleFileDrag, handleFileDrop } from '@components'
 import {
   Toast,
   LogUploadedFileList,
   LogUploadPlaceholder,
+  handleFileDrag,
+  handleFileDrop,
   type LogUploadedFile,
 } from '@components'
 import { MAX_FILE_COUNT } from '@constants'
 import { cn } from '@utils'
 
-import { useLogFileUpload } from '@/hooks/useLogFileUpload'
+import { useLogFileUpload } from '@hooks'
 
 interface LogFileUploadProps {
   group_uuid: string
