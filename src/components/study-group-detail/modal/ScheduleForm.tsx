@@ -123,7 +123,7 @@ export default function ScheduleForm({
                         type="checkbox"
                         value={member.nickname}
                         checked={field.value.some(
-                          (p) => p.user.nickname === member.nickname
+                          (p) => p.nickname === member.nickname
                         )}
                         onChange={(e) => {
                           if (e.target.checked) {
@@ -131,7 +131,7 @@ export default function ScheduleForm({
                           } else {
                             field.onChange(
                               field.value.filter(
-                                (p) => p.user.nickname !== member.nickname
+                                (p) => p.nickname !== member.nickname
                               )
                             )
                           }
