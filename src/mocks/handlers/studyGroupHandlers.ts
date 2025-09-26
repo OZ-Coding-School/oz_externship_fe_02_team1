@@ -2,6 +2,7 @@ import { http, HttpResponse } from 'msw'
 
 import { API_BASE_URL, API_PATHS } from '@constants'
 import { studyGroup as studyGroupMock } from '@mocks/datas/studyGroupDetail'
+
 import { studyGroupList } from '../datas/studygroupList'
 
 export const studyGroupHandlers = [

@@ -1,7 +1,9 @@
 import { v4 as uuidv4 } from 'uuid'
 
 import { Images } from '@assets'
+
 import { studyGroupLecture, studyGroupMember } from './studyGroupDetail'
+
 import type { StudyGroupList } from '@models'
 
 export const studyGroupList: StudyGroupList[] = [
