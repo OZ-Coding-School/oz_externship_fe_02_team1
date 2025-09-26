@@ -8,9 +8,9 @@ export const scheduleApi = {
     const response = await axiosInstance.get(API_PATHS.SCHEDULE.LIST(groupUuid))
     return response.data
   },
-  getScheduleDetail: async (scheduleId: number) => {
+  getScheduleDetail: async (groupUuid: string, scheduleId: number) => {
     const response = await axiosInstance.get(
-      API_PATHS.SCHEDULE.DETAIL(scheduleId)
+      API_PATHS.SCHEDULE.DETAIL(groupUuid, scheduleId)
     )
     return response.data
   },
