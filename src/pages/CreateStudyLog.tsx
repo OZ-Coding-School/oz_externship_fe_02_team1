@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import {
   StudyLogFooter,
@@ -19,10 +20,39 @@ export default function CreateStudyLog() {
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
-  // todo: api 연결 및 파일 업로드 로직 구현
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    return uploadedFiles
+    setIsLoading(true)
+
+    try {
+      const imageFiles: string[] = []
+      const attachmentFiles: string[] = []
+
+      uploadedFiles.forEach((uploadedFile) => {
+        if (uploadedFile.url) {
+          if (uploadedFile.file.type.startsWith('image/')) {
+            imageFiles.push(uploadedFile.url)
+          } else {
+            attachmentFiles.push(uploadedFile.url)
+          }
+        }
+      })
+
+      const response = await logApi.createStudyLog(group_uuid, {
+        title,
+        content,
+        imageFiles,
+        attachmentFiles,
+      })
+      console.log('스터디 기록 생성 성공:', response)
+      // TODO: 생성된 스터디 기록 상세 페이지로 이동하도록 경로 수정 필요
+      navigate(`/study-group/${group_uuid}/records/${response.id}`)
+    } catch (error) {
+      console.error('스터디 기록 생성 실패:', error)
+      // TODO: 사용자에게 에러 알림 (Toast 등)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
