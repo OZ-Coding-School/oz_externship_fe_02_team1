@@ -6,10 +6,10 @@ import { formatTimeToHHMM, formatToYMD } from '@utils'
 import type {
   LectureBase,
   Review,
-  ScheduleDetail,
   StudyGroupMemberList,
   StudyLogListItem,
 } from '@models'
+import type { CreateScheduleResponse } from '@api'
 
 export const studyGroupLecture: LectureBase[] = [
   {
@@ -97,7 +97,7 @@ export const studyGroupLog: StudyLogListItem[] = [
   },
 ]
 
-export const studyGroupSchedule: ScheduleDetail[] = [
+export const studyGroupSchedule: CreateScheduleResponse[] = [
   {
     id: 1,
     title: '코드 리뷰 세션',
@@ -105,24 +105,19 @@ export const studyGroupSchedule: ScheduleDetail[] = [
     sessionDate: formatToYMD(new Date('2025-09-13')),
     startTime: formatTimeToHHMM(new Date('2025-09-13T18:30:00')) ?? '',
     endTime: formatTimeToHHMM(new Date('2025-09-13T20:30:00')) ?? '',
-    studyGroupId: 1,
+    studyGroupUuid: uuidv4(),
+    studyGroupName: 'React 스터디 그룹',
     createdAt: new Date('2025-09-13T18:30:00').toISOString(),
     participants: [
       {
-        memberId: 1,
-        user: {
-          id: 1,
-          nickname: '김개발',
-          isLeader: true,
-        },
+        userId: 1,
+        nickname: '김개발',
+        isLeader: true,
       },
       {
-        memberId: 2,
-        user: {
-          id: 2,
-          nickname: '박리액트',
-          isLeader: false,
-        },
+        userId: 2,
+        nickname: '박리액트',
+        isLeader: false,
       },
     ],
     updatedAt: new Date('2025-09-13T18:30:00').toISOString(),
@@ -134,24 +129,19 @@ export const studyGroupSchedule: ScheduleDetail[] = [
     sessionDate: formatToYMD(new Date('2025-09-15')),
     startTime: formatTimeToHHMM(new Date('2025-09-15T20:00:00')) ?? '',
     endTime: formatTimeToHHMM(new Date('2025-09-15T22:00:00')) ?? '',
-    studyGroupId: 1,
+    studyGroupUuid: uuidv4(),
+    studyGroupName: 'React 스터디 그룹',
     createdAt: new Date('2025-09-13T18:30:00').toISOString(),
     participants: [
       {
-        memberId: 3,
-        user: {
-          id: 3,
-          nickname: '이프론트',
-          isLeader: false,
-        },
+        userId: 3,
+        nickname: '이프론트',
+        isLeader: false,
       },
       {
-        memberId: 4,
-        user: {
-          id: 4,
-          nickname: '최자바',
-          isLeader: false,
-        },
+        userId: 4,
+        nickname: '최자바',
+        isLeader: false,
       },
     ],
     updatedAt: new Date('2025-09-13T18:30:00').toISOString(),
@@ -164,40 +154,29 @@ export const studyGroupSchedule: ScheduleDetail[] = [
     sessionDate: formatToYMD(new Date('2025-09-16')),
     startTime: formatTimeToHHMM(new Date('2025-09-16T19:00:00')) ?? '',
     endTime: formatTimeToHHMM(new Date('2025-09-16T21:00:00')) ?? '',
-    studyGroupId: 1,
+    studyGroupUuid: uuidv4(),
+    studyGroupName: 'React 스터디 그룹',
     createdAt: new Date('2025-09-13T18:30:00').toISOString(),
     participants: [
       {
-        memberId: 1,
-        user: {
-          id: 1,
-          nickname: '김개발',
-          isLeader: true,
-        },
+        userId: 1,
+        nickname: '김개발',
+        isLeader: true,
       },
       {
-        memberId: 6,
-        user: {
-          id: 6,
-          nickname: '윤컴포넌트',
-          isLeader: false,
-        },
+        userId: 6,
+        nickname: '윤컴포넌트',
+        isLeader: false,
       },
       {
-        memberId: 7,
-        user: {
-          id: 7,
-          nickname: '조훅스',
-          isLeader: false,
-        },
+        userId: 7,
+        nickname: '조훅스',
+        isLeader: false,
       },
       {
-        memberId: 8,
-        user: {
-          id: 8,
-          nickname: '서스테이트',
-          isLeader: false,
-        },
+        userId: 8,
+        nickname: '서스테이트',
+        isLeader: false,
       },
     ],
     updatedAt: new Date('2025-09-13T18:30:00').toISOString(),

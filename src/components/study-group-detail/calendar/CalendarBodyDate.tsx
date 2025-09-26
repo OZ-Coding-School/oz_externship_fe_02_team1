@@ -4,14 +4,14 @@ import { Text, ScheduleDetailModal } from '@components'
 import { useModal } from '@hooks'
 import { cn, formatTime } from '@utils'
 
-import type { ScheduleDetail } from '@models'
+import type { CreateScheduleResponse } from '@api'
 
 const scheduleTextStyle = 'text-primary-800 text-xs'
 
 interface CalendarBodyDateProps {
   day: Date
   dateKey: string
-  schedule: ScheduleDetail | undefined
+  schedule: CreateScheduleResponse | undefined
   currentMonth: Date
   index: number
   daysLength: number
