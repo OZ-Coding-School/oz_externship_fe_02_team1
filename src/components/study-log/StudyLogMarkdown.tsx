@@ -8,14 +8,18 @@ import {
 interface StudyLogMarkdownProps {
   group_uuid: string
   value: string
-  onFilesChange: (files: LogUploadedFile[]) => void
+  files: LogUploadedFile[]
+  onFilesAdded: (newFiles: LogUploadedFile[]) => void
+  onFileDeleted: (fileId: string) => void
   onChange: (content: string) => void
 }
 
 export default function StudyLogMarkdown({
   group_uuid,
   value,
-  onFilesChange,
+  files,
+  onFilesAdded,
+  onFileDeleted,
   onChange,
 }: StudyLogMarkdownProps) {
   return (
@@ -38,7 +42,12 @@ export default function StudyLogMarkdown({
         <Text className="pb-2 text-sm font-medium text-gray-700">
           첨부 파일
         </Text>
-        <LogFileUpload group_uuid={group_uuid} onChange={onFilesChange} />
+        <LogFileUpload
+          group_uuid={group_uuid}
+          files={files}
+          onFilesAdded={onFilesAdded}
+          onFileDeleted={onFileDeleted}
+        />
       </div>
     </div>
   )
