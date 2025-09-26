@@ -10,7 +10,7 @@ import {
 } from '@components'
 
 // 임시 UUID, 나중에 동적으로 받아와야 합니다.
-const group_uuid = '663a40a5-8a96-442b-aac2-1a4b49598ba8'
+const groupUuid = '663a40a5-8a96-442b-aac2-1a4b49598ba8'
 
 export default function EditStudyLog() {
   const [uploadedFiles, setUploadedFiles] = useState<LogUploadedFile[]>([])
@@ -39,7 +39,7 @@ export default function EditStudyLog() {
       title={<StudyLogTitle value={title} onChange={setTitle} />}
       markdown={
         <StudyLogMarkdown
-          group_uuid={group_uuid}
+          groupUuid={groupUuid}
           value={content}
           files={uploadedFiles}
           onFilesAdded={handleFilesAdded}
