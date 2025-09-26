@@ -8,6 +8,9 @@ import {
   StudyLogTitle,
   type LogUploadedFile,
 } from '@components'
+import { logApi } from '@api'
+
+export const group_uuid = '663a40a5-8a96-442b-aac2-1a4b49598ba8' // 테스트용 고정 UUID
 
 export default function CreateStudyLog() {
   const [uploadedFiles, setUploadedFiles] = useState<LogUploadedFile[]>([])
