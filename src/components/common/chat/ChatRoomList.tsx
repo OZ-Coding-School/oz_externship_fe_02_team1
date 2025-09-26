@@ -1,11 +1,9 @@
 import { useEffect } from 'react'
 
-import { ChatContainer, ChatPreview, LoadingState, Text } from '@components'
+import { ChatContainer, Text, ChatListContent } from '@components'
 import { useChatRoomsList } from '@hooks'
-import { cn } from '@utils'
 
 import type { ChatRoomPreview } from '@api'
-import { ErrorState } from '../state/ErrorState'
 
 interface ChatRoomListProps {
   onToggle: () => void
@@ -45,32 +43,13 @@ export default function ChatRoomList({
       }
       onToggle={onToggle}
     >
-      {isLoading ? (
-        <LoadingState />
-      ) : isError ? (
-        <div className="h-77">
-          <ErrorState onRetry={refetch} />
-        </div>
-      ) : chatRoomList && chatRoomList.length > 0 ? (
-        <div className="scrollbar-hidden h-77 overflow-x-hidden overflow-y-scroll">
-          {chatRoomList.map((chat, index) => (
-            <div
-              key={chat.uuid}
-              onClick={() => onSelectChat(chat)}
-              className={cn(
-                'flex cursor-pointer flex-col gap-1 p-3',
-                index !== chatRoomList.length - 1 && 'border-b border-gray-200'
-              )}
-            >
-              <ChatPreview chat={chat} />
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="flex h-full items-center justify-center">
-          <Text className="text-gray-500">채팅방이 없습니다.</Text>
-        </div>
-      )}
+      <ChatListContent
+        isLoading={isLoading}
+        isError={isError}
+        chatRoomList={chatRoomList}
+        onSelectChat={onSelectChat}
+        onRetry={refetch}
+      />
     </ChatContainer>
   )
 }
