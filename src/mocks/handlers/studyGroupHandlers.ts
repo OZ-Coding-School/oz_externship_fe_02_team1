@@ -52,8 +52,8 @@ export const studyGroupHandlers = [
       const mockResponse = {
         uuid: group_uuid,
         name: studyGroup.name,
-        current_headcount: studyGroup.currentHeadcount,
-        max_headcount: studyGroup.maxHeadcount,
+        currentHeadcount: studyGroup.currentHeadcount,
+        maxHeadcount: studyGroup.maxHeadcount,
         leader: {
           uuid: studyGroup.leader?.uuid,
           nickname: studyGroup.leader?.nickname,
@@ -63,16 +63,16 @@ export const studyGroupHandlers = [
           nickname: member.nickname,
           is_leader: member.isLeader,
         })),
-        img_url: studyGroup.imgUrl,
-        start_at: studyGroup.startAt,
-        end_at: studyGroup.endAt,
+        imgUrl: studyGroup.imgUrl,
+        startAt: studyGroup.startAt,
+        endAt: studyGroup.endAt,
         status: studyGroup.status,
         lectures: studyGroup.lectures.map((lecture) => ({
-          lecture_id: lecture.id,
-          lecture_title: lecture.lectureTitle,
+          lectureId: lecture.id,
+          lectureTitle: lecture.lectureTitle,
           instructor: lecture.instructor,
-          thumnail_img: 'thumbnailImg' in lecture ? lecture.thumbnailImg : null,
-          url_link: 'urlLink' in lecture ? lecture.urlLink : null,
+          thumnailImg: 'thumbnailImg' in lecture ? lecture.thumbnailImg : null,
+          urlLink: 'urlLink' in lecture ? lecture.urlLink : null,
         })),
       }
 
