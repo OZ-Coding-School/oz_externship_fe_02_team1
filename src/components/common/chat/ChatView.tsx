@@ -1,21 +1,16 @@
 import { useState } from 'react'
 
 import { ChatRoom, ChatRoomList } from '@components'
-
-import type { ChatRoomPreview, ChatRoomsResponse } from '@api'
+import type { ChatRoomPreview } from '@api'
 
 interface ChatViewProps {
-  totalUnreadCount: number | undefined
-  isLoading: boolean
-  chatRoomList: ChatRoomsResponse | undefined
   onToggle: () => void
+  setTotalUnreadCount: (count: number) => void
 }
 
 export default function ChatView({
-  totalUnreadCount,
-  isLoading,
-  chatRoomList,
   onToggle,
+  setTotalUnreadCount,
 }: ChatViewProps) {
   const [selectedChat, setSelectedChat] = useState<ChatRoomPreview | null>(null)
 
@@ -35,11 +30,9 @@ export default function ChatView({
     />
   ) : (
     <ChatRoomList
-      totalUnreadCount={totalUnreadCount}
-      isLoading={isLoading}
       onToggle={onToggle}
-      chatRoomList={chatRoomList}
       onSelectChat={handleSelectChat}
+      setTotalUnreadCount={setTotalUnreadCount}
     />
   )
 }

@@ -6,17 +6,10 @@ import { ChatAlertCount, ChatView } from '@components'
 import { mediaQuery } from '@constants'
 import { cn } from '@utils'
 
-import { useChatRoomsList } from '@hooks'
-
 export default function ChatIcon() {
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false)
-  const { data: chatRoomList, isLoading } = useChatRoomsList()
-
-  const totalUnreadCount = chatRoomList?.reduce(
-    (sum, chat) => sum + (chat.unreadMessageCount || 0),
-    0
-  )
+  const [totalUnreadCount, setTotalUnreadCount] = useState(0)
 
   const handleToggleChat = () => {
     setIsChatOpen((prev) => !prev)
@@ -49,10 +42,8 @@ export default function ChatIcon() {
 
       {isChatOpen && (
         <ChatView
-          totalUnreadCount={totalUnreadCount}
-          isLoading={isLoading}
-          chatRoomList={chatRoomList}
           onToggle={handleToggleChat}
+          setTotalUnreadCount={setTotalUnreadCount}
         />
       )}
     </>
