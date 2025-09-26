@@ -16,6 +16,18 @@ export interface StudyGroupList extends StudyGroupBase {
   status: StudyGroupStatus
   lectures: LectureBase[]
   isLeader: boolean
+  leader?: {
+    uuid: string
+    nickname: string
+    isLeader: boolean
+    profileImage?: string
+  }
+  members?: {
+    uuid: string
+    nickname: string
+    isLeader: boolean
+    profileImage?: string
+  }[]
 }
 
 export interface StudyGroupMemberList extends Member {
