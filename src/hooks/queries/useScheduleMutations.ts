@@ -2,7 +2,7 @@ import { type CreateScheduleResponse, scheduleApi } from '@api'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { scheduleKey } from '@hooks'
 
-export const useScheduleMutaions = () => {
+export const useScheduleMutations = () => {
   const queryClient = useQueryClient()
 
   return useMutation<CreateScheduleResponse, Error, any>({
