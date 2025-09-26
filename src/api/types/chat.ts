@@ -7,7 +7,7 @@ export interface LastMessage {
     name: string
     gender: string
   }
-  created_at: string
+  createdAt: string
 }
 
 export interface ChatRoomPreview {
