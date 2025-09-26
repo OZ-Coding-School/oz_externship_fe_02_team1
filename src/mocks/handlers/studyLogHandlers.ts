@@ -1,12 +1,12 @@
 import { http, HttpResponse } from 'msw'
 
-import { API_BASE_URL } from '@constants'
+import { API_BASE_URL, API_PATHS } from '@constants'
 
 import { group_uuid } from '@/pages/CreateStudyLog'
 
 // 스터디 로그 파일 업로드 핸들러
 const uploadFileHandler = http.post(
-  `${API_BASE_URL}/study-notes/${group_uuid}/upload`,
+  `${API_BASE_URL}${API_PATHS.STUDY_NOTES.UPLOAD(group_uuid)}`,
   async ({ request }) => {
     const formData = await request.formData()
     const imageFiles = formData.getAll('image_files') as File[]
@@ -34,7 +34,7 @@ const uploadFileHandler = http.post(
 
 // 스터디 기록 생성 핸들러
 const createStudyLogHandler = http.post(
-  `${API_BASE_URL}/study-notes/${group_uuid}/notes/`,
+  `${API_BASE_URL}${API_PATHS.STUDY_NOTES.CREATE_AND_SUMMARY(group_uuid)}`,
   async ({ request }) => {
     const body = (await request.json()) as {
       title: string
