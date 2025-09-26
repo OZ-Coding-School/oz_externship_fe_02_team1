@@ -6,7 +6,7 @@ export interface FileUploadFormDataTypes {
   imageFiles: File[]
   attachmentFiles: File[]
 }
-
+//FormData로 변환할 데이터의 타입을 정의하고, 파일을 이미지와 첨부파일로 분류
 export const toFileUploadFormDataTypes = (
   title: string,
   content: string,
