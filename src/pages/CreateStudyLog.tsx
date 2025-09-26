@@ -11,6 +11,10 @@ import {
 
 export default function CreateStudyLog() {
   const [uploadedFiles, setUploadedFiles] = useState<LogUploadedFile[]>([])
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
 
   // todo: api 연결 및 파일 업로드 로직 구현
   const handleSubmit = (e: React.FormEvent) => {
