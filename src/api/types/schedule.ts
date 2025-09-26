@@ -6,8 +6,9 @@ export interface CreateScheduleRequest {
   startTime: string
   endTime: string
   participants: {
-    uuid: string
+    userId: number
     nickname: string
+    isLeader: boolean
   }[]
 }
 
@@ -23,7 +24,8 @@ export interface CreateScheduleResponse {
   createdAt: string
   updatedAt: string
   participants: {
-    uuid: string
+    userId: number
     nickname: string
+    isLeader: boolean
   }[]
 }
