@@ -1,15 +1,13 @@
-import { handleFileDelete, type LogUploadedFile } from './logFileUpload.utils'
+import type { LogUploadedFile } from './logFileUpload.utils'
 
 interface UploadedFileListProps {
   files: LogUploadedFile[]
-  setFiles: React.Dispatch<React.SetStateAction<LogUploadedFile[]>>
-  onChange: (files: LogUploadedFile[]) => void
+  onDelete: (fileId: string) => void
 }
 
 export const LogUploadedFileList = ({
   files,
-  setFiles,
-  onChange,
+  onDelete,
 }: UploadedFileListProps) => (
   <ul className="mb-4 w-full space-y-1 text-sm text-gray-700">
     {files.map((uploadedFile) => (
@@ -20,9 +18,7 @@ export const LogUploadedFileList = ({
         <span className="truncate">{uploadedFile.file.name}</span>
         <button
           type="button"
-          onClick={() =>
-            handleFileDelete(uploadedFile.id, files, setFiles, onChange)
-          }
+          onClick={() => onDelete(uploadedFile.id)}
           className="flex-shrink-0 cursor-pointer text-xs text-red-500"
           aria-label={`파일 ${uploadedFile.file.name} 삭제`}
         >
