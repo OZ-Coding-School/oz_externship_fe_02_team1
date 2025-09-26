@@ -1,5 +1,6 @@
 import { API_PATHS } from '@constants'
 import { axiosInstance } from '@lib'
+
 import type { CreateScheduleRequest, CreateScheduleResponse } from '@api'
 
 export const scheduleApi = {

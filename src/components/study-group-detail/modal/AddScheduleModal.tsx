@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useParams } from 'react-router'
 
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
-
-import type { ScheduleFormInputs } from '@models'
 import { useScheduleMutations } from '@hooks'
 import { studyGroupList } from '@mocks/datas/studygroupList'
-import { useParams } from 'react-router'
+
+import type { ScheduleFormInputs } from '@models'
 
 interface AddScheduleModalProps {
   isOpen: boolean
