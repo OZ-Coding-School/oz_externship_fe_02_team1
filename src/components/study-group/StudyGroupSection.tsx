@@ -1,11 +1,16 @@
-import { SectionHeader, StudyBadge, StudyGroupCardList , StudyGroupEmptySearchResult } from '@components'
+import {
+  SectionHeader,
+  StudyBadge,
+  StudyGroupCardList,
+  StudyGroupEmptySearchResult,
+} from '@components'
 
-import type { StudyGroupList } from '@/types'
+import type { StudyGroupList, StudyGroupStatus } from '@models'
 
 interface StudyGroupSectionProps {
   title: string
   subtitle: string
-  badgeVariant: 'inProgress' | 'ended'
+  badgeVariant: StudyGroupStatus
   badgeClassName: string
   groups: StudyGroupList[]
 }
@@ -21,7 +26,7 @@ export default function StudyGroupSection({
     <section className="flex flex-col gap-6">
       <SectionHeader title={title} subtitle={subtitle} titleVariant="2xl">
         <StudyBadge variant={badgeVariant} className={badgeClassName}>
-          {groups.length}개
+          {groups.length}개&nbsp;
         </StudyBadge>
       </SectionHeader>
       {groups.length > 0 ? (

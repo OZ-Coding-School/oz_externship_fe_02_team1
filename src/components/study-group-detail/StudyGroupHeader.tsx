@@ -20,6 +20,7 @@ interface StudyGroupHeaderProps
     | 'currentHeadcount'
     | 'maxHeadcount'
     | 'startAt'
+    | 'status'
     | 'endAt'
   > {
   currentUserRole?: 'member' | 'leader' | 'guest'
@@ -33,6 +34,7 @@ export default function StudyGroupHeader({
   maxHeadcount,
   startAt,
   endAt,
+  status,
   currentUserRole,
   isMember,
 }: StudyGroupHeaderProps) {
@@ -65,7 +67,7 @@ export default function StudyGroupHeader({
               {formattedStartDate} ~ {formattedLastDate}
             </Text>
           </div>
-          <StudyBadge variant="inProgress" />
+          <StudyBadge variant={status} />
         </div>
       </div>
 

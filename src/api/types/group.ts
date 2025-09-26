@@ -1,3 +1,5 @@
+import type { StudyGroupStatus } from '@models'
+
 export interface CreateStudyGroupRequest {
   name: string
   introduction?: string | null
@@ -19,4 +21,31 @@ export interface CreateStudyGroupResponse {
   endAt: string
   lectures: number[]
   createdAt: string
+}
+
+export interface StudyGroupDetailResponse {
+  uuid: string
+  name: string
+  currentHeadcount: number
+  maxHeadcount: number
+  leader: {
+    uuid: string
+    nickname: string
+  }
+  members: {
+    uuid: string
+    nickname: string
+    isLeader: boolean
+  }[]
+  imgUrl: string
+  startAt: string
+  endAt: string
+  status: StudyGroupStatus
+  lectures: {
+    lectureId: number
+    lectureTitle: string
+    instructor: string
+    thumbnailImg: string
+    urlLink: string
+  }[]
 }

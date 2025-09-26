@@ -1,13 +1,15 @@
 import { API_PATHS } from '@constants'
 import { axiosInstance } from '@lib'
 
+import type { StudyGroupDetailResponse } from '@api'
+
 export const studyApi = {
   getStudyGroupList: async () => {
     const response = await axiosInstance.get(API_PATHS.STUDY_GROUP.LIST)
     return response.data
   },
   getStudyGroupDetail: async (groupUuid: string) => {
-    const response = await axiosInstance.get(
+    const response = await axiosInstance.get<StudyGroupDetailResponse>(
       API_PATHS.STUDY_GROUP.DETAIL(groupUuid)
     )
     return response.data

@@ -1,4 +1,3 @@
-import type React from 'react'
 import type { ReactNode } from 'react'
 
 import { type VariantProps } from 'class-variance-authority'
@@ -14,10 +13,6 @@ interface StudyBadgeProps
   children?: ReactNode
 }
 
-interface setLabelTextProps {
-  variant?: string | null
-}
-
 export default function StudyBadge({
   variant,
   size,
@@ -29,29 +24,21 @@ export default function StudyBadge({
 }: StudyBadgeProps) {
   const memberCountText = `${member ?? '--'}/${maxMember ?? '--'}명`
 
-  const setLabelText = ({ variant = 'primary' }: setLabelTextProps): string => {
-    switch (variant) {
-      case 'primary':
-        return memberCountText
-      case 'inProgress':
-        return '진행중'
-      case 'ended':
-        return '종료됨'
-      case 'leader':
-        return '리더'
-      default:
-        return ''
-    }
+  const getLabel = () => {
+    if (variant === 'primary') {
+      return memberCountText
+    } else if (variant === 'leader') return '리더'
+    return variant
   }
 
-  const label = setLabelText({ variant: variant })
+  const label = getLabel()
 
   return (
     <div
       className={cn(studyBadgeVariants({ variant, size }), className)}
       {...props}
     >
-      {children}&nbsp;
+      {children}
       {label}
     </div>
   )

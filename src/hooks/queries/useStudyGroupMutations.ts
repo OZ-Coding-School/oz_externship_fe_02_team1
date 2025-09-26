@@ -11,10 +11,10 @@ export const useStudyGroupMutations = () => {
   return useMutation<AxiosResponse<CreateStudyGroupResponse>, Error, FormData>({
     mutationFn: (data) => studyApi.createStudyGroup(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: studyQueryKey.getList })
+      queryClient.invalidateQueries({ queryKey: studyQueryKey.create() })
     },
     onError: () => {
-      queryClient.cancelQueries({ queryKey: studyQueryKey.getList })
+      queryClient.cancelQueries({ queryKey: studyQueryKey.create() })
     },
   })
 }

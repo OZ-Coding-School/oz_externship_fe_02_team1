@@ -1,4 +1,5 @@
 export const studyQueryKey = {
-  base: ['study'],
-  getList: ['study', 'list'],
+  base: ['studies'],
+  create: () => [...studyQueryKey.base, 'create'],
+  detail: (groupUuid: string) => [...studyQueryKey.base, 'detail', groupUuid],
 }

@@ -4,8 +4,9 @@ export const studyBadgeVariants = cva(['py-1', 'rounded-full', 'font-medium'], {
   variants: {
     variant: {
       primary: ['text-gray-900', 'bg-white'],
-      inProgress: ['text-white', 'bg-success-500'],
-      ended: ['text-white', 'bg-gray-500'],
+      진행중: ['text-white', 'bg-success-500'],
+      대기중: ['text-gray-900', 'bg-success-100'],
+      종료됨: ['text-white', 'bg-gray-500'],
       leader: ['text-white', 'bg-primary-500'],
     },
     size: {
