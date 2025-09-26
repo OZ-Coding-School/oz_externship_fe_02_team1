@@ -22,9 +22,15 @@ export default function CreateStudyLog() {
     <StudyLogLayout
       onSubmit={handleSubmit}
       header={<StudyLogHeader mode="create" />}
-      title={<StudyLogTitle />}
-      markdown={<StudyLogMarkdown setUploadedFiles={setUploadedFiles} />}
-      footer={<StudyLogFooter />}
+      title={<StudyLogTitle value={title} onChange={setTitle} />}
+      markdown={
+        <StudyLogMarkdown
+          group_uuid={group_uuid}
+          onFilesChange={setUploadedFiles}
+          onChange={setContent}
+        />
+      }
+      footer={<StudyLogFooter isLoading={isLoading} />}
     />
   )
 }
