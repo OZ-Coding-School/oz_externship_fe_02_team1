@@ -38,7 +38,6 @@ export default function StudyGroupForm({
     control,
   })
   const { field: lecturesField } = useController({ name: 'lectures', control })
-  // Add useController for profileImgUrl and profileImg
   const { field: profileImgUrlField } = useController({
     name: 'profileImgUrl',
     control,

@@ -9,10 +9,10 @@ import {
 
 import { CalendarBodyDate } from '@components'
 
-import type { ScheduleDetail } from '@models'
+import type { CreateScheduleResponse } from '@api'
 
 interface CalendarBodyProps {
-  schedule: ScheduleDetail[] | undefined
+  schedule: CreateScheduleResponse[] | undefined
   currentMonth: Date
 }
 

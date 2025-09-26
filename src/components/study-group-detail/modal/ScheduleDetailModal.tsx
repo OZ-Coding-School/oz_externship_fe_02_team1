@@ -14,10 +14,10 @@ import {
 import { useModal } from '@hooks'
 import { formatDate, formatTime } from '@utils'
 
-import type { ScheduleDetail } from '@models'
+import type { CreateScheduleResponse } from '@api'
 
 interface ScheduleDetailModalProps {
-  schedule: ScheduleDetail
+  schedule: CreateScheduleResponse
   isOpen: boolean
   onClose: () => void
   confirm: () => void
@@ -83,15 +83,12 @@ export default function ScheduleDetailModal({
               {schedule.participants.length ? (
                 <>
                   {schedule.participants.map((participant) => (
-                    <li
-                      key={participant.memberId}
-                      className="flex items-center"
-                    >
-                      <Avatar size="sm" alt={participant.user.nickname} />
+                    <li key={participant.userId} className="flex items-center">
+                      <Avatar size="sm" alt={participant.nickname} />
                       <Text variant="small" className="mr-2 ml-3">
-                        {participant.user.nickname}
+                        {participant.nickname}
                       </Text>
-                      {participant.user.isLeader && (
+                      {participant.isLeader && (
                         <Badge
                           color="primary"
                           size="md"

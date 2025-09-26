@@ -12,6 +12,7 @@ export interface StudyGroupBase {
 }
 
 export interface StudyGroupList extends StudyGroupBase {
+  id?: number
   currentHeadcount: number
   status: StudyGroupStatus
   lectures: LectureBase[]

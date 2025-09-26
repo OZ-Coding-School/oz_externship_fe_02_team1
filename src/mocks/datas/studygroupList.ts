@@ -8,6 +8,7 @@ import type { StudyGroupList } from '@models'
 
 export const studyGroupList: StudyGroupList[] = [
   {
+    id: 3,
     uuid: '663a40a5-8a96-442b-aac2-1a4b49598ba8',
     name: '모던 자바스크립트 딥다이브',
     currentHeadcount: 1,
@@ -29,6 +30,7 @@ export const studyGroupList: StudyGroupList[] = [
     })),
   },
   {
+    id: 4,
     uuid: '80c02398-13ac-4d25-8773-b07587068f3e',
     name: 'React 실무 프로젝트 스터디',
     currentHeadcount: 1,
@@ -50,6 +52,7 @@ export const studyGroupList: StudyGroupList[] = [
     })),
   },
   {
+    id: 5,
     uuid: '46aef94d-7a4c-443c-a668-cad263550342',
     name: 'JavaScript 알고리즘 스터디',
     currentHeadcount: 6,

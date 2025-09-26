@@ -2,10 +2,10 @@ import { useState } from 'react'
 
 import { CalendarBody, CalendarDays, CalendarHeader } from '@components'
 
-import type { ScheduleDetail } from '@models'
+import type { CreateScheduleResponse } from '@api'
 
 interface CalendarProps {
-  schedule: ScheduleDetail[] | undefined
+  schedule: CreateScheduleResponse[] | undefined
 }
 
 export default function ScheduleCalendar({ schedule }: CalendarProps) {

@@ -35,8 +35,8 @@ export const API_PATHS = {
   SCHEDULE: {
     LIST: (groupUuid: string) => `/schedules/list/${groupUuid}`,
     DETAIL: (scheduleId: number) => `/schedules/${scheduleId}`,
-    CREATE: '/schedules/',
-    UPDATE: (scheduleId: number) => `/schedules/${scheduleId}/`,
+    CREATE: '/schedules',
+    UPDATE: (scheduleId: number) => `/schedules/${scheduleId}`,
     DELETE: (scheduleId: number) => `/schedules/${scheduleId}`,
   },
 

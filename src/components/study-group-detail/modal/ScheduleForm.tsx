@@ -123,16 +123,16 @@ export default function ScheduleForm({
                         type="checkbox"
                         value={member.nickname}
                         checked={field.value.some(
-                          (p) => p.user.nickname === member.nickname
+                          (p) => p.nickname === member.nickname
                         )}
                         onChange={(e) => {
                           if (e.target.checked) {
-                            field.onChange([...field.value, member]) // ✅ 객체 추가
+                            field.onChange([...field.value, member])
                           } else {
                             field.onChange(
                               field.value.filter(
-                                (p) => p.user.nickname !== member.nickname
-                              ) // ✅ 객체 제거
+                                (p) => p.nickname !== member.nickname
+                              )
                             )
                           }
                         }}

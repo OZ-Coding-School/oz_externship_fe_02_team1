@@ -3,12 +3,13 @@ import { useForm } from 'react-hook-form'
 
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
 
-import type { ScheduleDetail, ScheduleFormInputs } from '@models'
+import type { ScheduleFormInputs } from '@models'
+import type { CreateScheduleResponse } from '@api'
 
 interface EditScheduleModalProps {
   isOpen: boolean
   onClose: () => void
-  schedule: ScheduleDetail
+  schedule: CreateScheduleResponse
 }
 
 export default function EditScheduleModal({
