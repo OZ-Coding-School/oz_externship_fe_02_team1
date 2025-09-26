@@ -1,20 +1,27 @@
-import { ChatContainer, ChatPreview, Text } from '@components'
-import { dummyChatList } from '@mocks/datas/chatListMocks'
+import { ChatContainer, ChatPreview, LoadingState, Text } from '@components'
 import { cn } from '@utils'
 
-import type { ChatPreview as ChatPreviewType } from '@models'
+import type { ChatRoomPreview, ChatRoomsResponse } from '@api'
 
 interface ChatRoomListProps {
-  totalUnreadCount: number
+  totalUnreadCount: number | undefined
+  isLoading: boolean
+  chatRoomList: ChatRoomsResponse | undefined
   onToggle: () => void
-  onSelectChat: (chat: ChatPreviewType) => void
+  onSelectChat: (chat: ChatRoomPreview) => void
 }
 
 export default function ChatRoomList({
   totalUnreadCount,
+  isLoading,
+  chatRoomList,
   onToggle,
   onSelectChat,
 }: ChatRoomListProps) {
+  if (isLoading) {
+    return <LoadingState />
+  }
+
   return (
     <ChatContainer
       header={
@@ -28,14 +35,14 @@ export default function ChatRoomList({
       onToggle={onToggle}
     >
       <div className="scrollbar-hidden h-77 overflow-x-hidden overflow-y-scroll">
-        {dummyChatList.length > 0 ? (
-          dummyChatList.map((chat, index) => (
+        {chatRoomList && chatRoomList.length > 0 ? (
+          chatRoomList.map((chat, index) => (
             <div
-              key={chat.studyGroupUuid}
+              key={chat.uuid}
               onClick={() => onSelectChat(chat)}
               className={cn(
                 'flex cursor-pointer flex-col gap-1 p-3',
-                index !== dummyChatList.length - 1 && 'border-b border-gray-200'
+                index !== chatRoomList.length - 1 && 'border-b border-gray-200'
               )}
             >
               <ChatPreview chat={chat} />
