@@ -8,3 +8,8 @@ export const chatQueryKey = {
   base: ['chat'],
   list: () => [...chatQueryKey.base, 'list'],
 }
+
+export const scheduleKey = {
+  base: ['schedule'],
+  create: () => [...scheduleKey.base, 'create'],
+}
