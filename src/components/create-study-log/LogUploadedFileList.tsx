@@ -5,11 +5,6 @@ interface UploadedFileListProps {
   onDelete: (fileId: string) => void
 }
 
-interface UploadedFileListProps {
-  files: LogUploadedFile[]
-  onDelete: (fileId: string) => void
-}
-
 export default function LogUploadedFileList({
   files,
   onDelete,
