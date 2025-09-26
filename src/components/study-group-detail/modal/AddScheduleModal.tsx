@@ -4,6 +4,9 @@ import { useForm } from 'react-hook-form'
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
 
 import type { ScheduleFormInputs } from '@models'
+import { useScheduleMutations } from '@hooks'
+import { studyGroupList } from '@mocks/datas/studygroupList'
+import { useParams } from 'react-router'
 
 interface AddScheduleModalProps {
   isOpen: boolean
@@ -15,6 +18,8 @@ export default function AddScheduleModal({
   onClose,
 }: AddScheduleModalProps) {
   const [tempDate, setTempDate] = useState<Date | undefined>(undefined)
+  const params = useParams()
+  const studyGroupUuid = params.groupId
 
   const formMethods = useForm<ScheduleFormInputs>({
     defaultValues: {
@@ -25,6 +30,7 @@ export default function AddScheduleModal({
   })
 
   const { handleSubmit, reset } = formMethods
+  const createScheduleMutation = useScheduleMutations()
 
   useEffect(() => {
     if (!isOpen) {
@@ -37,30 +43,46 @@ export default function AddScheduleModal({
     onClose()
   }
 
-  const handleConfirm = (data: ScheduleFormInputs) => {
-    console.log(data)
-    handleClose()
+  const handleConfirm = async (data: ScheduleFormInputs) => {
+    const scheduleData = {
+      title: data.title,
+      objective: data.objective,
+      session_date: data.sessionDate,
+      study_group: studyGroupList.find((group) => group.uuid === studyGroupUuid)
+        ?.id,
+      start_time: `${data.startTime}:00`,
+      end_time: `${data.endTime}:00`,
+    }
+
+    try {
+      await createScheduleMutation.mutateAsync(scheduleData)
+      alert('스케줄이 생성되었습니다.')
+      handleClose()
+    } catch (error) {
+      console.error('Failed to create schedule', error)
+      alert('스케줄 생성에 실패했습니다.')
+    }
   }
 
   return (
     <BaseModal isOpen={isOpen} onClose={handleClose} size="md">
-        {MODAL_PRESETS.scheduleAdd.header({
-          onClose: handleClose,
-          title: '새 스케줄 추가',
-        })}
+      {MODAL_PRESETS.scheduleAdd.header({
+        onClose: handleClose,
+        title: '새 스케줄 추가',
+      })}
 
-        <ModalBody>
-          <ScheduleForm
-            formMethods={formMethods}
-            tempDate={tempDate}
-            setTempDate={setTempDate}
-          />
-        </ModalBody>
+      <ModalBody>
+        <ScheduleForm
+          formMethods={formMethods}
+          tempDate={tempDate}
+          setTempDate={setTempDate}
+        />
+      </ModalBody>
 
-        {MODAL_PRESETS.scheduleAdd.footer({
-          onClose: handleClose,
-          onConfirm: handleSubmit(handleConfirm),
-        })}
-      </BaseModal>
+      {MODAL_PRESETS.scheduleAdd.footer({
+        onClose: handleClose,
+        onConfirm: handleSubmit(handleConfirm),
+      })}
+    </BaseModal>
   )
 }
