@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { logApi } from '@api'
 import {
@@ -11,14 +10,16 @@ import {
   type LogUploadedFile,
 } from '@components'
 
-export const group_uuid = '663a40a5-8a96-442b-aac2-1a4b49598ba8' // 테스트용 고정 UUID
+import { usePageNav } from '@/hooks'
+
+export const groupUuid = '663a40a5-8a96-442b-aac2-1a4b49598ba8' // 테스트용 고정 UUID
 
 export default function CreateStudyLog() {
   const [uploadedFiles, setUploadedFiles] = useState<LogUploadedFile[]>([])
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const navigate = useNavigate()
+  const { navigateToLogDetail } = usePageNav()
 
   const handleFilesAdded = (newFiles: LogUploadedFile[]) => {
     setUploadedFiles((current) => [...current, ...newFiles])
@@ -46,14 +47,14 @@ export default function CreateStudyLog() {
         }
       })
 
-      const response = await logApi.createStudyLog(group_uuid, {
+      const response = await logApi.createStudyLog(groupUuid, {
         title,
         content,
         imageFiles,
         attachmentFiles,
       })
       console.log('스터디 기록 생성 성공:', response)
-      navigate(`/study-group/${group_uuid}/records/${response.id}`)
+      navigateToLogDetail()
     } catch (error) {
       console.error('스터디 기록 생성 실패:', error)
     } finally {
@@ -68,7 +69,7 @@ export default function CreateStudyLog() {
       title={<StudyLogTitle value={title} onChange={setTitle} />}
       markdown={
         <StudyLogMarkdown
-          group_uuid={group_uuid}
+          groupUuid={groupUuid}
           value={content}
           files={uploadedFiles}
           onFilesAdded={handleFilesAdded}
