@@ -9,12 +9,12 @@ import {
   StudyGroupMember,
   StudyGroupSchedule,
 } from '@components'
-import { useStudyGroupDetail } from '@hooks'
+import { useStudyGroupQuery } from '@hooks'
 
 export default function StudyGroupDetail() {
   const { groupId } = useParams<{ groupId: string }>()
 
-  const { data: studyGroupData, isLoading } = useStudyGroupDetail(groupId || '')
+  const { data: studyGroupData, isLoading } = useStudyGroupQuery(groupId || '')
 
   if (isLoading) {
     return <LoadingState />
