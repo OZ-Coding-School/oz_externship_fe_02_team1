@@ -5,6 +5,10 @@ export interface CreateScheduleRequest {
   sessionDate: string
   startTime: string
   endTime: string
+  participants: {
+    uuid: string
+    nickname: string
+  }[]
 }
 
 export interface CreateScheduleResponse {
@@ -18,4 +22,8 @@ export interface CreateScheduleResponse {
   studyGroupName: string
   createdAt: string
   updatedAt: string
+  participants: {
+    uuid: string
+    nickname: string
+  }[]
 }
