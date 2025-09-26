@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react'
-
 import {
   MarkdownEditor,
   Text,
@@ -7,23 +5,19 @@ import {
   type LogUploadedFile,
 } from '@components'
 
-interface SetUploadedFilesProps {
+interface StudyLogMarkdownProps {
   group_uuid: string
+  value: string
   onFilesChange: (files: LogUploadedFile[]) => void
   onChange: (content: string) => void
 }
 
 export default function StudyLogMarkdown({
   group_uuid,
+  value,
   onFilesChange,
   onChange,
-}: SetUploadedFilesProps) {
-  const [description, setDescription] = useState('')
-
-  useEffect(() => {
-    onChange(description)
-  }, [description, onChange])
-
+}: StudyLogMarkdownProps) {
   return (
     <div className="w-full">
       <div className="pt-6">
@@ -31,8 +25,8 @@ export default function StudyLogMarkdown({
         <Text className="text-sm font-medium text-red-500">*</Text>
 
         <MarkdownEditor
-          value={description}
-          onChange={setDescription}
+          value={value}
+          onChange={onChange}
           placeholder="학습한 내용을 마크다운 형식으로 입력하세요..."
         />
         <Text className="text-xs font-normal text-gray-500">

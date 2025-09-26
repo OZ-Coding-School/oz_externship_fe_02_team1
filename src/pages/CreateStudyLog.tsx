@@ -65,6 +65,7 @@ export default function CreateStudyLog() {
           group_uuid={group_uuid}
           onFilesChange={setUploadedFiles}
           onChange={setContent}
+          value={content}
         />
       }
       footer={<StudyLogFooter isLoading={isLoading} />}
