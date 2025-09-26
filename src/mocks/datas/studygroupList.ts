@@ -2,8 +2,9 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { Images } from '@assets'
 import { studyGroupLecture, studyGroupMember } from './studyGroupDetail'
+import type { StudyGroupList } from '@models'
 
-export const studyGroupList = [
+export const studyGroupList: StudyGroupList[] = [
   {
     uuid: '663a40a5-8a96-442b-aac2-1a4b49598ba8',
     name: '모던 자바스크립트 딥다이브',
