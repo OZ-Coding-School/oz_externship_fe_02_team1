@@ -6,7 +6,10 @@ export interface ScheduleFormInputs {
   sessionDate: string
   startTime: string
   endTime: string
-  participants: ScheduleParticipant[]
+  participants: {
+    uuid: string
+    nickname: string
+  }[]
 }
 
 export interface ScheduleBase {
