@@ -1,7 +1,8 @@
 import { http, HttpResponse } from 'msw'
 
 import { API_BASE_URL, API_PATHS } from '@constants'
-import { studyGroup } from '@mocks/datas/studyGroupDetail'
+import { studyGroup as studyGroupMock } from '@mocks/datas/studyGroupDetail'
+import { studyGroupList } from '../datas/studygroupList'
 
 export const studyGroupHandlers = [
   // 스터디 그룹 생성
@@ -44,6 +45,9 @@ export const studyGroupHandlers = [
     `${API_BASE_URL}${API_PATHS.STUDY_GROUP.DETAIL(':group_uuid')}`,
     ({ params }) => {
       const { group_uuid } = params
+      const studyGroup =
+        studyGroupList.find((group) => group.uuid === group_uuid) ||
+        studyGroupMock
 
       const mockResponse = {
         uuid: group_uuid,
@@ -51,10 +55,10 @@ export const studyGroupHandlers = [
         current_headcount: studyGroup.currentHeadcount,
         max_headcount: studyGroup.maxHeadcount,
         leader: {
-          uuid: studyGroup.leader.uuid,
-          nickname: studyGroup.leader.nickname,
+          uuid: studyGroup.leader?.uuid,
+          nickname: studyGroup.leader?.nickname,
         },
-        members: studyGroup.members.map((member) => ({
+        members: studyGroup.members?.map((member) => ({
           uuid: member.uuid,
           nickname: member.nickname,
           is_leader: member.isLeader,
@@ -67,8 +71,8 @@ export const studyGroupHandlers = [
           lecture_id: lecture.id,
           lecture_title: lecture.lectureTitle,
           instructor: lecture.instructor,
-          thumnail_img: lecture.thumbnailImg,
-          url_link: lecture.urlLink,
+          thumnail_img: 'thumbnailImg' in lecture ? lecture.thumbnailImg : null,
+          url_link: 'urlLink' in lecture ? lecture.urlLink : null,
         })),
       }
 
