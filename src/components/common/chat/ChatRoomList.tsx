@@ -1,52 +1,55 @@
-import { ChatContainer, ChatPreview, Text } from '@components'
-import { dummyChatList } from '@mocks/datas/chatListMocks'
-import { cn } from '@utils'
+import { useEffect } from 'react'
 
-import type { ChatPreview as ChatPreviewType } from '@models'
+import { ChatContainer, Text, ChatListContent } from '@components'
+import { useChatRoomsList } from '@hooks'
+
+import type { ChatRoomPreview } from '@api'
 
 interface ChatRoomListProps {
-  totalUnreadCount: number
   onToggle: () => void
-  onSelectChat: (chat: ChatPreviewType) => void
+  onSelectChat: (chat: ChatRoomPreview) => void
+  setTotalUnreadCount: (count: number) => void
 }
 
 export default function ChatRoomList({
-  totalUnreadCount,
   onToggle,
   onSelectChat,
+  setTotalUnreadCount,
 }: ChatRoomListProps) {
+  const { data: chatRoomList, isLoading, isError, refetch } = useChatRoomsList()
+
+  const totalUnreadCount =
+    chatRoomList?.reduce(
+      (sum, chat) => sum + (chat.unreadMessageCount || 0),
+      0
+    ) || 0
+
+  useEffect(() => {
+    if (!isError) {
+      setTotalUnreadCount(totalUnreadCount)
+    }
+  }, [totalUnreadCount, isError, setTotalUnreadCount])
+
   return (
     <ChatContainer
       header={
         <div className="flex flex-col items-start">
           <Text className="font-semibold">채팅방</Text>
           <Text variant="extraSmall" className="text-primary-600">
-            {totalUnreadCount}개의 읽지 않은 메시지
+            {isLoading || isError ? '...' : totalUnreadCount}개의 읽지 않은
+            메시지
           </Text>
         </div>
       }
       onToggle={onToggle}
     >
-      <div className="scrollbar-hidden h-77 overflow-x-hidden overflow-y-scroll">
-        {dummyChatList.length > 0 ? (
-          dummyChatList.map((chat, index) => (
-            <div
-              key={chat.studyGroupUuid}
-              onClick={() => onSelectChat(chat)}
-              className={cn(
-                'flex cursor-pointer flex-col gap-1 p-3',
-                index !== dummyChatList.length - 1 && 'border-b border-gray-200'
-              )}
-            >
-              <ChatPreview chat={chat} />
-            </div>
-          ))
-        ) : (
-          <div className="flex h-full items-center justify-center">
-            <Text className="text-gray-500">채팅방이 없습니다.</Text>
-          </div>
-        )}
-      </div>
+      <ChatListContent
+        isLoading={isLoading}
+        isError={isError}
+        chatRoomList={chatRoomList}
+        onSelectChat={onSelectChat}
+        onRetry={refetch}
+      />
     </ChatContainer>
   )
 }

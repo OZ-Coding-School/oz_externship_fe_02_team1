@@ -4,17 +4,12 @@ import { useMediaQuery } from 'react-responsive'
 
 import { ChatAlertCount, ChatView } from '@components'
 import { mediaQuery } from '@constants'
-import { dummyChatList } from '@mocks/datas/chatListMocks'
 import { cn } from '@utils'
 
 export default function ChatIcon() {
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false)
-
-  const totalUnreadCount = dummyChatList.reduce(
-    (sum, chat) => sum + chat.unreadCount,
-    0
-  )
+  const [totalUnreadCount, setTotalUnreadCount] = useState(0)
 
   const handleToggleChat = () => {
     setIsChatOpen((prev) => !prev)
@@ -36,7 +31,7 @@ export default function ChatIcon() {
         ) : (
           <>
             <ChatBubbleOvalLeftIcon width={24} color="white" strokeWidth={2} />
-            {totalUnreadCount > 0 && (
+            {totalUnreadCount !== undefined && totalUnreadCount > 0 && (
               <div aria-live="polite" aria-atomic="true">
                 <ChatAlertCount unreadCount={totalUnreadCount} isTotalCount />
               </div>
@@ -47,8 +42,8 @@ export default function ChatIcon() {
 
       {isChatOpen && (
         <ChatView
-          totalUnreadCount={totalUnreadCount}
           onToggle={handleToggleChat}
+          setTotalUnreadCount={setTotalUnreadCount}
         />
       )}
     </>
