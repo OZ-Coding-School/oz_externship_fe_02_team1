@@ -1,5 +1,3 @@
-import type { User } from '@models'
-
 export interface ScheduleFormInputs {
   title: string
   objective: string
@@ -37,14 +35,10 @@ export interface ScheduleListItem extends ScheduleBase {
 
 export type ScheduleList = ScheduleListItem[]
 
-export interface ScheduleParticipant {
-  memberId: number
-  user: User & {
-    isLeader: boolean
-  }
-}
-
 export interface ScheduleDetail extends ScheduleCreate {
-  participants: ScheduleParticipant[]
+  participants: {
+    uuid: string
+    nickname: string
+  }[]
   updatedAt: string
 }
