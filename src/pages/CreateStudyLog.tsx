@@ -20,6 +20,14 @@ export default function CreateStudyLog() {
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
+  const handleFilesAdded = (newFiles: LogUploadedFile[]) => {
+    setUploadedFiles((current) => [...current, ...newFiles])
+  }
+
+  const handleFileDeleted = (fileId: string) => {
+    setUploadedFiles((current) => current.filter((f) => f.id !== fileId))
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
@@ -45,11 +53,13 @@ export default function CreateStudyLog() {
         attachmentFiles,
       })
       console.log('스터디 기록 생성 성공:', response)
+      // TODO: 생성된 스터디 기록 상세 페이지로 이동하도록 경로 수정 필요
       navigate(`/study-group/${group_uuid}/records/${response.id}`)
     } catch (error) {
       console.error('스터디 기록 생성 실패:', error)
       // TODO: 사용자에게 에러 알림 (Toast 등)
-    } finally {
+    }
+    finally {
       setIsLoading(false)
     }
   }
@@ -62,9 +72,11 @@ export default function CreateStudyLog() {
       markdown={
         <StudyLogMarkdown
           group_uuid={group_uuid}
-          onFilesChange={setUploadedFiles}
-          onChange={setContent}
           value={content}
+          files={uploadedFiles}
+          onFilesAdded={handleFilesAdded}
+          onFileDeleted={handleFileDeleted}
+          onChange={setContent}
         />
       }
       footer={<StudyLogFooter isLoading={isLoading} />}

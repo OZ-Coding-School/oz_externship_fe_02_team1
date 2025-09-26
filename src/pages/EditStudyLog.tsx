@@ -18,6 +18,14 @@ export default function EditStudyLog() {
   const [content, setContent] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
+  const handleFilesAdded = (newFiles: LogUploadedFile[]) => {
+    setUploadedFiles((current) => [...current, ...newFiles])
+  }
+
+  const handleFileDeleted = (fileId: string) => {
+    setUploadedFiles((current) => current.filter((f) => f.id !== fileId))
+  }
+
   // todo: api 연결 및 파일 업로드 로직 구현
   // todo: 기존 스터디 로그 데이터 fetch해서 title, content, uploadedFiles 상태 초기화
   const handleSubmit = (e: React.FormEvent) => {
@@ -36,7 +44,9 @@ export default function EditStudyLog() {
         <StudyLogMarkdown
           group_uuid={group_uuid}
           value={content}
-          onFilesChange={setUploadedFiles}
+          files={uploadedFiles}
+          onFilesAdded={handleFilesAdded}
+          onFileDeleted={handleFileDeleted}
           onChange={setContent}
         />
       }
