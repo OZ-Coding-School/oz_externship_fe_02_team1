@@ -1,7 +1,9 @@
 import { http, HttpResponse } from 'msw'
 
 import { API_BASE_URL, API_PATHS } from '@constants'
-import { studyGroup } from '@mocks/datas/studyGroupDetail'
+import { studyGroup as studyGroupMock } from '@mocks/datas/studyGroupDetail'
+
+import { studyGroupList } from '../datas/studygroupList'
 
 export const studyGroupHandlers = [
   // 스터디 그룹 생성
@@ -44,31 +46,34 @@ export const studyGroupHandlers = [
     `${API_BASE_URL}${API_PATHS.STUDY_GROUP.DETAIL(':group_uuid')}`,
     ({ params }) => {
       const { group_uuid } = params
+      const studyGroup =
+        studyGroupList.find((group) => group.uuid === group_uuid) ||
+        studyGroupMock
 
       const mockResponse = {
         uuid: group_uuid,
         name: studyGroup.name,
-        current_headcount: studyGroup.currentHeadcount,
-        max_headcount: studyGroup.maxHeadcount,
+        currentHeadcount: studyGroup.currentHeadcount,
+        maxHeadcount: studyGroup.maxHeadcount,
         leader: {
-          uuid: studyGroup.leader.uuid,
-          nickname: studyGroup.leader.nickname,
+          uuid: studyGroup.leader?.uuid,
+          nickname: studyGroup.leader?.nickname,
         },
-        members: studyGroup.members.map((member) => ({
+        members: studyGroup.members?.map((member) => ({
           uuid: member.uuid,
           nickname: member.nickname,
           is_leader: member.isLeader,
         })),
-        img_url: studyGroup.imgUrl,
-        start_at: studyGroup.startAt,
-        end_at: studyGroup.endAt,
+        imgUrl: studyGroup.imgUrl,
+        startAt: studyGroup.startAt,
+        endAt: studyGroup.endAt,
         status: studyGroup.status,
         lectures: studyGroup.lectures.map((lecture) => ({
-          lecture_id: lecture.id,
-          lecture_title: lecture.lectureTitle,
+          lectureId: lecture.id,
+          lectureTitle: lecture.lectureTitle,
           instructor: lecture.instructor,
-          thumnail_img: lecture.thumbnailImg,
-          url_link: lecture.urlLink,
+          thumnailImg: 'thumbnailImg' in lecture ? lecture.thumbnailImg : null,
+          urlLink: 'urlLink' in lecture ? lecture.urlLink : null,
         })),
       }
 

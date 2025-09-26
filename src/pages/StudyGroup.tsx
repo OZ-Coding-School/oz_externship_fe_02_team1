@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { StudyGroupMainHeader, StudyGroupSection } from '@components'
 import { STUDY_GROUP_STATUS } from '@constants'
 import useDebounce from '@hooks/useDebounce'
-import { studyGroupList } from '@mocks/datas/studyGroupDetail'
+import { studyGroupList } from '@mocks/datas/studygroupList'
 
 export default function StudyGroup() {
   const [searchQuery, setSearchQuery] = useState('')
