@@ -5,7 +5,7 @@ interface ErrorStateProps {
   onRetry?: () => void
 }
 
-export function ErrorState({
+export default function ErrorState({
   message = '오류가 발생했습니다.',
   onRetry,
 }: ErrorStateProps) {
