@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import {
   MarkdownEditor,
@@ -8,16 +8,21 @@ import {
 } from '@components'
 
 interface SetUploadedFilesProps {
-  setUploadedFiles: (files: LogUploadedFile[]) => void
+  group_uuid: string
+  onFilesChange: (files: LogUploadedFile[]) => void
+  onChange: (content: string) => void
 }
 
 export default function StudyLogMarkdown({
-  setUploadedFiles,
+  group_uuid,
+  onFilesChange,
+  onChange,
 }: SetUploadedFilesProps) {
   const [description, setDescription] = useState('')
-  const handleFilesChange = (files: LogUploadedFile[]) => {
-    setUploadedFiles(files)
-  }
+
+  useEffect(() => {
+    onChange(description)
+  }, [description, onChange])
 
   return (
     <div className="w-full">
@@ -39,7 +44,7 @@ export default function StudyLogMarkdown({
         <Text className="pb-2 text-sm font-medium text-gray-700">
           첨부 파일
         </Text>
-        <LogFileUpload onChange={handleFilesChange} />
+        <LogFileUpload group_uuid={group_uuid} onChange={onFilesChange} />
       </div>
     </div>
   )
