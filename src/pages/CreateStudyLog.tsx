@@ -8,10 +8,10 @@ import {
   StudyLogLayout,
   StudyLogMarkdown,
   StudyLogTitle,
-  type LogUploadedFile,
 } from '@components'
 
 import { usePageNav } from '@hooks'
+import type { LogUploadedFile } from '@utils'
 
 export default function CreateStudyLog() {
   const { groupId } = useParams<{ groupId: string }>()
@@ -19,7 +19,7 @@ export default function CreateStudyLog() {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const { navigateToLogDetail } = usePageNav()
+  const { navigateToLogDetail, handleGoBack } = usePageNav()
 
   const handleFilesAdded = (newFiles: LogUploadedFile[]) => {
     setUploadedFiles((current) => [...current, ...newFiles])
@@ -34,27 +34,26 @@ export default function CreateStudyLog() {
     setIsLoading(true)
 
     try {
-      const imageFiles: string[] = []
-      const attachmentFiles: string[] = []
+      if (!groupId) {
+        throw new Error('스터디 그룹 ID가 없습니다.')
+      }
 
-      uploadedFiles.forEach((uploadedFile) => {
-        if (uploadedFile.url) {
-          if (uploadedFile.file.type.startsWith('image/')) {
-            imageFiles.push(uploadedFile.url)
-          } else {
-            attachmentFiles.push(uploadedFile.url)
-          }
-        }
-      })
+      // 1. 업로드할 모든 파일들을 하나의 배열로 만듭니다.
+      const filesToUpload = uploadedFiles.map((f) => f.file)
 
-      const response = await logApi.createStudyLog(groupUuid, {
+      // 2. 파일 업로드 API를 한 번만 호출하여 모든 파일의 URL을 받아옵니다.
+      const { images: imageUrls, attachments: attachmentUrls } =
+        await logApi.uploadFiles(filesToUpload, groupId)
+
+      // 3. 받아온 URL로 스터디 기록 생성을 요청합니다.
+      const response = await logApi.createStudyLog(groupId, {
         title,
         content,
-        imageFiles,
-        attachmentFiles,
+        imageFiles: imageUrls,
+        attachmentFiles: attachmentUrls,
       })
       console.log('스터디 기록 생성 성공:', response)
-      navigateToLogDetail()
+      navigateToLogDetail(groupId, response.id)
     } catch (error) {
       console.error('스터디 기록 생성 실패:', error)
     } finally {
@@ -69,7 +68,7 @@ export default function CreateStudyLog() {
       title={<StudyLogTitle value={title} onChange={setTitle} />}
       markdown={
         <StudyLogMarkdown
-          groupUuid={groupUuid}
+          groupUuid={groupId!}
           value={content}
           files={uploadedFiles}
           onFilesAdded={handleFilesAdded}
@@ -77,7 +76,7 @@ export default function CreateStudyLog() {
           onChange={setContent}
         />
       }
-      footer={<StudyLogFooter isLoading={isLoading} />}
+      footer={<StudyLogFooter onCancel={handleGoBack} isLoading={isLoading} />}
     />
   )
 }
