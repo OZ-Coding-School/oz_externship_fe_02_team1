@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { logApi } from '@api'
 import {
@@ -10,11 +11,10 @@ import {
   type LogUploadedFile,
 } from '@components'
 
-import { usePageNav } from '@/hooks'
-
-export const groupUuid = '663a40a5-8a96-442b-aac2-1a4b49598ba8' // 테스트용 고정 UUID
+import { usePageNav } from '@hooks'
 
 export default function CreateStudyLog() {
+  const { groupId } = useParams<{ groupId: string }>()
   const [uploadedFiles, setUploadedFiles] = useState<LogUploadedFile[]>([])
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
