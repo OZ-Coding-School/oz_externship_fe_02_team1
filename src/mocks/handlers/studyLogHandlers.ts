@@ -40,25 +40,32 @@ const createStudyLogHandler = http.post(
     const body = (await request.json()) as {
       title: string
       content: string
-      imageFiles: string[]
-      attachmentFiles: string[]
+      image_files: string[]
+      attachment_files: string[]
     }
 
     const response = {
       id: Date.now(),
-      studyGroup: 'mock-group-uuid',
+      study_group: 1, // or a mock group id
       author: {
         id: 1,
         nickname: 'mock-user',
-        profileImgUrl: 'https://example.com/mock-profile.jpg',
+        profile_img_url: 'https://example.com/mock-profile.jpg',
       },
       title: body.title,
       content: body.content,
-      images: body.imageFiles,
-      attachments: body.attachmentFiles,
-      aiSummary: 'This is a mock AI summary.',
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+      images: body.image_files.map((url, index) => ({
+        id: index,
+        img_url: url,
+      })),
+      attachments: body.attachment_files.map((url, index) => ({
+        id: index,
+        file_name: url.split('/').pop() || `file-${index}`,
+        file_url: url, // file_url로 수정
+      })),
+      ai_summary: 'This is a mock AI summary.', // ai_summary로 수정
+      created_at: new Date().toISOString(), // created_at로 수정
+      updated_at: new Date().toISOString(), // updated_at로 수정
     }
 
     // 생성된 기록을 Map에 저장
