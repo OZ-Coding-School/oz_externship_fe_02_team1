@@ -1,8 +1,9 @@
 // src/hooks/queries/log.ts
-import { logApi } from '@/api'
-import type { StudyLogDetailResponse } from '@/api/types/log'
-import type { StudyLogDetail } from '@/types'
 import { useQuery } from '@tanstack/react-query'
+
+import { logApi } from '@api'
+import type { StudyLogDetailResponse } from '@api'
+import type { StudyLogDetail } from '@/types'
 
 const QUERY_KEY = {
   studyLogDetail: (group_uuid: string, note_id: number) => [

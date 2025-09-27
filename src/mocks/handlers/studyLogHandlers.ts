@@ -1,7 +1,8 @@
 import { http, HttpResponse } from 'msw'
 
-import type { StudyLogDetailResponse } from '@/api/types/log'
 import { API_BASE_URL } from '@constants'
+
+import type { StudyLogDetailResponse } from '@api'
 
 // 생성된 스터디 기록을 임시로 저장할 Map
 const mockStudyLogs = new Map<number, StudyLogDetailResponse>()
