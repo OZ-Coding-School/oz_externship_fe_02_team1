@@ -1,4 +1,4 @@
-import type { LogUploadedFile } from '@components'
+import type { LogUploadedFile } from '@utils'
 
 export interface FileUploadFormDataTypes {
   title: string
