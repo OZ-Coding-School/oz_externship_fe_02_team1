@@ -1,11 +1,17 @@
 import { API_PATHS } from '@constants'
 import { axiosInstance } from '@lib'
 
-import type { CreateScheduleRequest, CreateScheduleResponse } from '@api'
+import type {
+  ScheduleListResponse,
+  CreateScheduleRequest,
+  CreateScheduleResponse,
+} from '@api'
 
 export const scheduleApi = {
   getScheduleList: async (groupUuid: string) => {
-    const response = await axiosInstance.get(API_PATHS.SCHEDULE.LIST(groupUuid))
+    const response = await axiosInstance.get<ScheduleListResponse>(
+      API_PATHS.SCHEDULE.LIST(groupUuid)
+    )
     return response.data
   },
   getScheduleDetail: async (groupUuid: string, scheduleId: number) => {

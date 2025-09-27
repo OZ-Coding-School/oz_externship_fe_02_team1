@@ -5,7 +5,7 @@ export interface CreateScheduleRequest {
   sessionDate: string
   startTime: string
   endTime: string
-  participants: {
+  participants?: {
     userId: number
     nickname: string
     isLeader: boolean
@@ -23,9 +23,16 @@ export interface CreateScheduleResponse {
   studyGroupName: string
   createdAt: string
   updatedAt: string
-  participants: {
+  participants?: {
     userId: number
     nickname: string
     isLeader: boolean
   }[]
+}
+
+export interface ScheduleListResponse {
+  count: number
+  next: string | null
+  previous: string | null
+  results: CreateScheduleResponse[]
 }
