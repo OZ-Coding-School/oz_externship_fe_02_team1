@@ -28,6 +28,7 @@ export interface StudyLogEdit extends StudyLogBase {
 
 export interface StudyLogDetail {
   id: number
+  studyGroupId: string
   title: string
   content: string
   author: User
