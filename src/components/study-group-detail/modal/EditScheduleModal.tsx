@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form'
 
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
 
-import type { CreateScheduleResponse } from '@api'
+import type { ScheduleDetailResponse } from '@api'
 import type { ScheduleFormInputs } from '@models'
 
 interface EditScheduleModalProps {
   isOpen: boolean
   onClose: () => void
-  schedule: CreateScheduleResponse
+  schedule: ScheduleDetailResponse
 }
 
 export default function EditScheduleModal({
@@ -26,7 +26,12 @@ export default function EditScheduleModal({
       sessionDate: schedule.sessionDate,
       startTime: schedule.startTime,
       endTime: schedule.endTime,
-      participants: schedule.participants ?? [],
+      participants:
+        schedule.participants?.map((p) => ({
+          userId: p.userId,
+          nickname: p.userNickname,
+          isLeader: p.isLeader,
+        })) ?? [],
     },
   })
 

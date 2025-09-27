@@ -10,21 +10,23 @@ import {
   Text,
   MODAL_PRESETS,
   EditScheduleModal,
+  LoadingState,
+  ErrorState,
 } from '@components'
-import { useModal } from '@hooks'
+import { useModal, useScheduleDetailQeury } from '@hooks'
 import { formatDate, formatTime } from '@utils'
 
-import type { CreateScheduleResponse } from '@api'
+import { useParams } from 'react-router'
 
 interface ScheduleDetailModalProps {
-  schedule: CreateScheduleResponse
+  scheduleId: number
   isOpen: boolean
   onClose: () => void
   confirm: () => void
 }
 
 export default function ScheduleDetailModal({
-  schedule,
+  scheduleId,
   isOpen,
   onClose,
   confirm,
@@ -34,6 +36,22 @@ export default function ScheduleDetailModal({
     openModal: openEditModal,
     closeModal: closeEditModal,
   } = useModal()
+
+  const { groupId } = useParams<{ groupId: string }>()
+
+  const {
+    data: schedule,
+    isLoading,
+    isError,
+    refetch,
+  } = useScheduleDetailQeury({
+    scheduleId,
+    studyGroupUuid: groupId || '',
+  })
+
+  if (!isOpen) {
+    return null
+  }
 
   return (
     <>
@@ -48,81 +66,108 @@ export default function ScheduleDetailModal({
           title: '스케줄 상세',
         })}
 
-        <ModalBody className="space-y-6">
-          <H5>{schedule.title}</H5>
-
-          <ScheduleDetailDiv title="스터디 목표">
-            <div className="rounded-lg bg-gray-50 p-4">
-              {schedule.objective}
-            </div>
-          </ScheduleDetailDiv>
-
-          <div className="grid grid-cols-2 gap-4">
-            <ScheduleDetailDiv title="스터디 날짜">
-              <div className="flex gap-2">
-                <CalendarIcon width={16} className="text-gray-400" />
-                <Text>{formatDate(new Date(schedule.sessionDate))}</Text>
-              </div>
-            </ScheduleDetailDiv>
-            <ScheduleDetailDiv title="스터디 시간">
-              <div className="flex gap-2">
-                <ClockIcon width={16} className="text-gray-400" />
-                <Text>
-                  {formatTime(new Date(`2000-01-01T${schedule.startTime}`))}
-                  &nbsp;~&nbsp;
-                  {formatTime(new Date(`2000-01-01T${schedule.endTime}`))}
-                </Text>
-              </div>
-            </ScheduleDetailDiv>
+        {isLoading && <LoadingState />}
+        {isError && (
+          <div className="flex items-center justify-center py-20">
+            <ErrorState onRetry={refetch} />
           </div>
+        )}
+        {!isLoading && !isError && schedule && (
+          <>
+            <ModalBody>
+              {schedule && (
+                <div className="space-y-6">
+                  <H5>{schedule.title}</H5>
 
-          <ScheduleDetailDiv
-            title={`참여자 목록 (${schedule.participants?.length}명)`}
-          >
-            <ul className="flex flex-col gap-3 rounded-lg border border-gray-200 p-4">
-              {schedule.participants?.length ? (
-                <>
-                  {schedule.participants.map((participant) => (
-                    <li key={participant.userId} className="flex items-center">
-                      <Avatar size="sm" alt={participant.nickname} />
-                      <Text variant="small" className="mr-2 ml-3">
-                        {participant.nickname}
-                      </Text>
-                      {participant.isLeader && (
-                        <Badge
-                          color="primary"
-                          size="md"
-                          className="rounded-sm !px-2 text-xs"
-                        >
-                          리더
-                        </Badge>
+                  <ScheduleDetailDiv title="스터디 목표">
+                    <div className="rounded-lg bg-gray-50 p-4">
+                      {schedule.objective}
+                    </div>
+                  </ScheduleDetailDiv>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <ScheduleDetailDiv title="스터디 날짜">
+                      <div className="flex gap-2">
+                        <CalendarIcon width={16} className="text-gray-400" />
+                        <Text>
+                          {formatDate(new Date(schedule.sessionDate))}
+                        </Text>
+                      </div>
+                    </ScheduleDetailDiv>
+                    <ScheduleDetailDiv title="스터디 시간">
+                      <div className="flex gap-2">
+                        <ClockIcon width={16} className="text-gray-400" />
+                        <Text>
+                          {formatTime(
+                            new Date(`2000-01-01T${schedule.startTime}`)
+                          )}
+                          &nbsp;~&nbsp;
+                          {formatTime(
+                            new Date(`2000-01-01T${schedule.endTime}`)
+                          )}
+                        </Text>
+                      </div>
+                    </ScheduleDetailDiv>
+                  </div>
+
+                  <ScheduleDetailDiv
+                    title={`참여자 목록 (${schedule.participantCount}명)`}
+                  >
+                    <ul className="flex flex-col gap-3 rounded-lg border border-gray-200 p-4">
+                      {schedule.participants?.length ? (
+                        <>
+                          {schedule.participants.map((participant) => (
+                            <li
+                              key={participant.userId}
+                              className="flex items-center"
+                            >
+                              <Avatar
+                                size="sm"
+                                alt={participant.userNickname}
+                              />
+                              <Text variant="small" className="mr-2 ml-3">
+                                {participant.userNickname}
+                              </Text>
+                              {participant.isLeader && (
+                                <Badge
+                                  color="primary"
+                                  size="md"
+                                  className="rounded-sm !px-2 text-xs"
+                                >
+                                  리더
+                                </Badge>
+                              )}
+                            </li>
+                          ))}
+                        </>
+                      ) : (
+                        <Text>현재 이 스케줄에 참여 중인 인원이 없습니다.</Text>
                       )}
-                    </li>
-                  ))}
-                </>
-              ) : (
-                <Text>현재 이 스케줄에 참여 중인 인원이 없습니다.</Text>
+                    </ul>
+                  </ScheduleDetailDiv>
+                </div>
               )}
-            </ul>
-          </ScheduleDetailDiv>
-        </ModalBody>
-
-        {MODAL_PRESETS.scheduleDetail.footer({
-          onClose: onClose,
-          onConfirm: confirm,
-          createDate: formatDate(new Date(schedule.createdAt)),
-          onEdit: () => {
-            onClose()
-            openEditModal()
-          },
-        })}
+            </ModalBody>
+            {MODAL_PRESETS.scheduleDetail.footer({
+              onClose: onClose,
+              onConfirm: confirm,
+              createDate: formatDate(new Date(schedule.createdAt)),
+              onEdit: () => {
+                onClose()
+                openEditModal()
+              },
+            })}
+          </>
+        )}
       </BaseModal>
 
-      <EditScheduleModal
-        isOpen={isEditModalOpen}
-        onClose={closeEditModal}
-        schedule={schedule}
-      />
+      {schedule && (
+        <EditScheduleModal
+          isOpen={isEditModalOpen}
+          onClose={closeEditModal}
+          schedule={schedule}
+        />
+      )}
     </>
   )
 }
