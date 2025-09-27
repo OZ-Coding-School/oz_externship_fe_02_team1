@@ -1,4 +1,4 @@
-import { formatFileSize } from '@components'
+import { formatFileSize } from '@utils'
 
 export const MAX_FILE_SIZE_MB = 10
 export const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024
