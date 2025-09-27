@@ -2,7 +2,8 @@ import { http, HttpResponse } from 'msw'
 
 import { API_BASE_URL, API_PATHS } from '@constants'
 
-import { groupUuid } from '@/pages/CreateStudyLog'
+// 생성된 스터디 기록을 임시로 저장할 Map
+const mockStudyLogs = new Map<number, StudyLogDetailResponse>()
 
 // 스터디 로그 파일 업로드 핸들러
 const uploadFileHandler = http.post(
@@ -59,6 +60,9 @@ const createStudyLogHandler = http.post(
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     }
+
+    // 생성된 기록을 Map에 저장
+    mockStudyLogs.set(newLog.id, newLog)
 
     return HttpResponse.json(response, { status: 201 })
   }
