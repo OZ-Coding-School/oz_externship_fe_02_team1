@@ -51,7 +51,7 @@ export default function CalendarBodyDate({
           <button
             type="button"
             onClick={openModal}
-            className="bg-primary-100 border-primary-100 mt-2 aspect-square w-full overflow-hidden rounded-sm border-4 text-left"
+            className="bg-primary-100 border-primary-100 mt-2 w-full overflow-hidden rounded-sm border-4 text-left"
           >
             <Text
               className={cn('block font-medium text-nowrap', scheduleTextStyle)}
