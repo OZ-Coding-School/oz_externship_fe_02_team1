@@ -1,4 +1,3 @@
-import { keysToCamel } from '@utils/caseConverter'
 import axios, {
   AxiosError,
   type AxiosInstance,
@@ -7,6 +6,7 @@ import axios, {
 } from 'axios'
 
 import { API_BASE_URL, API_PATHS } from '@constants'
+import { keysToCamel } from '@utils/caseConverter'
 
 let isRefreshing = false
 let refreshSubscribers: ((token: string) => void)[] = []
