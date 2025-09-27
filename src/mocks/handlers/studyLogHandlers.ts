@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw'
 
-import { API_BASE_URL, API_PATHS } from '@constants'
+import type { StudyLogDetailResponse } from '@/api/types/log'
+import { API_BASE_URL } from '@constants'
 
 // 생성된 스터디 기록을 임시로 저장할 Map
 const mockStudyLogs = new Map<number, StudyLogDetailResponse>()
@@ -44,7 +45,7 @@ const createStudyLogHandler = http.post(
       attachment_files: string[]
     }
 
-    const response = {
+    const newLog: StudyLogDetailResponse = {
       id: Date.now(),
       study_group: 1, // or a mock group id
       author: {
@@ -71,8 +72,30 @@ const createStudyLogHandler = http.post(
     // 생성된 기록을 Map에 저장
     mockStudyLogs.set(newLog.id, newLog)
 
-    return HttpResponse.json(response, { status: 201 })
+    return HttpResponse.json(newLog, { status: 201 })
   }
 )
 
-export const studyLogHandlers = [uploadFileHandler, createStudyLogHandler]
+// 스터디 기록 상세 정보 핸들러
+const getStudyLogDetailHandler = http.get(
+  `${API_BASE_URL}/study-notes/:groupId/notes/:noteId`,
+  ({ params }) => {
+    const { noteId } = params
+
+    // Map에서 noteId에 해당하는 기록을 찾습니다.
+    const logData = mockStudyLogs.get(Number(noteId))
+
+    if (logData) {
+      return HttpResponse.json(logData, { status: 200 })
+    }
+
+    // 해당하는 기록이 없으면 404 에러를 반환합니다.
+    return new HttpResponse(null, { status: 404 })
+  }
+)
+
+export const studyLogHandlers = [
+  uploadFileHandler,
+  createStudyLogHandler,
+  getStudyLogDetailHandler,
+]
