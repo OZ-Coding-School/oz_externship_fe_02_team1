@@ -6,6 +6,7 @@ import type {
   StudyLogDetailResponse,
   UploadLogFileResponse,
 } from '@api'
+import { keysToSnake } from '@utils'
 
 export const logApi = {
   uploadFiles: async (files: File[], group_uuid: string) => {
@@ -36,12 +37,7 @@ export const logApi = {
       attachmentFiles: string[]
     }
   ): Promise<StudyLogDetailResponse> => {
-    const requestData: CreateStudyLogRequest = {
-      title: payload.title,
-      content: payload.content,
-      image_files: payload.imageFiles,
-      attachment_files: payload.attachmentFiles,
-    }
+    const requestData = keysToSnake(payload) as CreateStudyLogRequest
     const { data } = await axiosInstance.post<StudyLogDetailResponse>(
       API_PATHS.STUDY_NOTES.CREATE_AND_SUMMARY(group_uuid),
       requestData
@@ -50,7 +46,7 @@ export const logApi = {
   },
 
   getStudyLogDetail: async (group_uuid: string, note_id: number) => {
-    const response = await axiosInstance.get(
+    const response = await axiosInstance.get<StudyLogDetailResponse>(
       API_PATHS.STUDY_NOTES.DETAIL(group_uuid, note_id)
     )
     return response.data

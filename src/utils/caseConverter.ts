@@ -25,3 +25,27 @@ export const keysToCamel = (o: any): any => {
 
   return o
 }
+
+const toSnake = (s: string): string => {
+  return s.replace(/[A-Z]/g, (letter, index) => {
+    return index === 0 ? letter.toLowerCase() : '_' + letter.toLowerCase()
+  })
+}
+
+export const keysToSnake = (o: any): any => {
+  if (isObject(o)) {
+    const n: { [key: string]: any } = {}
+
+    Object.keys(o).forEach((k) => {
+      n[toSnake(k)] = keysToSnake((o as any)[k])
+    })
+
+    return n
+  } else if (Array.isArray(o)) {
+    return o.map((i) => {
+      return keysToSnake(i)
+    })
+  }
+
+  return o
+}
