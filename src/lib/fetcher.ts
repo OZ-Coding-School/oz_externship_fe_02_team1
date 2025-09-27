@@ -1,3 +1,4 @@
+import { keysToCamel } from '@utils/caseConverter'
 import axios, {
   AxiosError,
   type AxiosInstance,
@@ -34,7 +35,12 @@ axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 })
 
 axiosInstance.interceptors.response.use(
-  (response: AxiosResponse) => response,
+  (response: AxiosResponse) => {
+    if (response.data) {
+      response.data = keysToCamel(response.data)
+    }
+    return response
+  },
   async (error: AxiosError) => {
     const originalRequest = error.config as InternalAxiosRequestConfig & {
       _retry?: boolean
