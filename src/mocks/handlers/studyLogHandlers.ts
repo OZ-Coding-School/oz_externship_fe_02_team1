@@ -23,12 +23,10 @@ const uploadFileHandler = http.post(
     }
 
     const images = imageFiles.map(
-      (file) =>
-        `https://example.com/mock-images/${encodeURIComponent(file.name)}`
+      (file) => `/mock-images/${encodeURIComponent(file.name)}`
     )
     const attachments = attachmentFiles.map(
-      (file) =>
-        `https://example.com/mock-attachments/${encodeURIComponent(file.name)}`
+      (file) => `/mock-attachments/${encodeURIComponent(file.name)}`
     )
 
     return HttpResponse.json({ images, attachments }, { status: 200 })
