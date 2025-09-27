@@ -51,11 +51,9 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
     const formData = buildCreateStudyGroupFormData(values)
 
     try {
-      const response = await createStudyGroupMutation.mutateAsync(formData)
-      console.log('Succeed to create study group:', response)
+      await createStudyGroupMutation.mutateAsync(formData)
       alert('스터디 그룹이 성공적으로 생성되었습니다!')
     } catch (error) {
-      console.error('Failed to create study group:', error)
       alert('스터디 그룹 생성에 실패했습니다. 다시 시도해주세요.')
     }
   }

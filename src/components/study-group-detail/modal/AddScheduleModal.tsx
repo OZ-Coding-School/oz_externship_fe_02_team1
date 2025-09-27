@@ -59,7 +59,6 @@ export default function AddScheduleModal({
       alert('스케줄이 생성되었습니다.')
       handleClose()
     } catch (error) {
-      console.error('Failed to create schedule', error)
       alert('스케줄 생성에 실패했습니다.')
     }
   }

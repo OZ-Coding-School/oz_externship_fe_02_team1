@@ -10,8 +10,6 @@ export default function StudyGroupSchedule() {
 
   const { data: scheduleData } = useScheduleListQeury(groupId || '')
 
-  console.log(scheduleData)
-
   return (
     <Card title="스케줄 관리" titleClassName="pt-1.5 pb-7.5 text-xl">
       <Button className="absolute right-6" onClick={openModal}>
