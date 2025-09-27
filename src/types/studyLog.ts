@@ -1,10 +1,5 @@
 import type { User } from '@models'
 
-export interface AiSummary {
-  summary: string
-  collapsible: boolean
-}
-
 export interface Image {
   id: number
   imgUrl: string
@@ -28,12 +23,13 @@ export interface StudyLogEdit extends StudyLogBase {
 
 export interface StudyLogDetail {
   id: number
+  studyGroupId: string
   title: string
   content: string
   author: User
   images: Image[] | null
   attachments: Attachment[] | null
-  aiSummary: AiSummary | null
+  aiSummary: string | null
   createdAt: string
   updatedAt: string
 }

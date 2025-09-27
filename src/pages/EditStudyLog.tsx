@@ -1,22 +1,59 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import {
-  type LogUploadedFile,
   StudyLogHeader,
   StudyLogTitle,
   StudyLogMarkdown,
   StudyLogFooter,
   StudyLogLayout,
 } from '@components'
+import { usePageNav, useStudyLogQuery } from '@hooks'
 
-// 임시 UUID, 나중에 동적으로 받아와야 합니다.
-const groupUuid = '663a40a5-8a96-442b-aac2-1a4b49598ba8'
+import type { LogUploadedFile } from '@/utils'
 
 export default function EditStudyLog() {
+  const { groupId, recordId } = useParams<{
+    groupId: string
+    recordId: string
+  }>()
+  const { data: studyLogData, isLoading: isFetching } = useStudyLogQuery(
+    groupId!,
+    Number(recordId)
+  )
+  const { handleGoBack, navigateToLogDetail } = usePageNav()
+
   const [uploadedFiles, setUploadedFiles] = useState<LogUploadedFile[]>([])
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    if (studyLogData) {
+      setTitle(studyLogData.title)
+      setContent(studyLogData.content)
+
+      const existingImages =
+        studyLogData.images?.map(
+          (img): LogUploadedFile => ({
+            id: String(img.id),
+            file: new File([], img.imgUrl.split('/').pop() || 'image.png'),
+            url: img.imgUrl,
+          })
+        ) || []
+
+      const existingAttachments =
+        studyLogData.attachments?.map(
+          (att): LogUploadedFile => ({
+            id: String(att.id),
+            file: new File([], att.fileName),
+            url: att.fileUrl,
+          })
+        ) || []
+
+      setUploadedFiles([...existingImages, ...existingAttachments])
+    }
+  }, [studyLogData])
 
   const handleFilesAdded = (newFiles: LogUploadedFile[]) => {
     setUploadedFiles((current) => [...current, ...newFiles])
@@ -27,9 +64,15 @@ export default function EditStudyLog() {
   }
 
   const handleSubmit = (e: React.FormEvent) => {
+    // TODO: 수정 API 호출 로직 구현
     e.preventDefault()
     setIsLoading(true)
     console.log({ title, content, uploadedFiles })
+    // 예시: navigateToLogDetail(groupId, Number(recordId))
+  }
+
+  if (isFetching) {
+    return <div>데이터를 불러오는 중...</div>
   }
 
   return (
@@ -39,7 +82,7 @@ export default function EditStudyLog() {
       title={<StudyLogTitle value={title} onChange={setTitle} />}
       markdown={
         <StudyLogMarkdown
-          groupUuid={groupUuid}
+          groupUuid={groupId!}
           value={content}
           files={uploadedFiles}
           onFilesAdded={handleFilesAdded}
@@ -47,7 +90,13 @@ export default function EditStudyLog() {
           onChange={setContent}
         />
       }
-      footer={<StudyLogFooter isLoading={isLoading} />}
+      footer={
+        <StudyLogFooter
+          onDetail={navigateToLogDetail}
+          onCancel={handleGoBack}
+          isLoading={isLoading}
+        />
+      }
     />
   )
 }

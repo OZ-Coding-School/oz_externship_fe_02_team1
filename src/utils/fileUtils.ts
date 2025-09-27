@@ -13,12 +13,20 @@ export interface LogUploadedFile {
   url?: string
 }
 
+//  * 파일 이름의 확장자를 기반으로 이미지 파일인지 확인합니다.
+
+export const isImageFile = (fileName: string): boolean => {
+  const imageExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg']
+  const lowercasedName = fileName.toLowerCase()
+  return imageExtensions.some((ext) => lowercasedName.endsWith(ext))
+}
+
 // 파일 유효성 검사
 export const checkValidateFile = (file: File): string | null => {
   if (file.size > MAX_FILE_SIZE_BYTES) {
     return ERROR_MESSAGES.FILE_TOO_LARGE(file)
   }
-  if (!ALLOWED_FILE_TYPES.includes(file.type)) {
+  if (!ALLOWED_FILE_TYPES.includes(file.type) && !isImageFile(file.name)) {
     return ERROR_MESSAGES.UNSUPPORTED_TYPE(file)
   }
   return null
@@ -88,6 +96,13 @@ export const processNewFiles = (
   return { filesToAdd, errors }
 }
 
+// 파일 크기 포맷
+export const formatFileSize = (size: number): string => {
+  if (size >= 1024 * 1024) return `${(size / (1024 * 1024)).toFixed(2)} MB`
+  if (size >= 1024) return `${(size / 1024).toFixed(2)} KB`
+  return `${size} B`
+}
+
 // 파일 추가 처리 핸들러 (Side Effect 담당)
 export const handleFileProcessing = (
   newFiles: File[],
@@ -144,11 +159,4 @@ export const handleFileDrop = (
   if (!e.dataTransfer.files) return
   const droppedFiles = Array.from(e.dataTransfer.files)
   onFilesAdded(droppedFiles)
-}
-
-// 파일 크기 포맷
-export const formatFileSize = (size: number): string => {
-  if (size >= 1024 * 1024) return `${(size / (1024 * 1024)).toFixed(2)} MB`
-  if (size >= 1024) return `${(size / 1024).toFixed(2)} KB`
-  return `${size} B`
 }

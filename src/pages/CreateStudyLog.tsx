@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { logApi } from '@api'
 import {
@@ -7,19 +8,18 @@ import {
   StudyLogLayout,
   StudyLogMarkdown,
   StudyLogTitle,
-  type LogUploadedFile,
 } from '@components'
+import { usePageNav } from '@hooks'
 
-import { usePageNav } from '@/hooks'
-
-export const groupUuid = '663a40a5-8a96-442b-aac2-1a4b49598ba8' // 테스트용 고정 UUID
+import type { LogUploadedFile } from '@utils'
 
 export default function CreateStudyLog() {
+  const { groupId } = useParams<{ groupId: string }>()
   const [uploadedFiles, setUploadedFiles] = useState<LogUploadedFile[]>([])
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const { navigateToLogDetail } = usePageNav()
+  const { navigateToLogDetail, handleGoBack } = usePageNav()
 
   const handleFilesAdded = (newFiles: LogUploadedFile[]) => {
     setUploadedFiles((current) => [...current, ...newFiles])
@@ -34,27 +34,30 @@ export default function CreateStudyLog() {
     setIsLoading(true)
 
     try {
-      const imageFiles: string[] = []
-      const attachmentFiles: string[] = []
+      if (!groupId) {
+        throw new Error('스터디 그룹 ID가 없습니다.')
+      }
 
-      uploadedFiles.forEach((uploadedFile) => {
-        if (uploadedFile.url) {
-          if (uploadedFile.file.type.startsWith('image/')) {
-            imageFiles.push(uploadedFile.url)
-          } else {
-            attachmentFiles.push(uploadedFile.url)
-          }
-        }
-      })
+      const filesToUpload = uploadedFiles.map((f) => f.file)
 
-      const response = await logApi.createStudyLog(groupUuid, {
+      let imageUrls: string[] = []
+      let attachmentUrls: string[] = []
+
+      if (filesToUpload.length > 0) {
+        const response = await logApi.uploadFiles(filesToUpload, groupId)
+        imageUrls = response.images
+        attachmentUrls = response.attachments
+      }
+
+      //  받아온 URL로 스터디 기록 생성을 요청합니다.
+      const response = await logApi.createStudyLog(groupId, {
         title,
         content,
-        imageFiles,
-        attachmentFiles,
+        imageFiles: imageUrls,
+        attachmentFiles: attachmentUrls,
       })
       console.log('스터디 기록 생성 성공:', response)
-      navigateToLogDetail()
+      navigateToLogDetail(groupId, response.id)
     } catch (error) {
       console.error('스터디 기록 생성 실패:', error)
     } finally {
@@ -69,7 +72,7 @@ export default function CreateStudyLog() {
       title={<StudyLogTitle value={title} onChange={setTitle} />}
       markdown={
         <StudyLogMarkdown
-          groupUuid={groupUuid}
+          groupUuid={groupId!}
           value={content}
           files={uploadedFiles}
           onFilesAdded={handleFilesAdded}
@@ -77,7 +80,13 @@ export default function CreateStudyLog() {
           onChange={setContent}
         />
       }
-      footer={<StudyLogFooter isLoading={isLoading} />}
+      footer={
+        <StudyLogFooter
+          onDetail={navigateToLogDetail}
+          onCancel={handleGoBack}
+          isLoading={isLoading}
+        />
+      }
     />
   )
 }

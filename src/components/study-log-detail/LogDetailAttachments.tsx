@@ -1,5 +1,6 @@
-import { AttachmentIcon, DownloadIcon, ZipIcon } from '@assets'
+import { AttachmentIcon, DownloadIcon, ImageIcon, ZipIcon } from '@assets'
 import { Text } from '@components'
+import { isImageFile } from '@utils'
 
 import type { Attachment } from '@models'
 
@@ -25,7 +26,7 @@ export default function LogDetailAttachments({
               key={file.id}
               className="flex w-full items-center gap-3 rounded-lg border border-gray-200 p-3"
             >
-              <ZipIcon />
+              {isImageFile(file.fileName) ? <ImageIcon /> : <ZipIcon />}
               <a
                 target="_blank"
                 rel="noopener noreferrer"

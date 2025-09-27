@@ -1,4 +1,4 @@
-import type { LogUploadedFile } from '@components'
+import type { LogUploadedFile } from '@utils'
 
 interface UploadedFileListProps {
   files: LogUploadedFile[]

@@ -4,14 +4,12 @@ import { useState } from 'react'
 import { AIIcon } from '@assets'
 import { Text } from '@components'
 
-import type { AiSummary } from '@models'
-
 interface LogDetailAISummaryProps {
-  aiSummary: AiSummary
+  summaryText: string
 }
 
 export default function LogDetailAISummary({
-  aiSummary,
+  summaryText,
 }: LogDetailAISummaryProps) {
   const [isSummaryOpened, setIsSummaryOpened] = useState(false)
 
@@ -25,7 +23,7 @@ export default function LogDetailAISummary({
 
   const Icon = toggleConfig.icon
 
-  if (!aiSummary || !aiSummary.summary) {
+  if (!summaryText) {
     return null
   }
   return (
@@ -49,7 +47,7 @@ export default function LogDetailAISummary({
       </div>
       {isSummaryOpened && (
         <div className="rounded-lg bg-yellow-50 p-4">
-          <Text className="text-gray-800">{aiSummary.summary}</Text>
+          <Text className="text-gray-800">{summaryText}</Text>
         </div>
       )}
     </section>
