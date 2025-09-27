@@ -44,6 +44,8 @@ const createStudyLogHandler = http.post(
       attachment_files: string[]
     }
 
+    let fileIdCounter = 0
+
     const newLog: StudyLogDetailResponse = {
       id: Date.now(),
       study_group: 1, // or a mock group id
@@ -54,22 +56,22 @@ const createStudyLogHandler = http.post(
       },
       title: body.title,
       content: body.content,
-      images: body.image_files.map((url, index) => ({
-        id: index,
+      images: body.image_files.map((url) => ({
+        id: fileIdCounter++,
         img_url: url,
       })),
       attachments: body.attachment_files.map((url, index) => ({
-        id: index,
+        id: fileIdCounter++,
         file_name: decodeURIComponent(url.split('/').pop() || `file-${index}`),
-        file_url: url, // file_url로 수정
+        file_url: url,
       })),
       // 입력된 제목과 내용을 바탕으로 동적인 AI 요약을 생성합니다.
       ai_summary:
         body.title || body.content
           ? `AI 요약: "${body.title}" 주제에 대해 학습했으며, 본문 내용은 "${body.content.substring(0, 30)}..."(으)로 시작합니다.`
           : '입력된 내용이 없어 AI가 요약할 수 없습니다.',
-      created_at: new Date().toISOString(), // created_at로 수정
-      updated_at: new Date().toISOString(), // updated_at로 수정
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
     }
 
     // 생성된 기록을 Map에 저장
