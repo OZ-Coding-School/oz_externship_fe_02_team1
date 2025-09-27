@@ -1,10 +1,5 @@
 import type { User } from '@models'
 
-export interface AiSummary {
-  summary: string
-  collapsible: boolean
-}
-
 export interface Image {
   id: number
   imgUrl: string
@@ -34,7 +29,7 @@ export interface StudyLogDetail {
   author: User
   images: Image[] | null
   attachments: Attachment[] | null
-  aiSummary: AiSummary | null
+  aiSummary: string | null
   createdAt: string
   updatedAt: string
 }
