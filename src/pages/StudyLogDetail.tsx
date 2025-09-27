@@ -9,7 +9,7 @@ import {
   LogDetailMain,
 } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
-import { useStudyLogDetail } from '@hooks'
+import { useStudyLogQuery } from '@hooks'
 
 export default function StudyLogDetail() {
   const { groupId, recordId } = useParams<{
@@ -20,7 +20,7 @@ export default function StudyLogDetail() {
   // recordId를 숫자로 변환
   const noteId = Number(recordId)
 
-  const { data: studyLogData, isLoading } = useStudyLogDetail(groupId!, noteId)
+  const { data: studyLogData, isLoading } = useStudyLogQuery(groupId!, noteId)
 
   const breadCrumbPath = useMemo(() => {
     if (!groupId) return BREAD_CRUMB_PATH

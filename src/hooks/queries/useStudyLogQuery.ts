@@ -5,19 +5,13 @@ import { keysToCamel } from '@utils'
 
 import type { StudyLogDetail } from '@/types'
 
+import { logDetailKey } from './queryKey'
+
 import type { StudyLogDetailResponse } from '@api'
 
-const QUERY_KEY = {
-  studyLogDetail: (group_uuid: string, note_id: number) => [
-    'studyLogDetail',
-    group_uuid,
-    note_id,
-  ],
-}
-
-export const useStudyLogDetail = (group_uuid: string, note_id: number) => {
+export const useStudyLogQuery = (group_uuid: string, note_id: number) => {
   return useQuery({
-    queryKey: QUERY_KEY.studyLogDetail(group_uuid, note_id),
+    queryKey: logDetailKey.studyLogDetail(group_uuid, note_id),
     queryFn: () => logApi.getStudyLogDetail(group_uuid, note_id),
     select: (data: StudyLogDetailResponse): StudyLogDetail => {
       const camelCasedData = keysToCamel(data)

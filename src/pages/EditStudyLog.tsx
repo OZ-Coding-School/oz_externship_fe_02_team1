@@ -8,7 +8,8 @@ import {
   StudyLogFooter,
   StudyLogLayout,
 } from '@components'
-import { usePageNav, useStudyLogDetail } from '@hooks'
+import { usePageNav, useStudyLogQuery } from '@hooks'
+
 import type { LogUploadedFile } from '@/utils'
 
 export default function EditStudyLog() {
@@ -16,11 +17,11 @@ export default function EditStudyLog() {
     groupId: string
     recordId: string
   }>()
-  const { data: studyLogData, isLoading: isFetching } = useStudyLogDetail(
+  const { data: studyLogData, isLoading: isFetching } = useStudyLogQuery(
     groupId!,
     Number(recordId)
   )
-  const { handleGoBack } = usePageNav()
+  const { handleGoBack, navigateToLogDetail } = usePageNav()
 
   const [uploadedFiles, setUploadedFiles] = useState<LogUploadedFile[]>([])
   const [title, setTitle] = useState('')
@@ -89,7 +90,13 @@ export default function EditStudyLog() {
           onChange={setContent}
         />
       }
-      footer={<StudyLogFooter onCancel={handleGoBack} isLoading={isLoading} />}
+      footer={
+        <StudyLogFooter
+          onDetail={navigateToLogDetail}
+          onCancel={handleGoBack}
+          isLoading={isLoading}
+        />
+      }
     />
   )
 }

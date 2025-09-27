@@ -1,6 +1,6 @@
 export * from '@hooks/queries/useStudyGroupMutations'
 export * from '@/hooks/queries/useStudyGroupQuery'
-export * from '@hooks/queries/useStudyLogDetail'
+export * from '@/hooks/queries/useStudyLogQuery'
 export * from '@/hooks/queries/useChatRoomsListQuery'
 export * from '@hooks/queries/queryKey'
 export * from '@hooks/queries/useScheduleMutations'
