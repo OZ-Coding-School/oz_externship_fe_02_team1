@@ -62,7 +62,7 @@ const createStudyLogHandler = http.post(
       })),
       attachments: body.attachment_files.map((url, index) => ({
         id: index,
-        file_name: url.split('/').pop() || `file-${index}`,
+        file_name: decodeURIComponent(url.split('/').pop() || `file-${index}`),
         file_url: url, // file_url로 수정
       })),
       // 입력된 제목과 내용을 바탕으로 동적인 AI 요약을 생성합니다.
