@@ -27,6 +27,33 @@ export default function EditStudyLog() {
   const [content, setContent] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
+  useEffect(() => {
+    if (studyLogData) {
+      setTitle(studyLogData.title)
+      setContent(studyLogData.content)
+
+      const existingImages =
+        studyLogData.images?.map(
+          (img): LogUploadedFile => ({
+            id: String(img.id),
+            file: new File([], img.imgUrl.split('/').pop() || 'image.png'),
+            url: img.imgUrl,
+          })
+        ) || []
+
+      const existingAttachments =
+        studyLogData.attachments?.map(
+          (att): LogUploadedFile => ({
+            id: String(att.id),
+            file: new File([], att.fileName),
+            url: att.fileUrl,
+          })
+        ) || []
+
+      setUploadedFiles([...existingImages, ...existingAttachments])
+    }
+  }, [studyLogData])
+
   const handleFilesAdded = (newFiles: LogUploadedFile[]) => {
     setUploadedFiles((current) => [...current, ...newFiles])
   }
@@ -36,9 +63,15 @@ export default function EditStudyLog() {
   }
 
   const handleSubmit = (e: React.FormEvent) => {
+    // TODO: 수정 API 호출 로직 구현
     e.preventDefault()
     setIsLoading(true)
     console.log({ title, content, uploadedFiles })
+    // 예시: navigateToLogDetail(groupId, Number(recordId))
+  }
+
+  if (isFetching) {
+    return <div>데이터를 불러오는 중...</div>
   }
 
   return (
@@ -48,7 +81,7 @@ export default function EditStudyLog() {
       title={<StudyLogTitle value={title} onChange={setTitle} />}
       markdown={
         <StudyLogMarkdown
-          groupUuid={groupUuid}
+          groupUuid={groupId!}
           value={content}
           files={uploadedFiles}
           onFilesAdded={handleFilesAdded}
@@ -56,7 +89,7 @@ export default function EditStudyLog() {
           onChange={setContent}
         />
       }
-      footer={<StudyLogFooter isLoading={isLoading} />}
+      footer={<StudyLogFooter onCancel={handleGoBack} isLoading={isLoading} />}
     />
   )
 }
