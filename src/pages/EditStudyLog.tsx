@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import {
   type LogUploadedFile,
@@ -8,11 +9,19 @@ import {
   StudyLogFooter,
   StudyLogLayout,
 } from '@components'
-
-// 임시 UUID, 나중에 동적으로 받아와야 합니다.
-const groupUuid = '663a40a5-8a96-442b-aac2-1a4b49598ba8'
+import { usePageNav, useStudyLogDetail } from '@hooks'
 
 export default function EditStudyLog() {
+  const { groupId, recordId } = useParams<{
+    groupId: string
+    recordId: string
+  }>()
+  const { data: studyLogData, isLoading: isFetching } = useStudyLogDetail(
+    groupId!,
+    Number(recordId)
+  )
+  const { handleGoBack } = usePageNav()
+
   const [uploadedFiles, setUploadedFiles] = useState<LogUploadedFile[]>([])
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
