@@ -1,4 +1,5 @@
 import { CalendarIcon, ClockIcon } from '@heroicons/react/24/outline'
+import { useParams } from 'react-router'
 
 import {
   Avatar,
@@ -16,7 +17,6 @@ import {
 import { useModal, useScheduleDetailQeury } from '@hooks'
 import { formatDate, formatTime } from '@utils'
 
-import { useParams } from 'react-router'
 
 interface ScheduleDetailModalProps {
   scheduleId: number
