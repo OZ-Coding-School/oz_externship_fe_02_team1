@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import {
-  type LogUploadedFile,
   StudyLogHeader,
   StudyLogTitle,
   StudyLogMarkdown,
@@ -10,6 +9,7 @@ import {
   StudyLogLayout,
 } from '@components'
 import { usePageNav, useStudyLogDetail } from '@hooks'
+import type { LogUploadedFile } from '@/utils'
 
 export default function EditStudyLog() {
   const { groupId, recordId } = useParams<{

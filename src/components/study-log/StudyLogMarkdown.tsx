@@ -1,9 +1,5 @@
-import {
-  MarkdownEditor,
-  Text,
-  LogFileUpload,
-  type LogUploadedFile,
-} from '@components'
+import type { LogUploadedFile } from '@utils'
+import { MarkdownEditor, Text, LogFileUpload } from '@components'
 
 interface StudyLogMarkdownProps {
   groupUuid: string
