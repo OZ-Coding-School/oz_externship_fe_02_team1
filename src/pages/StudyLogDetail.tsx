@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 import { Link, useParams } from 'react-router'
 
 import {
@@ -9,9 +9,7 @@ import {
   LogDetailMain,
 } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
-import { dummyStudyLog } from '@mocks/datas/dummyStudyLog'
-
-import type { StudyLogDetail } from '@models'
+import { useStudyLogDetail } from '@hooks'
 
 export default function StudyLogDetail() {
   const { groupId, recordId } = useParams<{
@@ -24,27 +22,26 @@ export default function StudyLogDetail() {
 
   const { data: studyLogData, isLoading } = useStudyLogDetail(groupId!, noteId)
 
-  const { recordId } = useParams()
-
-  // api나오면 더미데이터 교체예정
-  useEffect(() => {
-    if (!recordId) return
-    setIsLoading(true)
-    setStudyLogData(dummyStudyLog)
-    setIsLoading(false)
-  }, [recordId])
+  const breadCrumbPath = useMemo(() => {
+    if (!groupId) return BREAD_CRUMB_PATH
+    return [
+      ...BREAD_CRUMB_PATH,
+      { label: '스터디 기록', to: `/study-group/${groupId}` },
+    ]
+  }, [groupId])
 
   if (isLoading) {
     return <LoadingState />
   }
 
   if (!studyLogData) {
-    return null
+    // TODO: 404 컴포넌트 또는 에러 메시지
+    return <div>스터디 기록을 찾을 수 없습니다.</div>
   }
 
   return (
     <div className="flex flex-col gap-4">
-      <BreadCrumb items={BREAD_CRUMB_PATH} />
+      <BreadCrumb items={breadCrumbPath} />
       <div>
         <LogDetailHeader studyLogData={studyLogData} />
         {studyLogData.aiSummary && (
