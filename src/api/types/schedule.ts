@@ -63,5 +63,5 @@ export interface ScheduleDetailResponse {
     isLeader: boolean
   }[]
   createdAt: string
-  updatedt: string
+  updatedAt: string
 }
