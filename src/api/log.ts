@@ -1,7 +1,11 @@
 import { API_PATHS } from '@constants'
 import { axiosInstance } from '@lib'
 
-import type { CreateStudyLogRequest, UploadLogFileResponse } from '@api'
+import type {
+  CreateStudyLogRequest,
+  StudyLogDetailResponse,
+  UploadLogFileResponse,
+} from '@api'
 
 export const logApi = {
   uploadFiles: async (files: File[], group_uuid: string) => {
@@ -17,7 +21,7 @@ export const logApi = {
       API_PATHS.STUDY_NOTES.UPLOAD(group_uuid),
       formData,
       {
-        timeout: 60000, // 파일 업로드 타임아웃을 60초로 설정
+        timeout: 60000,
       }
     )
     return data
@@ -25,11 +29,22 @@ export const logApi = {
 
   createStudyLog: async (
     group_uuid: string,
-    payload: CreateStudyLogRequest
-  ) => {
-    const { data } = await axiosInstance.post(
+    payload: {
+      title: string
+      content: string
+      imageFiles: string[]
+      attachmentFiles: string[]
+    }
+  ): Promise<StudyLogDetailResponse> => {
+    const requestData: CreateStudyLogRequest = {
+      title: payload.title,
+      content: payload.content,
+      image_files: payload.imageFiles,
+      attachment_files: payload.attachmentFiles,
+    }
+    const { data } = await axiosInstance.post<StudyLogDetailResponse>(
       API_PATHS.STUDY_NOTES.CREATE_AND_SUMMARY(group_uuid),
-      payload
+      requestData
     )
     return data
   },
