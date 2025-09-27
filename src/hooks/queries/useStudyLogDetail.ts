@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { logApi } from '@api'
-import type { StudyLogDetailResponse } from '@api'
-import type { StudyLogDetail } from '@/types'
 import { keysToCamel } from '@utils'
+
+import type { StudyLogDetail } from '@/types'
+
+import type { StudyLogDetailResponse } from '@api'
 
 const QUERY_KEY = {
   studyLogDetail: (group_uuid: string, note_id: number) => [

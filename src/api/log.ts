@@ -1,12 +1,12 @@
 import { API_PATHS } from '@constants'
 import { axiosInstance } from '@lib'
+import { keysToSnake } from '@utils'
 
 import type {
   CreateStudyLogRequest,
   StudyLogDetailResponse,
   UploadLogFileResponse,
 } from '@api'
-import { keysToSnake } from '@utils'
 
 export const logApi = {
   uploadFiles: async (files: File[], group_uuid: string) => {
