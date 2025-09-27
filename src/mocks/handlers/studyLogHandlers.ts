@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw'
+import { http, HttpResponse, delay } from 'msw'
 
 import { API_BASE_URL } from '@constants'
 
@@ -65,13 +65,20 @@ const createStudyLogHandler = http.post(
         file_name: url.split('/').pop() || `file-${index}`,
         file_url: url, // file_url로 수정
       })),
-      ai_summary: 'This is a mock AI summary.', // ai_summary로 수정
+      // 입력된 제목과 내용을 바탕으로 동적인 AI 요약을 생성합니다.
+      ai_summary:
+        body.title || body.content
+          ? `AI 요약: "${body.title}" 주제에 대해 학습했으며, 본문 내용은 "${body.content.substring(0, 30)}..."(으)로 시작합니다.`
+          : '입력된 내용이 없어 AI가 요약할 수 없습니다.',
       created_at: new Date().toISOString(), // created_at로 수정
       updated_at: new Date().toISOString(), // updated_at로 수정
     }
 
     // 생성된 기록을 Map에 저장
     mockStudyLogs.set(newLog.id, newLog)
+
+    // AI 요약 생성을 시뮬레이션하기 위해 1.5초의 딜레이를 추가합니다.
+    await delay(1500)
 
     return HttpResponse.json(newLog, { status: 201 })
   }

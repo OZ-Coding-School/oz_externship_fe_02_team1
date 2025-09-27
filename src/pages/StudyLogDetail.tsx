@@ -45,7 +45,7 @@ export default function StudyLogDetail() {
       <div>
         <LogDetailHeader studyLogData={studyLogData} />
         {studyLogData.aiSummary && (
-          <LogDetailAISummary aiSummary={studyLogData.aiSummary} />
+          <LogDetailAISummary summaryText={studyLogData.aiSummary} />
         )}
         <LogDetailMain studyLogData={studyLogData} />
       </div>
