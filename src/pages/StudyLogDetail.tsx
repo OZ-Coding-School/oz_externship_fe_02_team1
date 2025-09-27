@@ -14,8 +14,15 @@ import { dummyStudyLog } from '@mocks/datas/dummyStudyLog'
 import type { StudyLogDetail } from '@models'
 
 export default function StudyLogDetail() {
-  const [studyLogData, setStudyLogData] = useState<StudyLogDetail | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const { groupId, recordId } = useParams<{
+    groupId: string
+    recordId: string
+  }>()
+
+  // recordId를 숫자로 변환
+  const noteId = Number(recordId)
+
+  const { data: studyLogData, isLoading } = useStudyLogDetail(groupId!, noteId)
 
   const { recordId } = useParams()
 
