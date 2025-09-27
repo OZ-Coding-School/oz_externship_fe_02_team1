@@ -38,14 +38,18 @@ export default function CreateStudyLog() {
         throw new Error('스터디 그룹 ID가 없습니다.')
       }
 
-      // 1. 업로드할 모든 파일들을 하나의 배열로 만듭니다.
       const filesToUpload = uploadedFiles.map((f) => f.file)
 
-      // 2. 파일 업로드 API를 한 번만 호출하여 모든 파일의 URL을 받아옵니다.
-      const { images: imageUrls, attachments: attachmentUrls } =
-        await logApi.uploadFiles(filesToUpload, groupId)
+      let imageUrls: string[] = []
+      let attachmentUrls: string[] = []
 
-      // 3. 받아온 URL로 스터디 기록 생성을 요청합니다.
+      if (filesToUpload.length > 0) {
+        const response = await logApi.uploadFiles(filesToUpload, groupId)
+        imageUrls = response.images
+        attachmentUrls = response.attachments
+      }
+
+      //  받아온 URL로 스터디 기록 생성을 요청합니다.
       const response = await logApi.createStudyLog(groupId, {
         title,
         content,
