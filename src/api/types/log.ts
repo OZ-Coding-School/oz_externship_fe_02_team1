@@ -1,34 +1,42 @@
 export interface CreateStudyLogRequest {
   title: string
   content: string
-  imageFiles: string[]
-  attachmentFiles: string[]
-}
-
-export interface CreateStudyLogResponse {
-  id: number
-  studyGroup: string
-  author: {
-    id: number
-    nickname: string
-    profileImgUrl: string
-  }
-  title: string
-  content: string
-  images: string[]
-  attachments: string[]
-  aiSummary: string
-  createdAt: string
-  updatedAt: string
-}
-
-export interface UploadLogFileRequest {
-  imageFiles: string[]
-  attachmentFiles: string[]
+  image_files: string[]
+  attachment_files: string[]
 }
 
 export interface UploadLogFileResponse {
   images: string[]
   attachments: string[]
   failed: string[]
+}
+
+export interface StudyLogAuthor {
+  id: number
+  nickname: string
+  profile_img_url?: string | null
+}
+
+export interface StudyLogImageResponse {
+  id: number
+  img_url: string
+}
+
+export interface StudyLogAttachmentResponse {
+  id: number
+  file_name: string
+  file_url: string
+}
+
+export interface StudyLogDetailResponse {
+  id: number
+  study_group: number
+  author: StudyLogAuthor
+  title: string
+  content: string
+  images: StudyLogImageResponse[]
+  attachments: StudyLogAttachmentResponse[]
+  ai_summary: string
+  created_at: string
+  updated_at: string
 }
