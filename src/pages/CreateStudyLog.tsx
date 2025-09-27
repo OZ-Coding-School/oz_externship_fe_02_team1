@@ -80,7 +80,13 @@ export default function CreateStudyLog() {
           onChange={setContent}
         />
       }
-      footer={<StudyLogFooter onCancel={handleGoBack} isLoading={isLoading} />}
+      footer={
+        <StudyLogFooter
+          onDetail={navigateToLogDetail}
+          onCancel={handleGoBack}
+          isLoading={isLoading}
+        />
+      }
     />
   )
 }
