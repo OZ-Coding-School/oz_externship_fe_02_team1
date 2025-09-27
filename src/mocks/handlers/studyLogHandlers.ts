@@ -6,7 +6,7 @@ import { groupUuid } from '@/pages/CreateStudyLog'
 
 // 스터디 로그 파일 업로드 핸들러
 const uploadFileHandler = http.post(
-  `${API_BASE_URL}${API_PATHS.STUDY_NOTES.UPLOAD(groupUuid)}`,
+  `${API_BASE_URL}/study-notes/:groupId/upload`,
   async ({ request }) => {
     const formData = await request.formData()
     const imageFiles = formData.getAll('image_files') as File[]
@@ -34,7 +34,7 @@ const uploadFileHandler = http.post(
 
 // 스터디 기록 생성 핸들러
 const createStudyLogHandler = http.post(
-  `${API_BASE_URL}${API_PATHS.STUDY_NOTES.CREATE_AND_SUMMARY(groupUuid)}`,
+  `${API_BASE_URL}/study-notes/:groupId/notes/`,
   async ({ request }) => {
     const body = (await request.json()) as {
       title: string
