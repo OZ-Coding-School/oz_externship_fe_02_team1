@@ -5,6 +5,8 @@ import type {
   ScheduleListResponse,
   CreateScheduleRequest,
   CreateScheduleResponse,
+  ScheduleDetailResponse,
+  ScheduleDatailRequest,
 } from '@api'
 
 export const scheduleApi = {
@@ -14,9 +16,12 @@ export const scheduleApi = {
     )
     return response.data
   },
-  getScheduleDetail: async (groupUuid: string, scheduleId: number) => {
-    const response = await axiosInstance.get(
-      API_PATHS.SCHEDULE.DETAIL(groupUuid, scheduleId)
+  getScheduleDetail: async ({
+    scheduleId,
+    studyGroupUuid,
+  }: ScheduleDatailRequest) => {
+    const response = await axiosInstance.get<ScheduleDetailResponse>(
+      API_PATHS.SCHEDULE.DETAIL(studyGroupUuid, scheduleId)
     )
     return response.data
   },
