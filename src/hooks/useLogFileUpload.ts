@@ -1,10 +1,7 @@
 import { useState } from 'react'
 
 import { logApi } from '@api'
-import {
-  processNewFiles,
-  type LogUploadedFile,
-} from '@components/create-study-log/logFileUpload.utils'
+import { processNewFiles, type LogUploadedFile } from '@utils'
 
 interface UseLogFileUploadProps {
   currentFiles: LogUploadedFile[]
@@ -39,8 +36,8 @@ export function useLogFileUpload({
 
       const urlMap = new Map<string, string>()
       const allUploadedUrls = [
-        ...(response.images || []),
-        ...(response.attachments || []),
+        ...(response.images ?? []),
+        ...(response.attachments ?? []),
       ]
 
       allUploadedUrls.forEach((url) => {
