@@ -64,12 +64,14 @@ export default function CalendarBodyDate({
             </Text>
           </button>
 
-          <ScheduleDetailModal
-            scheduleId={schedule.id}
-            isOpen={isOpen}
-            onClose={closeModal}
-            confirm={() => {}}
-          />
+          {isOpen && (
+            <ScheduleDetailModal
+              scheduleId={schedule.id}
+              isOpen={isOpen}
+              onClose={closeModal}
+              confirm={() => {}}
+            />
+          )}
         </>
       )}
       <div className="absolute right-0 bottom-0 left-0 block h-px border-y-4 border-white" />
