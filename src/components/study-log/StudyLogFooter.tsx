@@ -1,13 +1,22 @@
 import { Button, Text } from '@components'
 
 interface StudyLogFooterProps {
+  onCancel: () => void
   isLoading?: boolean
 }
 
-export default function StudyLogFooter({ isLoading }: StudyLogFooterProps) {
+export default function StudyLogFooter({
+  isLoading,
+  onCancel,
+}: StudyLogFooterProps) {
   return (
     <footer className="flex justify-between pt-6">
-      <Button variant="outline" className="rounded-lg px-6 py-2" type="button">
+      <Button
+        variant="outline"
+        className="rounded-lg px-6 py-2"
+        type="button"
+        onClick={onCancel}
+      >
         <Text variant="base" className="font-medium text-gray-700">
           취소
         </Text>
