@@ -20,10 +20,6 @@ export default function CalendarBody({
   schedule,
   currentMonth,
 }: CalendarBodyProps) {
-  const schedulesByDate = new Map(
-    schedule?.map((e) => [format(e.sessionDate, 'yyyy-MM-dd'), e])
-  )
-
   const monthStart = startOfMonth(currentMonth)
   const monthEnd = endOfMonth(currentMonth)
   const startDate = startOfWeek(monthStart)
@@ -35,14 +31,13 @@ export default function CalendarBody({
     <div className="grid grid-cols-7 border-t border-l border-gray-200">
       {days.map((day, index) => {
         const dateKey = format(day, 'yyyy-MM-dd')
-        const schedule = schedulesByDate.get(dateKey)
 
         return (
           <CalendarBodyDate
-            key={dateKey}
+            key={day.getTime()}
             day={day}
             dateKey={dateKey}
-            schedule={schedule}
+            schedule={schedule?.find((e) => e.sessionDate === dateKey)}
             currentMonth={currentMonth}
             index={index}
             daysLength={days.length}

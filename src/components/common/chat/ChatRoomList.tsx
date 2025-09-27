@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import { ChatContainer, Text, ChatListContent } from '@components'
-import { useChatRoomsList } from '@hooks'
+import { useChatRoomsListQeury } from '@hooks'
 
 import type { ChatRoomPreview } from '@api'
 
@@ -16,7 +16,12 @@ export default function ChatRoomList({
   onSelectChat,
   setTotalUnreadCount,
 }: ChatRoomListProps) {
-  const { data: chatRoomList, isLoading, isError, refetch } = useChatRoomsList()
+  const {
+    data: chatRoomList,
+    isLoading,
+    isError,
+    refetch,
+  } = useChatRoomsListQeury()
 
   const totalUnreadCount =
     chatRoomList?.reduce(

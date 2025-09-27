@@ -3,13 +3,13 @@ import { v4 as uuidv4 } from 'uuid'
 import { Images } from '@assets'
 import { formatTimeToHHMM, formatToYMD } from '@utils'
 
+import type { CreateScheduleResponse } from '@api'
 import type {
   LectureBase,
   Review,
   StudyGroupMemberList,
   StudyLogListItem,
 } from '@models'
-import type { CreateScheduleResponse } from '@api'
 
 export const studyGroupLecture: LectureBase[] = [
   {

@@ -11,5 +11,5 @@ export const chatQueryKey = {
 
 export const scheduleKey = {
   base: ['schedule'],
-  create: () => [...scheduleKey.base, 'create'],
+  list: (groupUuid: string) => [...scheduleKey.base, 'list', groupUuid],
 }

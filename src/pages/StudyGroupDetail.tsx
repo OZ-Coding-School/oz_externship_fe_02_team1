@@ -9,12 +9,12 @@ import {
   StudyGroupMember,
   StudyGroupSchedule,
 } from '@components'
-import { useStudyGroupDetail } from '@hooks'
+import { useStudyGroupQuery } from '@hooks'
 
 export default function StudyGroupDetail() {
   const { groupId } = useParams<{ groupId: string }>()
 
-  const { data: studyGroupData, isLoading } = useStudyGroupDetail(groupId || '')
+  const { data: studyGroupData, isLoading } = useStudyGroupQuery(groupId || '')
 
   if (isLoading) {
     return <LoadingState />
@@ -48,7 +48,7 @@ export default function StudyGroupDetail() {
       />
       <div className="mt-6 flex flex-col gap-6 lg:mt-8 lg:grid lg:grid-cols-3">
         <div className="col-span-2 flex flex-col gap-6 lg:gap-8">
-          <StudyGroupSchedule schedule={[]} />
+          <StudyGroupSchedule />
           <StudyGroupLogList member={members} studyLog={[]} />
         </div>
         <div className="flex flex-col gap-6">

@@ -77,10 +77,10 @@ export default function ScheduleDetailModal({
           </div>
 
           <ScheduleDetailDiv
-            title={`참여자 목록 (${schedule.participants.length}명)`}
+            title={`참여자 목록 (${schedule.participants?.length}명)`}
           >
             <ul className="flex flex-col gap-3 rounded-lg border border-gray-200 p-4">
-              {schedule.participants.length ? (
+              {schedule.participants?.length ? (
                 <>
                   {schedule.participants.map((participant) => (
                     <li key={participant.userId} className="flex items-center">

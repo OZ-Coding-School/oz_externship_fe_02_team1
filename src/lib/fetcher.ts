@@ -6,6 +6,7 @@ import axios, {
 } from 'axios'
 
 import { API_BASE_URL, API_PATHS } from '@constants'
+import { keysToCamel } from '@utils/caseConverter'
 
 let isRefreshing = false
 let refreshSubscribers: ((token: string) => void)[] = []
@@ -34,7 +35,12 @@ axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 })
 
 axiosInstance.interceptors.response.use(
-  (response: AxiosResponse) => response,
+  (response: AxiosResponse) => {
+    if (response.data) {
+      response.data = keysToCamel(response.data)
+    }
+    return response
+  },
   async (error: AxiosError) => {
     const originalRequest = error.config as InternalAxiosRequestConfig & {
       _retry?: boolean
