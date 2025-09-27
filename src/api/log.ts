@@ -48,4 +48,11 @@ export const logApi = {
     )
     return data
   },
+
+  getStudyLogDetail: async (group_uuid: string, note_id: number) => {
+    const response = await axiosInstance.get(
+      API_PATHS.STUDY_NOTES.DETAIL(group_uuid, note_id)
+    )
+    return response.data
+  },
 }
