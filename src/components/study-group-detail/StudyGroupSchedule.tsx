@@ -1,16 +1,16 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
+import { useParams } from 'react-router-dom'
 
 import { ScheduleCalendar, Card, Button, AddScheduleModal } from '@components'
-import { useModal } from '@hooks'
+import { useModal, useScheduleListQeury } from '@hooks'
 
-import type { CreateScheduleResponse } from '@api'
-
-export default function StudyGroupSchedule({
-  schedule,
-}: {
-  schedule: CreateScheduleResponse[]
-}) {
+export default function StudyGroupSchedule() {
   const { isOpen, openModal, closeModal } = useModal()
+  const { groupId } = useParams<{ groupId: string }>()
+
+  const { data: scheduleData } = useScheduleListQeury(groupId || '')
+
+  console.log(scheduleData)
 
   return (
     <Card title="스케줄 관리" titleClassName="pt-1.5 pb-7.5 text-xl">
@@ -18,7 +18,7 @@ export default function StudyGroupSchedule({
         <PlusIcon width={16} />
         스케줄 추가
       </Button>
-      <ScheduleCalendar schedule={schedule} />
+      <ScheduleCalendar schedule={scheduleData?.results} />
       <AddScheduleModal isOpen={isOpen} onClose={closeModal} />
     </Card>
   )
