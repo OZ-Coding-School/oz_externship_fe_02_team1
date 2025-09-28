@@ -10,7 +10,7 @@ import {
 } from '@components'
 import { useReviewListQuery } from '@hooks'
 import { studyGroupList } from '@mocks/datas/studygroupList'
-import { cn, formatDate } from '@utils'
+import { calculateAverageRating, cn, formatDate } from '@utils'
 
 interface ReviewListModalProps {
   groupUuid: string
@@ -29,13 +29,7 @@ export default function ReviewListModal({
 
   const reviews = data?.results || []
   const totalReviewCount = data?.count || 0
-  const averageRating =
-    reviews.length > 0
-      ? (
-          reviews.reduce((acc, review) => acc + review.starRating, 0) /
-          reviews.length
-        ).toFixed(1)
-      : '0.0'
+  const averageRating = calculateAverageRating(reviews)
 
   return (
     <BaseModal
