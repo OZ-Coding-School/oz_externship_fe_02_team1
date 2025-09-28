@@ -27,3 +27,8 @@ export const logDetailKey = {
     note_id,
   ],
 }
+
+export const reviewKey = {
+  base: ['review'],
+  list: (groupUuid: string) => [...reviewKey.base, 'list', groupUuid],
+}
