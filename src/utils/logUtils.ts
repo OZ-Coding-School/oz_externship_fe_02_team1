@@ -19,9 +19,11 @@ export const prepareLogSubmitPayload = async (
 ): Promise<CreateStudyLogRequest> => {
   const { newFilesToUpload, existingFileUrls } = uploadedFiles.reduce(
     (acc, file) => {
-      file.url
-        ? acc.existingFileUrls.push(file.url)
-        : acc.newFilesToUpload.push(file.file)
+      if (file.url) {
+        acc.existingFileUrls.push(file.url)
+      } else {
+        acc.newFilesToUpload.push(file.file)
+      }
       return acc
     },
     { newFilesToUpload: [] as File[], existingFileUrls: [] as string[] }

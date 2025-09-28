@@ -8,7 +8,6 @@ import {
   useStudyLogMutations,
   useStudyLogQuery,
 } from '@hooks'
-
 import { prepareLogSubmitPayload, transformApiResponseToLogFiles } from '@utils'
 
 interface UseStudyLogFormProps {
