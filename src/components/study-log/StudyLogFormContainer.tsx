@@ -7,6 +7,7 @@ import {
   StudyLogMarkdown,
   StudyLogTitle,
 } from '@components'
+import { useStudyLogForm } from '@hooks'
 
 interface StudyLogFormContainerProps {
   mode: 'create' | 'edit'
@@ -15,15 +16,11 @@ interface StudyLogFormContainerProps {
 export default function StudyLogFormContainer({
   mode,
 }: StudyLogFormContainerProps) {
-  const { form, state, handlers, isLoading } = useStudyLogForm({ mode })
-  const { uploadedFiles, groupId, noteId, isEditMode } = state
-  const {
-    handleFilesAdded,
-    handleFileDeleted,
-    handleSubmit,
-    handleGoBack,
-    navigateToLogDetail,
-  } = handlers
+  const { form, state, fileHandlers, handlers, isLoading } = useStudyLogForm({
+    mode,
+  })
+  const { uploadedFiles, groupUuid, noteId, isEditMode } = state
+  const { handleSubmit, handleGoBack, navigateToLogDetail } = handlers
 
   if (isEditMode && isLoading) {
     return <div>데이터를 불러오는 중...</div>
@@ -46,7 +43,7 @@ export default function StudyLogFormContainer({
           control={form.control}
           render={({ field }) => (
             <StudyLogMarkdown
-              groupUuid={groupId!}
+              groupUuid={groupUuid!}
               {...field}
               files={uploadedFiles}
               onFilesAdded={handleFilesAdded}
@@ -58,7 +55,9 @@ export default function StudyLogFormContainer({
       footer={
         <StudyLogFooter
           onDetail={
-            isEditMode ? () => navigateToLogDetail(groupId, noteId) : undefined
+            isEditMode
+              ? () => navigateToLogDetail(groupUuid, noteId)
+              : undefined
           }
           onCancel={handleGoBack}
           isLoading={isLoading}
