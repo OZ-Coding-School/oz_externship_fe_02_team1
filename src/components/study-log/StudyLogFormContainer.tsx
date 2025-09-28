@@ -1,4 +1,3 @@
-import { useStudyLogForm } from '@hooks'
 import { Controller } from 'react-hook-form'
 
 import {
@@ -48,8 +47,8 @@ export default function StudyLogFormContainer({
               groupUuid={groupUuid!}
               {...field}
               files={uploadedFiles}
-              onFilesAdded={handleFilesAdded}
-              onFileDeleted={handleFileDeleted}
+              onFilesAdded={fileHandlers.handleAddFiles}
+              onFileDeleted={fileHandlers.handleDeleteFile}
             />
           )}
         />
