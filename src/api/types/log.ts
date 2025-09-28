@@ -42,3 +42,14 @@ export interface StudyLogDetailResponse {
 }
 
 export type CreateStudyLogResponse = StudyLogDetailResponse
+
+export interface StudyLogListResponse {
+  id: number
+  title: string
+  author: {
+    id: number
+    nickname: string
+    profileImgUrl?: string | null
+  }
+  created_at: string
+}
