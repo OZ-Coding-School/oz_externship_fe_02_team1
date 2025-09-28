@@ -42,37 +42,37 @@ const createStudyLogHandler = http.post<
     image_files: string[]
     attachment_files: string[]
   }
->(`${API_BASE_URL}/study-notes/:groupId/notes/`, async ({ request }) => {
+>(`${API_BASE_URL}/study-notes/:groupId/notes`, async ({ request }) => {
   const body = await request.json()
 
   let fileIdCounter = 0
 
   const newLog: StudyLogDetailResponse = {
     id: Date.now(),
-    study_group: 1, // or a mock group id
+    studyGroup: 1, // or a mock group id
     author: {
       id: 1,
       nickname: 'mock-user',
-      profile_img_url: 'https://example.com/mock-profile.jpg',
+      profileImgUrl: 'https://picsum.photos/200',
     },
     title: body.title,
     content: body.content,
     images: body.image_files.map((url) => ({
       id: fileIdCounter++,
-      img_url: url,
+      imgUrl: url,
     })),
     attachments: body.attachment_files.map((url, index) => ({
       id: fileIdCounter++,
-      file_name: decodeURIComponent(url.split('/').pop() || `file-${index}`),
-      file_url: url,
+      fileName: decodeURIComponent(url.split('/').pop() || `file-${index}`),
+      fileUrl: url,
     })),
     // 입력된 제목과 내용을 바탕으로 동적인 AI 요약을 생성합니다.
-    ai_summary:
-      body.title || body.content
+    aiSummary:
+      body.title || body.content // This part is correct as title and content are top-level
         ? `AI 요약: "${body.title}" 주제에 대해 학습했으며, 본문 내용은 "${body.content.substring(0, 30)}..."(으)로 시작합니다.`
         : '입력된 내용이 없어 AI가 요약할 수 없습니다.',
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   }
 
   // 생성된 기록을 Map에 저장
@@ -83,7 +83,7 @@ const createStudyLogHandler = http.post<
 
 // 스터디 기록 상세 정보 핸들러
 const getStudyLogDetailHandler = http.get(
-  `${API_BASE_URL}/study-notes/:groupId/notes/:noteId`,
+  `${API_BASE_URL}/study-notes/:groupUuid/notes/:noteId`,
   ({ params }) => {
     const { noteId } = params
 
@@ -106,7 +106,7 @@ const updateStudyLogHandler = http.patch<
     attachment_files: string[]
   }
 >(
-  `${API_BASE_URL}/study-notes/:groupId/notes/:noteId/`,
+  `${API_BASE_URL}/study-notes/:groupUuid/notes/:noteId`,
   async ({ params, request }) => {
     const { noteId } = params
     const body = await request.json()
@@ -123,13 +123,13 @@ const updateStudyLogHandler = http.patch<
       ...existingLog,
       title: body.title,
       content: body.content,
-      images: body.image_files.map((url, i) => ({ id: i, img_url: url })),
+      images: body.image_files.map((url, i) => ({ id: i + 100, imgUrl: url })),
       attachments: body.attachment_files.map((url, i) => ({
-        id: i + body.image_files.length,
-        file_name: decodeURIComponent(url.split('/').pop() || ''),
-        file_url: url,
+        id: i + 200,
+        fileName: decodeURIComponent(url.split('/').pop() || ''),
+        fileUrl: url,
       })),
-      updated_at: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     }
 
     mockStudyLogs.set(numericNoteId, updatedLog)
