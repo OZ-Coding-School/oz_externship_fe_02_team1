@@ -3,7 +3,7 @@ import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
 import { logApi, type StudyLogDetailResponse } from '@api'
 import { logDetailKey } from '@hooks'
 
-export const useStudyLogQuery = (
+export const useLogDetailQuery = (
   groupUuid: string,
   noteId: number,
   options?: Omit<
