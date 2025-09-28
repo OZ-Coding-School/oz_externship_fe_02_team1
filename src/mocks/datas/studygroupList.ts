@@ -74,7 +74,7 @@ export const studyGroupList: StudyGroupList[] = [
     })),
   },
   {
-    uuid: uuidv4(),
+    uuid: 'node-server-development-study-group',
     name: 'Node.js 서버 개발 스터디',
     currentHeadcount: 12,
     maxHeadcount: 12,
@@ -92,7 +92,7 @@ export const studyGroupList: StudyGroupList[] = [
     ],
   },
   {
-    uuid: uuidv4(),
+    uuid: 'algorithm-study-group',
     name: 'JavaScript 알고리즘 스터디',
     currentHeadcount: 18,
     maxHeadcount: 20,
@@ -110,7 +110,7 @@ export const studyGroupList: StudyGroupList[] = [
     ],
   },
   {
-    uuid: uuidv4(),
+    uuid: 'ui-ux-design-study-group',
     name: 'UI/UX 디자인 스터디',
     currentHeadcount: 6,
     maxHeadcount: 6,
