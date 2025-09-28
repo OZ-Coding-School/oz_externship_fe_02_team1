@@ -1,6 +1,5 @@
 import { API_PATHS } from '@constants'
 import { axiosInstance } from '@lib'
-import { keysToSnake } from '@utils'
 
 import type {
   CreateStudyLogRequest,
@@ -30,17 +29,11 @@ export const logApi = {
 
   createStudyLog: async (
     group_uuid: string,
-    payload: {
-      title: string
-      content: string
-      imageFiles: string[]
-      attachmentFiles: string[]
-    }
+    payload: CreateStudyLogRequest
   ): Promise<StudyLogDetailResponse> => {
-    const requestData = keysToSnake(payload) as CreateStudyLogRequest
     const { data } = await axiosInstance.post<StudyLogDetailResponse>(
       API_PATHS.STUDY_NOTES.CREATE_AND_SUMMARY(group_uuid),
-      requestData
+      payload
     )
     return data
   },

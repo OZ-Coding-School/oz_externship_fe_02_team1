@@ -1,8 +1,8 @@
 export interface CreateStudyLogRequest {
   title: string
   content: string
-  image_files: string[]
-  attachment_files: string[]
+  imageFiles: string[]
+  attachmentFiles: string[]
 }
 
 export interface UploadLogFileResponse {
@@ -14,29 +14,31 @@ export interface UploadLogFileResponse {
 export interface StudyLogAuthor {
   id: number
   nickname: string
-  profile_img_url?: string | null
+  profileImgUrl?: string | null
 }
 
 export interface StudyLogImageResponse {
   id: number
-  img_url: string
+  imgUrl: string
 }
 
 export interface StudyLogAttachmentResponse {
   id: number
-  file_name: string
-  file_url: string
+  fileName: string
+  fileUrl: string
 }
 
 export interface StudyLogDetailResponse {
   id: number
-  study_group: number
+  studyGroup: number
   author: StudyLogAuthor
   title: string
   content: string
   images: StudyLogImageResponse[]
   attachments: StudyLogAttachmentResponse[]
-  ai_summary: string
-  created_at: string
-  updated_at: string
+  aiSummary: string
+  createdAt: string
+  updatedAt: string
 }
+
+export type CreateStudyLogResponse = StudyLogDetailResponse
