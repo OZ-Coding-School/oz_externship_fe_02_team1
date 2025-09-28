@@ -1,4 +1,8 @@
-import { logApi, type CreateStudyLogRequest } from '@api'
+import {
+  logApi,
+  type CreateStudyLogRequest,
+  type StudyLogDetailResponse,
+} from '@api'
 import { isImageFile, type LogUploadedFile } from '@utils'
 
 /**
@@ -40,4 +44,28 @@ export const prepareLogSubmitPayload = async (
     imageFiles: allFileUrls.filter(isImageFile),
     attachmentFiles: allFileUrls.filter((url) => !isImageFile(url)),
   }
+}
+
+/**
+ * 스터디 기록 상세 정보 API 응답을 프론트엔드 파일 목록 형식으로 변환합니다.
+ * @param studyLogData - API로부터 받은 스터디 기록 상세 데이터
+ */
+export const transformApiResponseToLogFiles = (
+  studyLogData: StudyLogDetailResponse
+): LogUploadedFile[] => {
+  const images: LogUploadedFile[] = (studyLogData.images ?? []).map((img) => ({
+    id: String(img.id),
+    file: new File([], img.imgUrl.split('/').pop() ?? 'image.png'),
+    url: img.imgUrl,
+  }))
+
+  const attachments: LogUploadedFile[] = (studyLogData.attachments ?? []).map(
+    (att) => ({
+      id: String(att.id),
+      file: new File([], att.fileName),
+      url: att.fileUrl,
+    })
+  )
+
+  return [...images, ...attachments]
 }
