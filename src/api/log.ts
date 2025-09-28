@@ -44,4 +44,16 @@ export const logApi = {
     )
     return response.data
   },
+
+  updateStudyLog: async (
+    group_uuid: string,
+    note_id: number,
+    payload: CreateStudyLogRequest
+  ): Promise<StudyLogDetailResponse> => {
+    const { data } = await axiosInstance.patch<StudyLogDetailResponse>(
+      API_PATHS.STUDY_NOTES.UPDATE(group_uuid, note_id),
+      payload
+    )
+    return data
+  },
 }
