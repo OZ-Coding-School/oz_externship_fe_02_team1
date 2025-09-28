@@ -9,7 +9,7 @@ import { isImageFile, type LogUploadedFile } from '@utils'
  */
 export const prepareLogSubmitPayload = async (
   uploadedFiles: LogUploadedFile[],
-  groupId: string,
+  groupUuid: string,
   title: string,
   content: string
 ): Promise<CreateStudyLogRequest> => {
@@ -25,7 +25,7 @@ export const prepareLogSubmitPayload = async (
 
   const uploadedUrls =
     newFilesToUpload.length > 0
-      ? await logApi.uploadFiles(newFilesToUpload, groupId)
+      ? await logApi.uploadFiles(newFilesToUpload, groupUuid)
       : { images: [], attachments: [] }
 
   const allFileUrls = [
