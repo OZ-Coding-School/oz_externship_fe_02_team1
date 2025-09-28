@@ -1,9 +1,15 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
+import { useParams } from 'react-router-dom'
 
-import { usePageNav, useStudyLogMutations, useStudyLogQuery } from '@hooks'
-import { prepareLogSubmitPayload, type LogUploadedFile } from '@utils'
+import {
+  useLogFileUpload,
+  usePageNav,
+  useStudyLogMutations,
+  useStudyLogQuery,
+} from '@hooks'
+
+import { prepareLogSubmitPayload, transformApiResponseToLogFiles } from '@utils'
 
 interface UseStudyLogFormProps {
   mode: 'create' | 'edit'
@@ -15,80 +21,65 @@ interface FormInputs {
 }
 
 export const useStudyLogForm = ({ mode }: UseStudyLogFormProps) => {
-  const [uploadedFiles, setUploadedFiles] = useState<LogUploadedFile[]>([])
-
+  // form
   const { register, handleSubmit, setValue, control } = useForm<FormInputs>({
     defaultValues: { title: '', content: '' },
   })
 
-  const { groupId, recordId } = useParams<{
-    groupId?: string
-    recordId?: string
-  }>()
+  // navigation
+  const { handleGoBack, navigateToLogDetail } = usePageNav()
+
+  // params
+  const { groupId, recordId } = useParams()
+  const groupUuid = groupId
   const noteId = Number(recordId)
+
   const isEditMode = mode === 'edit'
 
-  if (!groupId) {
+  if (!groupUuid) {
     throw new Error('스터디 그룹 ID가 URL에 존재하지 않습니다.')
   }
 
-  const { handleGoBack, navigateToLogDetail } = usePageNav()
+  // file upload
+  const { uploadedFiles, setUploadedFiles, ...fileUploadHandlers } =
+    useLogFileUpload({ groupUuid })
 
-  // Data Fetching and Mutation
+  // query
   const { data: studyLogData, isLoading: isFetching } = useStudyLogQuery(
-    groupId,
+    groupUuid,
     noteId,
     { enabled: isEditMode && !!noteId }
   )
 
+  // mutations
   const { createLog, isCreating, updateLog, isUpdating } = useStudyLogMutations(
     {
-      groupId,
+      groupUuid,
       noteId,
       onSuccess: (data) => {
         const newNoteId = data.id || noteId
-        navigateToLogDetail(groupId, newNoteId)
+        navigateToLogDetail(groupUuid, newNoteId)
       },
     }
   )
 
+  // -------------------- Effect --------------------
   useEffect(() => {
     if (isEditMode && studyLogData) {
       setValue('title', studyLogData.title)
       setValue('content', studyLogData.content)
 
-      const images: LogUploadedFile[] = (studyLogData.images ?? []).map(
-        (img) => ({
-          id: String(img.id),
-          file: new File([], img.imgUrl.split('/').pop() ?? 'image.png'),
-          url: img.imgUrl,
-        })
-      )
-      const attachments: LogUploadedFile[] = (
-        studyLogData.attachments ?? []
-      ).map((att) => ({
-        id: String(att.id),
-        file: new File([], att.fileName),
-        url: att.fileUrl,
-      }))
-
-      setUploadedFiles([...images, ...attachments])
+      const initialFiles = transformApiResponseToLogFiles(studyLogData)
+      setUploadedFiles(initialFiles)
     }
-  }, [studyLogData, isEditMode, setValue])
+  }, [studyLogData, isEditMode, setValue, setUploadedFiles])
 
-  const handleFilesAdded = (newFiles: LogUploadedFile[]) => {
-    setUploadedFiles((current) => [...current, ...newFiles])
-  }
-
-  const handleFileDeleted = (fileId: string) => {
-    setUploadedFiles((current) => current.filter((f) => f.id !== fileId))
-  }
-
+  // -------------------- Handlers --------------------
   const onSubmit: SubmitHandler<FormInputs> = async (formData) => {
     try {
       const payload = await prepareLogSubmitPayload(
         uploadedFiles,
-        groupId,
+        groupUuid,
         formData.title,
         formData.content
       )
@@ -101,12 +92,12 @@ export const useStudyLogForm = ({ mode }: UseStudyLogFormProps) => {
     }
   }
 
+  // -------------------- Return --------------------
   return {
     form: { register, control },
-    state: { uploadedFiles, groupId, noteId, isEditMode },
+    state: { uploadedFiles, groupUuid, noteId, isEditMode },
+    fileHandlers: fileUploadHandlers,
     handlers: {
-      handleFilesAdded,
-      handleFileDeleted,
       handleSubmit: handleSubmit(onSubmit),
       handleGoBack,
       navigateToLogDetail,
