@@ -82,11 +82,14 @@ export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
         onClose={reviewWriteModal.closeModal}
         confirm={handleConfirmReview}
       />
-      <ReviewListModal
-        isOpen={reviewListModal.isOpen}
-        onClose={reviewListModal.closeModal}
-        confirm={() => {}}
-      />
+      {reviewListModal.isOpen && (
+        <ReviewListModal
+          groupUuid={uuid}
+          isOpen={reviewListModal.isOpen}
+          onClose={reviewListModal.closeModal}
+          confirm={() => {}}
+        />
+      )}
     </div>
   )
 }
