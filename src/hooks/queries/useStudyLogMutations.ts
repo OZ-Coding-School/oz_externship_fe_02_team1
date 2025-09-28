@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+
 import {
   logApi,
   type CreateStudyLogResponse,
@@ -7,13 +8,13 @@ import {
 } from '@api'
 
 interface StudyLogMutationsProps {
-  groupId: string
+  groupUuid: string
   noteId?: number
   onSuccess?: (data: CreateStudyLogResponse | StudyLogDetailResponse) => void
 }
 
 export const useStudyLogMutations = ({
-  groupId,
+  groupUuid,
   noteId,
   onSuccess,
 }: StudyLogMutationsProps) => {
@@ -21,7 +22,7 @@ export const useStudyLogMutations = ({
 
   const { mutate: createLog, isPending: isCreating } = useMutation({
     mutationFn: (payload: CreateStudyLogRequest) =>
-      logApi.createStudyLog(groupId, payload),
+      logApi.createStudyLog(groupUuid, payload),
     onSuccess: (data) => {
       onSuccess?.(data)
     },
@@ -31,11 +32,11 @@ export const useStudyLogMutations = ({
   const { mutate: updateLog, isPending: isUpdating } = useMutation({
     mutationFn: (payload: CreateStudyLogRequest) => {
       if (!noteId) throw new Error('noteId가 없습니다.')
-      return logApi.updateStudyLog(groupId, noteId, payload)
+      return logApi.updateStudyLog(groupUuid, noteId, payload)
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({
-        queryKey: ['studyLogDetail', groupId, noteId],
+        queryKey: ['studyLogDetail', groupUuid, noteId],
       })
       onSuccess?.(data as StudyLogDetailResponse)
     },
