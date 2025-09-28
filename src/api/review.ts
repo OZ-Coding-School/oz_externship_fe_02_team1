@@ -1,6 +1,7 @@
 import { API_PATHS } from '@constants'
 import { axiosInstance } from '@lib'
-import type { ReviewListRequest, ReviewListResponse } from './types/review'
+
+import type { ReviewListRequest, ReviewListResponse } from '@api'
 
 export const reviewApi = {
   getReviewList: async (params: ReviewListRequest) => {

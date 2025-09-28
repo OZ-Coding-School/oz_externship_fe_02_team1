@@ -1,4 +1,3 @@
-import { studyGroupList } from '@mocks/datas/studygroupList'
 import {
   BaseModal,
   MODAL_PRESETS,
@@ -10,6 +9,7 @@ import {
   BaseEmptyState,
 } from '@components'
 import { useReviewListQuery } from '@hooks'
+import { studyGroupList } from '@mocks/datas/studygroupList'
 import { cn, formatDate } from '@utils'
 
 interface ReviewListModalProps {
