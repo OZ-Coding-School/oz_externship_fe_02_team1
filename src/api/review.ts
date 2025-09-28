@@ -4,9 +4,8 @@ import type { ReviewListRequest, ReviewListResponse } from './types/review'
 
 export const reviewApi = {
   getReviewList: async (params: ReviewListRequest) => {
-    const response = await axiosInstance.post<ReviewListResponse>(
-      API_PATHS.REVIEW.LIST(params.groupUuid),
-      params
+    const response = await axiosInstance.get<ReviewListResponse>(
+      API_PATHS.REVIEW.LIST(params.groupUuid)
     )
     return response.data
   },
@@ -17,7 +16,9 @@ export const reviewApi = {
     return response.data
   },
   updateReview: async (reviewId: number) => {
-    const response = await axiosInstance.post(API_PATHS.REVIEW.UPDATE(reviewId))
+    const response = await axiosInstance.patch(
+      API_PATHS.REVIEW.UPDATE(reviewId)
+    )
     return response.data
   },
 }
