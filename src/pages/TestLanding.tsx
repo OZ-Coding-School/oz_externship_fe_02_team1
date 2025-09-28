@@ -3,10 +3,8 @@ import {
   ReviewListModal,
   ReviewWriteModal,
   AddScheduleModal,
-  ScheduleDetailModal,
 } from '@components'
 import { usePageNav, useModal } from '@hooks'
-import { studyGroupSchedule } from '@mocks/datas/studyGroupDetail'
 
 export default function TestLanding() {
   const { navigateToGroupList } = usePageNav()
@@ -14,7 +12,6 @@ export default function TestLanding() {
   const reviewListModal = useModal()
   const reviewWriteModal = useModal()
   const addScheduleModal = useModal()
-  const scheduleDetailModal = useModal()
 
   return (
     <div className="flex flex-col gap-4 p-8">
@@ -47,16 +44,6 @@ export default function TestLanding() {
         <AddScheduleModal
           isOpen={addScheduleModal.isOpen}
           onClose={addScheduleModal.closeModal}
-        />
-
-        <Button variant="secondary" onClick={scheduleDetailModal.openModal}>
-          스케줄 조회 모달
-        </Button>
-        <ScheduleDetailModal
-          isOpen={scheduleDetailModal.isOpen}
-          onClose={scheduleDetailModal.closeModal}
-          confirm={() => {}}
-          schedule={studyGroupSchedule[2]}
         />
       </div>
     </div>

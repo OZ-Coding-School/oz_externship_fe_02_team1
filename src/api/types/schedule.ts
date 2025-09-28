@@ -36,3 +36,32 @@ export interface ScheduleListResponse {
   previous: string | null
   results: CreateScheduleResponse[]
 }
+
+export interface ScheduleDatailRequest {
+  scheduleId: number
+  studyGroupUuid: string
+}
+
+export interface ScheduleDetailResponse {
+  id: number
+  title: string
+  objective: string
+  sessionDate: string
+  startTime: string
+  endTime: string
+  studyGroup: {
+    studyGroupUuid: string
+    studyGroupName: string
+    description: string
+    leaderNickname: string
+  }
+  participantCount: number
+  participants: {
+    userId: number
+    userNickname: string
+    userEmail: string
+    isLeader: boolean
+  }[]
+  createdAt: string
+  updatedAt: string
+}

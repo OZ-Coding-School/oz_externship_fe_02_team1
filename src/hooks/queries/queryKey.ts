@@ -12,6 +12,12 @@ export const chatQueryKey = {
 export const scheduleKey = {
   base: ['schedule'],
   list: (groupUuid: string) => [...scheduleKey.base, 'list', groupUuid],
+  detail: (groupUuid: string, scheduleId: number) => [
+    ...scheduleKey.base,
+    'detail',
+    groupUuid,
+    scheduleId,
+  ],
 }
 
 export const logDetailKey = {
