@@ -4,23 +4,16 @@ import { logApi } from '@api'
 import { processNewFiles, type LogUploadedFile } from '@utils'
 
 interface UseLogFileUploadProps {
-  currentFiles: LogUploadedFile[]
-  onFilesAdded: (newFiles: LogUploadedFile[]) => void
-  onFileDeleted: (fileId: string) => void
   groupUuid: string
 }
 
-export function useLogFileUpload({
-  currentFiles,
-  onFilesAdded,
-  onFileDeleted,
-  groupUuid,
-}: UseLogFileUploadProps) {
+export function useLogFileUpload({ groupUuid }: UseLogFileUploadProps) {
+  const [uploadedFiles, setUploadedFiles] = useState<LogUploadedFile[]>([])
   const [isDragging, setIsDragging] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const handleAddFiles = async (newFiles: File[]) => {
-    const { filesToAdd, errors } = processNewFiles(newFiles, currentFiles)
+    const { filesToAdd, errors } = processNewFiles(newFiles, uploadedFiles)
 
     if (errors.length > 0) {
       setErrorMessage(errors.join('\n'))
@@ -58,7 +51,7 @@ export function useLogFileUpload({
         .filter((f) => f.url)
 
       if (newlyUploadedFiles.length > 0) {
-        onFilesAdded(newlyUploadedFiles)
+        setUploadedFiles((current) => [...current, ...newlyUploadedFiles])
       }
     } catch (err) {
       setErrorMessage('파일 업로드에 실패했습니다.')
@@ -66,10 +59,12 @@ export function useLogFileUpload({
   }
 
   const handleDeleteFile = (fileId: string) => {
-    onFileDeleted(fileId)
+    setUploadedFiles((current) => current.filter((f) => f.id !== fileId))
   }
 
   return {
+    uploadedFiles,
+    setUploadedFiles,
     isDragging,
     setIsDragging,
     errorMessage,
