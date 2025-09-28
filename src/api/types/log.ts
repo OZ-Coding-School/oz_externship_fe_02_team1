@@ -51,5 +51,5 @@ export interface StudyLogListResponse {
     nickname: string
     profileImgUrl?: string | null
   }
-  created_at: string
+  createdAt: string
 }
