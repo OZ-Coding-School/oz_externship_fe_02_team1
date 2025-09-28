@@ -49,15 +49,15 @@ export const API_PATHS = {
 
   STUDY_NOTES: {
     UPLOAD: (groupUuid: string) => `/study-notes/${groupUuid}/upload`,
-    LIST: (groupUuid: string) => `/study-notes/${groupUuid}/notes/`,
+    LIST: (groupUuid: string) => `/study-notes/${groupUuid}/notes`,
     DETAIL: (groupUuid: string, noteId: number) =>
-      `/study-notes/${groupUuid}/notes/${noteId}/`,
+      `/study-notes/${groupUuid}/notes/${noteId}`,
     DELETE: (groupUuid: string, noteId: number) =>
-      `/study-notes/${groupUuid}/notes/${noteId}/`,
+      `/study-notes/${groupUuid}/notes/${noteId}`,
     UPDATE: (groupUuid: string, noteId: number) =>
-      `/study-notes/${groupUuid}/notes/${noteId}/`,
+      `/study-notes/${groupUuid}/notes/${noteId}`,
     CREATE_AND_SUMMARY: (groupUuid: string) =>
-      `/study-notes/${groupUuid}/notes/`,
+      `/study-notes/${groupUuid}/notes`,
   },
 
   LECTURES: {
