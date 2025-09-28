@@ -16,5 +16,5 @@ export interface ReviewListResponse {
   count: number
   next: string | null
   previous: string | null
-  results: ReviewListItem[]
+  results: ReviewListItem[] | []
 }
