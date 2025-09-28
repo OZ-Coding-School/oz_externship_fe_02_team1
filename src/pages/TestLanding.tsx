@@ -1,15 +1,9 @@
-import {
-  Button,
-  ReviewListModal,
-  ReviewWriteModal,
-  AddScheduleModal,
-} from '@components'
+import { Button, ReviewWriteModal, AddScheduleModal } from '@components'
 import { usePageNav, useModal } from '@hooks'
 
 export default function TestLanding() {
   const { navigateToGroupList } = usePageNav()
 
-  const reviewListModal = useModal()
   const reviewWriteModal = useModal()
   const addScheduleModal = useModal()
 
@@ -20,15 +14,6 @@ export default function TestLanding() {
       </Button>
       <h2>모달 테스트</h2>
       <div className="flex flex-wrap gap-2">
-        <Button variant="secondary" onClick={reviewListModal.openModal}>
-          리뷰 목록 조회 모달
-        </Button>
-        <ReviewListModal
-          isOpen={reviewListModal.isOpen}
-          onClose={reviewListModal.closeModal}
-          confirm={() => {}}
-        />
-
         <Button variant="secondary" onClick={reviewWriteModal.openModal}>
           리뷰 작성 모달
         </Button>
