@@ -112,12 +112,8 @@ const MODAL_PRESETS = {
   // 3) 스터디 리뷰
   studyReview: {
     size: 'md',
-    header: ({ onClose }: ModalHeaderRenderProps) => (
-      <ModalHeader
-        title="스터디 리뷰"
-        subTitle="Node.js 백엔드 개발팀"
-        onClose={onClose}
-      />
+    header: ({ onClose, subTitle }: ModalHeaderRenderProps) => (
+      <ModalHeader title="스터디 리뷰" subTitle={subTitle} onClose={onClose} />
     ),
     footer: ({ onClose, onConfirm }: ModalFooterCtx) => {
       const footerButtons: FooterButton[] = [

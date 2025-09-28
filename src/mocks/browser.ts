@@ -1,7 +1,15 @@
 import { setupWorker } from 'msw/browser'
 
-import { studyGroupHandlers, studyLogHandlers } from '@mocks/handlers'
+import {
+  studyGroupHandlers,
+  studyLogHandlers,
+  reviewHandlers,
+} from '@mocks/handlers'
 
-const allHandlers = [...studyGroupHandlers, ...studyLogHandlers]
+const allHandlers = [
+  ...studyGroupHandlers,
+  ...studyLogHandlers,
+  ...reviewHandlers,
+]
 
 export const worker = setupWorker(...allHandlers)

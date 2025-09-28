@@ -2,12 +2,13 @@ import {
   ImageCard,
   ReviewWriteModal,
   Text,
+  ReviewListModal,
   StudyGroupCardOverlay,
   StudyGroupCardFooter,
   StudyGroupCardBody,
 } from '@components'
 import { useModal, usePageNav } from '@hooks'
-import { studyGroupReview } from '@mocks/datas/studyGroupDetail'
+import { reviewMocks } from '@mocks/datas/reviewListMocks'
 import { calculateAverageRating } from '@utils'
 
 import type { ReviewFormInputs } from './modal/ReviewWriteModal'
@@ -32,14 +33,17 @@ export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
   } = studyGroup
 
   const { navigateToGroupDetail } = usePageNav()
-  const { isOpen, openModal, closeModal } = useModal()
-  const averageRating = calculateAverageRating(studyGroupReview)
-  const reviewCount = studyGroupReview.length
+  const reviewWriteModal = useModal()
+  const reviewListModal = useModal()
+
+  const reviewsForGroup = reviewMocks.get(uuid)?.results || []
+  const averageRating = calculateAverageRating(reviewsForGroup)
+  const reviewCount = reviewsForGroup.length
 
   // api연동후 api폴더로 이동예정
   const handleConfirmReview = (data: ReviewFormInputs) => {
     console.log('Review Data:', data)
-    closeModal()
+    reviewWriteModal.closeModal()
   }
 
   return (
@@ -68,17 +72,26 @@ export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
           <StudyGroupCardFooter
             status={status}
             navigateToGroupDetail={() => navigateToGroupDetail(uuid)}
-            onWriteReview={openModal}
+            onWriteReview={reviewWriteModal.openModal}
+            onViewReviews={reviewListModal.openModal}
             averageRating={averageRating}
             reviewCount={reviewCount}
           />
         </div>
       </ImageCard>
       <ReviewWriteModal
-        isOpen={isOpen}
-        onClose={closeModal}
+        isOpen={reviewWriteModal.isOpen}
+        onClose={reviewWriteModal.closeModal}
         confirm={handleConfirmReview}
       />
+      {reviewListModal.isOpen && (
+        <ReviewListModal
+          groupUuid={uuid}
+          isOpen={reviewListModal.isOpen}
+          onClose={reviewListModal.closeModal}
+          confirm={() => {}}
+        />
+      )}
     </div>
   )
 }
