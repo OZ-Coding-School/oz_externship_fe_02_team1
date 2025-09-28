@@ -2,6 +2,7 @@ import {
   ImageCard,
   ReviewWriteModal,
   Text,
+  ReviewListModal,
   StudyGroupCardOverlay,
   StudyGroupCardFooter,
   StudyGroupCardBody,
@@ -32,14 +33,15 @@ export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
   } = studyGroup
 
   const { navigateToGroupDetail } = usePageNav()
-  const { isOpen, openModal, closeModal } = useModal()
+  const reviewWriteModal = useModal()
+  const reviewListModal = useModal()
   const averageRating = calculateAverageRating(studyGroupReview)
   const reviewCount = studyGroupReview.length
 
   // api연동후 api폴더로 이동예정
   const handleConfirmReview = (data: ReviewFormInputs) => {
     console.log('Review Data:', data)
-    closeModal()
+    reviewWriteModal.closeModal()
   }
 
   return (
@@ -68,16 +70,22 @@ export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
           <StudyGroupCardFooter
             status={status}
             navigateToGroupDetail={() => navigateToGroupDetail(uuid)}
-            onWriteReview={openModal}
+            onWriteReview={reviewWriteModal.openModal}
+            onViewReviews={reviewListModal.openModal}
             averageRating={averageRating}
             reviewCount={reviewCount}
           />
         </div>
       </ImageCard>
       <ReviewWriteModal
-        isOpen={isOpen}
-        onClose={closeModal}
+        isOpen={reviewWriteModal.isOpen}
+        onClose={reviewWriteModal.closeModal}
         confirm={handleConfirmReview}
+      />
+      <ReviewListModal
+        isOpen={reviewListModal.isOpen}
+        onClose={reviewListModal.closeModal}
+        confirm={() => {}}
       />
     </div>
   )

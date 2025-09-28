@@ -4,15 +4,15 @@ import { cn } from '@utils'
 interface CompletedFooterProps {
   averageRating: number
   reviewCount: number
-  navigateToGroupDetail: () => void
   onWriteReview: () => void
+  onViewReviews: () => void
 }
 
 export default function CompletedFooter({
   averageRating,
   reviewCount,
-  navigateToGroupDetail,
   onWriteReview,
+  onViewReviews,
 }: CompletedFooterProps) {
   const hasReview = reviewCount > 0
   const reviewButtonText = hasReview ? '리뷰 수정하기' : '리뷰 작성하기'
@@ -33,7 +33,7 @@ export default function CompletedFooter({
         </div>
         <button
           type="button"
-          onClick={navigateToGroupDetail}
+          onClick={onViewReviews}
           className="cursor-pointer"
         >
           <Text variant="small" className="font-medium text-yellow-600">

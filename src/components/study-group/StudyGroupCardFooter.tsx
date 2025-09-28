@@ -7,6 +7,7 @@ interface StudyGroupCardFooterProps {
   status: StudyGroupStatus
   navigateToGroupDetail: () => void
   onWriteReview?: () => void
+  onViewReviews?: () => void
   averageRating?: number
   reviewCount?: number
 }
@@ -15,6 +16,7 @@ export default function StudyGroupCardFooter({
   status,
   navigateToGroupDetail,
   onWriteReview,
+  onViewReviews,
   averageRating,
   reviewCount,
 }: StudyGroupCardFooterProps) {
@@ -23,8 +25,8 @@ export default function StudyGroupCardFooter({
       <CompletedFooter
         averageRating={averageRating as number}
         reviewCount={reviewCount as number}
-        navigateToGroupDetail={navigateToGroupDetail}
         onWriteReview={onWriteReview as () => void}
+        onViewReviews={onViewReviews as () => void}
       />
     )
   }
