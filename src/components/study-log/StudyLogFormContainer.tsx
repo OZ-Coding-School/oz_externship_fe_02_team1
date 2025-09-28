@@ -1,6 +1,8 @@
 import { useStudyLogForm } from '@hooks'
 import { Controller } from 'react-hook-form'
+
 import {
+  LoadingState,
   StudyLogFooter,
   StudyLogHeader,
   StudyLogLayout,
@@ -23,7 +25,7 @@ export default function StudyLogFormContainer({
   const { handleSubmit, handleGoBack, navigateToLogDetail } = handlers
 
   if (isEditMode && isLoading) {
-    return <div>데이터를 불러오는 중...</div>
+    return <LoadingState />
   }
 
   return (
