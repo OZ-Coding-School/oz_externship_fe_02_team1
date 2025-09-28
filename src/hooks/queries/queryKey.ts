@@ -20,11 +20,14 @@ export const scheduleKey = {
   ],
 }
 
-export const logDetailKey = {
-  studyLogDetail: (group_uuid: string, note_id: number) => [
-    'studyLogDetail',
-    group_uuid,
-    note_id,
+export const logKey = {
+  base: ['log'],
+  list: (groupUuid: string) => [...logKey.base, 'list', groupUuid],
+  detail: (groupUuid: string, noteId: number) => [
+    ...logKey.base,
+    'detail',
+    groupUuid,
+    noteId,
   ],
 }
 
