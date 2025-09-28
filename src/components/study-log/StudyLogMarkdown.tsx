@@ -6,13 +6,12 @@ interface StudyLogMarkdownProps {
   groupUuid: string
   value: string
   files: LogUploadedFile[]
-  onFilesAdded: (newFiles: LogUploadedFile[]) => void
+  onFilesAdded: (newFiles: File[]) => void
   onFileDeleted: (fileId: string) => void
   onChange: (content: string) => void
 }
 
 export default function StudyLogMarkdown({
-  groupUuid,
   value,
   files,
   onFilesAdded,
@@ -40,7 +39,6 @@ export default function StudyLogMarkdown({
           첨부 파일
         </Text>
         <LogFileUpload
-          groupUuid={groupUuid}
           files={files}
           onFilesAdded={onFilesAdded}
           onFileDeleted={onFileDeleted}
