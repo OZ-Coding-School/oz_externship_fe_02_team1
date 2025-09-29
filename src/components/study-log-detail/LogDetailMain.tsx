@@ -1,9 +1,9 @@
 import { LogDetailAttachments, MarkdownPreview } from '@components'
 
-import type { StudyLogDetail } from '@models'
+import type { StudyLogDetailResponse } from '@api'
 
 interface LogDetailMainProps {
-  studyLogData: StudyLogDetail
+  studyLogData: StudyLogDetailResponse
 }
 
 export default function LogDetailMain({ studyLogData }: LogDetailMainProps) {
