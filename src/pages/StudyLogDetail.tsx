@@ -71,6 +71,12 @@ export default function StudyLogDetail() {
   const handleEdit = () =>
     navigate(`/study-group/${groupId}/records/${noteId}/edit`)
 
+  const handleDelete = () => {
+    if (window.confirm('정말로 이 기록을 삭제하시겠습니까?')) {
+      deleteLog()
+    }
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <BreadCrumb items={breadCrumbPath} />
