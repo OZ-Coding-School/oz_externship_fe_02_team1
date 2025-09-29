@@ -164,7 +164,7 @@ const MODAL_PRESETS = {
           left={
             selectedCount && selectedCount > 0 ? (
               <span className="text-sm text-gray-500">
-                {selectedCount}개의 강의가 선택되었습니다
+                {selectedCount}개 강의 선택됨
               </span>
             ) : (
               <span className="text-sm text-gray-400">강의를 선택하세요</span>
