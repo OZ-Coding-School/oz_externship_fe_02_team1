@@ -3,6 +3,7 @@ import { useState } from 'react'
 import {
   BaseModal,
   Checkbox,
+  Input,
   MODAL_PRESETS,
   Pagination,
   Text,
@@ -10,6 +11,8 @@ import {
 import { lectureData } from '@mocks/datas/lectureData'
 
 import type { LectureDetail } from '@models'
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { cn } from '@/utils'
 
 interface LectureSelectModalProps {
   isOpen: boolean
@@ -46,31 +49,44 @@ export default function LectureSelectModal({
     <BaseModal isOpen={isOpen} onClose={onClose} size="lg">
       {MODAL_PRESETS.search.header({ onClose })}
 
-      <div className="overflow-y-auto p-6">
-        <input
+      <div className="scrollbar-custom overflow-y-auto p-6">
+        <Input
           type="text"
-          placeholder="강의 제목을 검색하세요"
+          placeholder="강의명이나 강사명으로 검색..."
+          leftIcon={<MagnifyingGlassIcon width={16} />}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full rounded-md border border-gray-300 p-2"
         />
         <div className="mt-4 flex flex-col gap-4">
           {paginatedLectures.map((lecture) => (
-            <div
+            <label
               key={lecture.id}
-              className="flex items-center gap-4 rounded-md border border-gray-200 p-4"
+              className={cn(
+                'flex cursor-pointer items-center gap-4 rounded-md border-2 p-4',
+                selectedLectures.some((l) => l.id === lecture.id)
+                  ? 'border-primary-500 bg-primary-50'
+                  : 'border-gray-200'
+              )}
             >
               <img
                 src={lecture.thumbnailImg}
                 alt={lecture.lectureTitle}
-                className="h-20 w-20 rounded-md object-cover"
+                className="h-16 w-24 rounded-lg object-cover"
               />
-              <div className="flex-1">
-                <Text className="font-semibold">{lecture.lectureTitle}</Text>
-                <Text variant="small" className="text-gray-500">
+              <div className="flex flex-1 flex-col items-start gap-1">
+                <Text className="font-medium">{lecture.lectureTitle}</Text>
+                <Text variant="small" className="text-gray-600">
                   {lecture.instructor}
                 </Text>
-                <Text variant="small" className="text-gray-500">
+                <Text
+                  variant="extraSmall"
+                  className={cn(
+                    'rounded-sm px-2 py-1 font-medium',
+                    lecture.platform == 'inflearn'
+                      ? 'bg-success-100 text-success-800'
+                      : 'bg-[#F3E8FF] text-[#6B21A8]'
+                  )}
+                >
                   {lecture.platform}
                 </Text>
               </div>
@@ -86,7 +102,7 @@ export default function LectureSelectModal({
                 checked={selectedLectures.some((l) => l.id === lecture.id)}
                 onChange={() => handleSelectLecture(lecture)}
               />
-            </div>
+            </label>
           ))}
         </div>
         <div className="mt-4 flex justify-center">
