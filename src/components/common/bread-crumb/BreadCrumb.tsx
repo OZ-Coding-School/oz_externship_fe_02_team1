@@ -24,7 +24,10 @@ export default function BreadCrumb({ items, className }: BreadCrumbProps) {
   return (
     <nav
       aria-label="breadCrumb"
-      className={cn('max-w-[854px] text-sm text-gray-600', className)}
+      className={cn(
+        'max-w-[854px] text-xs text-gray-600 sm:text-sm',
+        className
+      )}
     >
       <ol className="flex">
         {items.map((item, i) => (
