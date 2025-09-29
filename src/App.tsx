@@ -28,7 +28,10 @@ function App() {
         element={<Layout maxWidth="medium" isBackgroundGray />}
       >
         <Route path="create" element={<CreateStudyGroup />} />
-        <Route path=":groupId/edit" element={<EditStudyGroup />} />
+        <Route
+          path=":groupId/records/:recordId/edit"
+          element={<EditStudyGroup />}
+        />
       </Route>
 
       <Route path="/study-group" element={<Layout maxWidth="medium" />}>
