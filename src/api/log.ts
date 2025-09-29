@@ -5,6 +5,7 @@ import { keysToSnake } from '@utils'
 import type {
   CreateStudyLogRequest,
   StudyLogDetailResponse,
+  DeleteStudyLogResponse,
   UploadLogFileResponse,
 } from '@api'
 
@@ -59,10 +60,10 @@ export const logApi = {
     return data
   },
 
-  deleteStudyLog: async (groupUuid: string, noteId: number) => {
-    const response = await axiosInstance.delete(
-      API_PATHS.STUDY_NOTES.DELETE(groupUuid, noteId)
-    )
-    return response.data
+  deleteStudyLog: async (
+    groupUuid: string,
+    noteId: number
+  ): Promise<DeleteStudyLogResponse> => {
+    await axiosInstance.delete(API_PATHS.STUDY_NOTES.DELETE(groupUuid, noteId))
   },
 }
