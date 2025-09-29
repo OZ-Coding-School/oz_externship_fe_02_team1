@@ -139,7 +139,7 @@ const MODAL_PRESETS = {
     header: ({ onClose }: ModalHeaderRenderProps) => (
       <ModalHeader
         title="강의 선택"
-        subTitle="스터디에 등록할 강의를 찾아보세요"
+        subTitle="스터디에서 함께 공부할 강의를 선택하세요"
         onClose={onClose}
       />
     ),
