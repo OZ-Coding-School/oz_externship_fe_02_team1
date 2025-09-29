@@ -7,7 +7,6 @@ import type { StudyLogDetailResponse } from '@api'
 // 생성된 스터디 기록을 임시로 저장할 Map
 const mockStudyLogs = new Map<number, StudyLogDetailResponse>()
 
-// 스터디 로그 파일 업로드 핸들러
 const uploadFileHandler = http.post(
   `${API_BASE_URL}/study-notes/:groupId/upload`,
   async ({ request }) => {
@@ -33,7 +32,6 @@ const uploadFileHandler = http.post(
   }
 )
 
-// 스터디 기록 생성 핸들러
 const createStudyLogHandler = http.post<
   PathParams,
   {
@@ -66,9 +64,8 @@ const createStudyLogHandler = http.post<
       fileName: decodeURIComponent(url.split('/').pop() || `file-${index}`),
       fileUrl: url,
     })),
-    // 입력된 제목과 내용을 바탕으로 동적인 AI 요약을 생성합니다.
     aiSummary:
-      body.title || body.content // This part is correct as title and content are top-level
+      body.title || body.content
         ? `AI 요약: "${body.title}" 주제에 대해 학습했으며, 본문 내용은 "${body.content.substring(0, 30)}..."(으)로 시작합니다.`
         : '입력된 내용이 없어 AI가 요약할 수 없습니다.',
     createdAt: new Date().toISOString(),
@@ -81,7 +78,6 @@ const createStudyLogHandler = http.post<
   return HttpResponse.json(newLog, { status: 201 })
 })
 
-// 스터디 기록 상세 정보 핸들러
 const getStudyLogDetailHandler = http.get(
   `${API_BASE_URL}/study-notes/:groupUuid/notes/:noteId`,
   ({ params }) => {
@@ -96,7 +92,6 @@ const getStudyLogDetailHandler = http.get(
   }
 )
 
-// 스터디 기록 수정 핸들러
 const updateStudyLogHandler = http.patch<
   PathParams,
   {
@@ -138,9 +133,28 @@ const updateStudyLogHandler = http.patch<
   }
 )
 
+// 스터디 기록 삭제 핸들러
+const deleteStudyLogHandler = http.delete(
+  `${API_BASE_URL}/study-notes/:groupUuid/notes/:noteId`,
+  async ({ params }) => {
+    const { noteId } = params
+    const numericNoteId = Number(noteId)
+
+    if (mockStudyLogs.has(numericNoteId)) {
+      mockStudyLogs.delete(numericNoteId)
+      await delay(500)
+      // 성공 시 204 No Content 응답
+      return new HttpResponse(null, { status: 204 })
+    }
+
+    return new HttpResponse(null, { status: 404 })
+  }
+)
+
 export const studyLogHandlers = [
   uploadFileHandler,
   createStudyLogHandler,
   getStudyLogDetailHandler,
   updateStudyLogHandler,
+  deleteStudyLogHandler,
 ]
