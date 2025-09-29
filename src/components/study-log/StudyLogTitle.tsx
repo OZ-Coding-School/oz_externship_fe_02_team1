@@ -15,7 +15,7 @@ export default function StudyLogTitle({ value, onChange }: StudyLogTitleProps) {
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full pb-4 sm:pb-0">
       <div className="pb-2">
         <Text className="text-sm font-medium text-gray-700">제목 </Text>
         <Text className="text-sm font-medium text-red-500">*</Text>

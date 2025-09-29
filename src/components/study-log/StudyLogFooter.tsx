@@ -12,7 +12,7 @@ export default function StudyLogFooter({
   onDetail,
 }: StudyLogFooterProps) {
   return (
-    <footer className="flex justify-between pt-6">
+    <footer className="flex justify-between p-4 pt-6 sm:p-0 sm:pt-6">
       <Button
         variant="outline"
         className="rounded-lg px-6 py-2"
