@@ -5,7 +5,6 @@ import { keysToSnake } from '@utils'
 import type {
   CreateStudyLogRequest,
   StudyLogDetailResponse,
-  StudyLogListResponse,
   UploadLogFileResponse,
 } from '@api'
 
