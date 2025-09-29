@@ -5,14 +5,12 @@ import type { StudyLogDetailResponse } from '@/api'
 
 interface LogDetailHeaderProps {
   studyLogData: StudyLogDetailResponse
-  isAuthor: boolean
   onEdit: () => void
   onDelete: () => void
 }
 
 export default function LogDetailHeader({
   studyLogData,
-  isAuthor,
   onEdit,
   onDelete,
 }: LogDetailHeaderProps) {

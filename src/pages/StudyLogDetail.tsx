@@ -13,7 +13,6 @@ import { BREAD_CRUMB_PATH } from '@constants'
 import { useLogDetailQuery } from '@hooks'
 
 import { logApi, type StudyLogDetailResponse } from '@/api'
-import { useAuthStore } from '@/store'
 
 export default function StudyLogDetail() {
   const { groupId, recordId } = useParams<{
@@ -26,7 +25,6 @@ export default function StudyLogDetail() {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
-  const currentUser = useAuthStore((state) => state.user)
   const { data: studyLogData, isLoading } = useLogDetailQuery(groupId!, noteId)
 
   const { mutate: deleteLog } = useMutation({
@@ -52,8 +50,6 @@ export default function StudyLogDetail() {
       studyGroupId: String(studyLogData.studyGroup),
     }
   }, [studyLogData])
-
-  const isAuthor = currentUser?.id === studyLogDetail?.author.id
 
   const breadCrumbPath = useMemo(() => {
     if (!groupId) return BREAD_CRUMB_PATH
@@ -88,7 +84,6 @@ export default function StudyLogDetail() {
       <div>
         <LogDetailHeader
           studyLogData={studyLogDetail}
-          isAuthor={isAuthor}
           onEdit={handleEdit}
           onDelete={handleDelete}
         />

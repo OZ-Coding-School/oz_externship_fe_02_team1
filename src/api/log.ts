@@ -1,13 +1,13 @@
+import {
+  type CreateStudyLogRequest,
+  type StudyLogDetailResponse,
+  type DeleteStudyLogResponse,
+  type UploadLogFileResponse,
+  type StudyLogListResponse,
+} from '@api'
 import { API_PATHS } from '@constants'
 import { axiosInstance } from '@lib'
 import { keysToSnake } from '@utils'
-
-import type {
-  CreateStudyLogRequest,
-  StudyLogDetailResponse,
-  DeleteStudyLogResponse,
-  UploadLogFileResponse,
-} from '@api'
 
 export const logApi = {
   uploadFiles: async (files: File[], groupUuid: string) => {
@@ -65,5 +65,12 @@ export const logApi = {
     noteId: number
   ): Promise<DeleteStudyLogResponse> => {
     await axiosInstance.delete(API_PATHS.STUDY_NOTES.DELETE(groupUuid, noteId))
+  },
+
+  getStudyLogList: async (group_uuid: string) => {
+    const response = await axiosInstance.get<StudyLogListResponse[]>(
+      API_PATHS.STUDY_NOTES.LIST(group_uuid)
+    )
+    return response.data
   },
 }
