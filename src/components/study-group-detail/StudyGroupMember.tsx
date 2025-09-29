@@ -1,6 +1,8 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import { useParams } from 'react-router-dom'
 
 import { Avatar, Badge, Button, Card, Text } from '@components'
+import { useKickMemberMutation } from '@hooks'
 
 import type { StudyGroupMemberList } from '@models'
 
@@ -11,6 +13,17 @@ export default function StudyGroupMember({
   members: StudyGroupMemberList[]
   isLeader?: boolean
 }) {
+  const { groupId } = useParams<{ groupId: string }>()
+  const kickMemberMutation = useKickMemberMutation(groupId || '')
+
+  const handleKickMember = (member: StudyGroupMemberList) => {
+    if (
+      window.confirm(`${member.nickname}님을 스터디 그룹에서 내보내시겠습니까?`)
+    ) {
+      kickMemberMutation.mutate(member.uuid)
+    }
+  }
+
   return (
     <Card title="멤버 목록">
       <Text className="absolute top-7 right-6 text-sm text-gray-500">
@@ -41,6 +54,7 @@ export default function StudyGroupMember({
                   variant="ghost"
                   className="rounded-full bg-red-50 p-1 hover:bg-red-100"
                   aria-label={`${member.nickname}님을 추방`}
+                  onClick={() => handleKickMember(member)}
                 >
                   <XMarkIcon width={20} className="text-danger-500" />
                 </Button>
