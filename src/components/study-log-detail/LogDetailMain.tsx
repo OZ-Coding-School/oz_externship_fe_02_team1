@@ -1,5 +1,6 @@
-import type { StudyLogDetailResponse } from '@api'
 import { LogDetailAttachments, MarkdownPreview } from '@components'
+
+import type { StudyLogDetailResponse } from '@api'
 
 interface LogDetailMainProps {
   studyLogData: StudyLogDetailResponse

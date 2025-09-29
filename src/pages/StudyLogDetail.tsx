@@ -1,3 +1,4 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { Link, useParams, useNavigate } from 'react-router'
 
@@ -9,11 +10,9 @@ import {
   LogDetailMain,
 } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
-
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useLogDetailQuery } from '@hooks'
+
 import { logApi, type StudyLogDetailResponse } from '@/api'
-import { useAuthStore } from '@/store'
 
 export default function StudyLogDetail() {
   const { groupId, recordId } = useParams<{
@@ -26,7 +25,6 @@ export default function StudyLogDetail() {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
 
-  const currentUser = useAuthStore((state) => state.user)
   const { data: studyLogData, isLoading } = useLogDetailQuery(groupId!, noteId)
 
   const { mutate: deleteLog } = useMutation({
@@ -52,12 +50,6 @@ export default function StudyLogDetail() {
       studyGroupId: String(studyLogData.studyGroup),
     }
   }, [studyLogData])
-
-  // 현재 사용자가 글 작성자인지 확인
-  const isAuthor = useMemo(
-    () => currentUser?.uuid === studyLogDetail?.author.id,
-    [currentUser, studyLogDetail]
-  )
 
   const breadCrumbPath = useMemo(() => {
     if (!groupId) return BREAD_CRUMB_PATH
@@ -91,7 +83,6 @@ export default function StudyLogDetail() {
       <div>
         <LogDetailHeader
           studyLogData={studyLogDetail}
-          isAuthor={isAuthor}
           onEdit={handleEdit}
           onDelete={handleDelete}
         />
