@@ -2,23 +2,23 @@ import { useState } from 'react'
 
 import {
   BaseModal,
-  Checkbox,
-  Input,
   MODAL_PRESETS,
   Pagination,
-  Text,
+  LectureSelectItem,
+  Input,
 } from '@components'
 import { lectureData } from '@mocks/datas/lectureData'
 
 import type { LectureDetail } from '@models'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import { cn } from '@/utils'
 
 interface LectureSelectModalProps {
   isOpen: boolean
   onClose: () => void
 }
+
 const LECTURES_PER_PAGE = 5
+
 export default function LectureSelectModal({
   isOpen,
   onClose,
@@ -59,50 +59,12 @@ export default function LectureSelectModal({
         />
         <div className="mt-4 flex flex-col gap-4">
           {paginatedLectures.map((lecture) => (
-            <label
+            <LectureSelectItem
               key={lecture.id}
-              className={cn(
-                'flex cursor-pointer items-center gap-4 rounded-md border-2 p-4',
-                selectedLectures.some((l) => l.id === lecture.id)
-                  ? 'border-primary-500 bg-primary-50'
-                  : 'border-gray-200'
-              )}
-            >
-              <img
-                src={lecture.thumbnailImg}
-                alt={lecture.lectureTitle}
-                className="h-16 w-24 rounded-lg object-cover"
-              />
-              <div className="flex flex-1 flex-col items-start gap-1">
-                <Text className="font-medium">{lecture.lectureTitle}</Text>
-                <Text variant="small" className="text-gray-600">
-                  {lecture.instructor}
-                </Text>
-                <Text
-                  variant="extraSmall"
-                  className={cn(
-                    'rounded-sm px-2 py-1 font-medium',
-                    lecture.platform == 'inflearn'
-                      ? 'bg-success-100 text-success-800'
-                      : 'bg-[#F3E8FF] text-[#6B21A8]'
-                  )}
-                >
-                  {lecture.platform}
-                </Text>
-              </div>
-              <div className="flex flex-col items-end">
-                <Text className="text-lg font-semibold">
-                  {lecture.discountPrice.toLocaleString()}원
-                </Text>
-                <Text variant="small" className="text-gray-400 line-through">
-                  {lecture.originalPrice.toLocaleString()}원
-                </Text>
-              </div>
-              <Checkbox
-                checked={selectedLectures.some((l) => l.id === lecture.id)}
-                onChange={() => handleSelectLecture(lecture)}
-              />
-            </label>
+              lecture={lecture}
+              isSelected={selectedLectures.some((l) => l.id === lecture.id)}
+              onSelect={handleSelectLecture}
+            />
           ))}
         </div>
         <div className="mt-4 flex justify-center">
