@@ -55,15 +55,14 @@ export const logApi = {
   ): Promise<StudyLogDetailResponse> => {
     const { data } = await axiosInstance.patch<StudyLogDetailResponse>(
       API_PATHS.STUDY_NOTES.UPDATE(groupUuid, noteId),
-      // 수동으로 snake_case로 변환
       keysToSnake(payload)
     )
     return data
   },
 
-  getStudyLogList: async (group_uuid: string) => {
-    const response = await axiosInstance.get<StudyLogListResponse[]>(
-      API_PATHS.STUDY_NOTES.LIST(group_uuid)
+  deleteStudyLog: async (groupUuid: string, noteId: number) => {
+    const response = await axiosInstance.delete(
+      API_PATHS.STUDY_NOTES.DELETE(groupUuid, noteId)
     )
     return response.data
   },
