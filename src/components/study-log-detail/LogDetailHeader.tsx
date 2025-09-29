@@ -1,7 +1,7 @@
 import { Avatar, H3, Text } from '@components'
 import { formatDate } from '@utils'
 
-import type { StudyLogDetail } from '@models'
+import type { StudyLogDetailResponse } from '@/api'
 
 interface LogDetailHeaderProps {
   studyLogData: StudyLogDetailResponse
@@ -46,7 +46,11 @@ export default function LogDetailHeader({
 
       <section className="flex items-center gap-4">
         <div className="flex items-center gap-2">
-          <Avatar size="sm" src={author.profileImage} alt={author.nickname} />
+          <Avatar
+            size="sm"
+            src={author.profileImgUrl ?? undefined}
+            alt={author.nickname}
+          />
           <Text variant="small" className="font-medium text-gray-600">
             {author.nickname}
           </Text>
