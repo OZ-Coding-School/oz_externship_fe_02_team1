@@ -6,7 +6,7 @@ import {
   useLogFileUpload,
   usePageNav,
   useStudyLogMutations,
-  useStudyLogQuery,
+  useLogDetailQuery,
 } from '@hooks'
 import { prepareLogSubmitPayload, transformApiResponseToLogFiles } from '@utils'
 
@@ -44,7 +44,7 @@ export const useStudyLogForm = ({ mode }: UseStudyLogFormProps) => {
     useLogFileUpload({ groupUuid })
 
   // query
-  const { data: studyLogData, isLoading: isFetching } = useStudyLogQuery(
+  const { data: studyLogData, isLoading: isFetching } = useLogDetailQuery(
     groupUuid,
     noteId,
     { enabled: isEditMode && !!noteId }
