@@ -17,9 +17,9 @@ const description = {
 
 export default function StudyLogHeader({ mode }: StudyLogHeaderProps) {
   return (
-    <header>
-      <BreadCrumb items={BREAD_CRUMB_PATH} className="pb-4" />
-      <div className="w-full pb-6">
+    <header className="p-2 sm:p-0">
+      <BreadCrumb items={BREAD_CRUMB_PATH} className="pb-6 sm:pb-4" />
+      <div className="w-full pb-4 sm:pb-6">
         <H2 className="leading-9 font-bold">{title[mode]}</H2>
         <Text className="inline-flex pt-2 text-gray-600">
           {description[mode]}

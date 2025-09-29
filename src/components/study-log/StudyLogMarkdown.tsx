@@ -20,7 +20,7 @@ export default function StudyLogMarkdown({
 }: StudyLogMarkdownProps) {
   return (
     <div className="w-full">
-      <div className="pt-6">
+      <div className="pt-4 sm:pt-6">
         <Text className="pb-2 text-sm font-medium text-gray-700">내용 </Text>
         <Text className="text-sm font-medium text-red-500">*</Text>
 
