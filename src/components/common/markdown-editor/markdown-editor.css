@@ -35,7 +35,7 @@
   @apply relative z-10 flex h-12 items-center justify-end overflow-visible rounded-t-lg border-b border-gray-200 bg-gray-50 px-4 py-2 pl-40;
 }
 .markdown-editor__tabs {
-  @apply absolute top-0 left-4 z-20 flex h-12 items-center gap-2;
+  @apply z-20 flex h-12 items-center gap-2 sm:absolute sm:top-0 sm:left-4;
 }
 .markdown-editor__tab {
   @apply h-8 rounded px-3 py-1 text-sm leading-tight font-medium text-gray-600 transition-colors hover:text-gray-900;
@@ -128,7 +128,7 @@
 
 /* ── Hint Bar ── */
 .markdown-editor__hint {
-  @apply flex items-center gap-2 overflow-hidden rounded-b-md border-t border-gray-200 bg-gray-50 px-4 py-2 text-xs;
+  @apply flex items-center gap-2 rounded-b-md border-t border-gray-200 bg-gray-50 px-4 py-2 text-xs sm:overflow-hidden;
 }
 .markdown-editor__hint > span:first-child {
   @apply font-normal text-gray-600;
