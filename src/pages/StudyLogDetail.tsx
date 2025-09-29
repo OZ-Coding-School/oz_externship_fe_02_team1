@@ -10,8 +10,8 @@ import {
 } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
 import { useLogDetailQuery } from '@hooks'
-
-import type { StudyLogDetail } from '@models'
+import { logApi, type StudyLogDetailResponse } from '@/api'
+import { useAuthStore } from '@/store'
 
 export default function StudyLogDetail() {
   const { groupId, recordId } = useParams<{
@@ -22,6 +22,10 @@ export default function StudyLogDetail() {
   // recordId를 숫자로 변환
   const noteId = Number(recordId)
 
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
+
+  const currentUser = useAuthStore((state) => state.user)
   const { data: studyLogData, isLoading } = useLogDetailQuery(groupId!, noteId)
 
   // API 응답 데이터를 프론트엔드 컴포넌트에서 사용하는 데이터 형식으로 변환합니다.
@@ -32,6 +36,12 @@ export default function StudyLogDetail() {
       studyGroupId: String(studyLogData.studyGroup),
     }
   }, [studyLogData])
+
+  // 현재 사용자가 글 작성자인지 확인
+  const isAuthor = useMemo(
+    () => currentUser?.uuid === studyLogDetail?.author.id,
+    [currentUser, studyLogDetail]
+  )
 
   const breadCrumbPath = useMemo(() => {
     if (!groupId) return BREAD_CRUMB_PATH
