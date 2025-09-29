@@ -9,8 +9,8 @@ import {
   LogDetailMain,
 } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
-import { useStudyLogQuery } from '@hooks'
-import type { StudyLogDetail } from '@/types'
+import { useLogDetailQuery } from '@hooks'
+import type { StudyLogDetail } from '@models'
 
 export default function StudyLogDetail() {
   const { groupId, recordId } = useParams<{
@@ -21,7 +21,7 @@ export default function StudyLogDetail() {
   // recordId를 숫자로 변환
   const noteId = Number(recordId)
 
-  const { data: studyLogData, isLoading } = useStudyLogQuery(groupId!, noteId)
+  const { data: studyLogData, isLoading } = useLogDetailQuery(groupId!, noteId)
 
   // API 응답 데이터를 프론트엔드 컴포넌트에서 사용하는 데이터 형식으로 변환합니다.
   const studyLogDetail: StudyLogDetail | undefined = useMemo(() => {

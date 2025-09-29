@@ -5,6 +5,7 @@ import { keysToSnake } from '@utils'
 import type {
   CreateStudyLogRequest,
   StudyLogDetailResponse,
+  StudyLogListResponse,
   UploadLogFileResponse,
 } from '@api'
 
@@ -58,5 +59,12 @@ export const logApi = {
       keysToSnake(payload)
     )
     return data
+  },
+
+  getStudyLogList: async (group_uuid: string) => {
+    const response = await axiosInstance.get<StudyLogListResponse[]>(
+      API_PATHS.STUDY_NOTES.LIST(group_uuid)
+    )
+    return response.data
   },
 }
