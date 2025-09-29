@@ -59,12 +59,6 @@ export default function StudyLogDetail() {
     ]
   }, [groupId])
 
-  const handleDelete = () => {
-    if (window.confirm('정말로 이 기록을 삭제하시겠습니까?')) {
-      deleteLog()
-    }
-  }
-
   if (isLoading) {
     return <LoadingState />
   }
