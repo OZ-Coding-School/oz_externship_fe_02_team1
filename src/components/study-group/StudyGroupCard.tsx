@@ -7,8 +7,7 @@ import {
   StudyGroupCardFooter,
   StudyGroupCardBody,
 } from '@components'
-import { useModal, usePageNav, useReviewCreateMutation } from '@hooks'
-import { reviewMocks } from '@mocks/datas/reviewListMocks'
+import { useModal, usePageNav, useReviewCreateMutation, useReviewListQuery } from '@hooks'
 import { calculateAverageRating } from '@utils'
 
 import type { ReviewFormInputs } from './modal/ReviewWriteModal'
@@ -38,9 +37,10 @@ export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
 
   const createReviewMutation = useReviewCreateMutation(uuid)
 
-  const reviewsForGroup = reviewMocks.get(uuid)?.results || []
-  const averageRating = calculateAverageRating(reviewsForGroup)
-  const reviewCount = reviewsForGroup.length
+  const { data: reviewData } = useReviewListQuery(uuid)
+  const reviews = reviewData?.results || []
+  const averageRating = calculateAverageRating(reviews)
+  const reviewCount = reviews.length
 
   // api연동후 api폴더로 이동예정
   const handleConfirmReview = (data: ReviewFormInputs) => {
