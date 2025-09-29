@@ -10,7 +10,7 @@ import {
   LoadingState,
   Text,
 } from '@components'
-import { useLogListQeury, usePageNav } from '@hooks'
+import { useLogListQuery, usePageNav } from '@hooks'
 import { formatDate } from '@utils'
 
 export default function StudyGroupLogList() {
@@ -22,7 +22,9 @@ export default function StudyGroupLogList() {
     isLoading,
     isError,
     refetch,
-  } = useLogListQeury(groupId || '')
+  } = useLogListQuery(groupId || '')
+
+  console.log('logData:', logData)
 
   return (
     <Card
