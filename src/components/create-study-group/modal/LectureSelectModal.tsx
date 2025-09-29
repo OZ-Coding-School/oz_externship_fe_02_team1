@@ -1,3 +1,4 @@
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
 
 import {
@@ -10,7 +11,6 @@ import {
 import { lectureData } from '@mocks/datas/lectureData'
 
 import type { LectureDetail } from '@models'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 interface LectureSelectModalProps {
   isOpen: boolean
