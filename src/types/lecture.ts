@@ -10,6 +10,17 @@ export interface Lecture extends LectureBase {
 }
 
 export interface LectureDetail extends Lecture {
+  id: string
+  duration: number
+  description: string
+  createdAt: string
+  updatedAt: string
+  averageRating: string
+  categories: {
+    id: number
+    name: string
+  }[]
+  difficulty: string
   originalPrice: number
   discountPrice: number
   platform: string
