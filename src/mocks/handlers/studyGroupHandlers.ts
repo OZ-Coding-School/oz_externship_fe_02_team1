@@ -80,4 +80,29 @@ export const studyGroupHandlers = [
       return HttpResponse.json(mockResponse, { status: 200 })
     }
   ),
+
+  http.delete(
+    `${API_BASE_URL}${API_PATHS.STUDY_GROUP.KICK_MEMBER(
+      ':groupUuid',
+      ':memberUuid'
+    )}`,
+    ({ params }) => {
+      const { groupUuid, memberUuid } = params
+
+      const groupIndex = studyGroupList.findIndex(
+        (group) => group.uuid === groupUuid
+      )
+
+      if (groupIndex > -1) {
+        const group = studyGroupList[groupIndex]
+        if (group.members) {
+          group.members = group.members.filter(
+            (member) => member.uuid !== memberUuid
+          )
+        }
+      }
+
+      return new HttpResponse(null, { status: 204 })
+    }
+  ),
 ]

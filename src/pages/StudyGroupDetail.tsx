@@ -10,7 +10,6 @@ import {
   StudyGroupSchedule,
 } from '@components'
 import { useStudyGroupQuery } from '@hooks'
-
 import { useAuthStore } from '@store/authStore'
 
 export default function StudyGroupDetail() {

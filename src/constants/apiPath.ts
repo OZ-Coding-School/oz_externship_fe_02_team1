@@ -22,7 +22,7 @@ export const API_PATHS = {
     UPDATE_INFO: (groupUuid: string) => `/study-groups/${groupUuid}/leader`,
     LEAVE: (groupUuid: string) => `/study-groups/${groupUuid}/withdraw`,
     KICK_MEMBER: (groupUuid: string, memberUuid: string) =>
-      `/study-groups/${groupUuid}/leader/${memberUuid}`,
+      `/study-groups/${groupUuid}/kick/${memberUuid}`,
     DELEGATE: (groupUuid: string) => `/study-groups/${groupUuid}/delegate`,
   },
 
