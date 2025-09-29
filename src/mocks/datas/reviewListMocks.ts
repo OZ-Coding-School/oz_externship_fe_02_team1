@@ -50,4 +50,5 @@ export const reviewMocks = new Map<string, ReviewListResponse>([
     createReviewResponse(reviewsForGroup1),
   ],
   ['algorithm-study-group', createReviewResponse(reviewsForGroup2)],
+  ['ui-ux-design-study-group', createReviewResponse([])],
 ])
