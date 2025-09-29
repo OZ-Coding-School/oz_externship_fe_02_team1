@@ -60,7 +60,6 @@ export default function StudyLogDetail() {
   }, [groupId])
 
   const handleDelete = () => {
-    console.log('삭제입니다')
     if (window.confirm('정말로 이 기록을 삭제하시겠습니까?')) {
       deleteLog()
     }

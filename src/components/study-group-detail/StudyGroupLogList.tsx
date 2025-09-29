@@ -24,8 +24,6 @@ export default function StudyGroupLogList() {
     refetch,
   } = useLogListQuery(groupId || '')
 
-  console.log('logData:', logData)
-
   return (
     <Card
       title="스터디 기록"
