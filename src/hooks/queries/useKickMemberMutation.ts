@@ -10,9 +10,14 @@ export const useKickMemberMutation = (groupUuid: string) => {
     mutationFn: (memberUuid: string) =>
       studyApi.kickGroupMember(groupUuid, memberUuid),
     onSuccess: () => {
+      alert('멤버를 내보냈습니다.')
+
       return queryClient.invalidateQueries({
         queryKey: studyQueryKey.detail(groupUuid),
       })
+    },
+    onError: () => {
+      alert('멤버를 내보내는 데 실패했습니다.')
     },
   })
 }
