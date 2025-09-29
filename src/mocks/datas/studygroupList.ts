@@ -23,7 +23,12 @@ export const studyGroupList: StudyGroupList[] = [
       thumbnailImg: Images.studyGroupDefault,
       urlLink: '/',
     })),
-    leader: { ...studyGroupMember[0], profileImage: undefined },
+    leader: {
+      uuid: 'leader-uuid-1234',
+      nickname: '김개발',
+      isLeader: true,
+      profileImage: undefined,
+    },
     members: studyGroupMember.map((member, index) => ({
       ...member,
       isLeader: index === 0,

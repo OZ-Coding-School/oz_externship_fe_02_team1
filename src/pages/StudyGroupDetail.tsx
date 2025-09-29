@@ -11,10 +11,13 @@ import {
 } from '@components'
 import { useStudyGroupQuery } from '@hooks'
 
+import { useAuthStore } from '@store/authStore'
+
 export default function StudyGroupDetail() {
   const { groupId } = useParams<{ groupId: string }>()
 
   const { data: studyGroupData, isLoading } = useStudyGroupQuery(groupId || '')
+  const currentUser = useAuthStore((state) => state.user)
 
   if (isLoading) {
     return <LoadingState />
@@ -34,7 +37,10 @@ export default function StudyGroupDetail() {
     status,
     members,
     lectures,
+    leader,
   } = studyGroupData
+
+  const isLeader = currentUser?.uuid === leader?.uuid
 
   return (
     <>
@@ -45,6 +51,7 @@ export default function StudyGroupDetail() {
         startAt={startAt}
         endAt={endAt}
         status={status}
+        currentUserRole={isLeader ? 'leader' : 'member'}
       />
       <div className="mt-6 flex flex-col gap-6 lg:mt-8 lg:grid lg:grid-cols-3">
         <div className="col-span-2 flex flex-col gap-6 lg:gap-8">
@@ -60,7 +67,7 @@ export default function StudyGroupDetail() {
             status={status}
           />
           {lectures && <StudyGroupLecture lectures={lectures} />}
-          <StudyGroupMember members={members} />
+          <StudyGroupMember members={members} isLeader={isLeader} />
         </div>
       </div>
     </>
