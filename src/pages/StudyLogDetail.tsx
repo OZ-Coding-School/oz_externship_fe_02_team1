@@ -41,6 +41,15 @@ export default function StudyLogDetail() {
     ]
   }, [groupId])
 
+  const handleDelete = () => {
+    if (window.confirm('정말로 이 기록을 삭제하시겠습니까?')) {
+      deleteLog()
+    }
+  }
+
+  const handleEdit = () =>
+    navigate(`/study-group/${groupId}/records/${noteId}/edit`)
+
   if (isLoading) {
     return <LoadingState />
   }
@@ -54,7 +63,12 @@ export default function StudyLogDetail() {
     <div className="flex flex-col gap-4">
       <BreadCrumb items={breadCrumbPath} />
       <div>
-        <LogDetailHeader studyLogData={studyLogDetail} />
+        <LogDetailHeader
+          studyLogData={studyLogDetail}
+          isAuthor={isAuthor}
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
         {studyLogDetail.aiSummary && (
           <LogDetailAISummary summaryText={studyLogDetail.aiSummary} />
         )}
