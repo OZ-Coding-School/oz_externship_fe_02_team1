@@ -1,7 +1,11 @@
 import { API_PATHS } from '@constants'
 import { axiosInstance } from '@lib'
 
-import type { ReviewListRequest, ReviewListResponse } from '@api'
+import type {
+  CreateReviewRequest,
+  ReviewListRequest,
+  ReviewListResponse,
+} from '@api'
 
 export const reviewApi = {
   getReviewList: async (params: ReviewListRequest) => {
@@ -10,9 +14,10 @@ export const reviewApi = {
     )
     return response.data
   },
-  createReview: async (groupUuid: string) => {
+  createReview: async (groupUuid: string, payload: CreateReviewRequest) => {
     const response = await axiosInstance.post(
-      API_PATHS.REVIEW.CREATE(groupUuid)
+      API_PATHS.REVIEW.CREATE(groupUuid),
+      payload
     )
     return response.data
   },
