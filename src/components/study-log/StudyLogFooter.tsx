@@ -2,7 +2,7 @@ import { Button, Text } from '@components'
 
 interface StudyLogFooterProps {
   onCancel: () => void
-  onDetail: () => void
+  onDetail?: () => void
   isLoading?: boolean
 }
 

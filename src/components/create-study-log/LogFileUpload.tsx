@@ -1,6 +1,7 @@
+import { useState } from 'react'
+
 import { Toast, LogUploadedFileList, LogUploadPlaceholder } from '@components'
 import { MAX_FILE_COUNT } from '@constants'
-import { useLogFileUpload } from '@hooks'
 import {
   cn,
   handleFileDrag,
@@ -9,43 +10,30 @@ import {
 } from '@utils'
 
 interface LogFileUploadProps {
-  groupUuid: string
   files: LogUploadedFile[]
-  onFilesAdded: (newFiles: LogUploadedFile[]) => void
+  onFilesAdded: (newFiles: File[]) => void
   onFileDeleted: (fileId: string) => void
   className?: string
 }
 
 export default function LogFileUpload({
-  groupUuid,
   files,
   onFilesAdded,
   onFileDeleted,
   className,
 }: LogFileUploadProps) {
-  const {
-    isDragging,
-    setIsDragging,
-    errorMessage,
-    setErrorMessage,
-    handleAddFiles,
-    handleDeleteFile,
-  } = useLogFileUpload({
-    currentFiles: files,
-    onFilesAdded,
-    onFileDeleted,
-    groupUuid,
-  })
+  const [isDragging, setIsDragging] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const onFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return
     const selectedFiles = Array.from(e.target.files)
-    handleAddFiles(selectedFiles)
+    onFilesAdded(selectedFiles)
     e.target.value = ''
   }
 
   const onFileDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    handleFileDrop(e, handleAddFiles, setIsDragging)
+    handleFileDrop(e, onFilesAdded, setIsDragging)
   }
 
   return (
@@ -72,7 +60,7 @@ export default function LogFileUpload({
       >
         {files.length > 0 ? (
           <>
-            <LogUploadedFileList files={files} onDelete={handleDeleteFile} />
+            <LogUploadedFileList files={files} onDelete={onFileDeleted} />
             {files.length < MAX_FILE_COUNT && (
               <label
                 htmlFor="file-upload"
