@@ -2,11 +2,12 @@ import { API_PATHS } from '@constants'
 import { axiosInstance } from '@lib'
 import { keysToSnake } from '@utils'
 
-import type {
-  CreateStudyLogRequest,
-  StudyLogDetailResponse,
-  StudyLogListResponse,
-  UploadLogFileResponse,
+import {
+  type CreateStudyLogRequest,
+  type StudyLogDetailResponse,
+  type StudyLogListResponse,
+  type DeleteStudyLogResponse,
+  type UploadLogFileResponse,
 } from '@api'
 
 export const logApi = {
@@ -35,7 +36,6 @@ export const logApi = {
   ): Promise<StudyLogDetailResponse> => {
     const { data } = await axiosInstance.post<StudyLogDetailResponse>(
       API_PATHS.STUDY_NOTES.CREATE_AND_SUMMARY(groupUuid),
-      // 수동으로 snake_case로 변환
       keysToSnake(payload)
     )
     return data
@@ -55,10 +55,19 @@ export const logApi = {
   ): Promise<StudyLogDetailResponse> => {
     const { data } = await axiosInstance.patch<StudyLogDetailResponse>(
       API_PATHS.STUDY_NOTES.UPDATE(groupUuid, noteId),
-      // 수동으로 snake_case로 변환
       keysToSnake(payload)
     )
     return data
+  },
+
+  deleteStudyLog: async (
+    groupUuid: string,
+    noteId: number
+  ): Promise<DeleteStudyLogResponse> => {
+    const response = await axiosInstance.delete(
+      API_PATHS.STUDY_NOTES.DELETE(groupUuid, noteId)
+    )
+    return response.data
   },
 
   getStudyLogList: async (group_uuid: string) => {

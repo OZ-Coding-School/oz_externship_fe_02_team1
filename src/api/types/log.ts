@@ -41,8 +41,6 @@ export interface StudyLogDetailResponse {
   updatedAt: string
 }
 
-export type CreateStudyLogResponse = StudyLogDetailResponse
-
 export interface StudyLogListResponse {
   id: number
   title: string
@@ -53,3 +51,7 @@ export interface StudyLogListResponse {
   }
   createdAt: string
 }
+
+export type DeleteStudyLogResponse = void
+
+export type CreateStudyLogResponse = StudyLogDetailResponse
