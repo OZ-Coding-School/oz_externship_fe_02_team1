@@ -1,8 +1,14 @@
 import { create } from 'zustand'
 
+interface User {
+  uuid: string
+  nickname: string
+}
+
 interface AuthState {
+  user: User | null
   isLoggedIn: boolean
-  login: (accessToken: string) => void
+  login: (accessToken: string, user: User) => void
   logout: () => void
 }
 
@@ -14,14 +20,15 @@ const removeTokens = () => {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
+  user: null,
   isLoggedIn: !!getAccessToken(),
-  login: (accessToken) => {
+  login: (accessToken, user) => {
     setAccessToken(accessToken)
-    set({ isLoggedIn: true })
+    set({ isLoggedIn: true, user })
   },
   logout: () => {
     removeTokens()
-    set({ isLoggedIn: false })
+    set({ isLoggedIn: false, user: null })
   },
 }))
 

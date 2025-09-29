@@ -4,12 +4,17 @@ import { useAuthStore } from '@store'
 export const useAuthActions = () => {
   const handleLogin = async () => {
     try {
-      const response = await authApi.login({
+      const loginResponse = await authApi.login({
         email: 'admin@ozcoding.site',
         password: 'ozcoding0917!@',
       })
 
-      useAuthStore.getState().login(response.access)
+      const tempUser = {
+        uuid: 'leader-uuid-1234',
+        nickname: '김개발',
+      }
+
+      useAuthStore.getState().login(loginResponse.access, tempUser)
     } catch (error) {
       // TODO: 토스트 알림 교체
       console.error('로그인 실패:', error)
