@@ -80,4 +80,14 @@ export const studyGroupHandlers = [
       return HttpResponse.json(mockResponse, { status: 200 })
     }
   ),
+
+  http.delete(
+    `${API_BASE_URL}${API_PATHS.STUDY_GROUP.KICK_MEMBER(
+      ':groupUuid',
+      ':memberUuid'
+    )}`,
+    () => {
+      return new HttpResponse(null, { status: 204 })
+    }
+  ),
 ]
