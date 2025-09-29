@@ -7,21 +7,24 @@ interface LectureSelectItemProps {
   lecture: LectureDetail
   isSelected: boolean
   onSelect: (lecture: LectureDetail) => void
+  disabled: boolean
 }
 
 export default function LectureSelectItem({
   lecture,
   isSelected,
   onSelect,
+  disabled,
 }: LectureSelectItemProps) {
   return (
     <label
       key={lecture.id}
       className={cn(
-        'flex items-center gap-4 rounded-md border p-4 cursor-pointer',
-        isSelected ? 'border-primary-500 bg-primary-50' : 'border-gray-200'
+        'flex cursor-pointer items-center gap-4 rounded-md border p-4',
+        isSelected ? 'border-primary-500 bg-primary-50' : 'border-gray-200',
+        disabled && !isSelected && 'cursor-not-allowed opacity-50'
       )}
-      onClick={() => onSelect(lecture)}
+      onClick={() => !disabled && onSelect(lecture)}
     >
       <img
         src={lecture.thumbnailImg}
@@ -45,7 +48,11 @@ export default function LectureSelectItem({
           {lecture.originalPrice.toLocaleString()}원
         </Text>
       </div>
-      <Checkbox checked={isSelected} onChange={() => onSelect(lecture)} />
+      <Checkbox
+        checked={isSelected}
+        onChange={() => onSelect(lecture)}
+        disabled={disabled && !isSelected}
+      />
     </label>
   )
 }

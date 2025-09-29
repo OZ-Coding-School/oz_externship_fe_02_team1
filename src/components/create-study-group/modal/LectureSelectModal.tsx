@@ -8,6 +8,7 @@ import {
   LectureSelectItem,
   Input,
 } from '@components'
+import { MAX_LECTURES } from '@constants'
 import { lectureData } from '@mocks/datas/lectureData'
 
 import type { LectureDetail } from '@models'
@@ -38,11 +39,18 @@ export default function LectureSelectModal({
   )
 
   const handleSelectLecture = (lecture: LectureDetail) => {
-    setSelectedLectures((prev) =>
-      prev.some((l) => l.id === lecture.id)
-        ? prev.filter((l) => l.id !== lecture.id)
-        : [...prev, lecture]
-    )
+    setSelectedLectures((prev) => {
+      const isAlreadySelected = prev.some((l) => l.id === lecture.id)
+
+      if (isAlreadySelected) {
+        return prev.filter((l) => l.id !== lecture.id)
+      } else {
+        if (prev.length >= MAX_LECTURES) {
+          return prev
+        }
+        return [...prev, lecture]
+      }
+    })
   }
 
   return (
@@ -64,6 +72,7 @@ export default function LectureSelectModal({
               lecture={lecture}
               isSelected={selectedLectures.some((l) => l.id === lecture.id)}
               onSelect={handleSelectLecture}
+              disabled={selectedLectures.length > MAX_LECTURES}
             />
           ))}
         </div>
