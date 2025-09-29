@@ -10,6 +10,7 @@ import {
 } from '@components'
 import { BREAD_CRUMB_PATH } from '@constants'
 import { useLogDetailQuery } from '@hooks'
+
 import type { StudyLogDetail } from '@models'
 
 export default function StudyLogDetail() {
