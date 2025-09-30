@@ -49,7 +49,7 @@ export default function AddScheduleModal({
       objective: data.objective,
       session_date: data.sessionDate,
       study_group: studyGroupList.find((group) => group.uuid === studyGroupUuid)
-        ?.id,
+        ?.uuid,
       start_time: `${data.startTime}:00`,
       end_time: `${data.endTime}:00`,
     }
