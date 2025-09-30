@@ -15,8 +15,8 @@ import {
   ErrorState,
 } from '@components'
 import { useModal, useScheduleDetailQeury } from '@hooks'
+import { studyGroupList } from '@mocks/datas/studygroupList'
 import { formatDate, formatTime } from '@utils'
-
 
 interface ScheduleDetailModalProps {
   scheduleId: number
@@ -52,6 +52,21 @@ export default function ScheduleDetailModal({
   if (!isOpen) {
     return null
   }
+
+  const currentStudyGroup = studyGroupList.find(
+    (group) => group.uuid === groupId
+  )
+
+  if (!currentStudyGroup) {
+    return null
+  }
+
+  const mockParticipants = [
+    currentStudyGroup.members?.[0],
+    currentStudyGroup.members?.[1],
+    currentStudyGroup.members?.[3],
+    currentStudyGroup.members?.[4],
+  ].filter(Boolean) as typeof currentStudyGroup.members
 
   return (
     <>
@@ -111,22 +126,19 @@ export default function ScheduleDetailModal({
                   </div>
 
                   <ScheduleDetailDiv
-                    title={`참여자 목록 (${schedule.participantCount}명)`}
+                    title={`참여자 목록 (${mockParticipants?.length}명)`}
                   >
                     <ul className="flex flex-col gap-3 rounded-lg border border-gray-200 p-4">
-                      {schedule.participants?.length ? (
+                      {mockParticipants?.length ? (
                         <>
-                          {schedule.participants.map((participant) => (
+                          {mockParticipants.map((participant) => (
                             <li
-                              key={participant.userId}
+                              key={participant.uuid}
                               className="flex items-center"
                             >
-                              <Avatar
-                                size="sm"
-                                alt={participant.userNickname}
-                              />
+                              <Avatar size="sm" alt={participant.nickname} />
                               <Text variant="small" className="mr-2 ml-3">
-                                {participant.userNickname}
+                                {participant.nickname}
                               </Text>
                               {participant.isLeader && (
                                 <Badge
