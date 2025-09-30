@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
 
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
-import { useScheduleMutations } from '@hooks'
+import { useScheduleMutations, useToast } from '@hooks'
 import { studyGroupList } from '@mocks/datas/studygroupList'
 
 import type { ScheduleDetailResponse } from '@api'
@@ -22,6 +22,7 @@ export default function EditScheduleModal({
 }: EditScheduleModalProps) {
   const [tempDate, setTempDate] = useState<Date | undefined>(undefined)
   const { groupId } = useParams<{ groupId: string }>()
+  const { toast } = useToast()
 
   const currentStudyGroup =
     studyGroupList.find((group) => group.uuid === groupId) || studyGroupList[0]
@@ -71,11 +72,24 @@ export default function EditScheduleModal({
       end_time: `${data.endTime}:00`,
     }
 
-    await updateScheduleMutation.mutateAsync({
-      scheduleId: schedule.id,
-      data: scheduleData,
-    })
-    handleClose()
+    try {
+      await updateScheduleMutation.mutateAsync({
+        scheduleId: schedule.id,
+        data: scheduleData,
+      })
+      toast({
+        title: '스케줄이 성공적으로 수정되었습니다.',
+        message: '',
+        type: 'success',
+      })
+      handleClose()
+    } catch (error) {
+      toast({
+        title: '스케줄 수정에 실패했습니다.',
+        message: '다시 시도해주세요.',
+        type: 'error',
+      })
+    }
   }
 
   return (
