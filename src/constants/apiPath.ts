@@ -39,7 +39,8 @@ export const API_PATHS = {
     CREATE: '/schedules',
     UPDATE: (groupUuid: string, scheduleId: number) =>
       `/schedules/${groupUuid}/${scheduleId}`,
-    DELETE: (scheduleId: number) => `/schedules/${scheduleId}`,
+    DELETE: (groupUuid: string, scheduleId: number) =>
+      `/schedules/${groupUuid}/${scheduleId}`,
   },
 
   CHAT: {

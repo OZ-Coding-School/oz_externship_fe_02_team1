@@ -14,7 +14,12 @@ import {
   LoadingState,
   ErrorState,
 } from '@components'
-import { useModal, useScheduleDetailQeury } from '@hooks'
+import {
+  useModal,
+  useScheduleDetailQeury,
+  useScheduleMutations,
+  useToast,
+} from '@hooks'
 import { studyGroupList } from '@mocks/datas/studygroupList'
 import { formatDate, formatTime } from '@utils'
 
@@ -22,14 +27,12 @@ interface ScheduleDetailModalProps {
   scheduleId: number
   isOpen: boolean
   onClose: () => void
-  confirm: () => void
 }
 
 export default function ScheduleDetailModal({
   scheduleId,
   isOpen,
   onClose,
-  confirm,
 }: ScheduleDetailModalProps) {
   const {
     isOpen: isEditModalOpen,
@@ -49,6 +52,9 @@ export default function ScheduleDetailModal({
     studyGroupUuid: groupId || '',
   })
 
+  const { deleteScheduleMutation } = useScheduleMutations(groupId || '')
+  const { toast } = useToast()
+
   if (!isOpen) {
     return null
   }
@@ -67,6 +73,26 @@ export default function ScheduleDetailModal({
     currentStudyGroup.members?.[3],
     currentStudyGroup.members?.[4],
   ].filter(Boolean) as typeof currentStudyGroup.members
+
+  const handleDelete = async () => {
+    if (window.confirm('정말로 이 스케줄을 삭제하시겠습니까?')) {
+      try {
+        await deleteScheduleMutation.mutateAsync(scheduleId)
+        toast({
+          title: '스케줄이 성공적으로 삭제되었습니다.',
+          message: '',
+          type: 'success',
+        })
+        onClose()
+      } catch {
+        toast({
+          title: '스케줄을 삭제하지 못했습니다.',
+          message: '다시 시도해주세요.',
+          type: 'error',
+        })
+      }
+    }
+  }
 
   return (
     <>
@@ -166,7 +192,7 @@ export default function ScheduleDetailModal({
             </ModalBody>
             {MODAL_PRESETS.scheduleDetail.footer({
               onClose: onClose,
-              onConfirm: confirm,
+              onConfirm: handleDelete,
               createDate: formatDate(new Date(schedule.createdAt)),
               onEdit: () => {
                 openEditModal()

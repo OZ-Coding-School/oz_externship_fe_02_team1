@@ -45,9 +45,9 @@ export const scheduleApi = {
     )
     return response.data
   },
-  deleteSchedule: async (scheduleId: number) => {
+  deleteSchedule: async (studyGroupUuid: string, scheduleId: number) => {
     const response = await axiosInstance.delete(
-      API_PATHS.SCHEDULE.DELETE(scheduleId)
+      API_PATHS.SCHEDULE.DELETE(studyGroupUuid, scheduleId)
     )
     return response.data
   },

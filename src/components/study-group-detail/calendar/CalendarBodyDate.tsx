@@ -69,7 +69,6 @@ export default function CalendarBodyDate({
               scheduleId={schedule.id}
               isOpen={isOpen}
               onClose={closeModal}
-              confirm={() => {}}
             />
           )}
         </>
