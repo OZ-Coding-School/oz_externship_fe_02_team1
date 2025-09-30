@@ -4,6 +4,7 @@ import { BookmarkSquareIcon } from '@heroicons/react/24/outline'
 
 import { Card, SelectedLectureCard, Text } from '@components'
 import { MAX_LECTURES } from '@constants'
+
 import type { LectureItem } from '@/api'
 
 interface LectureSelectSectionProps {

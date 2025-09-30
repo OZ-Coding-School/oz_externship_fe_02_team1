@@ -11,6 +11,7 @@ import {
 import { MAX_LECTURES } from '@constants'
 
 import { useLectureListQuery } from '@/hooks'
+
 import type { LectureItem } from '@api'
 
 interface LectureSelectModalProps {

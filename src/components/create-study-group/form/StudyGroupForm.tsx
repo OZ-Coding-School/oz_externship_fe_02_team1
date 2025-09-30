@@ -16,6 +16,7 @@ import {
 import { MAX_LECTURES, mediaQuery } from '@constants'
 import { useModal } from '@hooks'
 import { cn } from '@utils'
+
 import type { LectureItem } from '@api'
 
 interface StudyGroupFormProps extends FormMode {
