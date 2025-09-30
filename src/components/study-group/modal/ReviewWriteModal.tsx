@@ -9,6 +9,7 @@ import {
   Textarea,
 } from '@components'
 import { studyGroup } from '@mocks/datas/studyGroupDetail'
+import { formatDate } from '@utils'
 
 export interface ReviewFormInputs {
   rating: number
@@ -56,8 +57,8 @@ export default function ReviewWriteModal({
         <div className="flex flex-col gap-2">
           <Text className="font-medium">{studyGroup.name}</Text>
           <Text variant="small" className="text-gray-600">
-            {studyGroup.startAt}&nbsp;~&nbsp;
-            {studyGroup.endAt}
+            {formatDate(new Date(studyGroup.startAt))}&nbsp;~&nbsp;
+            {formatDate(new Date(studyGroup.endAt))}
           </Text>
         </div>
 
