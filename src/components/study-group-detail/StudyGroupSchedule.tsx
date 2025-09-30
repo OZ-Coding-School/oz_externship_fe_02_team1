@@ -16,7 +16,7 @@ export default function StudyGroupSchedule() {
       titleClassName=" pt-1.5 pb-7.5 text-lg sm:text-xl "
     >
       <Button
-        className="absolute right-6 flex gap-1 p-2 sm:px-4 sm:py-2.5"
+        className="sm: text-md absolute right-6 flex gap-1 p-2 text-sm sm:px-4 sm:py-2.5"
         onClick={openModal}
       >
         <PlusIcon width={16} />
