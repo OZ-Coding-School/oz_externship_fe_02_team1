@@ -108,12 +108,12 @@ export default function StudyGroupForm({
               type="button"
               size={isMobile ? 'small' : 'medium'}
               className={cn(
-                'absolute top-6 right-6 py-2',
-                !isMobile && 'top-8 right-8 text-base'
+                'absolute top-6 right-6 px-2 text-xs',
+                !isMobile && 'top-8 right-8 py-2 text-base'
               )}
               onClick={openModal}
             >
-              <PlusIcon width={16} />
+              {!isMobile && <PlusIcon width={16} />}
               강의 추가하기
             </Button>
           ) : null
