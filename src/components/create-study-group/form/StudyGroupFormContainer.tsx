@@ -7,10 +7,11 @@ import {
   type StudyGroupFormValues,
 } from '@components'
 import { useStudyGroupMutations, useToast } from '@hooks'
-import { studyGroup } from '@mocks/datas/studyGroupDetail'
 import { buildCreateStudyGroupFormData } from '@utils'
 
 import type { Lecture } from '@models'
+import { useParams } from 'react-router'
+import { studyGroupList } from '@/mocks/datas/studygroupList'
 
 const INITIAL_MEMBER_COUNT = 6
 
@@ -33,11 +34,15 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
   const createStudyGroupMutation = useStudyGroupMutations()
   const { toast } = useToast()
 
+  const studyGroupUuid = useParams<{ groupId: string }>().groupId
+  const studyGroup =
+    studyGroupList.find((group) => group.uuid === studyGroupUuid) ||
+    studyGroupList[0]
+
   useEffect(() => {
     if (mode === 'edit') {
       reset({
         name: studyGroup.name,
-        introduction: studyGroup.introduction || '',
         startAt: studyGroup.startAt,
         endAt: studyGroup.endAt,
         currentHeadcount: studyGroup.currentHeadcount,
