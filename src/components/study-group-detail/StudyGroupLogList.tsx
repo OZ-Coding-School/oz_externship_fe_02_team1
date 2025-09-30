@@ -1,6 +1,6 @@
 import { PencilIcon } from '@heroicons/react/24/outline'
-import { Link, useParams } from 'react-router'
 import { useEffect } from 'react'
+import { Link, useParams } from 'react-router'
 
 import {
   Avatar,

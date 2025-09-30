@@ -4,8 +4,9 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { BrowserRouter } from 'react-router'
 
-import App from './App.tsx'
 import { ToastProvider } from '@components'
+
+import App from './App.tsx'
 
 async function enableMocking() {
   if (process.env.NODE_ENV === 'development') {

@@ -1,9 +1,9 @@
 import { PlusIcon } from '@heroicons/react/24/outline'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { ScheduleCalendar, Card, Button, AddScheduleModal } from '@components'
 import { useModal, useScheduleListQeury, useToast } from '@hooks'
-import { useEffect } from 'react'
 
 export default function StudyGroupSchedule() {
   const { isOpen, openModal, closeModal } = useModal()
