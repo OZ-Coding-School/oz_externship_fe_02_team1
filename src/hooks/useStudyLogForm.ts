@@ -7,6 +7,7 @@ import {
   usePageNav,
   useStudyLogMutations,
   useLogDetailQuery,
+  useToast,
 } from '@hooks'
 import { prepareLogSubmitPayload, transformApiResponseToLogFiles } from '@utils'
 
@@ -20,6 +21,8 @@ interface FormInputs {
 }
 
 export const useStudyLogForm = ({ mode }: UseStudyLogFormProps) => {
+  const { toast } = useToast()
+
   // form
   const { register, handleSubmit, setValue, control } = useForm<FormInputs>({
     defaultValues: { title: '', content: '' },
@@ -85,9 +88,12 @@ export const useStudyLogForm = ({ mode }: UseStudyLogFormProps) => {
 
       if (isEditMode) updateLog(payload)
       else createLog(payload)
-    } catch (error) {
-      console.error('스터디 기록 제출 실패:', error)
-      // TODO: 사용자에게 에러 알림 (e.g., toast message)
+    } catch {
+      toast({
+        title: '스터디 기록을 생성하지 못했습니다.',
+        message: '다시 시도해주세요.',
+        type: 'error',
+      })
     }
   }
 
