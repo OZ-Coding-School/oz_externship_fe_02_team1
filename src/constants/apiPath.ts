@@ -61,12 +61,6 @@ export const API_PATHS = {
   },
 
   LECTURES: {
-    LIST: (searchParam?: string, cursor?: string, size?: number) => {
-      const params = new URLSearchParams()
-      if (searchParam) params.append('search', searchParam)
-      if (cursor) params.append('cursor', cursor)
-      if (size) params.append('size', size.toString())
-      return `/lectures/list?${params.toString()}`
-    },
+    LIST: '/lectures/list',
   },
 }
