@@ -9,8 +9,10 @@ import { useMediaQuery } from 'react-responsive'
 import { Avatar, Text, UserDropdown } from '@components'
 import { mediaQuery } from '@constants'
 import { cn } from '@utils'
+import { useAuthStore } from '@/store'
 
 export default function UserProfileMenu() {
+  const { user } = useAuthStore()
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
 
@@ -27,8 +29,12 @@ export default function UserProfileMenu() {
     >
       <BellIcon height="40" className="cursor-pointer p-2.5" />
       <div className={cn('flex items-center', isMobile ? 'gap-1' : 'gap-2')}>
-        <Avatar src="none" alt="김개발" size="sm" />
-        <Text className="text-primary-600">김개발</Text>
+        <Avatar
+          src={user?.profileImgUrl}
+          alt={user?.nickname || '김개발'}
+          size="sm"
+        />
+        <Text className="text-primary-600">{user?.nickname || '김개발'}</Text>
         {!isMobile && (
           <div>
             <button
