@@ -2,13 +2,25 @@ import { PlusIcon } from '@heroicons/react/24/outline'
 import { useParams } from 'react-router-dom'
 
 import { ScheduleCalendar, Card, Button, AddScheduleModal } from '@components'
-import { useModal, useScheduleListQeury } from '@hooks'
+import { useModal, useScheduleListQeury, useToast } from '@hooks'
+import { useEffect } from 'react'
 
 export default function StudyGroupSchedule() {
   const { isOpen, openModal, closeModal } = useModal()
   const { groupId } = useParams<{ groupId: string }>()
+  const { toast } = useToast()
 
-  const { data: scheduleData } = useScheduleListQeury(groupId || '')
+  const { data: scheduleData, isError } = useScheduleListQeury(groupId || '')
+
+  useEffect(() => {
+    if (isError) {
+      toast({
+        title: '스케줄 목록을 불러오는 데 실패했습니다.',
+        message: '다시 시도해주세요.',
+        type: 'error',
+      })
+    }
+  }, [isError, toast])
 
   return (
     <Card
