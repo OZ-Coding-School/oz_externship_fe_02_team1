@@ -10,7 +10,7 @@ export default function FormFooter({ mode }: FormMode) {
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
 
   return (
-    <footer className="flex justify-end gap-4">
+    <footer className="flex justify-end gap-4 pb-4 sm:pb-0">
       <Button
         type="button"
         variant="outline"
