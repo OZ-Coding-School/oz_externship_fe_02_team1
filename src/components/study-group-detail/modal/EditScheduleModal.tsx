@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router-dom'
 
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
+import { useScheduleMutations } from '@hooks'
 import { studyGroupList } from '@mocks/datas/studygroupList'
 
 import type { ScheduleDetailResponse } from '@api'
@@ -53,6 +54,7 @@ export default function EditScheduleModal({
   })
 
   const { handleSubmit, reset } = formMethods
+  const { updateScheduleMutation } = useScheduleMutations(groupId || '')
 
   useEffect(() => {
     if (!isOpen) {
@@ -65,8 +67,19 @@ export default function EditScheduleModal({
     onClose()
   }
 
-  const handleConfirm = (data: ScheduleFormInputs) => {
-    console.log('Edited Schedule:', data)
+  const handleConfirm = async (data: ScheduleFormInputs) => {
+    const scheduleData = {
+      title: data.title,
+      objective: data.objective,
+      session_date: data.sessionDate,
+      start_time: `${data.startTime}:00`,
+      end_time: `${data.endTime}:00`,
+    }
+
+    await updateScheduleMutation.mutateAsync({
+      scheduleId: schedule.id,
+      data: scheduleData,
+    })
     handleClose()
   }
 
