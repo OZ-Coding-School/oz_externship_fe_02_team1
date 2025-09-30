@@ -12,7 +12,7 @@ export default function LogDetailAttachments({
   attachments,
 }: LogDetailAttachmentsProps) {
   return (
-    <section className="flex flex-col gap-4 rounded-b-xl border border-t-0 border-gray-200 p-6">
+    <section className="flex flex-col gap-4 rounded-b-xl border border-t-0 border-gray-200 p-4 sm:p-6">
       <div className="flex w-full items-center gap-2">
         <AttachmentIcon />
         <Text variant="large" className="font-semibold">
@@ -20,32 +20,35 @@ export default function LogDetailAttachments({
         </Text>
       </div>
       {attachments && attachments.length > 0 && (
-        <ul className="grid grid-cols-2 justify-between gap-4">
+        <ul className="grid grid-cols-1 justify-between gap-2 sm:grid-cols-2 sm:gap-4">
           {attachments.map((file) => (
-            <li
-              key={file.id}
-              className="flex w-full items-center gap-3 rounded-lg border border-gray-200 p-3"
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={file.fileUrl}
+              download={file.fileName}
+              className="flex w-full flex-col items-center gap-1 rounded-lg border border-gray-200 p-3 sm:flex-row sm:gap-3"
             >
-              {isImageFile(file.fileName) ? <ImageIcon /> : <ZipIcon />}
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={file.fileUrl}
-                download={file.fileName}
-                className="flex w-full flex-col"
+              <li
+                key={file.id}
+                className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row sm:gap-4"
               >
-                <Text variant="small" className="font-medium">
-                  {file.fileName}
-                </Text>
-                <Text
-                  variant="extraSmall"
-                  className="font-normal text-gray-500"
-                >
-                  다운로드 가능
-                </Text>
-              </a>
-              <DownloadIcon />
-            </li>
+                {isImageFile(file.fileName) ? <ImageIcon /> : <ZipIcon />}
+
+                <div className="text-center sm:w-full sm:text-start">
+                  <Text className="flex text-xs font-medium wrap-break-word sm:text-sm">
+                    {file.fileName}
+                  </Text>
+                  <Text
+                    variant="extraSmall"
+                    className="font-normal text-gray-500"
+                  >
+                    다운로드 가능
+                  </Text>
+                </div>
+                <DownloadIcon />
+              </li>
+            </a>
           ))}
         </ul>
       )}

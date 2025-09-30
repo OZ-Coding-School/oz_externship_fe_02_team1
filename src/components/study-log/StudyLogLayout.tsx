@@ -18,7 +18,7 @@ export default function StudyLogLayout({
   return (
     <form onSubmit={onSubmit} className="w-full sm:max-w-4xl">
       {header}
-      <section className="flex flex-col items-start justify-start border-y border-gray-200 p-4 sm:rounded-xl sm:border sm:p-6">
+      <section className="flex flex-col items-start justify-start border-y border-gray-200 py-4 sm:rounded-xl sm:border sm:p-6">
         {title}
         {markdown}
       </section>

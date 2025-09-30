@@ -19,7 +19,7 @@ export default function LogDetailMain({ studyLogData }: LogDetailMainProps) {
 
   return (
     <main>
-      <section className="flex flex-col items-start justify-start border border-gray-200 p-6">
+      <section className="flex flex-col items-start justify-start border border-gray-200 p-4 sm:p-6">
         <MarkdownPreview value={content} />
       </section>
       <LogDetailAttachments
