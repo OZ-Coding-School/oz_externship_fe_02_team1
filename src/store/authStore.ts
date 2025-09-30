@@ -4,6 +4,7 @@ interface User {
   id?: number
   uuid: string
   nickname: string
+  profileImgUrl: string
 }
 
 interface AuthState {
@@ -20,15 +21,25 @@ const removeTokens = () => {
   localStorage.removeItem('accessToken')
 }
 
+const getUser = (): User | null => {
+  const user = localStorage.getItem('user')
+  return user ? JSON.parse(user) : null
+}
+const setUser = (user: User) =>
+  localStorage.setItem('user', JSON.stringify(user))
+const removeUser = () => localStorage.removeItem('user')
+
 export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
+  user: getUser(),
   isLoggedIn: !!getAccessToken(),
   login: (accessToken, user) => {
     setAccessToken(accessToken)
+    setUser(user)
     set({ isLoggedIn: true, user })
   },
   logout: () => {
     removeTokens()
+    removeUser()
     set({ isLoggedIn: false, user: null })
   },
 }))
