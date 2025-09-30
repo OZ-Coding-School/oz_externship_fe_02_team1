@@ -1,4 +1,4 @@
-import type { Lecture } from '@models'
+import type { LectureItem } from '@api'
 
 export interface FormMode {
   mode: 'create' | 'edit'
@@ -13,5 +13,5 @@ export interface StudyGroupFormValues {
   endAt: string
   maxHeadcount: number
   currentHeadcount: number
-  lectures: Lecture[]
+  lectures: LectureItem[]
 }

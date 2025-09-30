@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import {
   BaseModal,
@@ -9,13 +9,16 @@ import {
   Input,
 } from '@components'
 import { MAX_LECTURES } from '@constants'
-import { lectureData } from '@mocks/datas/lectureData'
 
-import type { LectureDetail } from '@models'
+import { useLectureListQuery } from '@/hooks'
+
+import type { LectureItem } from '@api'
 
 interface LectureSelectModalProps {
   isOpen: boolean
   onClose: () => void
+  initialSelectedLectures?: LectureItem[]
+  onConfirmSelection: (lectures: LectureItem[]) => void
 }
 
 const LECTURES_PER_PAGE = 5
@@ -23,14 +26,28 @@ const LECTURES_PER_PAGE = 5
 export default function LectureSelectModal({
   isOpen,
   onClose,
+  initialSelectedLectures = [],
+  onConfirmSelection,
 }: LectureSelectModalProps) {
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const [selectedLectures, setSelectedLectures] = useState<LectureDetail[]>([])
-
-  const filteredLectures = lectureData.filter((lecture) =>
-    lecture.lectureTitle.toLowerCase().includes(searchTerm.toLowerCase())
+  const [selectedLectures, setSelectedLectures] = useState<LectureItem[]>(
+    initialSelectedLectures
   )
+
+  useEffect(() => {
+    setSelectedLectures(initialSelectedLectures)
+  }, [isOpen, initialSelectedLectures])
+
+  const { data: lectureData } = useLectureListQuery()
+
+  const filteredLectures =
+    lectureData?.results.filter(
+      (lecture) =>
+        lecture.title &&
+        typeof lecture.title === 'string' &&
+        lecture.title.toLowerCase().includes(searchTerm.toLowerCase())
+    ) || []
 
   const totalPages = Math.ceil(filteredLectures.length / LECTURES_PER_PAGE)
   const paginatedLectures = filteredLectures.slice(
@@ -38,12 +55,12 @@ export default function LectureSelectModal({
     currentPage * LECTURES_PER_PAGE
   )
 
-  const handleSelectLecture = (lecture: LectureDetail) => {
+  const handleSelectLecture = (lecture: LectureItem) => {
     setSelectedLectures((prev) => {
-      const isAlreadySelected = prev.some((l) => l.id === lecture.id)
+      const isAlreadySelected = prev.some((l) => l.uuid === lecture.uuid)
 
       if (isAlreadySelected) {
-        return prev.filter((l) => l.id !== lecture.id)
+        return prev.filter((l) => l.uuid !== lecture.uuid)
       } else {
         if (prev.length >= MAX_LECTURES) {
           return prev
@@ -51,6 +68,11 @@ export default function LectureSelectModal({
         return [...prev, lecture]
       }
     })
+  }
+
+  const handleConfirm = () => {
+    onConfirmSelection(selectedLectures)
+    onClose()
   }
 
   return (
@@ -68,9 +90,9 @@ export default function LectureSelectModal({
         <div className="mt-4 flex flex-col gap-4">
           {paginatedLectures.map((lecture) => (
             <LectureSelectItem
-              key={lecture.id}
+              key={lecture.uuid}
               lecture={lecture}
-              isSelected={selectedLectures.some((l) => l.id === lecture.id)}
+              isSelected={selectedLectures.some((l) => l.uuid === lecture.uuid)}
               onSelect={handleSelectLecture}
               disabled={selectedLectures.length > MAX_LECTURES}
             />
@@ -87,7 +109,7 @@ export default function LectureSelectModal({
 
       {MODAL_PRESETS.search.footer({
         onClose,
-        onConfirm: () => {},
+        onConfirm: handleConfirm,
         selectedCount: selectedLectures.length,
       })}
     </BaseModal>

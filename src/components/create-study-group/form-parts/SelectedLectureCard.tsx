@@ -2,22 +2,24 @@ import { PhotoIcon, TrashIcon } from '@heroicons/react/24/outline'
 
 import { Text } from '@components'
 
-import type { Lecture } from '@models'
+import type { LectureItem } from '@/api'
 
 interface SelectedLectureCardProps {
-  lecture: Lecture
+  lecture: LectureItem
+  onDelete: (uuid: string) => void
 }
 
 export default function SelectedLectureCard({
   lecture,
+  onDelete,
 }: SelectedLectureCardProps) {
   return (
     <div className="flex items-center justify-between rounded-lg border border-gray-200 p-4">
       <div className="flex items-center gap-4">
-        {lecture.thumbnailImg ? (
+        {lecture.thumbnailImgUrl ? (
           <img
-            src={lecture.thumbnailImg}
-            alt={lecture.lectureTitle}
+            src={lecture.thumbnailImgUrl}
+            alt={lecture.title}
             className="aspect-[5/3] w-20 object-cover"
           />
         ) : (
@@ -30,13 +32,16 @@ export default function SelectedLectureCard({
         )}
 
         <div className="flex flex-col">
-          <Text className="font-semibold">{lecture.lectureTitle}</Text>
+          <Text className="font-semibold">{lecture.title}</Text>
           <Text variant="small">{lecture.instructor}</Text>
         </div>
       </div>
 
-      {/* TODO: 삭제 기능 추가 */}
-      <button type="button" className="mr-2 cursor-pointer p-1">
+      <button
+        type="button"
+        className="mr-2 cursor-pointer p-1"
+        onClick={() => onDelete(lecture.uuid)}
+      >
         <TrashIcon width={16} className="text-danger-500" />
       </button>
     </div>

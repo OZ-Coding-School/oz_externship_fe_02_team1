@@ -17,6 +17,8 @@ import { MAX_LECTURES, mediaQuery } from '@constants'
 import { useModal } from '@hooks'
 import { cn } from '@utils'
 
+import type { LectureItem } from '@api'
+
 interface StudyGroupFormProps extends FormMode {
   onSubmit: (values: StudyGroupFormValues) => void
 }
@@ -50,6 +52,27 @@ export default function StudyGroupForm({
     control,
   })
 
+  const handleConfirmSelection = (lectures: LectureItem[]) => {
+    const currentLectures = lecturesField.value || []
+    const lectureMap = new Map()
+
+    currentLectures.forEach((lecture: LectureItem) =>
+      lectureMap.set(lecture.uuid, lecture)
+    )
+    lectures.forEach((lecture) => lectureMap.set(lecture.uuid, lecture))
+
+    const mergedLectures = Array.from(lectureMap.values())
+
+    lecturesField.onChange(mergedLectures)
+  }
+
+  const handleDeleteLecture = (uuid: string) => {
+    const updatedLectures = lecturesField.value.filter(
+      (lecture: LectureItem) => lecture.uuid !== uuid
+    )
+    lecturesField.onChange(updatedLectures)
+  }
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -78,6 +101,7 @@ export default function StudyGroupForm({
 
       <LectureSelectSection
         lectures={lecturesField.value}
+        onDeleteLecture={handleDeleteLecture}
         actionSlot={
           lecturesField.value.length < MAX_LECTURES ? (
             <Button
@@ -96,7 +120,14 @@ export default function StudyGroupForm({
         }
       />
 
-      {isOpen && <LectureSelectModal isOpen={isOpen} onClose={closeModal} />}
+      {isOpen && (
+        <LectureSelectModal
+          isOpen={isOpen}
+          onClose={closeModal}
+          initialSelectedLectures={lecturesField.value}
+          onConfirmSelection={handleConfirmSelection}
+        />
+      )}
 
       <FormFooter mode={mode} />
     </form>

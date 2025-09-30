@@ -35,3 +35,8 @@ export const reviewKey = {
   base: ['review'],
   list: (groupUuid: string) => [...reviewKey.base, 'list', groupUuid],
 }
+
+export const lectureKey = {
+  base: ['lecture'],
+  list: () => [...lectureKey.base, 'list'],
+}

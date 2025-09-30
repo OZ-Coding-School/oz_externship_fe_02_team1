@@ -61,8 +61,6 @@ export const API_PATHS = {
   },
 
   LECTURES: {
-    LIST: (searchParam: string) => `/lectures/list/${searchParam}`,
-    RECOMMEND: (searchKeyword: string) =>
-      `/lectures/recommend_categories/${searchKeyword}`,
+    LIST: '/lectures/list',
   },
 }
