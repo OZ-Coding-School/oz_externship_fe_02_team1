@@ -1,5 +1,5 @@
+import type { LectureItem } from '@api'
 import type { StudyGroupFormValues } from '@components'
-import type { Lecture } from '@models'
 
 export const buildCreateStudyGroupFormData = (
   values: StudyGroupFormValues
@@ -23,7 +23,9 @@ export const buildCreateStudyGroupFormData = (
   if (values.lectures && values.lectures.length > 0) {
     formData.append(
       'lectures',
-      JSON.stringify(values.lectures.map((lecture: Lecture) => lecture.id))
+      JSON.stringify(
+        values.lectures.map((lecture: LectureItem) => lecture.uuid)
+      )
     )
   }
 
