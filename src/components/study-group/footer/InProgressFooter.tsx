@@ -11,7 +11,7 @@ export default function InProgressFooter({
     <button
       type="button"
       onClick={navigateToGroupDetail}
-      className="flex cursor-pointer justify-end"
+      className="flex cursor-pointer justify-end border-t border-gray-100 pt-4"
     >
       <Text variant="small" className="font-medium text-yellow-600">
         자세히 보기 -&gt;

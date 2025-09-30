@@ -30,7 +30,13 @@ export default function SectionHeader({
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
 
   return (
-    <div className={cn('flex items-center justify-between', className)}>
+    <div
+      className={cn(
+        isMobile && 'flex flex-col gap-2',
+        'flex justify-between',
+        className
+      )}
+    >
       <div
         className={cn(
           'flex flex-col',
@@ -46,7 +52,9 @@ export default function SectionHeader({
         >
           {title}
         </h2>
-        <Text className="font-normal text-gray-600">{subtitle}</Text>
+        <Text className="sm:text-md text-sm font-normal text-gray-600">
+          {subtitle}
+        </Text>
       </div>
       {children}
     </div>

@@ -18,7 +18,7 @@ export default function CompletedFooter({
   const reviewButtonText = hasReview ? '리뷰 수정하기' : '리뷰 작성하기'
 
   return (
-    <div className="flex w-full flex-col justify-end gap-2 border-t border-gray-100 pt-3">
+    <div className="flex w-full flex-col justify-end gap-2 border-t border-gray-100 pt-4">
       <div className="flex w-full justify-between">
         <div className="flex items-center gap-2">
           <Text variant="small" className="font-medium text-gray-700">

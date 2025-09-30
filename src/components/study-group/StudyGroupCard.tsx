@@ -73,7 +73,7 @@ export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
           />
         }
       >
-        <div className="flex flex-col gap-3 p-5">
+        <div className="flex h-[380px] flex-col justify-between gap-3 p-5">
           <Text variant="large" className="font-semibold text-gray-900">
             {name}
           </Text>
