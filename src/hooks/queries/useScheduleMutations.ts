@@ -33,7 +33,9 @@ export const useScheduleMutations = (groupUuid: string) => {
     mutationFn: ({ scheduleId, data }) =>
       scheduleApi.updateSchedule(groupUuid, scheduleId, data),
     onSuccess: (_, { scheduleId }) => {
-      queryClient.invalidateQueries({ queryKey: scheduleKey.detail(groupUuid, scheduleId) })
+      queryClient.invalidateQueries({
+        queryKey: scheduleKey.detail(groupUuid, scheduleId),
+      })
       queryClient.invalidateQueries({ queryKey: scheduleKey.list(groupUuid) })
     },
     onError: () => {
@@ -42,7 +44,7 @@ export const useScheduleMutations = (groupUuid: string) => {
   })
 
   const deleteScheduleMutation = useMutation<void, Error, number>({
-    mutationFn: (scheduleId) => scheduleApi.deleteSchedule(scheduleId),
+    mutationFn: (scheduleId) => scheduleApi.deleteSchedule(groupUuid, scheduleId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: scheduleKey.list(groupUuid) })
     },
