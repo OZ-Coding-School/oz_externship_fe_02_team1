@@ -40,7 +40,7 @@ const DateInput = ({
   }
 
   return (
-    <div>
+    <div className="w-full">
       {label && (
         <label htmlFor={inputId} className="mb-1.5 block text-sm text-gray-700">
           {label} {required && <span className="text-danger-500">*</span>}

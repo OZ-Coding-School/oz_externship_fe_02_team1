@@ -39,7 +39,7 @@ export default function PrimaryInfoSection({
   return (
     <Card
       title="기본 정보"
-      titleClassName="text-xl pb-0"
+      titleClassName="text-lg sm:text-xl pb-0"
       cardClassName="lg:p-8 gap-6"
     >
       <Input

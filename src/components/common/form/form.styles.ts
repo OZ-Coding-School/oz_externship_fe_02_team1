@@ -30,7 +30,7 @@ export const dateInputStyle = ({
   className?: string
 }) =>
   cn(
-    'w-full rounded-[8px] border text-[14px] transition-colors outline-none',
+    'w-full rounded-[8px] border text-xs sm:text-md  transition-colors outline-none',
     'px-[17px] py-[13px] pr-10',
     invalid
       ? 'border-danger-100 focus:border-danger-100'

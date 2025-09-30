@@ -20,7 +20,7 @@ export default function Layout({ maxWidth, isBackgroundGray }: LayoutProps) {
       >
         <div
           className={cn(
-            'm-auto p-6 sm:p-8',
+            'm-auto pt-6 sm:p-8',
             maxWidth === 'medium' && 'max-w-4xl',
             maxWidth === 'large' && 'max-w-7xl'
           )}

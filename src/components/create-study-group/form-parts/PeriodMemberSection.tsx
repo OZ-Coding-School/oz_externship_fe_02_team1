@@ -41,10 +41,10 @@ export default function PeriodMemberSection({
     <>
       <Card
         title="스터디 기간 및 인원"
-        titleClassName="text-xl pb-0"
+        titleClassName=" pb-0 text-lg sm:text-xl"
         cardClassName="lg:p-8 gap-6"
       >
-        <div className="grid grid-cols-2 grid-rows-2 gap-6">
+        <div className="flex w-full flex-col justify-between gap-6 sm:flex-row">
           <DateInput
             label="스터디 시작일"
             required
@@ -67,12 +67,12 @@ export default function PeriodMemberSection({
             }
             aria-label="스터디 종료일"
           />
-          <MembersSlider
-            className="col-span-2"
-            value={memberCount}
-            onChange={onMemberCountChange}
-          />
         </div>
+        <MembersSlider
+          className="col-span-2"
+          value={memberCount}
+          onChange={onMemberCountChange}
+        />
       </Card>
 
       <DatePickerModal

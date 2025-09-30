@@ -21,7 +21,7 @@ export default function LectureSelectSection({
   return (
     <Card
       title="강의 선택"
-      titleClassName="text-xl pb-0"
+      titleClassName="text-lg sm:text-xl pb-0"
       cardClassName="lg:p-8 gap-1"
     >
       {actionSlot}
