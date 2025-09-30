@@ -169,7 +169,6 @@ export default function ScheduleDetailModal({
               onConfirm: confirm,
               createDate: formatDate(new Date(schedule.createdAt)),
               onEdit: () => {
-                onClose()
                 openEditModal()
               },
             })}
