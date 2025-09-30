@@ -30,7 +30,7 @@ export default function AddScheduleModal({
   })
 
   const { handleSubmit, reset } = formMethods
-  const createScheduleMutation = useScheduleMutations(studyGroupUuid || '')
+  const { createScheduleMutation } = useScheduleMutations(studyGroupUuid || '')
 
   useEffect(() => {
     if (!isOpen) {
