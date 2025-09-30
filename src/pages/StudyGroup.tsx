@@ -21,7 +21,7 @@ export default function StudyGroup() {
   )
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 p-6 sm:p-0">
       <StudyGroupMainHeader
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -31,14 +31,14 @@ export default function StudyGroup() {
           title="진행중인 스터디"
           subtitle="현재 활발히 진행되고 있는 스터디 그룹들"
           badgeVariant="진행중"
-          badgeClassName="bg-green-100 text-green-800"
+          badgeClassName="bg-green-100 text-green-800 w-fit h-fit p-2"
           groups={inProgressGroups}
         />
         <StudyGroupSection
           title="완료된 스터디"
           subtitle="성공적으로 마무리된 스터디 그룹들"
           badgeVariant="종료됨"
-          badgeClassName="bg-gray-100 text-gray-800"
+          badgeClassName="bg-gray-100 text-gray-800 w-fit h-fit p-2"
           groups={completedGroups}
         />
       </div>
