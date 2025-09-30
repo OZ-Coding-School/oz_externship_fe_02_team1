@@ -27,7 +27,7 @@ export default function LogDetailAISummary({
     return null
   }
   return (
-    <section className="flex flex-col border border-b-0 border-gray-200 p-6">
+    <section className="flex flex-col border border-b-0 border-gray-200 p-4 sm:p-6">
       <div className="flex items-center justify-between pb-4">
         <div className="flex items-center justify-center gap-2">
           <AIIcon />
@@ -40,7 +40,7 @@ export default function LogDetailAISummary({
           onClick={handleToggleSummary}
         >
           <Icon className="h-4 w-4" />
-          <Text variant="small" className="text-gray-600">
+          <Text variant="small" className="flex wrap-normal text-gray-600">
             {toggleConfig.label}
           </Text>
         </button>

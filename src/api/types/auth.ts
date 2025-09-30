@@ -1,6 +1,6 @@
 export type LoginResponse = {
-  access: string
-  refresh: string
+  accessToken: string
+  refreshToken: string
 }
 
 export type LoginRequest = {

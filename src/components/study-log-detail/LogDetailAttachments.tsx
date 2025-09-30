@@ -12,7 +12,7 @@ export default function LogDetailAttachments({
   attachments,
 }: LogDetailAttachmentsProps) {
   return (
-    <section className="flex flex-col gap-4 rounded-b-xl border border-t-0 border-gray-200 p-6">
+    <section className="flex flex-col gap-4 rounded-b-xl border border-t-0 border-gray-200 p-4 sm:p-6">
       <div className="flex w-full items-center gap-2">
         <AttachmentIcon />
         <Text variant="large" className="font-semibold">
@@ -20,31 +20,30 @@ export default function LogDetailAttachments({
         </Text>
       </div>
       {attachments && attachments.length > 0 && (
-        <ul className="grid grid-cols-2 justify-between gap-4">
+        <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4">
           {attachments.map((file) => (
-            <li
-              key={file.id}
-              className="flex w-full items-center gap-3 rounded-lg border border-gray-200 p-3"
-            >
-              {isImageFile(file.fileName) ? <ImageIcon /> : <ZipIcon />}
+            <li key={file.id}>
               <a
                 target="_blank"
                 rel="noopener noreferrer"
                 href={file.fileUrl}
                 download={file.fileName}
-                className="flex w-full flex-col"
+                className="flex w-full flex-col items-center gap-3 rounded-lg border border-gray-200 p-3 sm:flex-row"
               >
-                <Text variant="small" className="font-medium">
-                  {file.fileName}
-                </Text>
-                <Text
-                  variant="extraSmall"
-                  className="font-normal text-gray-500"
-                >
-                  다운로드 가능
-                </Text>
+                {isImageFile(file.fileName) ? <ImageIcon /> : <ZipIcon />}
+                <div className="flex w-full flex-col">
+                  <Text variant="small" className="font-medium wrap-normal">
+                    {file.fileName}
+                  </Text>
+                  <Text
+                    variant="extraSmall"
+                    className="font-normal text-gray-500"
+                  >
+                    다운로드 가능
+                  </Text>
+                </div>
+                <DownloadIcon />
               </a>
-              <DownloadIcon />
             </li>
           ))}
         </ul>
