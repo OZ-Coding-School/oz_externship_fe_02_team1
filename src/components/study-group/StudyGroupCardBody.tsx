@@ -19,7 +19,7 @@ export default function StudyGroupCardBody({
   const endDate = formatToYMD(new Date(endAt))
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex h-full max-h-[200px] flex-col gap-4 overflow-hidden">
       <section className="flex flex-col gap-1">
         <div className="flex items-center gap-2">
           <CalendarIcon />

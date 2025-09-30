@@ -10,11 +10,11 @@ interface LayoutProps {
 
 export default function Layout({ maxWidth, isBackgroundGray }: LayoutProps) {
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Header />
       <main
         className={cn(
-          'w-full pt-16 sm:px-8 lg:px-20',
+          'w-full flex-1 pt-16 sm:px-8 lg:px-20',
           isBackgroundGray && 'bg-gray-50'
         )}
       >
@@ -31,6 +31,6 @@ export default function Layout({ maxWidth, isBackgroundGray }: LayoutProps) {
       <Footer />
 
       <ChatIcon />
-    </>
+    </div>
   )
 }
