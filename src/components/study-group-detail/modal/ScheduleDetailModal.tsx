@@ -136,7 +136,11 @@ export default function ScheduleDetailModal({
                               key={participant.uuid}
                               className="flex items-center"
                             >
-                              <Avatar size="sm" alt={participant.nickname} />
+                              <Avatar
+                                src={participant.profileImage}
+                                size="sm"
+                                alt={participant.nickname}
+                              />
                               <Text variant="small" className="mr-2 ml-3">
                                 {participant.nickname}
                               </Text>
