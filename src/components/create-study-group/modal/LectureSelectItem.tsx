@@ -27,7 +27,7 @@ export default function LectureSelectItem({
       onClick={() => !disabled && onSelect(lecture)}
     >
       <img
-        src={lecture.thumbnailImg}
+        src={lecture.thumbnailImgUrl}
         alt={lecture.title}
         className="h-20 w-20 rounded-md object-cover"
       />

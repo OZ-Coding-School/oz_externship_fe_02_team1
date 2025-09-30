@@ -15,7 +15,7 @@ export interface LectureItem {
   discountPrice: number
   platform: string
   urlLink: string
-  thumbnailImg: string
+  thumbnailImgUrl: string
   createdAt: string
 }
 
