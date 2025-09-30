@@ -11,6 +11,7 @@ export interface ToastProps {
   title: string
   message: string
   className?: string
+  duration?: number
   onClose?: () => void
 }
 
@@ -19,48 +20,47 @@ export default function Toast({
   title,
   message,
   className,
+  duration = 3000,
   onClose,
 }: ToastProps) {
   const { icon: Icon, bg, text, border } = toastStyles[type]
-  const [isVisible, setIsVisible] = useState(true)
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
-    if (!isVisible) return
+    setShow(true)
 
     const timer = setTimeout(() => {
-      setIsVisible(false)
-      onClose?.()
-    }, 3000)
+      setShow(false)
+    }, duration)
 
     return () => clearTimeout(timer)
-  }, [isVisible, onClose])
+  }, [duration])
 
-  const handleClose = () => {
-    setIsVisible(false)
-    onClose?.()
-  }
-
-  if (!isVisible) {
-    return null
+  const handleTransitionEnd = () => {
+    if (!show) {
+      onClose?.()
+    }
   }
 
   return (
     <div
       className={cn(
-        'flex w-96 max-w-96 justify-between gap-3 rounded-lg border p-4 leading-tight font-medium outline-offset-[-1px]',
+        'flex w-96 max-w-xs transform items-center justify-between gap-3 rounded-lg border p-4 leading-tight font-medium outline-offset-[-1px] transition-all duration-300 ease-out',
+        show ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0',
         className,
         bg,
         text,
         border
       )}
+      onTransitionEnd={handleTransitionEnd}
     >
       <Icon className="h-5 w-5 stroke-1" />
       <div className="flex flex-1 flex-col">
         <Text variant="small">{title}</Text>
-        <Text variant="small">{message}</Text>
+        {message && <Text variant="small">{message}</Text>}
       </div>
       <XMarkIcon
-        onClick={handleClose}
+        onClick={() => setShow(false)}
         className="h-5 w-5 cursor-pointer stroke-1"
       />
     </div>
