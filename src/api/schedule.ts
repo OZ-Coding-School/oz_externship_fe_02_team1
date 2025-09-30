@@ -34,9 +34,13 @@ export const scheduleApi = {
     )
     return response.data
   },
-  updateSchedule: async (scheduleId: number, data: UpdateScheduleRequest) => {
+  updateSchedule: async (
+    studyGroupUuid: string,
+    scheduleId: number,
+    data: UpdateScheduleRequest
+  ) => {
     const response = await axiosInstance.patch<UpdateScheduleResponse>(
-      API_PATHS.SCHEDULE.UPDATE(scheduleId),
+      API_PATHS.SCHEDULE.UPDATE(studyGroupUuid, scheduleId),
       data
     )
     return response.data
