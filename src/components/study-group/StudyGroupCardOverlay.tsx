@@ -3,6 +3,7 @@ import { useLocation } from 'react-router'
 import { StudyBadge } from '@components'
 
 import type { StudyGroupStatus } from '@models'
+import { useAuthStore } from '@/store'
 
 interface StudyCardOverlayProps {
   status: StudyGroupStatus
@@ -19,6 +20,7 @@ export default function StudyGroupCardOverlay({
 }: StudyCardOverlayProps) {
   const location = useLocation()
   const showBadges = location.pathname === '/study-group'
+  const { isLoggedIn } = useAuthStore()
 
   if (!showBadges) {
     return null
@@ -28,7 +30,7 @@ export default function StudyGroupCardOverlay({
     <div className="absolute top-0 z-10 flex h-full w-full flex-col justify-between p-3">
       <div className="flex justify-between">
         {status && <StudyBadge variant={status} size="small" />}
-        {isLeader && <StudyBadge variant="leader" size="small" />}
+        {isLeader && isLoggedIn && <StudyBadge variant="leader" size="small" />}
       </div>
       <StudyBadge
         size="large"
