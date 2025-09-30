@@ -44,30 +44,35 @@ export default function StudyGroupHeader({
   const formattedLastDate = formatDate(new Date(endAt))
 
   return (
-    <header className="relative aspect-[2/1] overflow-hidden rounded-lg bg-gray-500">
+    <header className="relative aspect-[1.5/1] overflow-hidden rounded-lg bg-gray-500 sm:aspect-[2/1]">
       <img
-        className="w-full"
+        className="h-full w-full"
         src={imgUrl ?? Images.studyGroupDefault}
         alt={`${name} 스터디 그룹 이미지`}
       />
       <div className="absolute inset-0 bg-black/40" />
 
       <div className="absolute bottom-6 left-6 flex flex-col gap-2">
-        <Text className="text-3xl font-bold text-white">{name}</Text>
-        <div className="flex gap-4">
+        <Text className="text-lg font-bold text-white sm:text-xl md:text-3xl">
+          {name}
+        </Text>
+        <div className="flex flex-col gap-2 sm:flex-row sm:gap-4">
           <div className="flex items-center gap-1">
             <UserGroupIcon width={16} className="text-white" />
-            <Text className="text-white">
+            <Text className="sm:text-md text-xs text-white">
               {currentHeadcount}/{maxHeadcount}명
             </Text>
           </div>
           <div className="flex items-center gap-1">
             <CalendarIcon width={16} className="text-white" />
-            <Text className="text-white">
+            <Text className="sm:text-md text-xs text-white">
               {formattedStartDate} ~ {formattedLastDate}
             </Text>
           </div>
-          <StudyBadge variant={status} />
+          <StudyBadge
+            variant={status}
+            className="flex self-start px-2 sm:px-3"
+          />
         </div>
       </div>
 

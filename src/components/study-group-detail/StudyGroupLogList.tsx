@@ -27,7 +27,7 @@ export default function StudyGroupLogList() {
   return (
     <Card
       title="스터디 기록"
-      titleClassName="text-xl mt-1.5 mb-2"
+      titleClassName="mt-1.5 mb-2 text-lg sm:text-xl"
       cardClassName="flex flex-col gap-4"
     >
       {!isLoading && !isError && logData && logData.length > 0 && (

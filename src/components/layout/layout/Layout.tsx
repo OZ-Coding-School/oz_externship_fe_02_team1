@@ -14,7 +14,7 @@ export default function Layout({ maxWidth, isBackgroundGray }: LayoutProps) {
       <Header />
       <main
         className={cn(
-          'w-full pt-16 sm:px-20',
+          'w-full pt-16 sm:px-8 lg:px-20',
           isBackgroundGray && 'bg-gray-50'
         )}
       >

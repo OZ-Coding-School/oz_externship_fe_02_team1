@@ -39,13 +39,13 @@ export default function StudyGroupInfo({
     <Card
       title="스터디 정보"
       titleVariant="base"
-      titleClassName="pb-4 text-lg text-gray-900"
+      titleClassName="pb-4 text-md sm:text-lg text-gray-900"
     >
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-1 sm:gap-3">
         {STUDY_GROUP_INFO.map((el) => (
           <div key={el.title} className="flex w-full justify-between">
             <Text className="text-gray-600">{el.title}</Text>
-            <Text className="font-medium">{el.content}</Text>
+            <Text className="sm:text-md text-sm font-medium">{el.content}</Text>
           </div>
         ))}
       </div>

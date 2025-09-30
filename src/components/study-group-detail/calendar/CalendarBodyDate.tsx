@@ -30,7 +30,7 @@ export default function CalendarBodyDate({
   return (
     <div
       className={cn(
-        'relative aspect-square overflow-hidden border-r border-b border-gray-200 p-2 text-left text-sm text-gray-900',
+        'relative aspect-square overflow-hidden border-r border-b border-gray-200 p-1 text-left text-xs text-gray-900 sm:p-2 sm:text-sm',
         !isSameMonth(day, currentMonth) && 'text-gray-400',
         index === daysLength - 1 && 'rounded-br-lg',
         index === daysLength - 7 && 'rounded-bl-lg'
