@@ -20,7 +20,34 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@api": ["./src/api"],
+      "@api/*": ["./src/api/*"],
+      "@assets": ["./src/assets"],
+      "@assets/*": ["./src/assets/*"],
+      "@components": ["./src/components"],
+      "@components/*": ["./src/components/*"],
+      "@hooks": ["./src/hooks"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@lib": ["./src/lib"],
+      "@lib/*": ["./src/lib/*"],
+      "@pages": ["./src/pages"],
+      "@pages/*": ["./src/pages/*"],
+      "@store": ["./src/store"],
+      "@store/*": ["./src/store/*"],
+      "@models": ["./src/types"],
+      "@models/*": ["./src/types/*"],
+      "@mocks": ["./src/mocks"],
+      "@mocks/*": ["./src/mocks/*"],
+      "@utils": ["./src/utils"],
+      "@utils/*": ["./src/utils/*"],
+      "@constants": ["./src/constants"],
+      "@constants/*": ["./src/constants/*"]
+    }
   },
   "include": ["src"]
 }

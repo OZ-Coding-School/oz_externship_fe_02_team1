@@ -1,1 +1,6 @@
-// types
+export * from '@models/studyGroup'
+export * from '@models/studyLog'
+export * from '@models/schedule'
+export * from '@models/lecture'
+export * from '@models/chat'
+export * from '@models/user'

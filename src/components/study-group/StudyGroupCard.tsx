@@ -1,0 +1,110 @@
+import {
+  ImageCard,
+  ReviewWriteModal,
+  Text,
+  ReviewListModal,
+  StudyGroupCardOverlay,
+  StudyGroupCardFooter,
+  StudyGroupCardBody,
+} from '@components'
+import {
+  useModal,
+  usePageNav,
+  useReviewCreateMutation,
+  useReviewListQuery,
+} from '@hooks'
+import { calculateAverageRating } from '@utils'
+
+import type { ReviewFormInputs } from './modal/ReviewWriteModal'
+import type { StudyGroupList } from '@models'
+
+interface StudyGroupCardProps {
+  studyGroup: StudyGroupList
+}
+
+export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
+  const {
+    lectures,
+    startAt,
+    endAt,
+    imgUrl,
+    name,
+    status,
+    maxHeadcount,
+    currentHeadcount,
+    isLeader,
+    uuid,
+  } = studyGroup
+
+  const { navigateToGroupDetail } = usePageNav()
+  const reviewWriteModal = useModal()
+  const reviewListModal = useModal()
+
+  const createReviewMutation = useReviewCreateMutation(uuid)
+
+  const { data: reviewData } = useReviewListQuery(uuid)
+  const reviews = reviewData?.results || []
+  const averageRating = calculateAverageRating(reviews)
+  const reviewCount = reviews.length
+
+  // api연동후 api폴더로 이동예정
+  const handleConfirmReview = (data: ReviewFormInputs) => {
+    const payload = {
+      groupUuid: uuid,
+      starRating: data.rating,
+      content: data.reviewText,
+      createdAt: new Date().toISOString(),
+    }
+    createReviewMutation.mutate(payload)
+    reviewWriteModal.closeModal()
+  }
+
+  return (
+    <div className="max-w-96 flex-1 overflow-hidden">
+      <ImageCard
+        title={name}
+        imageUrl={imgUrl}
+        overlayContent={
+          <StudyGroupCardOverlay
+            status={status}
+            isLeader={isLeader}
+            maxHeadcount={maxHeadcount}
+            currentHeadcount={currentHeadcount}
+          />
+        }
+      >
+        <div className="flex h-[380px] flex-col justify-between gap-3 p-5">
+          <Text variant="large" className="font-semibold text-gray-900">
+            {name}
+          </Text>
+          <StudyGroupCardBody
+            startAt={startAt}
+            endAt={endAt}
+            lectures={lectures}
+          />
+          <StudyGroupCardFooter
+            status={status}
+            navigateToGroupDetail={() => navigateToGroupDetail(uuid)}
+            onWriteReview={reviewWriteModal.openModal}
+            onViewReviews={reviewListModal.openModal}
+            averageRating={averageRating}
+            reviewCount={reviewCount}
+          />
+        </div>
+      </ImageCard>
+      <ReviewWriteModal
+        isOpen={reviewWriteModal.isOpen}
+        onClose={reviewWriteModal.closeModal}
+        confirm={handleConfirmReview}
+      />
+      {reviewListModal.isOpen && (
+        <ReviewListModal
+          groupUuid={uuid}
+          isOpen={reviewListModal.isOpen}
+          onClose={reviewListModal.closeModal}
+          confirm={() => {}}
+        />
+      )}
+    </div>
+  )
+}

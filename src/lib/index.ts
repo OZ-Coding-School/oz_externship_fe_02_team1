@@ -1,1 +1,1 @@
-// lib
+export * from '@lib/fetcher'
