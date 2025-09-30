@@ -9,6 +9,7 @@ import { useMediaQuery } from 'react-responsive'
 import { Avatar, Text, UserDropdown } from '@components'
 import { mediaQuery } from '@constants'
 import { cn } from '@utils'
+
 import { useAuthStore } from '@/store'
 
 export default function UserProfileMenu() {
