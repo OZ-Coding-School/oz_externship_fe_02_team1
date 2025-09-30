@@ -17,7 +17,7 @@ export default function ChatContainer({
   onToggle,
 }: ChatContainerProps) {
   return (
-    <div className="fixed right-6 bottom-24 z-9999 h-96 w-80 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-2xl">
+    <div className="fixed right-6 bottom-24 z-9999 h-78 w-68 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-2xl sm:h-96 sm:w-80">
       <header
         className={cn(
           'flex items-center justify-between border-b border-gray-200 bg-gray-50 p-4',
