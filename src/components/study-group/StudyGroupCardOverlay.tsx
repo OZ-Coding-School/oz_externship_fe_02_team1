@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router'
 
 import { StudyBadge } from '@components'
+import { useAuthStore } from '@store'
 
 import type { StudyGroupStatus } from '@models'
-import { useAuthStore } from '@/store'
 
 interface StudyCardOverlayProps {
   status: StudyGroupStatus

@@ -1,4 +1,5 @@
 import { Controller, type UseFormReturn } from 'react-hook-form'
+import { useParams } from 'react-router-dom'
 
 import {
   Input,
@@ -7,9 +8,9 @@ import {
   Badge,
   Text,
   ScheduleDatePickerModal,
+  LoadingState,
 } from '@components'
-import { useModal } from '@hooks'
-import { studyGroup } from '@mocks/datas/studyGroupDetail'
+import { useModal, useStudyGroupQuery } from '@hooks'
 import { formatToYMD } from '@utils'
 
 import type { ScheduleFormInputs } from '@models'
@@ -32,6 +33,9 @@ export default function ScheduleForm({
     formState: { errors },
   } = formMethods
 
+  const { groupId } = useParams<{ groupId: string }>()
+  const { data: studyGroupData, isLoading } = useStudyGroupQuery(groupId || '')
+
   const datePickerModal = useModal(false, () => setTempDate(undefined))
 
   const confirmDate = () => {
@@ -40,6 +44,12 @@ export default function ScheduleForm({
     }
     datePickerModal.closeModal()
   }
+
+  if (isLoading) {
+    return <LoadingState />
+  }
+
+  const members = studyGroupData?.members || []
 
   return (
     <>
@@ -114,7 +124,7 @@ export default function ScheduleForm({
             render={({ field }) => (
               <>
                 <div className="flex flex-col gap-2 rounded-lg border border-gray-300 p-4">
-                  {studyGroup.members.map((member) => (
+                  {members.map((member) => (
                     <label
                       key={member.nickname}
                       className="flex items-center gap-3"

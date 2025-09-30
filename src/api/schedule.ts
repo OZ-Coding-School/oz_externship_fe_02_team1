@@ -7,6 +7,8 @@ import type {
   CreateScheduleResponse,
   ScheduleDetailResponse,
   ScheduleDatailRequest,
+  UpdateScheduleResponse,
+  UpdateScheduleRequest,
 } from '@api'
 
 export const scheduleApi = {
@@ -32,9 +34,13 @@ export const scheduleApi = {
     )
     return response.data
   },
-  updateSchedule: async (scheduleId: number, data: any) => {
-    const response = await axiosInstance.patch(
-      API_PATHS.SCHEDULE.UPDATE(scheduleId),
+  updateSchedule: async (
+    studyGroupUuid: string,
+    scheduleId: number,
+    data: UpdateScheduleRequest
+  ) => {
+    const response = await axiosInstance.patch<UpdateScheduleResponse>(
+      API_PATHS.SCHEDULE.UPDATE(studyGroupUuid, scheduleId),
       data
     )
     return response.data

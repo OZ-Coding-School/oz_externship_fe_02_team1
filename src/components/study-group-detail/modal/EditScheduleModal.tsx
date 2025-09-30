@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useParams } from 'react-router-dom'
 
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
+import { useScheduleMutations } from '@hooks'
+import { studyGroupList } from '@mocks/datas/studygroupList'
 
 import type { ScheduleDetailResponse } from '@api'
 import type { ScheduleFormInputs } from '@models'
@@ -18,6 +21,17 @@ export default function EditScheduleModal({
   schedule,
 }: EditScheduleModalProps) {
   const [tempDate, setTempDate] = useState<Date | undefined>(undefined)
+  const { groupId } = useParams<{ groupId: string }>()
+
+  const currentStudyGroup =
+    studyGroupList.find((group) => group.uuid === groupId) || studyGroupList[0]
+
+  const mockParticipants = [
+    currentStudyGroup?.members?.[0],
+    currentStudyGroup?.members?.[1],
+    currentStudyGroup?.members?.[3],
+    currentStudyGroup?.members?.[4],
+  ].filter(Boolean) as typeof currentStudyGroup.members
 
   const formMethods = useForm<ScheduleFormInputs>({
     defaultValues: {
@@ -26,16 +40,16 @@ export default function EditScheduleModal({
       sessionDate: schedule.sessionDate,
       startTime: schedule.startTime,
       endTime: schedule.endTime,
-      participants:
-        schedule.participants?.map((p) => ({
-          userId: p.userId,
-          nickname: p.userNickname,
-          isLeader: p.isLeader,
-        })) ?? [],
+      participants: mockParticipants?.map((p) => ({
+        userId: p.uuid,
+        nickname: p.nickname,
+        isLeader: p.isLeader,
+      })),
     },
   })
 
   const { handleSubmit, reset } = formMethods
+  const { updateScheduleMutation } = useScheduleMutations(groupId || '')
 
   useEffect(() => {
     if (!isOpen) {
@@ -48,8 +62,19 @@ export default function EditScheduleModal({
     onClose()
   }
 
-  const handleConfirm = (data: ScheduleFormInputs) => {
-    console.log('Edited Schedule:', data)
+  const handleConfirm = async (data: ScheduleFormInputs) => {
+    const scheduleData = {
+      title: data.title,
+      objective: data.objective,
+      session_date: data.sessionDate,
+      start_time: `${data.startTime}:00`,
+      end_time: `${data.endTime}:00`,
+    }
+
+    await updateScheduleMutation.mutateAsync({
+      scheduleId: schedule.id,
+      data: scheduleData,
+    })
     handleClose()
   }
 

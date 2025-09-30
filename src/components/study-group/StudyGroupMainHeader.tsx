@@ -1,10 +1,10 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { useMediaQuery } from 'react-responsive'
 
 import { Button, Input, SectionHeader, Text } from '@components'
+import { mediaQuery } from '@constants'
 import { usePageNav } from '@hooks'
-import { useMediaQuery } from 'react-responsive'
-import { mediaQuery } from '@/constants'
-import { cn } from '@/utils'
+import { cn } from '@utils'
 
 interface StudyGroupMainHeaderProps {
   searchQuery: string
