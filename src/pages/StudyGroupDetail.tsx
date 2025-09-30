@@ -29,6 +29,7 @@ export default function StudyGroupDetail() {
 
   const {
     name,
+    imgUrl,
     currentHeadcount,
     maxHeadcount,
     startAt,
@@ -45,6 +46,7 @@ export default function StudyGroupDetail() {
     <>
       <StudyGroupHeader
         name={name}
+        imgUrl={imgUrl}
         currentHeadcount={currentHeadcount}
         maxHeadcount={maxHeadcount}
         startAt={startAt}

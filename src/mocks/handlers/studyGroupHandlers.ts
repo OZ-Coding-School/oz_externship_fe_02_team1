@@ -62,7 +62,8 @@ export const studyGroupHandlers = [
         members: studyGroup.members?.map((member) => ({
           uuid: member.uuid,
           nickname: member.nickname,
-          is_leader: member.isLeader,
+          isLeader: member.isLeader,
+          profileImage: member.profileImage,
         })),
         imgUrl: studyGroup.imgUrl,
         startAt: studyGroup.startAt,

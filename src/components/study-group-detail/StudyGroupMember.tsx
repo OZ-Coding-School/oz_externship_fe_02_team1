@@ -36,7 +36,7 @@ export default function StudyGroupMember({
             className="group flex items-center justify-between"
           >
             <div className="flex items-center">
-              <Avatar alt={member.nickname} />
+              <Avatar src={member.profileImage} alt={member.nickname} />
               <Text className="mr-2 ml-3">{member.nickname}</Text>
               {member.isLeader && (
                 <Badge

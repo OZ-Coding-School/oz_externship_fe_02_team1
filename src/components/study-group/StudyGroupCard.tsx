@@ -7,7 +7,12 @@ import {
   StudyGroupCardFooter,
   StudyGroupCardBody,
 } from '@components'
-import { useModal, usePageNav, useReviewCreateMutation, useReviewListQuery } from '@hooks'
+import {
+  useModal,
+  usePageNav,
+  useReviewCreateMutation,
+  useReviewListQuery,
+} from '@hooks'
 import { calculateAverageRating } from '@utils'
 
 import type { ReviewFormInputs } from './modal/ReviewWriteModal'
@@ -55,7 +60,7 @@ export default function StudyGroupCard({ studyGroup }: StudyGroupCardProps) {
   }
 
   return (
-    <div className="max-w-96 overflow-hidden">
+    <div className="max-w-96 flex-1 overflow-hidden">
       <ImageCard
         title={name}
         imageUrl={imgUrl}

@@ -46,7 +46,7 @@ export default function StudyGroupHeader({
   return (
     <header className="relative aspect-[1.5/1] overflow-hidden rounded-lg bg-gray-500 sm:aspect-[2/1]">
       <img
-        className="h-full w-full"
+        className="h-full w-full object-cover"
         src={imgUrl ?? Images.studyGroupDefault}
         alt={`${name} 스터디 그룹 이미지`}
       />

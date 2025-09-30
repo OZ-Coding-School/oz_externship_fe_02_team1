@@ -8,5 +8,5 @@ export interface Member {
   uuid: string
   nickname: string
   profileImage?: string
-  profileImgUrl?: string | null
+  profileImgUrl?: string
 }
