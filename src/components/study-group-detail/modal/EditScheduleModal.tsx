@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useParams } from 'react-router-dom'
 
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
+import { studyGroupList } from '@mocks/datas/studygroupList'
 
 import type { ScheduleDetailResponse } from '@api'
 import type { ScheduleFormInputs } from '@models'
@@ -18,6 +20,22 @@ export default function EditScheduleModal({
   schedule,
 }: EditScheduleModalProps) {
   const [tempDate, setTempDate] = useState<Date | undefined>(undefined)
+  const { groupId } = useParams<{ groupId: string }>()
+
+  const currentStudyGroup = studyGroupList.find(
+    (group) => group.uuid === groupId
+  )
+
+  if (!currentStudyGroup) {
+    return null
+  }
+
+  const mockParticipants = [
+    currentStudyGroup?.members?.[0],
+    currentStudyGroup?.members?.[1],
+    currentStudyGroup?.members?.[3],
+    currentStudyGroup?.members?.[4],
+  ].filter(Boolean) as typeof currentStudyGroup.members
 
   const formMethods = useForm<ScheduleFormInputs>({
     defaultValues: {
@@ -26,12 +44,11 @@ export default function EditScheduleModal({
       sessionDate: schedule.sessionDate,
       startTime: schedule.startTime,
       endTime: schedule.endTime,
-      participants:
-        schedule.participants?.map((p) => ({
-          userId: p.userId,
-          nickname: p.userNickname,
-          isLeader: p.isLeader,
-        })) ?? [],
+      participants: mockParticipants?.map((p) => ({
+        userId: p.uuid,
+        nickname: p.nickname,
+        isLeader: p.isLeader,
+      })),
     },
   })
 
