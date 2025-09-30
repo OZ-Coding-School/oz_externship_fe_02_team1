@@ -1,12 +1,12 @@
 import { Checkbox, Text } from '@components'
 import { cn } from '@utils'
 
-import type { LectureDetail } from '@models'
+import type { LectureItem } from '@/api'
 
 interface LectureSelectItemProps {
-  lecture: LectureDetail
+  lecture: LectureItem
   isSelected: boolean
-  onSelect: (lecture: LectureDetail) => void
+  onSelect: (lecture: LectureItem) => void
   disabled: boolean
 }
 
@@ -18,7 +18,7 @@ export default function LectureSelectItem({
 }: LectureSelectItemProps) {
   return (
     <label
-      key={lecture.id}
+      key={lecture.uuid}
       className={cn(
         'flex cursor-pointer items-center gap-4 rounded-md border p-4',
         isSelected ? 'border-primary-500 bg-primary-50' : 'border-gray-200',
@@ -28,11 +28,11 @@ export default function LectureSelectItem({
     >
       <img
         src={lecture.thumbnailImg}
-        alt={lecture.lectureTitle}
+        alt={lecture.title}
         className="h-20 w-20 rounded-md object-cover"
       />
       <div className="flex-1">
-        <Text className="font-semibold">{lecture.lectureTitle}</Text>
+        <Text className="font-semibold">{lecture.title}</Text>
         <Text variant="small" className="text-gray-500">
           {lecture.instructor}
         </Text>

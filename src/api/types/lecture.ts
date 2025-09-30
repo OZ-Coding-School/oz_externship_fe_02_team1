@@ -1,5 +1,5 @@
 export interface LectureItem {
-  id: string
+  uuid: string
   title: string
   instructor: string
   duration: number
