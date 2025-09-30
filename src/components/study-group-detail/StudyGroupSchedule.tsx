@@ -11,8 +11,14 @@ export default function StudyGroupSchedule() {
   const { data: scheduleData } = useScheduleListQeury(groupId || '')
 
   return (
-    <Card title="스케줄 관리" titleClassName="pt-1.5 pb-7.5 text-xl">
-      <Button className="absolute right-6" onClick={openModal}>
+    <Card
+      title="스케줄 관리"
+      titleClassName=" pt-1.5 pb-7.5 text-lg sm:text-xl "
+    >
+      <Button
+        className="absolute right-6 flex gap-1 p-2 sm:px-4 sm:py-2.5"
+        onClick={openModal}
+      >
         <PlusIcon width={16} />
         스케줄 추가
       </Button>

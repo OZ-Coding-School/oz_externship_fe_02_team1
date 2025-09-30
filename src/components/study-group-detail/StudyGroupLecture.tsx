@@ -18,7 +18,7 @@ export default function StudyGroupLecture({
     <Card
       title="스터디 강의"
       titleVariant="base"
-      titleClassName="pb-4 text-lg text-gray-900"
+      titleClassName="pb-4 text-md sm:text-lg text-gray-900"
     >
       <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 lg:flex">
         {lectures?.map((lecture) => (

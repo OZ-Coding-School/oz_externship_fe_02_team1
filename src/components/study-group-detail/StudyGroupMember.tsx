@@ -25,7 +25,7 @@ export default function StudyGroupMember({
   }
 
   return (
-    <Card title="멤버 목록">
+    <Card title="멤버 목록" titleClassName="text-md sm:text-lg">
       <Text className="absolute top-7 right-6 text-sm text-gray-500">
         {members.length}명
       </Text>
