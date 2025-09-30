@@ -1,5 +1,6 @@
 import { PencilIcon } from '@heroicons/react/24/outline'
 import { Link, useParams } from 'react-router'
+import { useEffect } from 'react'
 
 import {
   Avatar,
@@ -10,12 +11,13 @@ import {
   LoadingState,
   Text,
 } from '@components'
-import { useLogListQeury, usePageNav } from '@hooks'
+import { useLogListQeury, usePageNav, useToast } from '@hooks'
 import { formatDate } from '@utils'
 
 export default function StudyGroupLogList() {
   const { navigateToLogCreate } = usePageNav()
   const { groupId } = useParams<{ groupId: string }>()
+  const { toast } = useToast()
 
   const {
     data: logData,
@@ -23,6 +25,16 @@ export default function StudyGroupLogList() {
     isError,
     refetch,
   } = useLogListQeury(groupId || '')
+
+  useEffect(() => {
+    if (isError) {
+      toast({
+        title: '스터디 기록을 불러오는 데 실패했습니다.',
+        message: '다시 시도해주세요.',
+        type: 'error',
+      })
+    }
+  }, [isError, toast])
 
   return (
     <Card
@@ -42,7 +54,11 @@ export default function StudyGroupLogList() {
       )}
 
       {isLoading && <LoadingState />}
-      {isError && <ErrorState onRetry={refetch} />}
+      {isError && (
+        <div className="flex items-center justify-center py-20">
+          <ErrorState onRetry={refetch} />
+        </div>
+      )}
       {!isLoading &&
         !isError &&
         (!logData || logData.length === 0 ? (
