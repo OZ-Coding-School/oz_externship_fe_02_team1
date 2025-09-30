@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import {
   BaseModal,
@@ -11,11 +11,13 @@ import {
 import { MAX_LECTURES } from '@constants'
 
 import { useLectureListQuery } from '@/hooks'
-import type { LectureItem } from '@/api'
+import type { LectureItem } from '@api'
 
 interface LectureSelectModalProps {
   isOpen: boolean
   onClose: () => void
+  initialSelectedLectures?: LectureItem[]
+  onConfirmSelection: (lectures: LectureItem[]) => void
 }
 
 const LECTURES_PER_PAGE = 5
@@ -23,10 +25,18 @@ const LECTURES_PER_PAGE = 5
 export default function LectureSelectModal({
   isOpen,
   onClose,
+  initialSelectedLectures = [],
+  onConfirmSelection,
 }: LectureSelectModalProps) {
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const [selectedLectures, setSelectedLectures] = useState<LectureItem[]>([])
+  const [selectedLectures, setSelectedLectures] = useState<LectureItem[]>(
+    initialSelectedLectures
+  )
+
+  useEffect(() => {
+    setSelectedLectures(initialSelectedLectures)
+  }, [isOpen, initialSelectedLectures])
 
   const { data: lectureData } = useLectureListQuery()
 
@@ -57,6 +67,11 @@ export default function LectureSelectModal({
         return [...prev, lecture]
       }
     })
+  }
+
+  const handleConfirm = () => {
+    onConfirmSelection(selectedLectures)
+    onClose()
   }
 
   return (
@@ -93,7 +108,7 @@ export default function LectureSelectModal({
 
       {MODAL_PRESETS.search.footer({
         onClose,
-        onConfirm: () => {},
+        onConfirm: handleConfirm,
         selectedCount: selectedLectures.length,
       })}
     </BaseModal>

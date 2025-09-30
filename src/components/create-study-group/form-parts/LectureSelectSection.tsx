@@ -4,17 +4,18 @@ import { BookmarkSquareIcon } from '@heroicons/react/24/outline'
 
 import { Card, SelectedLectureCard, Text } from '@components'
 import { MAX_LECTURES } from '@constants'
-
-import type { Lecture } from '@models'
+import type { LectureItem } from '@/api'
 
 interface LectureSelectSectionProps {
-  lectures: Lecture[] | undefined
+  lectures: LectureItem[] | undefined
   actionSlot: ReactNode
+  onDeleteLecture: (uuid: string) => void
 }
 
 export default function LectureSelectSection({
   lectures,
   actionSlot,
+  onDeleteLecture,
 }: LectureSelectSectionProps) {
   return (
     <Card
@@ -31,8 +32,12 @@ export default function LectureSelectSection({
 
         {lectures && lectures.length > 0 ? (
           <div className="flex flex-col gap-4 p-3">
-            {lectures.map((el) => (
-              <SelectedLectureCard key={el.id} lecture={el} />
+            {lectures.map((lecture) => (
+              <SelectedLectureCard
+                key={lecture.uuid}
+                lecture={lecture}
+                onDelete={() => onDeleteLecture(lecture.uuid)}
+              />
             ))}
             <Text variant="small" className="font-medium text-gray-500">
               {lectures.length}/{MAX_LECTURES}개 강의 선택됨
