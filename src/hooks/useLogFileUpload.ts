@@ -38,7 +38,7 @@ export function useLogFileUpload({ groupUuid }: UseLogFileUploadProps) {
         try {
           const decodedFileName = decodeURIComponent(fileName)
           urlMap.set(decodedFileName, url)
-        } catch (e) {
+        } catch {
           urlMap.set(fileName, url)
         }
       })
@@ -53,7 +53,7 @@ export function useLogFileUpload({ groupUuid }: UseLogFileUploadProps) {
       if (newlyUploadedFiles.length > 0) {
         setUploadedFiles((current) => [...current, ...newlyUploadedFiles])
       }
-    } catch (err) {
+    } catch {
       setErrorMessage('파일 업로드에 실패했습니다.')
     }
   }

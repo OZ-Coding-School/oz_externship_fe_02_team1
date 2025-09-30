@@ -83,7 +83,7 @@ export default function EditScheduleModal({
         type: 'success',
       })
       handleClose()
-    } catch (error) {
+    } catch {
       toast({
         title: '스케줄 수정에 실패했습니다.',
         message: '다시 시도해주세요.',
