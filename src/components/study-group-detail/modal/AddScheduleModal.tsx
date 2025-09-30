@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useParams } from 'react-router'
 
 import { BaseModal, ModalBody, MODAL_PRESETS, ScheduleForm } from '@components'
-import { useScheduleMutations } from '@hooks'
+import { useScheduleMutations, useToast } from '@hooks'
 import { studyGroupList } from '@mocks/datas/studygroupList'
 
 import type { ScheduleFormInputs } from '@models'
@@ -31,6 +31,7 @@ export default function AddScheduleModal({
 
   const { handleSubmit, reset } = formMethods
   const { createScheduleMutation } = useScheduleMutations(studyGroupUuid || '')
+  const { toast } = useToast()
 
   useEffect(() => {
     if (!isOpen) {
@@ -56,10 +57,18 @@ export default function AddScheduleModal({
 
     try {
       await createScheduleMutation.mutateAsync(scheduleData)
-      alert('스케줄이 생성되었습니다.')
+      toast({
+        title: '스케줄이 성공적으로 생성되었습니다.',
+        message: '',
+        type: 'success',
+      })
       handleClose()
-    } catch (error) {
-      alert('스케줄 생성에 실패했습니다.')
+    } catch {
+      toast({
+        title: '스케줄 생성에 실패했습니다.',
+        message: '다시 시도해주세요.',
+        type: 'error',
+      })
     }
   }
 

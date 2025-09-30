@@ -1,7 +1,10 @@
 import { authApi } from '@api'
+import { useToast } from '@hooks'
 import { useAuthStore } from '@store'
 
 export const useAuthActions = () => {
+  const { toast } = useToast()
+
   const handleLogin = async () => {
     try {
       const loginResponse = await authApi.login({
@@ -17,9 +20,12 @@ export const useAuthActions = () => {
       }
 
       useAuthStore.getState().login(loginResponse.accessToken, tempUser)
-    } catch (error) {
-      // TODO: 토스트 알림 교체
-      console.error('로그인 실패:', error)
+    } catch {
+      toast({
+        title: '로그인에 실패했습니다.',
+        message: '다시 시도해주세요.',
+        type: 'error',
+      })
     }
   }
 
@@ -27,9 +33,12 @@ export const useAuthActions = () => {
     try {
       await authApi.logout()
       useAuthStore.getState().logout()
-    } catch (error) {
-      // TODO: 토스트 알림 교체
-      console.error('로그아웃 실패:', error)
+    } catch {
+      toast({
+        title: '로그아웃에 실패했습니다.',
+        message: '다시 시도해주세요.',
+        type: 'error',
+      })
     }
   }
 

@@ -6,6 +6,7 @@ import {
   type CreateStudyLogRequest,
   type StudyLogDetailResponse,
 } from '@api'
+import { useToast } from '@hooks'
 
 interface StudyLogMutationsProps {
   groupUuid: string
@@ -19,6 +20,7 @@ export const useStudyLogMutations = ({
   onSuccess,
 }: StudyLogMutationsProps) => {
   const queryClient = useQueryClient()
+  const { toast } = useToast()
 
   const { mutate: createLog, isPending: isCreating } = useMutation({
     mutationFn: (payload: CreateStudyLogRequest) =>
@@ -26,7 +28,13 @@ export const useStudyLogMutations = ({
     onSuccess: (data) => {
       onSuccess?.(data)
     },
-    onError: (error) => console.error('스터디 기록 생성 실패:', error),
+    onError: () => {
+      toast({
+        title: '스터디 기록 생성에 실패했습니다.',
+        message: '다시 시도해주세요.',
+        type: 'error',
+      })
+    },
   })
 
   const { mutate: updateLog, isPending: isUpdating } = useMutation({
@@ -40,7 +48,13 @@ export const useStudyLogMutations = ({
       })
       onSuccess?.(data as StudyLogDetailResponse)
     },
-    onError: (error) => console.error('스터디 기록 수정 실패:', error),
+    onError: () => {
+      toast({
+        title: '스터디 기록 수정에 실패했습니다.',
+        message: '다시 시도해주세요.',
+        type: 'error',
+      })
+    },
   })
 
   return {
