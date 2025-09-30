@@ -20,23 +20,19 @@ export default function LogDetailAttachments({
         </Text>
       </div>
       {attachments && attachments.length > 0 && (
-        <ul className="grid grid-cols-1 justify-between gap-2 sm:grid-cols-2 sm:gap-4">
+        <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4">
           {attachments.map((file) => (
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={file.fileUrl}
-              download={file.fileName}
-              className="flex w-full flex-col items-center gap-1 rounded-lg border border-gray-200 p-3 sm:flex-row sm:gap-3"
-            >
-              <li
-                key={file.id}
-                className="flex w-full flex-col items-center justify-between gap-2 sm:flex-row sm:gap-4"
+            <li key={file.id}>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={file.fileUrl}
+                download={file.fileName}
+                className="flex w-full flex-col items-center gap-3 rounded-lg border border-gray-200 p-3 sm:flex-row"
               >
                 {isImageFile(file.fileName) ? <ImageIcon /> : <ZipIcon />}
-
-                <div className="text-center sm:w-full sm:text-start">
-                  <Text className="flex text-xs font-medium wrap-break-word sm:text-sm">
+                <div className="flex w-full flex-col">
+                  <Text variant="small" className="font-medium wrap-normal">
                     {file.fileName}
                   </Text>
                   <Text
@@ -47,8 +43,8 @@ export default function LogDetailAttachments({
                   </Text>
                 </div>
                 <DownloadIcon />
-              </li>
-            </a>
+              </a>
+            </li>
           ))}
         </ul>
       )}
