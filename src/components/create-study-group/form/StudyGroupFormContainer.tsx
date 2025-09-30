@@ -6,7 +6,7 @@ import {
   type FormMode,
   type StudyGroupFormValues,
 } from '@components'
-import { useStudyGroupMutations } from '@hooks'
+import { useStudyGroupMutations, useToast } from '@hooks'
 import { studyGroup } from '@mocks/datas/studyGroupDetail'
 import { buildCreateStudyGroupFormData } from '@utils'
 
@@ -31,6 +31,7 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
 
   const { reset } = methods
   const createStudyGroupMutation = useStudyGroupMutations()
+  const { toast } = useToast()
 
   useEffect(() => {
     if (mode === 'edit') {
@@ -52,9 +53,17 @@ export default function StudyGroupFormContainer({ mode }: FormMode) {
 
     try {
       await createStudyGroupMutation.mutateAsync(formData)
-      alert('스터디 그룹이 성공적으로 생성되었습니다!')
-    } catch (error) {
-      alert('스터디 그룹 생성에 실패했습니다. 다시 시도해주세요.')
+      toast({
+        title: '스터디 그룹이 생성되었습니다.',
+        message: '',
+        type: 'success',
+      })
+    } catch {
+      toast({
+        title: '스터디 그룹을 생성하지 못했습니다.',
+        message: '다시 시도해주세요.',
+        type: 'error',
+      })
     }
   }
 
