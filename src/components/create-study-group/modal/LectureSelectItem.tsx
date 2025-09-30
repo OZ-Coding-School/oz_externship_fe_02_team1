@@ -29,14 +29,17 @@ export default function LectureSelectItem({
       <img
         src={lecture.thumbnailImgUrl}
         alt={lecture.title}
-        className="h-20 w-20 rounded-md object-cover"
+        className="h-20 w-30 rounded-md object-cover"
       />
-      <div className="flex-1">
+      <div className="flex flex-1 flex-col gap-1">
         <Text className="font-semibold">{lecture.title}</Text>
         <Text variant="small" className="text-gray-500">
           {lecture.instructor}
         </Text>
-        <Text variant="small" className="text-gray-500">
+        <Text
+          variant="small"
+          className="text-success-800 bg-success-100 w-fit rounded-md px-2 py-1"
+        >
           {lecture.platform}
         </Text>
       </div>
