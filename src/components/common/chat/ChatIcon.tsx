@@ -22,7 +22,7 @@ export default function ChatIcon() {
         onClick={handleToggleChat}
         aria-label={isChatOpen ? '채팅 닫기' : '채팅 열기'}
         className={cn(
-          'bg-primary-500 fixed flex h-16 w-16 cursor-pointer items-center justify-center rounded-full shadow-md',
+          'bg-primary-500 fixed flex h-12 w-12 cursor-pointer items-center justify-center rounded-full shadow-md sm:h-16 sm:w-16',
           isMobile ? 'right-4 bottom-4' : 'right-6 bottom-6'
         )}
       >
