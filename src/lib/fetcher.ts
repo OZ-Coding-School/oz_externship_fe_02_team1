@@ -76,8 +76,7 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest)
       } catch (refreshError: any) {
         localStorage.removeItem('accessToken')
-        // TODO: zustand 상태 관리도 초기화 필요
-        window.location.href = '/login'
+        window.location.href = '/auth/login'
         return Promise.reject(refreshError)
       } finally {
         isRefreshing = false
