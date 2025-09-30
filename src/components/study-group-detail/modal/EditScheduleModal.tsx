@@ -23,13 +23,8 @@ export default function EditScheduleModal({
   const [tempDate, setTempDate] = useState<Date | undefined>(undefined)
   const { groupId } = useParams<{ groupId: string }>()
 
-  const currentStudyGroup = studyGroupList.find(
-    (group) => group.uuid === groupId
-  )
-
-  if (!currentStudyGroup) {
-    return null
-  }
+  const currentStudyGroup =
+    studyGroupList.find((group) => group.uuid === groupId) || studyGroupList[0]
 
   const mockParticipants = [
     currentStudyGroup?.members?.[0],
