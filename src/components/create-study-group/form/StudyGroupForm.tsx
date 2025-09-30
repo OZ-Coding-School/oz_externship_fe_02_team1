@@ -9,10 +9,12 @@ import {
   LectureSelectSection,
   FormHeader,
   FormFooter,
+  LectureSelectModal,
   type FormMode,
   type StudyGroupFormValues,
 } from '@components'
 import { MAX_LECTURES, mediaQuery } from '@constants'
+import { useModal } from '@hooks'
 import { cn } from '@utils'
 
 interface StudyGroupFormProps extends FormMode {
@@ -25,6 +27,7 @@ export default function StudyGroupForm({
 }: StudyGroupFormProps) {
   const isMobile = useMediaQuery({ query: mediaQuery.mobile })
   const { handleSubmit, control } = useFormContext<StudyGroupFormValues>()
+  const { isOpen, openModal, closeModal } = useModal()
 
   const { field: nameField } = useController({ name: 'name', control })
   const { field: descriptionField } = useController({
@@ -84,12 +87,7 @@ export default function StudyGroupForm({
                 'absolute top-6 right-6 py-2',
                 !isMobile && 'top-8 right-8 text-base'
               )}
-              onClick={() => {
-                lecturesField.onChange([
-                  ...lecturesField.value,
-                  { id: Date.now(), title: '새 강의' },
-                ])
-              }}
+              onClick={openModal}
             >
               <PlusIcon width={16} />
               강의 추가하기
@@ -97,6 +95,8 @@ export default function StudyGroupForm({
           ) : null
         }
       />
+
+      {isOpen && <LectureSelectModal isOpen={isOpen} onClose={closeModal} />}
 
       <FormFooter mode={mode} />
     </form>

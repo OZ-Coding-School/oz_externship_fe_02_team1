@@ -8,6 +8,7 @@ import type {
   FooterButton,
   FooterButtonsProps,
 } from '@components/common/modal/modal.types'
+import { MAX_LECTURES } from '@constants'
 
 export const SPLIT_ROW = 'flex w-full max-w-[520px] gap-3' // 12px 간격
 export const SPLIT_BTN = 'flex-1'
@@ -139,7 +140,7 @@ const MODAL_PRESETS = {
     header: ({ onClose }: ModalHeaderRenderProps) => (
       <ModalHeader
         title="강의 선택"
-        subTitle="스터디에 등록할 강의를 찾아보세요"
+        subTitle="스터디에서 함께 공부할 강의를 선택하세요"
         onClose={onClose}
       />
     ),
@@ -164,7 +165,7 @@ const MODAL_PRESETS = {
           left={
             selectedCount && selectedCount > 0 ? (
               <span className="text-sm text-gray-500">
-                {selectedCount}개의 강의가 선택되었습니다
+                {selectedCount}개 강의 선택됨 ({selectedCount}/{MAX_LECTURES})
               </span>
             ) : (
               <span className="text-sm text-gray-400">강의를 선택하세요</span>
